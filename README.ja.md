@@ -34,4 +34,3 @@ AIエージェントのワークフロー向け開発ツールを作っていま
 
 - **[Zenn](https://zenn.dev/shimo4228)** — Claude Code、AI エージェント開発（日本語）
 - **[Dev.to](https://dev.to/shimo4228)** — 英語翻訳 + オリジナル記事
-- **[mind-and-machines](https://mindandmachines.substack.com/)** — AI alignment, consciousness, contemplative computing（英語）
