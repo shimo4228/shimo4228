@@ -33,5 +33,4 @@ Building developer tools for AI agent workflows — Claude Code skills, dev work
 ## Writing
 
 - **[Zenn](https://zenn.dev/shimo4228)** — Claude Code, AI agent development (Japanese)
-- **[Dev.to](https://dev.to/shimo4228)** — English translations + original posts
-- **[mind-and-machines](https://mindandmachines.substack.com/)** — AI alignment, consciousness, contemplative computing (English)
+- **[Dev.to](https://dev.to/shimo4228)** — English translations + original post
