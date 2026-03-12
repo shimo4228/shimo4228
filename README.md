@@ -1,25 +1,34 @@
-# Hi, I'm Tatsuya Shimomoto
+# Tatsuya Shimomoto (@shimo4228)
 
-I build developer tools that integrate AI into everyday workflows.
+Building developer tools for AI agent workflows — Claude Code skills, dev workflow automation, and the occasional research prototype.
 
-## What I'm working on
+## Featured Work
 
-**[pdf2anki](https://github.com/shimo4228/pdf2anki)** -- A Python CLI that generates Anki flashcards from PDF/text/Markdown using Claude AI. Features Vision support, TUI review, caching, and an eval framework.
+### Claude Code Skills (contributed to [ECC](https://github.com/anthropics/everything-claude-code))
 
-**[daily-research](https://github.com/shimo4228/daily-research)** -- Automated daily research reports powered by Claude Code. Zero Python — just shell scripts and prompts. Runs every morning at 5 AM via macOS launchd.
+| Project | What it does |
+|---------|-------------|
+| [search-first](https://github.com/shimo4228/claude-skill-search-first) | Forces agents to research existing solutions before building — reduces reinvention |
+| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Audits installed skills for staleness, conflicts, and redundancy |
+| learn-eval ([ECC](https://github.com/anthropics/everything-claude-code)) | Extracts reusable patterns from sessions and evaluates their value before saving |
 
-**[claude-code-learned-skills](https://github.com/shimo4228/claude-code-learned-skills)** -- Practical patterns and best practices extracted from real-world Claude Code usage.
+### Research Prototypes
+
+| Project | What it does |
+|---------|-------------|
+| [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules) | AI alignment rules based on Laukkonen et al. (2025) — tested via IPD benchmarks |
+| [contemplative-agent](https://github.com/shimo4228/contemplative-agent) | Autonomous agent implementing contemplative alignment on Moltbook |
+| [active-inference-viz](https://github.com/shimo4228/active-inference-viz) | Interactive visualization of Active Inference dynamics |
+
+### Applications
+
+| Project | What it does |
+|---------|-------------|
+| [pdf2anki](https://github.com/shimo4228/pdf2anki) | AI-powered PDF → Anki flashcard pipeline with Vision, TUI, caching |
+| [daily-research](https://github.com/shimo4228/daily-research) | Automated daily AI research digest — zero Python, just shell + prompts |
 
 ## Writing
 
-I write about Claude Code, AI automation, and developer workflows.
-
-**English** → [dev.to/shimo4228](https://dev.to/shimo4228) | **Japanese** → [zenn.dev/shimo4228](https://zenn.dev/shimo4228)
-
-- [Never Trust LLM Output — 6 Defenses from Building a PDF-to-Anki CLI](https://dev.to/shimo4228/never-trust-llm-output-6-defenses-from-building-a-pdf-to-anki-cli-43mo)
-- [Zero Python Code: How I Built a Daily AI Research Report System](https://dev.to/shimo4228/zero-python-code-how-i-built-a-daily-ai-research-report-system-4357)
-- [5 Things I Learned from Auditing All My Claude Code Config Files](https://dev.to/shimo4228/5-things-i-learned-from-auditing-all-my-claude-code-config-files-4mjj)
-
-## Tech
-
-Python / Swift / TypeScript
+- **[Zenn](https://zenn.dev/shimo4228)** — Claude Code, AI agent development (Japanese)
+- **[Dev.to](https://dev.to/shimo4228)** — English translations + original posts
+- **[mind-and-machines](https://mindandmachines.substack.com/)** — AI alignment, consciousness, contemplative computing (English)
