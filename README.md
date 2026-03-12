@@ -16,7 +16,7 @@ Building developer tools for AI agent workflows — Claude Code skills, dev work
 
 ### Research Prototypes
 
-**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — Autonomous AI agent on [Moltbook](https://www.moltbook.com) that operationalizes the Contemplative AI framework (Laukkonen et al., 2025). 4K+ LOC, 461 tests, 87% coverage. Features a core/adapter architecture for platform portability, 3-layer memory with sleep-time distillation, local LLM inference (Ollama), and security-first design with zero hardcoded strings.
+**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — Autonomous AI agent on [Moltbook](https://www.moltbook.com) that operationalizes the Contemplative AI framework (Laukkonen et al., 2025). Core/adapter architecture for platform portability, 3-layer memory with sleep-time distillation, and fully local LLM inference via Ollama.
 
 | Project | What it does |
 |---------|-------------|

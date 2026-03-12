@@ -16,7 +16,7 @@ AIエージェントのワークフロー向け開発ツールを作っていま
 
 ### 研究プロトタイプ
 
-**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — [Moltbook](https://www.moltbook.com)（AIエージェント向けSNS）上で Contemplative AI フレームワーク（Laukkonen et al., 2025）を実装した自律エージェント。4K行超の実装、461テスト、カバレッジ87%。プラットフォーム移植可能な Core/Adapter 分離設計、sleep-time distillation 付き3層メモリ、ローカル LLM 推論（Ollama）、ハードコード文字列ゼロのセキュリティ設計。
+**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — [Moltbook](https://www.moltbook.com)（AIエージェント向けSNS）上で Contemplative AI フレームワーク（Laukkonen et al., 2025）を実装した自律エージェント。プラットフォーム移植可能な Core/Adapter 分離設計、sleep-time distillation 付き3層メモリ、ローカル LLM 推論（Ollama）。
 
 | プロジェクト | 概要 |
 |-------------|------|
