@@ -12,7 +12,7 @@ Building developer tools for AI agent workflows — Claude Code skills, dev work
 |---------|-------------|
 | [search-first](https://github.com/shimo4228/claude-skill-search-first) | Forces agents to research existing solutions before building — reduces reinvention |
 | [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Audits installed skills for staleness, conflicts, and redundancy |
-| learn-eval ([ECC](https://github.com/anthropics/everything-claude-code)) | Extracts reusable patterns from sessions and evaluates their value before saving |
+| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) ([ECC](https://github.com/anthropics/everything-claude-code)) | Extracts reusable patterns from sessions and evaluates their value before saving |
 
 ### Research Prototypes
 
