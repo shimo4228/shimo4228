@@ -12,7 +12,7 @@ AIエージェントのワークフロー向け開発ツールを作っていま
 |-------------|------|
 | [search-first](https://github.com/shimo4228/claude-skill-search-first) | 実装前に既存ソリューションの調査を強制 — 車輪の再発明を防止 |
 | [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | インストール済みスキルの陳腐化・競合・冗長性を監査 |
-| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) ([ECC](https://github.com/anthropics/everything-claude-code)) | セッションから再利用可能なパターンを抽出し、保存前に価値を評価 |
+| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | セッションから再利用可能なパターンを抽出し、保存前に価値を評価 |
 
 ### 研究プロトタイプ
 
