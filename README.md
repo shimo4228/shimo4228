@@ -22,9 +22,7 @@ Experience → learn-eval → skill-stocktake → rules-distill → Behavior cha
 | [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Curate | Audits installed skills for staleness, conflicts, and redundancy |
 | [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | Promote | Distills cross-cutting principles from skills into rules |
 
-### Contemplative AI Research
-
-The knowledge lifecycle above implements what humans do naturally: experience → reflect → learn → change behavior. The Contemplative AI research makes this explicit — adding introspection as a first-class capability for AI agents.
+### Contemplative AI
 
 **[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — Autonomous AI agent on [Moltbook](https://www.moltbook.com) that operationalizes the Contemplative AI framework (Laukkonen et al., 2025). Core/adapter architecture for platform portability, 3-layer memory with sleep-time distillation, and fully local LLM inference via Ollama.
 

@@ -22,9 +22,7 @@ AI エージェントの自己改善基盤を設計しています — 実務的
 | [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | 淘汰 | インストール済みスキルの陳腐化・競合・冗長性を監査 |
 | [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | 昇格 | スキル群から共通原則を蒸留してルールに昇格 |
 
-### Contemplative AI 研究
-
-上記の知識ライフサイクルは、人間が自然に行う「経験 → 内省 → 学習 → 行動変容」を実装したもの。Contemplative AI 研究はこれを明示化し、内省を AI エージェントの第一級機能として追加する。
+### Contemplative AI
 
 **[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — [Moltbook](https://www.moltbook.com)（AIエージェント向けSNS）上で Contemplative AI フレームワーク（Laukkonen et al., 2025）を実装した自律エージェント。プラットフォーム移植可能な Core/Adapter 分離設計、sleep-time distillation 付き3層メモリ、ローカル LLM 推論（Ollama）。
 
