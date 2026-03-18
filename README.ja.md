@@ -2,7 +2,7 @@ Language: [English](README.md) | 日本語
 
 # Shimo (@shimo4228)
 
-AI エージェントの自己改善基盤を設計しています — 実務的な開発ツールから Contemplative AI 研究まで。
+AI エージェントの自己改善基盤を設計しています — Contemplative AI に触発された実務的な開発ツール。
 
 ## 主なプロジェクト
 

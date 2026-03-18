@@ -2,7 +2,7 @@ Language: English | [日本語](README.ja.md)
 
 # Shimo (@shimo4228)
 
-Designing the foundational infrastructure for AI agent self-improvement — from practical developer tools to contemplative AI research.
+Designing the foundational infrastructure for AI agent self-improvement — practical developer tools inspired by contemplative AI.
 
 ## Featured Work
 
