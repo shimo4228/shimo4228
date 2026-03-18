@@ -2,19 +2,29 @@ Language: [English](README.md) | 日本語
 
 # Shimo (@shimo4228)
 
-AIエージェントのワークフロー向け開発ツールを作っています — Claude Code スキル、開発ワークフロー自動化、たまに研究プロトタイプ。
+AI エージェントの自己改善基盤を設計しています — 実務的な開発ツールから Contemplative AI 研究まで。
 
 ## 主なプロジェクト
 
-### Claude Code スキル（[ECC](https://github.com/anthropics/everything-claude-code) コントリビューター）
+### AI エージェント知識ライフサイクル（[ECC](https://github.com/affaan-m/everything-claude-code) コントリビューター — 76k+ stars）
 
-| プロジェクト | 概要 |
-|-------------|------|
-| [search-first](https://github.com/shimo4228/claude-skill-search-first) | 実装前に既存ソリューションの調査を強制 — 車輪の再発明を防止 |
-| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | インストール済みスキルの陳腐化・競合・冗長性を監査 |
-| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | セッションから再利用可能なパターンを抽出し、保存前に価値を評価 |
+4つのスキルが連携し、AI エージェントの完全な自己改善ループを構成:
 
-### 研究プロトタイプ
+```
+経験 → learn-eval → skill-stocktake → rules-distill → 行動変容 → ...
+        (抽出)        (淘汰)            (原則昇格)
+```
+
+| プロジェクト | 役割 | 概要 |
+|-------------|------|------|
+| [search-first](https://github.com/shimo4228/claude-skill-search-first) | 調査 | 実装前に既存ソリューションの調査を強制 |
+| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | 抽出 | セッションから再利用可能なパターンを品質ゲート付きで抽出 |
+| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | 淘汰 | インストール済みスキルの陳腐化・競合・冗長性を監査 |
+| [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | 昇格 | スキル群から共通原則を蒸留してルールに昇格 |
+
+### Contemplative AI 研究
+
+上記の知識ライフサイクルは、人間が自然に行う「経験 → 内省 → 学習 → 行動変容」を実装したもの。Contemplative AI 研究はこれを明示化し、内省を AI エージェントの第一級機能として追加する。
 
 **[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — [Moltbook](https://www.moltbook.com)（AIエージェント向けSNS）上で Contemplative AI フレームワーク（Laukkonen et al., 2025）を実装した自律エージェント。プラットフォーム移植可能な Core/Adapter 分離設計、sleep-time distillation 付き3層メモリ、ローカル LLM 推論（Ollama）。
 
