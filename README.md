@@ -2,19 +2,31 @@ Language: English | [日本語](README.ja.md)
 
 # Shimo (@shimo4228)
 
-Building developer tools for AI agent workflows — Claude Code skills, dev workflow automation, and the occasional research prototype.
+Designing the foundational infrastructure for AI agent self-improvement — from practical developer tools to contemplative AI research.
 
 ## Featured Work
 
-### Claude Code Skills (contributed to [ECC](https://github.com/anthropics/everything-claude-code))
+### AI Agent Knowledge Lifecycle (contributed to [ECC](https://github.com/affaan-m/everything-claude-code) — 76k+ stars)
 
-| Project | What it does |
-|---------|-------------|
-| [search-first](https://github.com/shimo4228/claude-skill-search-first) | Forces agents to research existing solutions before building — reduces reinvention |
-| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Audits installed skills for staleness, conflicts, and redundancy |
-| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | Extracts reusable patterns from sessions and evaluates their value before saving |
+Four skills that together form a complete self-improvement loop for AI agents:
 
-### Research Prototypes
+```
+Experience → learn-eval → skill-stocktake → rules-distill → Behavior change → ...
+               (extract)    (curate)          (promote)
+```
+
+| Project | Role | What it does |
+|---------|------|-------------|
+| [search-first](https://github.com/shimo4228/claude-skill-search-first) | Research | Forces agents to research existing solutions before building |
+| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | Extract | Extracts reusable patterns from sessions with quality gates |
+| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Curate | Audits installed skills for staleness, conflicts, and redundancy |
+| [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | Promote | Distills cross-cutting principles from skills into rules |
+
+> `search-first` was adopted as ECC's "research-first development" philosophy — [reflected in the project's About section](https://github.com/affaan-m/everything-claude-code) 5 days after the PR was merged.
+
+### Contemplative AI Research
+
+The knowledge lifecycle above implements what humans do naturally: experience → reflect → learn → change behavior. The Contemplative AI research makes this explicit — adding introspection as a first-class capability for AI agents.
 
 **[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — Autonomous AI agent on [Moltbook](https://www.moltbook.com) that operationalizes the Contemplative AI framework (Laukkonen et al., 2025). Core/adapter architecture for platform portability, 3-layer memory with sleep-time distillation, and fully local LLM inference via Ollama.
 
