@@ -22,8 +22,6 @@ Experience → learn-eval → skill-stocktake → rules-distill → Behavior cha
 | [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Curate | Audits installed skills for staleness, conflicts, and redundancy |
 | [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | Promote | Distills cross-cutting principles from skills into rules |
 
-> `search-first` was adopted as ECC's "research-first development" philosophy — [reflected in the project's About section](https://github.com/affaan-m/everything-claude-code) 5 days after the PR was merged.
-
 ### Contemplative AI Research
 
 The knowledge lifecycle above implements what humans do naturally: experience → reflect → learn → change behavior. The Contemplative AI research makes this explicit — adding introspection as a first-class capability for AI agents.
