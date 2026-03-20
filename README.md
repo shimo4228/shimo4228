@@ -8,11 +8,13 @@ Building developer tools for AI agent self-improvement, inspired by contemplativ
 
 ### AI Agent Knowledge Lifecycle (contributed to [ECC](https://github.com/affaan-m/everything-claude-code))
 
-Four skills that form a self-improvement loop for AI agents:
+Five skills that form a self-improvement loop for AI agents:
 
 ```
 Experience → learn-eval → skill-stocktake → rules-distill → Behavior change → ...
-               (extract)    (curate)          (promote)
+               (extract)    (curate)          (promote)            ↑
+                                                            skill-comply
+                                                              (measure)
 ```
 
 | Project | Role | What it does |
@@ -21,6 +23,7 @@ Experience → learn-eval → skill-stocktake → rules-distill → Behavior cha
 | [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | Extract | Extracts reusable patterns from sessions with quality gates |
 | [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Curate | Audits installed skills for staleness, conflicts, and redundancy |
 | [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | Promote | Distills cross-cutting principles from skills into rules |
+| [skill-comply](https://github.com/shimo4228/claude-skill-comply) | Measure | Tests whether agents actually follow skills via behavioral compliance testing |
 
 ### Contemplative AI
 

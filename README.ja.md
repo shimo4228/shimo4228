@@ -8,11 +8,13 @@ AI エージェントの自己改善ツールを作っています — Contempla
 
 ### AI エージェント知識ライフサイクル（[ECC](https://github.com/affaan-m/everything-claude-code) コントリビューター）
 
-4つのスキルが連携し、AI エージェントの自己改善ループを構成:
+5つのスキルが連携し、AI エージェントの自己改善ループを構成:
 
 ```
 経験 → learn-eval → skill-stocktake → rules-distill → 行動変容 → ...
-        (抽出)        (淘汰)            (原則昇格)
+        (抽出)        (淘汰)            (原則昇格)         ↑
+                                                     skill-comply
+                                                       (計測)
 ```
 
 | プロジェクト | 役割 | 概要 |
@@ -21,6 +23,7 @@ AI エージェントの自己改善ツールを作っています — Contempla
 | [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | 抽出 | セッションから再利用可能なパターンを品質ゲート付きで抽出 |
 | [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | 淘汰 | インストール済みスキルの陳腐化・競合・冗長性を監査 |
 | [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | 昇格 | スキル群から共通原則を蒸留してルールに昇格 |
+| [skill-comply](https://github.com/shimo4228/claude-skill-comply) | 計測 | スキルが実際に遵守されているか行動コンプライアンスを自動計測 |
 
 ### Contemplative AI
 
