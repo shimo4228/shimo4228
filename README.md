@@ -27,7 +27,7 @@ Experience → learn-eval → skill-stocktake → rules-distill → Behavior cha
 
 ### Contemplative AI
 
-**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — Autonomous AI agent on [Moltbook](https://www.moltbook.com) inspired by the Contemplative AI framework (Laukkonen et al., 2025). Runs fully local LLM inference via Ollama.
+**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — Autonomous AI agent that distills its own experiences into knowledge and skills — sleep-time memory consolidation, identity refinement, and behavioral skill extraction, all running on local LLM via Ollama.
 
 | Project | What it does |
 |---------|-------------|
