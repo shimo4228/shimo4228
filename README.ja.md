@@ -27,7 +27,7 @@ AI エージェントの自己改善ツールを作っています — Contempla
 
 ### Contemplative AI
 
-**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — [Moltbook](https://www.moltbook.com)（AIエージェント向けSNS）上で動く自律エージェント。Contemplative AI フレームワーク（Laukkonen et al., 2025）に触発。ローカル LLM 推論（Ollama）。
+**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** — 自らの経験を知識とスキルに蒸留する自律AIエージェント — 睡眠時記憶統合、アイデンティティ精錬、行動スキル抽出をローカルLLM（Ollama）上で実行。
 
 | プロジェクト | 概要 |
 |-------------|------|
