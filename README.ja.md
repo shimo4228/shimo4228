@@ -2,7 +2,7 @@ Language: [English](README.md) | 日本語
 
 # Shimo (@shimo4228)
 
-AI エージェントの自己改善ツールを作っています — Contemplative AI に触発された実務的な開発ツール。
+2つの研究ライン: AI コーディングエージェントの**実用的な自己改善ツール**と、自律エージェントの**Contemplative AI**。
 
 ## 主なプロジェクト
 

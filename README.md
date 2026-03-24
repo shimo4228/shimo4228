@@ -2,7 +2,7 @@ Language: English | [日本語](README.ja.md)
 
 # Shimo (@shimo4228)
 
-Building developer tools for AI agent self-improvement, inspired by contemplative AI.
+Two research lines: **practical self-improvement tools** for AI coding agents, and **contemplative AI** for autonomous agents.
 
 ## Featured Work
 
