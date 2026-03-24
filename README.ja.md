@@ -6,24 +6,26 @@ AI エージェントの自己改善ツールを作っています — Contempla
 
 ## 主なプロジェクト
 
-### AI エージェント知識ライフサイクル（[ECC](https://github.com/affaan-m/everything-claude-code) コントリビューター）
+### [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)
 
-5つのスキルが連携し、AI エージェントの自己改善ループを構成:
+AI コーディングエージェントの自己改善ループ — 6つのスキルが循環的に連携:
 
 ```
 経験 → learn-eval → skill-stocktake → rules-distill → 行動変容 → ...
         (抽出)        (淘汰)            (原則昇格)         ↑
                                                      skill-comply
                                                        (計測)
+                                        context-sync ← (保守)
 ```
 
-| プロジェクト | 役割 | 概要 |
-|-------------|------|------|
-| [search-first](https://github.com/shimo4228/claude-skill-search-first) | 調査 | 実装前に既存ソリューションの調査を促す |
+| スキル | フェーズ | 概要 |
+|--------|---------|------|
+| [search-first](https://github.com/shimo4228/claude-skill-search-first) | 調査 | 実装前に既存ソリューションを調査 |
 | [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | 抽出 | セッションから再利用可能なパターンを品質ゲート付きで抽出 |
-| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | 淘汰 | インストール済みスキルの陳腐化・競合・冗長性を監査 |
+| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | 淘汰 | スキルの陳腐化・競合・冗長性を監査 |
 | [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | 昇格 | スキル群から共通原則を蒸留してルールに昇格 |
 | [skill-comply](https://github.com/shimo4228/claude-skill-comply) | 計測 | スキルが実際に遵守されているか行動コンプライアンスを自動計測 |
+| [context-sync](https://github.com/shimo4228/claude-skill-context-sync) | 保守 | ドキュメントの役割重複・陳腐化・ADR 欠落を検出して修正 |
 
 ### Contemplative AI
 

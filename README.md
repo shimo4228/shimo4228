@@ -6,25 +6,26 @@ Building developer tools for AI agent self-improvement, inspired by contemplativ
 
 ## Featured Work
 
-### AI Agent Knowledge Lifecycle (contributed to [ECC](https://github.com/affaan-m/everything-claude-code))
+### [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)
 
-Six skills that form a self-improvement loop for AI agents:
+A cyclic self-improvement architecture for AI coding agents — six composable skills forming a closed loop:
 
 ```
 Experience → learn-eval → skill-stocktake → rules-distill → Behavior change → ...
                (extract)    (curate)          (promote)            ↑
                                                             skill-comply
                                                               (measure)
+                                              context-sync ← (maintain)
 ```
 
-| Project | Role | What it does |
-|---------|------|-------------|
-| [search-first](https://github.com/shimo4228/claude-skill-search-first) | Research | Encourages agents to research existing solutions before building |
-| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | Extract | Extracts reusable patterns from sessions with quality gates |
-| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Curate | Audits installed skills for staleness, conflicts, and redundancy |
-| [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | Promote | Distills cross-cutting principles from skills into rules |
-| [skill-comply](https://github.com/shimo4228/claude-skill-comply) | Measure | Tests whether agents actually follow skills via behavioral compliance testing |
-| [context-sync](https://github.com/shimo4228/claude-skill-context-sync) | Maintain | Audits documentation roles, detects overlaps, migrates content, checks freshness |
+| Skill | Phase | What it does |
+|-------|-------|-------------|
+| [search-first](https://github.com/shimo4228/claude-skill-search-first) | Research | Search for existing solutions before building |
+| [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval) | Extract | Extract reusable patterns from sessions with quality gates |
+| [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake) | Curate | Audit skills for staleness, conflicts, and redundancy |
+| [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill) | Promote | Distill cross-cutting principles from skills into rules |
+| [skill-comply](https://github.com/shimo4228/claude-skill-comply) | Measure | Test whether agents actually follow their skills and rules |
+| [context-sync](https://github.com/shimo4228/claude-skill-context-sync) | Maintain | Audit documentation for role overlaps, stale content, and missing ADRs |
 
 ### Contemplative AI
 
