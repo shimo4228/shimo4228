@@ -1,6 +1,6 @@
 Language: [English](README.md) | 日本語
 
-# Tatsuya Shimomoto (@shimo4228)
+# Shimo (@shimo4228)
 
 2つの研究ライン: AI コーディングエージェントの**実用的な自己改善ツール**と、自律エージェントの**Contemplative AI**。
 
