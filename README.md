@@ -1,6 +1,6 @@
 Language: English | [日本語](README.ja.md)
 
-# Tatsuya Shimomoto (@shimo4228)
+# Shimo (@shimo4228)
 
 Two research lines: **practical self-improvement tools** for AI coding agents, and **contemplative AI** for autonomous agents.
 
