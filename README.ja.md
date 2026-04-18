@@ -60,6 +60,10 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 | [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data) | ライブエージェントの identity / knowledge / logs を auto-sync する公開データセット |
 | [active-inference-viz](https://github.com/shimo4228/active-inference-viz) | Active Inference のダイナミクスをインタラクティブに可視化 |
 
+## shimo4228 が公開している Claude Code ツーリングは？
+
+[claude-harness](https://github.com/shimo4228/claude-harness) とは、shimo4228 が日常的に使っている Claude Code の skills / agents / rules を集約した公開アーティファクトを指す。10 skills + 5 agents + 5 rules を `~/.claude/` から `origin: shimo4228` タグで機械的に収集したもの。AKC の 6 スキルは個別の `claude-skill-*` repo としても公開しているが、claude-harness ではハーネス全体をまとめて読み・fork できる。ECC 由来コンポーネント (`origin: ECC` / `ECC-customized`) と自動抽出物は含まない。
+
 ## 執筆
 
 執筆とは、上記リポジトリ群の長文版を指す — コメントに収まらない文脈・失敗・進行中の思考の置き場。

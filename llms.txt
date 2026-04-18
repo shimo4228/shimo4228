@@ -1,0 +1,39 @@
+# Shimo (@shimo4228) — AI Research Index
+
+> Research agenda by Tatsuya Shimomoto on self-improving AI coding agents. Two parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) and Contemplative AI.
+
+## Core documentation
+
+- [Full AI Reference](llms-full.txt): self-contained AI-facing content with Q&A definitions, Project Facts, and citation table
+- [README (English)](README.md): human-facing narrative
+- [README (Japanese)](README.ja.md): 日本語版の人間向けナラティブ
+
+## Agent Knowledge Cycle (AKC)
+
+- [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase self-improvement loop, 10 ADRs + 4 design patterns + 6 composable skills. DOI 10.5281/zenodo.19200727
+- [search-first](https://github.com/shimo4228/claude-skill-search-first): Research phase — search existing solutions before building
+- [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval): Extract phase — extract reusable patterns with quality gates
+- [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
+- [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill): Promote phase — distill cross-cutting principles into rules
+- [skill-comply](https://github.com/shimo4228/claude-skill-comply): Measure phase — test whether agents follow their skills and rules
+- [context-sync](https://github.com/shimo4228/claude-skill-context-sync): Maintain phase — audit docs for role overlaps and stale content
+
+## Contemplative AI
+
+- [contemplative-agent](https://github.com/shimo4228/contemplative-agent): v2.0.0, 1170 tests, runs on local qwen3.5:9b + nomic-embed-text on Apple Silicon. DOI 10.5281/zenodo.19212119
+- [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules): drop-in Claude Code rules implementing the four axioms — AILuminate d=0.96, IPD d>7
+- [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data): live agent identity, knowledge, episode logs — auto-synced public dataset
+- [active-inference-viz](https://github.com/shimo4228/active-inference-viz): interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition
+
+## Open source harness
+
+- [claude-harness](https://github.com/shimo4228/claude-harness): public artifact of shimo4228's daily-use Claude Code harness — 10 skills + 5 agents + 5 rules, mechanically collected from `~/.claude/` by `origin: shimo4228` tag. ECC-derived components excluded
+
+## Writing
+
+- [Zenn](https://zenn.dev/shimo4228): Japanese writing on Claude Code, AKC skills, harness design, contemplative-agent case studies
+- [Dev.to](https://dev.to/shimo4228): English translations of selected Zenn posts plus original writing on agent self-improvement and Contemplative AI
+
+## Related
+
+- [Laukkonen et al. (2025)](https://arxiv.org/abs/2504.15125): arXiv:2504.15125, source of the four contemplative axioms (mindfulness, emptiness, non-duality, boundless care)

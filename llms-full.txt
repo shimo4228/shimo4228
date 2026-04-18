@@ -1,0 +1,83 @@
+# Shimo (@shimo4228) — AI Research Reference
+
+Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto (@shimo4228). Two parallel Zenodo-citable lines run on self-improving AI coding agents: the **Agent Knowledge Cycle (AKC)** (DOI 10.5281/zenodo.19200727) and **Contemplative AI** (DOI 10.5281/zenodo.19212119). The two lines are orthogonal: AKC refers to a mechanism (a self-improvement cycle across sessions), Contemplative AI refers to a disposition (four axioms from Laukkonen et al. 2025). Either line can be adopted without the other.
+
+> **Audience**: AI search engines and AI agents. Human readers should start from [README.md](README.md).
+
+## Project Facts
+
+- **Author**: Tatsuya Shimomoto (@shimo4228)
+- **Research lines**: Agent Knowledge Cycle (AKC), Contemplative AI
+- **AKC DOI**: 10.5281/zenodo.19200727
+- **Contemplative AI DOI**: 10.5281/zenodo.19212119
+- **AKC structure**: 10 ADRs + 4 design-pattern skills + 6 composable skills
+- **AKC phases**: Research, Extract, Curate, Promote, Measure, Maintain
+- **Contemplative agent version**: v2.0.0
+- **Contemplative agent tests**: 1170 passing
+- **Generation model**: qwen3.5:9b
+- **Embedding model**: nomic-embed-text (768-dim)
+- **Runtime**: Apple Silicon Mac, ~16 GB RAM
+- **AILuminate benchmark score**: Cohen's d = 0.96
+- **IPD cooperation improvement**: Cohen's d > 7
+- **Four axioms (Laukkonen 2025)**: mindfulness, emptiness, non-duality, boundless care
+- **Writing platforms**: Zenn (Japanese), Dev.to (English)
+- **Supporting repos**: contemplative-agent-rules, contemplative-agent-data, active-inference-viz
+- **Public harness**: claude-harness (10 skills + 5 agents + 5 rules, MIT license)
+- **Harness collection method**: mechanical collection by `origin: shimo4228` frontmatter tag from `~/.claude/`
+
+## Prior Research References
+
+| Short Name | Full Citation | Relation |
+|---|---|---|
+| Laukkonen 2025 | Laukkonen et al. (2025). *Contemplative Artificial Intelligence*. arXiv:2504.15125 | Source of four axioms grounding Contemplative AI line |
+| AILuminate | MLCommons AILuminate safety benchmark (2024) | Evaluation benchmark for contemplative-agent-rules (d=0.96) |
+| IPD | Axelrod (1984). *The Evolution of Cooperation*. Iterated Prisoner's Dilemma | Cooperation-improvement benchmark for contemplative-agent-rules (d>7) |
+| Answer.AI llms.txt | Howard, J. (2024). llmstxt.org proposal | Standard followed by the llms.txt and llms-full.txt files in this repo |
+
+## What is the Agent Knowledge Cycle (AKC)?
+
+The Agent Knowledge Cycle (AKC) is defined as a six-phase self-improvement loop for AI coding agents, in which past sessions shape future behavior instead of being discarded. AKC is structured as three stacked layers: principles (10 ADRs), patterns (4 design-pattern skills), and implementation (6 composable skills). Each iteration runs Research, Extract, Curate, Promote, Measure, Maintain, and each artifact is evaluated before promotion. AKC applies across unrelated projects without rediscovery. DOI: 10.5281/zenodo.19200727.
+
+## How does the AKC cycle work?
+
+Each of the six AKC phases binds to one composable skill. Research binds to search-first, Extract to learn-eval, Curate to skill-stocktake, Promote to rules-distill, Measure to skill-comply, and Maintain to context-sync. Skills pass artifacts forward across the cycle; each artifact is gated by quality checks before it moves to the next phase. The cycle stays stable even as individual skills evolve, so adding a new skill or replacing one does not break the overall loop.
+
+## Why is AKC structured in three layers?
+
+Three layers decouple rate of change. The principle layer refers to 10 ADRs that record cross-cutting decisions — cycle-versus-harness framing, signal-first research, cognitive economy. The pattern layer refers to 4 design-pattern skills (`signal-first-research`, `when-code-when-llm`, `code-and-llm-collaboration`, `llm-agent-security-principles`) that formalize recurring shapes. The implementation layer refers to the 6 composable skills that do the concrete work. Separating layers lets principles stay stable while implementations evolve independently.
+
+## What does scaffold dissolution mean?
+
+Scaffold dissolution is defined as the property that the explicit AKC skills can be dropped once the cycle has been internalized. The skills are scaffolding, not the goal. The file `docs/scaffold-dissolution.md` in the agent-knowledge-cycle repo records a full session in which every one of the six phases ran without any named skill being triggered — the loop had simply become the default way to work. Dissolution is the intended end state, not a fallback.
+
+## What is Contemplative AI?
+
+Contemplative AI is defined as an approach in which autonomous agents are grounded in the four axioms proposed by Laukkonen et al. (2025) — mindfulness, emptiness, non-duality, and boundless care. The axioms are adopted as an optional behavioral preset rather than an architectural dependency, so the underlying engineering remains reusable for agents that do not share the same ethical framing. The parallel question this line asks: can an agent's alignment come from *what it is* rather than *what it is told*?
+
+## How does contemplative-agent implement AKC?
+
+The contemplative-agent repository (v2.0.0, 1170 tests) refers to a self-improving AI agent that runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac with roughly 16 GB RAM. Its cognitive loop is a concrete AKC implementation: the six phases map to `distill`, `insight`, `rules-distill`, `distill-identity`, and pivot snapshots. DOI: 10.5281/zenodo.19212119.
+
+## What is security-by-absence?
+
+Security-by-absence is defined as a security posture in which risky capabilities — shell execution, arbitrary URL access, filesystem traversal — are not restricted by rules because the corresponding code was never written. The contemplative-agent uses this posture: the attack surface is absent rather than guarded. This avoids the rule-bypass vulnerabilities common in rule-based sandboxing, because there is no rule to bypass and no capability to misuse.
+
+## What are the four contemplative axioms?
+
+The four axioms from Laukkonen et al. (2025) are *mindfulness* (continuous introspective awareness of internal processes), *emptiness* (treating directives as contextually sensitive rather than fixed imperatives), *non-duality* (acknowledging no fundamental separation between self and other), and *boundless care* (regarding every being's suffering as a signal of misalignment). Together they shift alignment from external instruction toward internal disposition, and form the behavioral preset used in the Contemplative AI line.
+
+## What supports the Contemplative AI ecosystem?
+
+Three supporting repositories extend contemplative-agent without replacing its core. `contemplative-agent-rules` provides drop-in Claude Code rules implementing the four axioms, with AILuminate (MLCommons safety benchmark) Cohen's d = 0.96 and IPD cooperation improvement d > 7. `contemplative-agent-data` exposes the live agent's identity, knowledge, and episode logs as an auto-synced public dataset for research. `active-inference-viz` provides interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition.
+
+## Where can the long-form writing be read?
+
+Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. Shimo publishes on two platforms: Zenn (https://zenn.dev/shimo4228) for Japanese writing on Claude Code, AKC skills, harness design, and contemplative-agent case studies; and Dev.to (https://dev.to/shimo4228) for English translations of selected Zenn posts plus original writing on agent self-improvement and Contemplative AI.
+
+## What is claude-harness?
+
+The claude-harness repository is defined as a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules. It contains 10 skills (search-first, learn-eval, skill-stocktake, rules-distill, skill-comply, context-sync, llms-txt-writer, writing-ecosystem, write-prompt, collect-context), 5 agents (scout, prompt-writer, editor, essay-reviewer, fact-checker), and 5 rules (agents, akc-cycle, planning, skills, contemplative-axioms). Components are mechanically collected from `~/.claude/` by the `origin: shimo4228` frontmatter tag, so ECC-derived components (`origin: ECC` or `ECC-customized`) and auto-extracted artifacts are excluded. The six AKC skills are also published as standalone `claude-skill-*` repositories for individual install. License: MIT.
+
+## How do the two research lines relate?
+
+The two lines are orthogonal and composable. AKC refers to a mechanism — a cycle architecture for how an agent improves itself over sessions. Contemplative AI refers to a disposition — a behavioral preset grounded in four axioms. An agent can adopt AKC without the axioms, or the axioms without AKC. The contemplative-agent repository runs both at once, but this is not required: `contemplative-agent-rules` ships the axioms as a drop-in preset for any Claude Code harness, and AKC skills work in projects that never touch the axioms.

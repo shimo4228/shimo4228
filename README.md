@@ -60,6 +60,10 @@ Supporting repositories refer to components that extend contemplative-agent with
 | [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data) | Live agent's identity, knowledge, and episode logs — auto-synced public dataset for research |
 | [active-inference-viz](https://github.com/shimo4228/active-inference-viz) | Interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition |
 
+## What does shimo4228 release as open Claude Code tooling?
+
+[claude-harness](https://github.com/shimo4228/claude-harness) refers to a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules — 10 skills + 5 agents + 5 rules, mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. The six AKC skills are also published as standalone `claude-skill-*` repositories, but claude-harness lets you read or fork the entire harness in one place. ECC-derived components (`origin: ECC` / `ECC-customized`) and auto-extracted artifacts are excluded.
+
 ## Writing
 
 Writing refers to the long-form counterpart to the repos above — context, failures, and in-progress thinking that do not fit in code comments.
