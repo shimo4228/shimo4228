@@ -2,14 +2,15 @@ Language: English | [日本語](README.ja.md)
 
 # Shimo (@shimo4228)
 
-I build AI coding agents that get better from their own sessions instead of forgetting them — the **Agent Knowledge Cycle (AKC)**. A parallel line, **Contemplative AI**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — shifting alignment from external instruction to internal disposition.
+I build AI coding agents that get better from their own sessions instead of forgetting them — the **Agent Knowledge Cycle (AKC)**. A parallel line, **Contemplative AI**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — shifting alignment from external instruction to internal disposition. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
 
 ## Which research lines?
 
-Two research lines run in parallel; both are Zenodo-citable.
+Three research lines run in parallel; all are Zenodo-citable.
 
 - **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** refers to a six-phase self-improvement loop for AI coding agents, structured as principles (10 ADRs) + patterns (4 design-pattern skills) + implementation (6 composable skills). [DOI 10.5281/zenodo.19200727](https://doi.org/10.5281/zenodo.19200727).
 - **[Contemplative AI](https://github.com/shimo4228/contemplative-agent)** refers to autonomous agents running on a local 9B model (qwen3.5:9b + nomic-embed-text on Apple Silicon) with security-by-absence, grounded in the four axioms from Laukkonen et al. (2025): *mindfulness*, *emptiness*, *non-duality*, *boundless care*. [DOI 10.5281/zenodo.19212119](https://doi.org/10.5281/zenodo.19212119).
+- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** refers to eight harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. ADRs 1–3 form a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary). [DOI 10.5281/zenodo.19652014](https://doi.org/10.5281/zenodo.19652014).
 
 ## What is Agent Knowledge Cycle (AKC)?
 
@@ -60,6 +61,10 @@ Supporting repositories refer to components that extend contemplative-agent with
 | [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data) | Live agent's identity, knowledge, and episode logs — auto-synced public dataset for research |
 | [active-inference-viz](https://github.com/shimo4228/active-inference-viz) | Interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition |
 
+## What is the Agent Attribution Practice (AAP) line?
+
+[AAP](https://github.com/shimo4228/agent-attribution-practice) refers to eight harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. The eight judgments: Security by Absence, Deterministic Prohibition at the Scaffolding Layer, Untrusted Content Boundary, Single External Adapter per Agent Process, Human Approval Gate, Causal Traceability, Scaffolding Visibility, and One Agent One Human. ADRs 1–3 form a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary). The judgments were extracted from contemplative-agent's operational practice, then re-expressed stripped of project identifiers so they can be adopted by any agent harness. AAP is the practice (content); AKC is the cycle (mechanism). [DOI 10.5281/zenodo.19652014](https://doi.org/10.5281/zenodo.19652014).
+
 ## What does shimo4228 release as open Claude Code tooling?
 
 [claude-harness](https://github.com/shimo4228/claude-harness) refers to a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules — 10 skills + 5 agents + 5 rules, mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. The six AKC skills are also published as standalone `claude-skill-*` repositories, but claude-harness lets you read or fork the entire harness in one place. ECC-derived components (`origin: ECC` / `ECC-customized`) and auto-extracted artifacts are excluded.
@@ -73,4 +78,4 @@ Writing refers to the long-form counterpart to the repos above — context, fail
 
 ---
 
-Start here: [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle) for the framework, [contemplative-agent](https://github.com/shimo4228/contemplative-agent) to see it running.
+Start here: [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle) for the framework, [contemplative-agent](https://github.com/shimo4228/contemplative-agent) to see it running, [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice) for the governance judgments.

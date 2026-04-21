@@ -2,14 +2,15 @@ Language: [English](README.md) | 日本語
 
 # Shimo (@shimo4228)
 
-自らのセッションを忘れ去るのではなく、そこから学び続ける AI コーディングエージェントを作っている。もう 1 本の並走ラインとして、自律エージェントのアラインメントが「命じられたから」ではなく「そういう存在だから」立ち上がる可能性を探究している — アラインメントを外部命令から内部的な性向へと移したとき、何が失われ、何が可能になり、何が依然として壊れるのかを追っている。
+自らのセッションを忘れ去るのではなく、そこから学び続ける AI コーディングエージェントを作っている。もう 1 本の並走ラインとして、自律エージェントのアラインメントが「命じられたから」ではなく「そういう存在だから」立ち上がる可能性を探究している — アラインメントを外部命令から内部的な性向へと移したとき、何が失われ、何が可能になり、何が依然として壊れるのかを追っている。さらにもう 1 本、自律 AI エージェントにおけるアカウンタビリティの分配を形式化する **Agent Attribution Practice (AAP)** ラインがある — 何を禁止するか、その禁止をどこに置くか、事故が起きたとき誰が答えるか、を harness-neutral な判断として記録している。
 
 ## どの研究ラインを追っているか？
 
-2 つの研究ラインを並走させている。いずれも Zenodo 引用可能。
+3 つの研究ラインを並走させている。いずれも Zenodo 引用可能。
 
 - **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** とは、AI コーディングエージェント向けの 6 フェーズ自己改善ループを指す。3 層構造：原則（10 ADR）+ パターン（4 デザインパターンスキル）+ 実装（6 実装スキル）。[DOI](https://doi.org/10.5281/zenodo.19200727)。
 - **[Contemplative AI](https://github.com/shimo4228/contemplative-agent)** とは、ローカル 9B モデル（qwen3.5:9b + nomic-embed-text on Apple Silicon）で security-by-absence を実現する自律エージェントを指す。Laukkonen et al. (2025) の 4 公理 — *mindfulness*、*emptiness*、*non-duality*、*boundless care* — に基づく。[DOI](https://doi.org/10.5281/zenodo.19212119)。
+- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な 8 本の ADR を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。ADR-0001〜0003 は prohibition-strength の階層を成す（absence > scaffolding enforcement > untrusted boundary）。[DOI](https://doi.org/10.5281/zenodo.19652014)。
 
 ## Agent Knowledge Cycle (AKC) とは？
 
@@ -60,6 +61,10 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 | [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data) | ライブエージェントの identity / knowledge / logs を auto-sync する公開データセット |
 | [active-inference-viz](https://github.com/shimo4228/active-inference-viz) | Active Inference のダイナミクスをインタラクティブに可視化 |
 
+## Agent Attribution Practice (AAP) ラインとは？
+
+[AAP](https://github.com/shimo4228/agent-attribution-practice) とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な 8 本の ADR を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。8 本の判断は以下：Security by Absence、Deterministic Prohibition at the Scaffolding Layer、Untrusted Content Boundary、Single External Adapter per Agent Process、Human Approval Gate、Causal Traceability、Scaffolding Visibility、One Agent One Human。ADR-0001〜0003 は prohibition-strength の階層を成す（absence > scaffolding enforcement > untrusted boundary）。各判断は contemplative-agent の運用実践から抽出され、project 固有の識別子を剥がして再表現されている — 任意の agent harness が採用できる形に。AAP は practice (content)、AKC は cycle (mechanism)。[DOI](https://doi.org/10.5281/zenodo.19652014)。
+
 ## shimo4228 が公開している Claude Code ツーリングは？
 
 [claude-harness](https://github.com/shimo4228/claude-harness) とは、shimo4228 が日常的に使っている Claude Code の skills / agents / rules を集約した公開アーティファクトを指す。10 skills + 5 agents + 5 rules を `~/.claude/` から `origin: shimo4228` タグで機械的に収集したもの。AKC の 6 スキルは個別の `claude-skill-*` repo としても公開しているが、claude-harness ではハーネス全体をまとめて読み・fork できる。ECC 由来コンポーネント (`origin: ECC` / `ECC-customized`) と自動抽出物は含まない。
@@ -73,4 +78,4 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 
 ---
 
-ここから始める: フレームワークを見るなら [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)、実装を見るなら [contemplative-agent](https://github.com/shimo4228/contemplative-agent)。
+ここから始める: フレームワークを見るなら [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)、実装を見るなら [contemplative-agent](https://github.com/shimo4228/contemplative-agent)、ガバナンス判断を見るなら [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice)。

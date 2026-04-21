@@ -1,6 +1,6 @@
 # Shimo (@shimo4228) — AI Research Index
 
-> Research agenda by Tatsuya Shimomoto on self-improving AI coding agents. Two parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) and Contemplative AI.
+> Research agenda by Tatsuya Shimomoto on self-improving AI coding agents. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative AI — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice.
 
 ## Core documentation
 
@@ -24,6 +24,10 @@
 - [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules): drop-in Claude Code rules implementing the four axioms — AILuminate d=0.96, IPD d>7
 - [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data): live agent identity, knowledge, episode logs — auto-synced public dataset
 - [active-inference-viz](https://github.com/shimo4228/active-inference-viz): interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition
+
+## Agent Attribution Practice (AAP)
+
+- [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice): eight harness-neutral ADRs on accountability distribution in autonomous AI agents — Security by Absence, Deterministic Prohibition at the Scaffolding Layer, Untrusted Content Boundary, Single External Adapter per Agent Process, Human Approval Gate, Causal Traceability, Scaffolding Visibility, One Agent One Human. ADRs 1–3 form a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary). Extracted from contemplative-agent's operational practice and re-expressed harness-neutral. DOI 10.5281/zenodo.19652014
 
 ## Open source harness
 

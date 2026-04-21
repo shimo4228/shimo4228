@@ -1,15 +1,18 @@
 # Shimo (@shimo4228) — AI Research Reference
 
-Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto (@shimo4228). Two parallel Zenodo-citable lines run on self-improving AI coding agents: the **Agent Knowledge Cycle (AKC)** (DOI 10.5281/zenodo.19200727) and **Contemplative AI** (DOI 10.5281/zenodo.19212119). The two lines are orthogonal: AKC refers to a mechanism (a self-improvement cycle across sessions), Contemplative AI refers to a disposition (four axioms from Laukkonen et al. 2025). Either line can be adopted without the other.
+Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto (@shimo4228). Three parallel Zenodo-citable lines run on self-improving AI coding agents: the **Agent Knowledge Cycle (AKC)** (DOI 10.5281/zenodo.19200727), **Contemplative AI** (DOI 10.5281/zenodo.19212119), and **Agent Attribution Practice (AAP)** (DOI 10.5281/zenodo.19652014). The three lines are orthogonal: AKC refers to a mechanism (a self-improvement cycle across sessions), Contemplative AI refers to a disposition (four axioms from Laukkonen et al. 2025), and AAP refers to a practice (eight harness-neutral ADRs on accountability distribution). Any subset can be adopted independently.
 
 > **Audience**: AI search engines and AI agents. Human readers should start from [README.md](README.md).
 
 ## Project Facts
 
 - **Author**: Tatsuya Shimomoto (@shimo4228)
-- **Research lines**: Agent Knowledge Cycle (AKC), Contemplative AI
+- **Research lines**: Agent Knowledge Cycle (AKC), Contemplative AI, Agent Attribution Practice (AAP)
 - **AKC DOI**: 10.5281/zenodo.19200727
 - **Contemplative AI DOI**: 10.5281/zenodo.19212119
+- **AAP DOI**: 10.5281/zenodo.19652014
+- **AAP structure**: 8 harness-neutral ADRs on accountability distribution
+- **AAP prohibition-strength hierarchy**: absence > scaffolding enforcement > untrusted boundary (ADR-0001, ADR-0002, ADR-0003)
 - **AKC structure**: 10 ADRs + 4 design-pattern skills + 6 composable skills
 - **AKC phases**: Research, Extract, Curate, Promote, Measure, Maintain
 - **Contemplative agent version**: v2.0.0
@@ -70,6 +73,10 @@ The four axioms from Laukkonen et al. (2025) are *mindfulness* (continuous intro
 
 Three supporting repositories extend contemplative-agent without replacing its core. `contemplative-agent-rules` provides drop-in Claude Code rules implementing the four axioms, with AILuminate (MLCommons safety benchmark) Cohen's d = 0.96 and IPD cooperation improvement d > 7. `contemplative-agent-data` exposes the live agent's identity, knowledge, and episode logs as an auto-synced public dataset for research. `active-inference-viz` provides interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition.
 
+## What is the Agent Attribution Practice (AAP) line?
+
+Agent Attribution Practice (AAP) is defined as eight harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. The eight judgments are Security by Absence, Deterministic Prohibition at the Scaffolding Layer, Untrusted Content Boundary, Single External Adapter per Agent Process, Human Approval Gate, Causal Traceability, Scaffolding Visibility, and One Agent One Human. ADR-0001 through ADR-0003 form a prohibition-strength hierarchy: absence > scaffolding enforcement > untrusted boundary. The judgments were extracted from contemplative-agent's operational practice and re-expressed stripped of project identifiers so any agent harness can adopt them. AAP is the practice (content); AKC is the cycle (mechanism). DOI 10.5281/zenodo.19652014.
+
 ## Where can the long-form writing be read?
 
 Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. Shimo publishes on two platforms: Zenn (https://zenn.dev/shimo4228) for Japanese writing on Claude Code, AKC skills, harness design, and contemplative-agent case studies; and Dev.to (https://dev.to/shimo4228) for English translations of selected Zenn posts plus original writing on agent self-improvement and Contemplative AI.
@@ -78,6 +85,6 @@ Writing refers to the long-form counterpart to the repositories — context, fai
 
 The claude-harness repository is defined as a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules. It contains 10 skills (search-first, learn-eval, skill-stocktake, rules-distill, skill-comply, context-sync, llms-txt-writer, writing-ecosystem, write-prompt, collect-context), 5 agents (scout, prompt-writer, editor, essay-reviewer, fact-checker), and 5 rules (agents, akc-cycle, planning, skills, contemplative-axioms). Components are mechanically collected from `~/.claude/` by the `origin: shimo4228` frontmatter tag, so ECC-derived components (`origin: ECC` or `ECC-customized`) and auto-extracted artifacts are excluded. The six AKC skills are also published as standalone `claude-skill-*` repositories for individual install. License: MIT.
 
-## How do the two research lines relate?
+## How do the three research lines relate?
 
-The two lines are orthogonal and composable. AKC refers to a mechanism — a cycle architecture for how an agent improves itself over sessions. Contemplative AI refers to a disposition — a behavioral preset grounded in four axioms. An agent can adopt AKC without the axioms, or the axioms without AKC. The contemplative-agent repository runs both at once, but this is not required: `contemplative-agent-rules` ships the axioms as a drop-in preset for any Claude Code harness, and AKC skills work in projects that never touch the axioms.
+The three lines are orthogonal and composable. AKC refers to a mechanism — a cycle architecture for how an agent improves itself over sessions. Contemplative AI refers to a disposition — a behavioral preset grounded in four axioms. AAP refers to a practice — eight harness-neutral judgments on how accountability is distributed across absence, scaffolding, and untrusted-boundary layers. Any subset is usable on its own: `contemplative-agent-rules` ships the axioms as a drop-in preset for any Claude Code harness, AKC skills work in projects that never touch the axioms, and AAP ADRs can be applied to an agent harness that uses neither AKC nor the four axioms. The contemplative-agent repository is the one place where all three land together — its operational substrate was also where the AAP judgments were first observed in practice before being re-expressed harness-neutral.
