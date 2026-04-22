@@ -36,7 +36,7 @@
 ## Writing
 
 - [Zenn](https://zenn.dev/shimo4228): Japanese writing on Claude Code, AKC skills, harness design, contemplative-agent case studies
-- [Dev.to](https://dev.to/shimo4228): English translations of selected Zenn posts plus original writing on agent self-improvement and Contemplative Agent
+- [Dev.to](https://dev.to/shimo4228): English mirror of Zenn — same content translated, no Dev.to-only posts
 
 ## Related
 

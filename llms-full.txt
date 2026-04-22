@@ -79,7 +79,7 @@ Agent Attribution Practice (AAP) is defined as eight harness-neutral ADRs on acc
 
 ## Where can the long-form writing be read?
 
-Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. Shimo publishes on two platforms: Zenn (https://zenn.dev/shimo4228) for Japanese writing on Claude Code, AKC skills, harness design, and contemplative-agent case studies; and Dev.to (https://dev.to/shimo4228) for English translations of selected Zenn posts plus original writing on agent self-improvement and Contemplative Agent.
+Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. Shimo publishes on two platforms: Zenn (https://zenn.dev/shimo4228) for Japanese writing on Claude Code, AKC skills, harness design, and contemplative-agent case studies; and Dev.to (https://dev.to/shimo4228) as an English mirror of Zenn — every Dev.to post is a translation of a Zenn post, with no Dev.to-only original content.
 
 ## What is claude-harness?
 

@@ -74,7 +74,7 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 執筆とは、上記リポジトリ群の長文版を指す — コメントに収まらない文脈・失敗・進行中の思考の置き場。
 
 - **[Zenn](https://zenn.dev/shimo4228)** — Claude Code と AI エージェント開発（日本語）。現在の焦点は AKC スキル、ハーネス設計、contemplative-agent の事例研究。
-- **[Dev.to](https://dev.to/shimo4228)** — Zenn 記事の英訳版に加え、エージェントの自己改善と Contemplative Agent に関するオリジナル記事を公開している。
+- **[Dev.to](https://dev.to/shimo4228)** — Zenn の英語ミラー。内容は Zenn と同じ（Dev.to 限定記事はない）。
 
 ---
 
