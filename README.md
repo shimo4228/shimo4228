@@ -2,14 +2,14 @@ Language: English | [日本語](README.ja.md)
 
 # Shimo (@shimo4228)
 
-I build AI coding agents that get better from their own sessions instead of forgetting them — the **Agent Knowledge Cycle (AKC)**. A parallel line, **Contemplative AI**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — shifting alignment from external instruction to internal disposition. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
+I build AI coding agents that get better from their own sessions instead of forgetting them — the **Agent Knowledge Cycle (AKC)**. A parallel line, **Contemplative Agent**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — shifting alignment from external instruction to internal disposition. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
 
 ## Which research lines?
 
 Three research lines run in parallel; all are Zenodo-citable.
 
 - **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** refers to a six-phase self-improvement loop for AI coding agents, structured as principles (10 ADRs) + patterns (4 design-pattern skills) + implementation (6 composable skills). [DOI 10.5281/zenodo.19200727](https://doi.org/10.5281/zenodo.19200727).
-- **[Contemplative AI](https://github.com/shimo4228/contemplative-agent)** refers to autonomous agents running on a local 9B model (qwen3.5:9b + nomic-embed-text on Apple Silicon) with security-by-absence, grounded in the four axioms from Laukkonen et al. (2025): *mindfulness*, *emptiness*, *non-duality*, *boundless care*. [DOI 10.5281/zenodo.19212119](https://doi.org/10.5281/zenodo.19212119).
+- **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** refers to autonomous agents running on a local 9B model (qwen3.5:9b + nomic-embed-text on Apple Silicon) with security-by-absence, grounded in the four axioms from Laukkonen et al. (2025): *mindfulness*, *emptiness*, *non-duality*, *boundless care*. [DOI 10.5281/zenodo.19212119](https://doi.org/10.5281/zenodo.19212119).
 - **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** refers to eight harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. ADRs 1–3 form a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary). [DOI 10.5281/zenodo.19652014](https://doi.org/10.5281/zenodo.19652014).
 
 ## What is Agent Knowledge Cycle (AKC)?
@@ -43,15 +43,15 @@ Three layers stack on top of each other, each with a distinct concern. The princ
 
 **Scaffold dissolution** means that the skills are scaffolding, not the goal. Once the cycle has been internalized, the explicit skill invocations can be dropped entirely. [`docs/scaffold-dissolution.md`](https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/scaffold-dissolution.md) records a full session in which every one of the six phases ran without any named skill being triggered — *the loop had simply become the default way to work*.
 
-## What is the Contemplative AI line?
+## What is the Contemplative Agent line?
 
-Contemplative AI is defined as an approach in which autonomous agents are grounded in the four axioms from [Laukkonen et al. (2025)](https://arxiv.org/abs/2504.15125) — mindfulness, emptiness, non-duality, and boundless care. In this line the axioms are adopted as an optional behavioral preset rather than an architectural dependency, so the underlying engineering remains reusable for agents that do not share the same ethical framing. The parallel question this line asks: *can an agent's alignment come from what it is rather than what it is told?*
+Contemplative Agent is defined as an approach in which autonomous agents are grounded in the four axioms from [Laukkonen et al. (2025)](https://arxiv.org/abs/2504.15125) — mindfulness, emptiness, non-duality, and boundless care. In this line the axioms are adopted as an optional behavioral preset rather than an architectural dependency, so the underlying engineering remains reusable for agents that do not share the same ethical framing. The parallel question this line asks: *can an agent's alignment come from what it is rather than what it is told?*
 
 ## How does the contemplative-agent implement AKC?
 
 **[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** (v2.0.0, 1170 tests) refers to a self-improving AI agent that runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac (~16 GB RAM). It applies **security-by-absence**: shell execution, arbitrary URL access, and filesystem traversal are not restricted by rules — the code was never written. The cognitive loop is a concrete implementation of AKC, mapping the six phases to `distill`, `insight`, `rules-distill`, `distill-identity`, and pivot snapshots.
 
-## What supports the Contemplative AI ecosystem?
+## What supports the Contemplative Agent ecosystem?
 
 Supporting repositories refer to components that extend contemplative-agent without replacing its core — packaging ethics, exposing runtime data, or visualizing the formal model.
 
@@ -74,7 +74,7 @@ Supporting repositories refer to components that extend contemplative-agent with
 Writing refers to the long-form counterpart to the repos above — context, failures, and in-progress thinking that do not fit in code comments.
 
 - **[Zenn](https://zenn.dev/shimo4228)** — Claude Code and AI agent development, in Japanese. Current focus: AKC skills, harness design, contemplative-agent case studies.
-- **[Dev.to](https://dev.to/shimo4228)** — English translations of selected Zenn posts, plus original writing on agent self-improvement and Contemplative AI.
+- **[Dev.to](https://dev.to/shimo4228)** — English translations of selected Zenn posts, plus original writing on agent self-improvement and Contemplative Agent.
 
 ---
 

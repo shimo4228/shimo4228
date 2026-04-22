@@ -9,7 +9,7 @@ Language: [English](README.md) | 日本語
 3 つの研究ラインを並走させている。いずれも Zenodo 引用可能。
 
 - **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** とは、AI コーディングエージェント向けの 6 フェーズ自己改善ループを指す。3 層構造：原則（10 ADR）+ パターン（4 デザインパターンスキル）+ 実装（6 実装スキル）。[DOI](https://doi.org/10.5281/zenodo.19200727)。
-- **[Contemplative AI](https://github.com/shimo4228/contemplative-agent)** とは、ローカル 9B モデル（qwen3.5:9b + nomic-embed-text on Apple Silicon）で security-by-absence を実現する自律エージェントを指す。Laukkonen et al. (2025) の 4 公理 — *mindfulness*、*emptiness*、*non-duality*、*boundless care* — に基づく。[DOI](https://doi.org/10.5281/zenodo.19212119)。
+- **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** とは、ローカル 9B モデル（qwen3.5:9b + nomic-embed-text on Apple Silicon）で security-by-absence を実現する自律エージェントを指す。Laukkonen et al. (2025) の 4 公理 — *mindfulness*、*emptiness*、*non-duality*、*boundless care* — に基づく。[DOI](https://doi.org/10.5281/zenodo.19212119)。
 - **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な 8 本の ADR を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。ADR-0001〜0003 は prohibition-strength の階層を成す（absence > scaffolding enforcement > untrusted boundary）。[DOI](https://doi.org/10.5281/zenodo.19652014)。
 
 ## Agent Knowledge Cycle (AKC) とは？
@@ -43,15 +43,15 @@ Language: [English](README.md) | 日本語
 
 **Scaffold dissolution** とは、スキルが足場であり目的ではないことを意味する。循環が内部化されればスキル呼び出しは不要になる — [`docs/scaffold-dissolution.md`](https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/scaffold-dissolution.md) は、名前のあるスキルを呼ばずに 6 フェーズが走ったセッションの記録である。
 
-## Contemplative AI ラインとは？
+## Contemplative Agent ラインとは？
 
-Contemplative AI とは、自律エージェントが [Laukkonen et al. (2025)](https://arxiv.org/abs/2504.15125) の 4 公理 — mindfulness、emptiness、non-duality、boundless care — に基づいて動作するアプローチを指す。このラインでは 4 公理を任意の行動プリセットとして採用し、アーキテクチャの必須条件とはしない。これにより基盤となるエンジニアリングは、異なる倫理枠組みを持つエージェントにも再利用できる。この研究ラインが問いたいのはこうだ — *エージェントのアラインメントは「何を命じられたか」ではなく「何であるか」から立ち上がれるか?*
+Contemplative Agent とは、自律エージェントが [Laukkonen et al. (2025)](https://arxiv.org/abs/2504.15125) の 4 公理 — mindfulness、emptiness、non-duality、boundless care — に基づいて動作するアプローチを指す。このラインでは 4 公理を任意の行動プリセットとして採用し、アーキテクチャの必須条件とはしない。これにより基盤となるエンジニアリングは、異なる倫理枠組みを持つエージェントにも再利用できる。この研究ラインが問いたいのはこうだ — *エージェントのアラインメントは「何を命じられたか」ではなく「何であるか」から立ち上がれるか?*
 
 ## contemplative-agent はどう AKC を実装しているか？
 
 **[contemplative-agent](https://github.com/shimo4228/contemplative-agent)**（v2.0.0、1170 テスト通過）とは、ローカル 9B モデル（生成 qwen3.5:9b + 埋め込み nomic-embed-text）で完結する自己改善型 AI エージェントを指す。Apple Silicon Mac 1 台（約 16 GB RAM）で稼働する。**security-by-absence** を適用しており、シェル実行、任意 URL アクセス、ファイルシステム走査は、ルールで禁止されているのではなく、そもそも実装していない。認知ループは AKC の具体実装であり、6 フェーズを `distill` / `insight` / `rules-distill` / `distill-identity` / pivot snapshots に写像する。
 
-## Contemplative AI エコシステムを支えているのは何か？
+## Contemplative Agent エコシステムを支えているのは何か？
 
 contemplative-agent の中核を置き換えずに拡張する関連リポジトリ — 倫理、データ、可視化。
 
@@ -74,7 +74,7 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 執筆とは、上記リポジトリ群の長文版を指す — コメントに収まらない文脈・失敗・進行中の思考の置き場。
 
 - **[Zenn](https://zenn.dev/shimo4228)** — Claude Code と AI エージェント開発（日本語）。現在の焦点は AKC スキル、ハーネス設計、contemplative-agent の事例研究。
-- **[Dev.to](https://dev.to/shimo4228)** — Zenn 記事の英訳版に加え、エージェントの自己改善と Contemplative AI に関するオリジナル記事を公開している。
+- **[Dev.to](https://dev.to/shimo4228)** — Zenn 記事の英訳版に加え、エージェントの自己改善と Contemplative Agent に関するオリジナル記事を公開している。
 
 ---
 

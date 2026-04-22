@@ -1,6 +1,6 @@
 # Shimo (@shimo4228) — AI Research Index
 
-> Research agenda by Tatsuya Shimomoto on self-improving AI coding agents. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative AI — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice.
+> Research agenda by Tatsuya Shimomoto on self-improving AI coding agents. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice.
 
 ## Core documentation
 
@@ -18,7 +18,7 @@
 - [skill-comply](https://github.com/shimo4228/claude-skill-comply): Measure phase — test whether agents follow their skills and rules
 - [context-sync](https://github.com/shimo4228/claude-skill-context-sync): Maintain phase — audit docs for role overlaps and stale content
 
-## Contemplative AI
+## Contemplative Agent
 
 - [contemplative-agent](https://github.com/shimo4228/contemplative-agent): v2.0.0, 1170 tests, runs on local qwen3.5:9b + nomic-embed-text on Apple Silicon. DOI 10.5281/zenodo.19212119
 - [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules): drop-in Claude Code rules implementing the four axioms — AILuminate d=0.96, IPD d>7
@@ -36,7 +36,7 @@
 ## Writing
 
 - [Zenn](https://zenn.dev/shimo4228): Japanese writing on Claude Code, AKC skills, harness design, contemplative-agent case studies
-- [Dev.to](https://dev.to/shimo4228): English translations of selected Zenn posts plus original writing on agent self-improvement and Contemplative AI
+- [Dev.to](https://dev.to/shimo4228): English translations of selected Zenn posts plus original writing on agent self-improvement and Contemplative Agent
 
 ## Related
 
