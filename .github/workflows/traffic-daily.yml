@@ -1,0 +1,111 @@
+name: traffic-daily
+
+on:
+  schedule:
+    - cron: "30 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch traffic and append JSONL
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.TRAFFIC_PAT }}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const owner = 'shimo4228';
+            const repos = [
+              'contemplative-agent',
+              'agent-knowledge-cycle',
+              'agent-attribution-practice',
+              'contemplative-agent-data',
+              'zenn-content',
+              'shimo4228',
+            ];
+            const dataDir = 'traffic/data';
+            const fetchedAt = new Date().toISOString();
+            const todayUTC = fetchedAt.slice(0, 10);
+
+            for (const repo of repos) {
+              const filePath = path.join(dataDir, `${repo}.jsonl`);
+
+              const existing = new Set();
+              if (fs.existsSync(filePath)) {
+                const content = fs.readFileSync(filePath, 'utf8');
+                for (const line of content.split('\n')) {
+                  if (!line.trim()) continue;
+                  try {
+                    existing.add(JSON.parse(line).date);
+                  } catch (e) {
+                    core.warning(`Malformed line in ${filePath}: ${line.slice(0, 80)}`);
+                  }
+                }
+              }
+
+              let clones, views;
+              try {
+                const r = await github.request('GET /repos/{owner}/{repo}/traffic/clones', { owner, repo });
+                clones = r.data.clones || [];
+              } catch (e) {
+                core.warning(`Skip ${repo} (clones): ${e.message}`);
+                continue;
+              }
+              try {
+                const r = await github.request('GET /repos/{owner}/{repo}/traffic/views', { owner, repo });
+                views = r.data.views || [];
+              } catch (e) {
+                core.warning(`Skip ${repo} (views): ${e.message}`);
+                continue;
+              }
+
+              const clonesByDate = {};
+              for (const e of clones) {
+                clonesByDate[e.timestamp.slice(0, 10)] = { count: e.count, uniques: e.uniques };
+              }
+              const viewsByDate = {};
+              for (const e of views) {
+                viewsByDate[e.timestamp.slice(0, 10)] = { count: e.count, uniques: e.uniques };
+              }
+              const allDates = new Set([...Object.keys(clonesByDate), ...Object.keys(viewsByDate)]);
+
+              const newLines = [];
+              for (const date of [...allDates].sort()) {
+                if (date === todayUTC) continue;
+                if (existing.has(date)) continue;
+                newLines.push(JSON.stringify({
+                  date,
+                  clones: clonesByDate[date] || { count: 0, uniques: 0 },
+                  views: viewsByDate[date] || { count: 0, uniques: 0 },
+                  fetched_at: fetchedAt,
+                }));
+              }
+
+              if (newLines.length > 0) {
+                fs.appendFileSync(filePath, newLines.join('\n') + '\n');
+                core.info(`${repo}: appended ${newLines.length} day(s)`);
+              } else {
+                core.info(`${repo}: no new dates`);
+              }
+            }
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add traffic/data/
+          if git diff --cached --quiet; then
+            echo "No new traffic data to commit"
+          else
+            git commit -m "chore(traffic): snapshot $(date -u +%Y-%m-%d)"
+            git push
+          fi
