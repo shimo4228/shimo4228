@@ -2,7 +2,7 @@
 
 [@shimo4228](https://github.com/shimo4228) の公開研究 repo 6 件に対する GitHub Traffic API の daily snapshot。
 
-**Dashboard**: [shimo4228.github.io/traffic/dashboard/](https://shimo4228.github.io/traffic/dashboard/) で 6 repo を 1 ページに可視化 (合算 timeline / repo 別 small multiples / clones:views 比 / 生データ table)。
+**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) で 6 repo を 1 ページに可視化 (合算 timeline / repo 別 small multiples / clones:views 比 / 生データ table)。
 
 ## 何のデータか
 

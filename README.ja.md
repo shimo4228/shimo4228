@@ -80,4 +80,4 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 
 ここから始める: フレームワークを見るなら [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)、実装を見るなら [contemplative-agent](https://github.com/shimo4228/contemplative-agent)、ガバナンス判断を見るなら [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice)。
 
-Repo traffic: [公開ダッシュボード](https://shimo4228.github.io/traffic/dashboard/) ([raw data](traffic/)、CC0)。
+Repo traffic: [公開ダッシュボード](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw data](traffic/)、CC0)。

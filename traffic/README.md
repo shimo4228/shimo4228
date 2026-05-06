@@ -2,7 +2,7 @@
 
 Daily snapshots of the GitHub Traffic API for six public research repositories by [@shimo4228](https://github.com/shimo4228).
 
-**Dashboard**: [shimo4228.github.io/traffic/dashboard/](https://shimo4228.github.io/traffic/dashboard/) — all six repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
+**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — all six repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
 
 ## What
 
