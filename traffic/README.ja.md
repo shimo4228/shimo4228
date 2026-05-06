@@ -27,9 +27,10 @@ GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り
 
 - **Bot/crawler が支配的**: clones:views 比率が 6 repo すべてで 30:1 以上。プロフィール repo ([shimo4228](https://github.com/shimo4228/shimo4228)) は 80 clones に対し 0 views — 誰も *読んで* いないが、何かが *cloning* している。
 - **Cross-repo crawler wave**: 同一日に複数 repo の clone が同時にピークを立てる。記事公開日に portfolio 全体を順に走査する pattern が観測できる (単 repo の event ではない)。
-- **時間の希少性**: GitHub Traffic API は直近 14 日しか返さない。蓄積を止めた瞬間に、過去は後追い不能になる。
+- **可視性の希少性 (admin-only)**: GitHub Traffic API の clone 数は push 権限を持つユーザにしか返らない。他人の repo の clone 行動は UI でも公開 API でも一切見えない。それゆえ個人 repo の clone 行動の longitudinal な公開データセットは事実上 wild にほぼ存在しない。stars / forks / watchers と違い、clone は外から数えられない数字。
+- **時間の希少性**: 自分の repo の数字でさえ、API は直近 14 日しか返さない。蓄積を止めた瞬間に過去は後追い不能になる。
 
-これは marketing 数値ではなく、AI-mediated discovery の field record として読む。1 年後・3 年後にこの portfolio がどう発見されていったかを調べたい人にとって、この daily 記録が唯一の data source になる。
+これは marketing 数値ではなく、AI-mediated discovery の field record として読む。蓄積されない過去 (時間) × 他人からは見えない数字 (可視性) の二重の希少性ゆえ、1 年後・3 年後にこの portfolio がどう発見されていったかを遡る人にとっても、admin の枠外から個人 repo の clone 行動を量で扱いたい研究者にとっても、この CC0 daily 記録は少数の参照点になる。
 
 ## どう読まないか
 

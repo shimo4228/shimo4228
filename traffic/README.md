@@ -27,9 +27,10 @@ Placing six repos side-by-side surfaces signals that look like noise on any sing
 
 - **Bot/crawler dominance**: clones:views ratios exceed 30:1 across all six repos. The profile repo ([shimo4228](https://github.com/shimo4228/shimo4228)) has 80 clones against 0 views — nobody is *reading* it, but something is *cloning* it.
 - **Cross-repo crawler waves**: clones spike simultaneously across multiple repos on the same dates. Article publication days appear to trigger walk-throughs of the entire portfolio (not single-repo events).
-- **Temporal scarcity**: GitHub's Traffic API only returns the last 14 days. The moment snapshotting stops, the past becomes unrecoverable.
+- **Visibility scarcity (admin-only)**: GitHub's Traffic clone counts are returned only to users with push access. Other repositories' clone behavior is invisible in both the UI and the public API. Longitudinal public datasets of personal-repo clone behavior are therefore essentially absent in the wild. Unlike stars / forks / watchers, clones cannot be counted from the outside.
+- **Temporal scarcity**: even for one's own repo, the API returns only the last 14 days. The moment snapshotting stops, the past becomes unrecoverable.
 
-Read this as a field record of AI-mediated discovery, not as marketing numbers. For anyone investigating, one or three years from now, how this portfolio was discovered, this daily log will be the only available source.
+Read this as a field record of AI-mediated discovery, not as marketing numbers. The dual scarcity — past data lost without continuous snapshotting (temporal) × clone counts hidden from non-admins (visibility) — makes this CC0 log a rare reference point both for someone tracing how this portfolio was discovered one or three years from now, and for any researcher who wants quantitative data on personal-repo clone behavior from outside the admin boundary.
 
 ## How NOT to read this
 
