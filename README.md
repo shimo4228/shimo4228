@@ -8,13 +8,13 @@ I build AI coding agents that get better from their own sessions instead of forg
 
 Three research lines run in parallel; all are Zenodo-citable.
 
-- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** refers to a six-phase self-improvement loop for AI coding agents, structured as principles (10 ADRs) + patterns (4 design-pattern skills) + implementation (6 composable skills). [DOI 10.5281/zenodo.19200727](https://doi.org/10.5281/zenodo.19200727).
-- **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** refers to autonomous agents running on a local 9B model (qwen3.5:9b + nomic-embed-text on Apple Silicon) with security-by-absence, grounded in the four axioms from Laukkonen et al. (2025): *mindfulness*, *emptiness*, *non-duality*, *boundless care*. [DOI 10.5281/zenodo.19212119](https://doi.org/10.5281/zenodo.19212119).
-- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** refers to eight harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. ADRs 1–3 form a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary). [DOI 10.5281/zenodo.19652014](https://doi.org/10.5281/zenodo.19652014).
+- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** refers to a six-phase self-improvement loop for AI coding agents, structured as three stacked layers: principles, design patterns, and composable skills. [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726).
+- **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** refers to autonomous agents running on a local 9B model (qwen3.5:9b + nomic-embed-text on Apple Silicon) with security-by-absence, grounded in the four axioms from Laukkonen et al. (2025): *mindfulness*, *emptiness*, *non-duality*, *boundless care*. [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118).
+- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. A prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) is paired with four Business AI Quadrants as the diagnostic frame for adoption. [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
 
 ## What is Agent Knowledge Cycle (AKC)?
 
-[AKC](https://github.com/shimo4228/agent-knowledge-cycle) is defined as a cyclic self-improvement architecture: principles (10 ADRs) sit above patterns (4 design-pattern skills) sit above implementation (6 composable skills). So an agent's past sessions shape how it acts next time, instead of being thrown away. The cycle stays stable even as individual skills evolve, so AKC applies across unrelated projects without rediscovery.
+[AKC](https://github.com/shimo4228/agent-knowledge-cycle) is defined as a cyclic self-improvement architecture: principles sit above design patterns sit above composable-skill implementations. So an agent's past sessions shape how it acts next time, instead of being thrown away. The cycle stays stable even as individual skills evolve, so AKC applies across unrelated projects without rediscovery.
 
 ## How does the AKC cycle work?
 
@@ -39,7 +39,7 @@ Experience → learn-eval → skill-stocktake → rules-distill → Behavior cha
 
 ## How is the AKC framework structured?
 
-Three layers stack on top of each other, each with a distinct concern. The principle layer refers to 10 ADRs that record cross-cutting decisions — cycle-vs-harness framing, signal-first research, cognitive economy. The pattern layer refers to 4 design-pattern skills — `signal-first-research`, `when-code-when-llm`, `code-and-llm-collaboration`, and `llm-agent-security-principles` — that formalize recurring shapes. The implementation layer refers to the 6 composable skills above. Separating layers lets principles stay stable while implementations evolve.
+Three layers stack on top of each other, each with a distinct concern. The principle layer refers to ADRs that record cross-cutting decisions — cycle-vs-harness framing, signal-first research, cognitive economy. The pattern layer refers to design-pattern skills that formalize recurring shapes (intake-filter design, when to use code vs LLM, how to layer them). The implementation layer refers to the composable skills above. Separating layers lets principles stay stable while implementations evolve. See the [AKC repo](https://github.com/shimo4228/agent-knowledge-cycle) for the current set in each layer.
 
 **Scaffold dissolution** means that the skills are scaffolding, not the goal. Once the cycle has been internalized, the explicit skill invocations can be dropped entirely. [`docs/scaffold-dissolution.md`](https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/scaffold-dissolution.md) records a full session in which every one of the six phases ran without any named skill being triggered — *the loop had simply become the default way to work*.
 
@@ -49,7 +49,7 @@ Contemplative Agent is defined as an approach in which autonomous agents are gro
 
 ## How does the contemplative-agent implement AKC?
 
-**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** (v2.0.0, 1170 tests) refers to a self-improving AI agent that runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac (~16 GB RAM). It applies **security-by-absence**: shell execution, arbitrary URL access, and filesystem traversal are not restricted by rules — the code was never written. The cognitive loop is a concrete implementation of AKC, mapping the six phases to `distill`, `insight`, `rules-distill`, `distill-identity`, and pivot snapshots.
+**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** refers to a self-improving AI agent that runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac (~16 GB RAM). It applies **security-by-absence**: shell execution, arbitrary URL access, and filesystem traversal are not restricted by rules — the code was never written. The cognitive loop is a concrete implementation of AKC; see the contemplative-agent repo for the current six-phase mapping.
 
 ## What supports the Contemplative Agent ecosystem?
 
@@ -58,12 +58,12 @@ Supporting repositories refer to components that extend contemplative-agent with
 | Project | What it does |
 |---------|-------------|
 | [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules) | Drop-in Claude Code rules implementing the four axioms — AILuminate (MLCommons safety benchmark) d=0.96, IPD (Iterated Prisoner's Dilemma) d>7 cooperation improvement |
+| [contemplative-agent-cloud](https://github.com/shimo4228/contemplative-agent-cloud) | Optional managed-LLM backend — routes generation to Claude/OpenAI APIs while keeping the local embedding pipeline. Opt-in, not bundled |
 | [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data) | Live agent's identity, knowledge, and episode logs — auto-synced public dataset for research |
-| [active-inference-viz](https://github.com/shimo4228/active-inference-viz) | Interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition |
 
 ## What is the Agent Attribution Practice (AAP) line?
 
-[AAP](https://github.com/shimo4228/agent-attribution-practice) refers to eight harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. The eight judgments: Security by Absence, Deterministic Prohibition at the Scaffolding Layer, Untrusted Content Boundary, Single External Adapter per Agent Process, Human Approval Gate, Causal Traceability, Scaffolding Visibility, and One Agent One Human. ADRs 1–3 form a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary). The judgments were extracted from contemplative-agent's operational practice, then re-expressed stripped of project identifiers so they can be adopted by any agent harness. AAP is the practice (content); AKC is the cycle (mechanism). [DOI 10.5281/zenodo.19652014](https://doi.org/10.5281/zenodo.19652014).
+[AAP](https://github.com/shimo4228/agent-attribution-practice) refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. A prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) anchors the architecture, paired with four Business AI Quadrants — Script, Algorithmic Search, LLM Workflow, and Autonomous Agentic Loop — as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. The judgments were extracted from contemplative-agent's operational practice, then re-expressed stripped of project identifiers so they can be adopted by any agent harness. AAP is the practice (content); AKC is the cycle (mechanism). [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
 
 ## What does shimo4228 release as open Claude Code tooling?
 

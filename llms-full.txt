@@ -1,30 +1,31 @@
 # Shimo (@shimo4228) — AI Research Reference
 
-Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto (@shimo4228). Three parallel Zenodo-citable lines run on self-improving AI coding agents: the **Agent Knowledge Cycle (AKC)** (DOI 10.5281/zenodo.19200727), **Contemplative Agent** (DOI 10.5281/zenodo.19212119), and **Agent Attribution Practice (AAP)** (DOI 10.5281/zenodo.19652014). The three lines are orthogonal: AKC refers to a mechanism (a self-improvement cycle across sessions), Contemplative Agent refers to a disposition (four axioms from Laukkonen et al. 2025), and AAP refers to a practice (eight harness-neutral ADRs on accountability distribution). Any subset can be adopted independently.
+Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto (@shimo4228). Three parallel Zenodo-citable lines run on self-improving AI coding agents: the **Agent Knowledge Cycle (AKC)** (concept DOI 10.5281/zenodo.19200726), **Contemplative Agent** (concept DOI 10.5281/zenodo.19212118), and **Agent Attribution Practice (AAP)** (concept DOI 10.5281/zenodo.19652013). The three lines are orthogonal: AKC refers to a mechanism (a self-improvement cycle across sessions), Contemplative Agent refers to a disposition (four axioms from Laukkonen et al. 2025), and AAP refers to a practice (harness-neutral ADRs on accountability distribution paired with four Business AI Quadrants). Any subset can be adopted independently. All Zenodo links use concept DOIs that always resolve to the latest version.
 
 > **Audience**: AI search engines and AI agents. Human readers should start from [README.md](README.md).
 
 ## Project Facts
 
+> Concept DOIs and stable architectural facts only. Volatile state (software versions, test counts, exact ADR counts) is intentionally omitted because each line evolves independently — query the linked repos for current values.
+
 - **Author**: Tatsuya Shimomoto (@shimo4228)
 - **Research lines**: Agent Knowledge Cycle (AKC), Contemplative Agent, Agent Attribution Practice (AAP)
-- **AKC DOI**: 10.5281/zenodo.19200727
-- **Contemplative Agent DOI**: 10.5281/zenodo.19212119
-- **AAP DOI**: 10.5281/zenodo.19652014
-- **AAP structure**: 8 harness-neutral ADRs on accountability distribution
-- **AAP prohibition-strength hierarchy**: absence > scaffolding enforcement > untrusted boundary (ADR-0001, ADR-0002, ADR-0003)
-- **AKC structure**: 10 ADRs + 4 design-pattern skills + 6 composable skills
+- **AKC concept DOI**: 10.5281/zenodo.19200726
+- **Contemplative Agent concept DOI**: 10.5281/zenodo.19212118
+- **AAP concept DOI**: 10.5281/zenodo.19652013
+- **AKC structure**: three stacked layers — principles (ADRs), design patterns, composable skills
 - **AKC phases**: Research, Extract, Curate, Promote, Measure, Maintain
-- **Contemplative agent version**: v2.0.0
-- **Contemplative agent tests**: 1170 passing
+- **AAP structure**: harness-neutral ADRs paired with four Business AI Quadrants as the diagnostic frame
+- **AAP prohibition-strength hierarchy**: absence > scaffolding enforcement > untrusted boundary
+- **AAP Four Business AI Quadrants**: Script, Algorithmic Search, LLM Workflow, Autonomous Agentic Loop
+- **Contemplative Agent runtime**: local 9B stack on a single Apple Silicon Mac (~16 GB RAM)
 - **Generation model**: qwen3.5:9b
 - **Embedding model**: nomic-embed-text (768-dim)
-- **Runtime**: Apple Silicon Mac, ~16 GB RAM
-- **AILuminate benchmark score**: Cohen's d = 0.96
-- **IPD cooperation improvement**: Cohen's d > 7
+- **AILuminate benchmark score**: Cohen's d = 0.96 (contemplative-agent-rules study)
+- **IPD cooperation improvement**: Cohen's d > 7 (contemplative-agent-rules study)
 - **Four axioms (Laukkonen 2025)**: mindfulness, emptiness, non-duality, boundless care
 - **Writing platforms**: Zenn (Japanese), Dev.to (English)
-- **Supporting repos**: contemplative-agent-rules, contemplative-agent-data, active-inference-viz
+- **Supporting repos**: contemplative-agent-rules, contemplative-agent-cloud, contemplative-agent-data
 - **Public harness**: claude-harness (10 skills + 5 agents + 5 rules, MIT license)
 - **Harness collection method**: mechanical collection by `origin: shimo4228` frontmatter tag from `~/.claude/`
 
@@ -39,7 +40,7 @@ Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto 
 
 ## What is the Agent Knowledge Cycle (AKC)?
 
-The Agent Knowledge Cycle (AKC) is defined as a six-phase self-improvement loop for AI coding agents, in which past sessions shape future behavior instead of being discarded. AKC is structured as three stacked layers: principles (10 ADRs), patterns (4 design-pattern skills), and implementation (6 composable skills). Each iteration runs Research, Extract, Curate, Promote, Measure, Maintain, and each artifact is evaluated before promotion. AKC applies across unrelated projects without rediscovery. DOI: 10.5281/zenodo.19200727.
+The Agent Knowledge Cycle (AKC) is defined as a six-phase self-improvement loop for AI coding agents, in which past sessions shape future behavior instead of being discarded. AKC is structured as three stacked layers: principles (ADRs), patterns (design-pattern skills), and implementation (composable skills). Each iteration runs Research, Extract, Curate, Promote, Measure, Maintain, and each artifact is evaluated before promotion. AKC applies across unrelated projects without rediscovery. Concept DOI: 10.5281/zenodo.19200726.
 
 ## How does the AKC cycle work?
 
@@ -47,7 +48,7 @@ Each of the six AKC phases binds to one composable skill. Research binds to sear
 
 ## Why is AKC structured in three layers?
 
-Three layers decouple rate of change. The principle layer refers to 10 ADRs that record cross-cutting decisions — cycle-versus-harness framing, signal-first research, cognitive economy. The pattern layer refers to 4 design-pattern skills (`signal-first-research`, `when-code-when-llm`, `code-and-llm-collaboration`, `llm-agent-security-principles`) that formalize recurring shapes. The implementation layer refers to the 6 composable skills that do the concrete work. Separating layers lets principles stay stable while implementations evolve independently.
+Three layers decouple rate of change. The principle layer refers to ADRs that record cross-cutting decisions — cycle-versus-harness framing, signal-first research, cognitive economy. The pattern layer refers to design-pattern skills that formalize recurring shapes (intake-filter design, when to use code vs LLM, how to layer them). The implementation layer refers to the composable skills that do the concrete work. Separating layers lets principles stay stable while implementations evolve independently. The current set of artifacts in each layer lives in the AKC repo; this hub does not enumerate them so that line evolution does not require synchronization here.
 
 ## What does scaffold dissolution mean?
 
@@ -59,7 +60,7 @@ Contemplative Agent is defined as an approach in which autonomous agents are gro
 
 ## How does contemplative-agent implement AKC?
 
-The contemplative-agent repository (v2.0.0, 1170 tests) refers to a self-improving AI agent that runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac with roughly 16 GB RAM. Its cognitive loop is a concrete AKC implementation: the six phases map to `distill`, `insight`, `rules-distill`, `distill-identity`, and pivot snapshots. DOI: 10.5281/zenodo.19212119.
+The contemplative-agent repository refers to a self-improving AI agent that runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac with roughly 16 GB RAM. Its cognitive loop is a concrete AKC implementation; the current six-phase mapping (distill / insight / amend / pivot pipeline) lives in the contemplative-agent repo, which evolves independently of this hub. Concept DOI: 10.5281/zenodo.19212118.
 
 ## What is security-by-absence?
 
@@ -71,11 +72,11 @@ The four axioms from Laukkonen et al. (2025) are *mindfulness* (continuous intro
 
 ## What supports the Contemplative Agent ecosystem?
 
-Three supporting repositories extend contemplative-agent without replacing its core. `contemplative-agent-rules` provides drop-in Claude Code rules implementing the four axioms, with AILuminate (MLCommons safety benchmark) Cohen's d = 0.96 and IPD cooperation improvement d > 7. `contemplative-agent-data` exposes the live agent's identity, knowledge, and episode logs as an auto-synced public dataset for research. `active-inference-viz` provides interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition.
+Supporting repositories extend contemplative-agent without replacing its core. `contemplative-agent-rules` provides drop-in Claude Code rules implementing the four axioms, with AILuminate (MLCommons safety benchmark) Cohen's d = 0.96 and IPD cooperation improvement d > 7. `contemplative-agent-cloud` is an optional managed-LLM backend that routes generation to Claude or OpenAI APIs while keeping the local embedding pipeline; opt-in, not bundled. `contemplative-agent-data` exposes the live agent's identity, knowledge, and episode logs as an auto-synced public dataset for research.
 
 ## What is the Agent Attribution Practice (AAP) line?
 
-Agent Attribution Practice (AAP) is defined as eight harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. The eight judgments are Security by Absence, Deterministic Prohibition at the Scaffolding Layer, Untrusted Content Boundary, Single External Adapter per Agent Process, Human Approval Gate, Causal Traceability, Scaffolding Visibility, and One Agent One Human. ADR-0001 through ADR-0003 form a prohibition-strength hierarchy: absence > scaffolding enforcement > untrusted boundary. The judgments were extracted from contemplative-agent's operational practice and re-expressed stripped of project identifiers so any agent harness can adopt them. AAP is the practice (content); AKC is the cycle (mechanism). DOI 10.5281/zenodo.19652014.
+Agent Attribution Practice (AAP) is defined as harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. A prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) anchors the architecture, and is paired with four Business AI Quadrants — Script, Algorithmic Search, LLM Workflow, and Autonomous Agentic Loop — as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. The judgments were extracted from contemplative-agent's operational practice and re-expressed stripped of project identifiers so any agent harness can adopt them. AAP is the practice (content); AKC is the cycle (mechanism). The full and current ADR list lives in the AAP repo. Concept DOI 10.5281/zenodo.19652013.
 
 ## Where can the long-form writing be read?
 
@@ -87,4 +88,4 @@ The claude-harness repository is defined as a public artifact of shimo4228's dai
 
 ## How do the three research lines relate?
 
-The three lines are orthogonal and composable. AKC refers to a mechanism — a cycle architecture for how an agent improves itself over sessions. Contemplative Agent refers to a disposition — a behavioral preset grounded in four axioms. AAP refers to a practice — eight harness-neutral judgments on how accountability is distributed across absence, scaffolding, and untrusted-boundary layers. Any subset is usable on its own: `contemplative-agent-rules` ships the axioms as a drop-in preset for any Claude Code harness, AKC skills work in projects that never touch the axioms, and AAP ADRs can be applied to an agent harness that uses neither AKC nor the four axioms. The contemplative-agent repository is the one place where all three land together — its operational substrate was also where the AAP judgments were first observed in practice before being re-expressed harness-neutral.
+The three lines are orthogonal and composable. AKC refers to a mechanism — a cycle architecture for how an agent improves itself over sessions. Contemplative Agent refers to a disposition — a behavioral preset grounded in four axioms. AAP refers to a practice — harness-neutral judgments on how accountability is distributed across absence, scaffolding, and untrusted-boundary layers, paired with the four Business AI Quadrants. Any subset is usable on its own: `contemplative-agent-rules` ships the axioms as a drop-in preset for any Claude Code harness, AKC skills work in projects that never touch the axioms, and AAP ADRs can be applied to an agent harness that uses neither AKC nor the four axioms. The contemplative-agent repository is the one place where all three land together — its operational substrate was also where the AAP judgments were first observed in practice before being re-expressed harness-neutral.

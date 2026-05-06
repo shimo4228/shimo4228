@@ -1,6 +1,6 @@
 # Shimo (@shimo4228) — AI Research Index
 
-> Research agenda by Tatsuya Shimomoto on self-improving AI coding agents. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice.
+> Research agenda by Tatsuya Shimomoto on self-improving AI coding agents. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice. All Zenodo links use concept DOIs that always resolve to the latest version.
 
 ## Core documentation
 
@@ -10,7 +10,7 @@
 
 ## Agent Knowledge Cycle (AKC)
 
-- [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase self-improvement loop, 10 ADRs + 4 design patterns + 6 composable skills. DOI 10.5281/zenodo.19200727
+- [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase self-improvement loop in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
 - [search-first](https://github.com/shimo4228/claude-skill-search-first): Research phase — search existing solutions before building
 - [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval): Extract phase — extract reusable patterns with quality gates
 - [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
@@ -20,14 +20,14 @@
 
 ## Contemplative Agent
 
-- [contemplative-agent](https://github.com/shimo4228/contemplative-agent): v2.0.0, 1170 tests, runs on local qwen3.5:9b + nomic-embed-text on Apple Silicon. DOI 10.5281/zenodo.19212119
+- [contemplative-agent](https://github.com/shimo4228/contemplative-agent): self-improving AI agent that runs entirely on a local 9B model (qwen3.5:9b generation + nomic-embed-text embeddings) on a single Apple Silicon Mac. Concept DOI 10.5281/zenodo.19212118
 - [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules): drop-in Claude Code rules implementing the four axioms — AILuminate d=0.96, IPD d>7
+- [contemplative-agent-cloud](https://github.com/shimo4228/contemplative-agent-cloud): optional managed-LLM backend — routes generation to Claude/OpenAI APIs while keeping the local embedding pipeline. Opt-in, not bundled
 - [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data): live agent identity, knowledge, episode logs — auto-synced public dataset
-- [active-inference-viz](https://github.com/shimo4228/active-inference-viz): interactive visualization of Active Inference dynamics, the formal model behind contemplative cognition
 
 ## Agent Attribution Practice (AAP)
 
-- [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice): eight harness-neutral ADRs on accountability distribution in autonomous AI agents — Security by Absence, Deterministic Prohibition at the Scaffolding Layer, Untrusted Content Boundary, Single External Adapter per Agent Process, Human Approval Gate, Causal Traceability, Scaffolding Visibility, One Agent One Human. ADRs 1–3 form a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary). Extracted from contemplative-agent's operational practice and re-expressed harness-neutral. DOI 10.5281/zenodo.19652014
+- [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice): harness-neutral ADRs on accountability distribution in autonomous AI agents. Anchored by a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary), paired with four Business AI Quadrants (Script / Algorithmic Search / LLM Workflow / Autonomous Agentic Loop) as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. Extracted from contemplative-agent's operational practice and re-expressed harness-neutral. Concept DOI 10.5281/zenodo.19652013
 
 ## Open source harness
 
