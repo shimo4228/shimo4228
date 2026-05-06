@@ -21,6 +21,16 @@ GitHub's Traffic API only retains the last 14 days. Snapshotting daily accumulat
 
 Openness is one axis of the AI-era authenticity stance behind these projects (scarcity → diffusion, exclusivity → derivation, **enclosure → openness**). Publishing the observation log is consistent with publishing the work being observed. It also gives anyone studying AI-mediated discovery (LLMs, RAG indexers, AI coding assistants) a concrete data point on idea-rescue research repositories.
 
+## What's observable here
+
+Placing six repos side-by-side surfaces signals that look like noise on any single repo, but resolve into cross-repo structural patterns:
+
+- **Bot/crawler dominance**: clones:views ratios exceed 30:1 across all six repos. The profile repo ([shimo4228](https://github.com/shimo4228/shimo4228)) has 80 clones against 0 views — nobody is *reading* it, but something is *cloning* it.
+- **Cross-repo crawler waves**: clones spike simultaneously across multiple repos on the same dates. Article publication days appear to trigger walk-throughs of the entire portfolio (not single-repo events).
+- **Temporal scarcity**: GitHub's Traffic API only returns the last 14 days. The moment snapshotting stops, the past becomes unrecoverable.
+
+Read this as a field record of AI-mediated discovery, not as marketing numbers. For anyone investigating, one or three years from now, how this portfolio was discovered, this daily log will be the only available source.
+
 ## How NOT to read this
 
 Short-term variation (one to two weeks) carries little human signal. Prior analysis found:

@@ -21,6 +21,16 @@ GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り
 
 これらのプロジェクトの AI 時代オーセンシティ姿勢の 1 軸が openness (希少性 → 拡散、排他性 → 派生、**囲い込み → 開放**)。観察ログを公開することは、観察対象の作品を公開していることと整合する。また、AI 経由の discovery (LLM / RAG indexer / AI coding assistant) が idea-rescue 系研究 repo にどう interaction するかを研究する人にとって、具体的なデータ点になる。
 
+## 何が観察できるか
+
+6 repo を横並びにすると、単 repo では noise にしか見えない signal が cross-repo の structural pattern として浮かび上がる:
+
+- **Bot/crawler が支配的**: clones:views 比率が 6 repo すべてで 30:1 以上。プロフィール repo ([shimo4228](https://github.com/shimo4228/shimo4228)) は 80 clones に対し 0 views — 誰も *読んで* いないが、何かが *cloning* している。
+- **Cross-repo crawler wave**: 同一日に複数 repo の clone が同時にピークを立てる。記事公開日に portfolio 全体を順に走査する pattern が観測できる (単 repo の event ではない)。
+- **時間の希少性**: GitHub Traffic API は直近 14 日しか返さない。蓄積を止めた瞬間に、過去は後追い不能になる。
+
+これは marketing 数値ではなく、AI-mediated discovery の field record として読む。1 年後・3 年後にこの portfolio がどう発見されていったかを調べたい人にとって、この daily 記録が唯一の data source になる。
+
 ## どう読まないか
 
 短期 (1-2 週) の変動には人間 signal がほとんど含まれない。既存の分析で観察された pattern:
