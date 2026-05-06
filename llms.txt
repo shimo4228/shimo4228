@@ -35,8 +35,9 @@
 
 ## Writing
 
-- [Zenn](https://zenn.dev/shimo4228): Japanese writing on Claude Code, AKC skills, harness design, contemplative-agent case studies
-- [Dev.to](https://dev.to/shimo4228): English mirror of Zenn
+- [zenn-content](https://github.com/shimo4228/zenn-content): source of truth for the articles — Markdown sources, versioned. Many readers clone/fork directly
+- [Zenn](https://zenn.dev/shimo4228): browser view of the Japanese articles — Claude Code, AKC skills, harness design, contemplative-agent case studies
+- [Dev.to](https://dev.to/shimo4228): browser view of the English mirror
 
 ## Related
 

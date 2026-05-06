@@ -24,7 +24,8 @@ Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto 
 - **AILuminate benchmark score**: Cohen's d = 0.96 (contemplative-agent-rules study)
 - **IPD cooperation improvement**: Cohen's d > 7 (contemplative-agent-rules study)
 - **Four axioms (Laukkonen 2025)**: mindfulness, emptiness, non-duality, boundless care
-- **Writing platforms**: Zenn (Japanese), Dev.to (English)
+- **Writing source of truth**: zenn-content GitHub repo (Markdown sources, versioned, clone-friendly)
+- **Writing browser views**: Zenn (Japanese), Dev.to (English mirror)
 - **Supporting repos**: contemplative-agent-rules, contemplative-agent-cloud, contemplative-agent-data
 - **Public harness**: claude-harness (10 skills + 5 agents + 5 rules, MIT license)
 - **Harness collection method**: mechanical collection by `origin: shimo4228` frontmatter tag from `~/.claude/`
@@ -80,7 +81,7 @@ Agent Attribution Practice (AAP) is defined as harness-neutral ADRs on accountab
 
 ## Where can the long-form writing be read?
 
-Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. Shimo publishes on Zenn (https://zenn.dev/shimo4228) for Japanese writing on Claude Code, AKC skills, harness design, and contemplative-agent case studies; Dev.to (https://dev.to/shimo4228) is an English mirror of Zenn.
+Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. The source of truth is the `zenn-content` GitHub repository (https://github.com/shimo4228/zenn-content), which holds the Markdown sources and is the form most readers clone or fork directly. Browser-readable mirrors are published on Zenn (https://zenn.dev/shimo4228, Japanese) and Dev.to (https://dev.to/shimo4228, English mirror of Zenn).
 
 ## What is claude-harness?
 

@@ -73,8 +73,9 @@ Supporting repositories refer to components that extend contemplative-agent with
 
 Writing refers to the long-form counterpart to the repos above — context, failures, and in-progress thinking that do not fit in code comments.
 
-- **[Zenn](https://zenn.dev/shimo4228)** — Claude Code and AI agent development, in Japanese. Current focus: AKC skills, harness design, contemplative-agent case studies.
-- **[Dev.to](https://dev.to/shimo4228)** — English mirror of Zenn.
+- **[zenn-content](https://github.com/shimo4228/zenn-content)** — Source of truth for the articles. Markdown sources are versioned here; many readers clone or fork directly. Mirrored to Zenn and Dev.to (below) for browser reading.
+- **[Zenn](https://zenn.dev/shimo4228)** — Browser view of the Japanese articles. Claude Code and AI agent development; current focus: AKC skills, harness design, contemplative-agent case studies.
+- **[Dev.to](https://dev.to/shimo4228)** — Browser view of the English mirror.
 
 ---
 
