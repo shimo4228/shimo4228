@@ -79,3 +79,5 @@ Writing refers to the long-form counterpart to the repos above — context, fail
 ---
 
 Start here: [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle) for the framework, [contemplative-agent](https://github.com/shimo4228/contemplative-agent) to see it running, [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice) for the governance judgments.
+
+Repo traffic: [public dashboard](https://shimo4228.github.io/traffic/dashboard/) ([raw data](traffic/), CC0).

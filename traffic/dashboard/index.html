@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Traffic Dashboard — shimo4228</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --card-bg: #f9fafb;
+      --accent: #6366f1;
+      --accent-2: #10b981;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1115;
+        --fg: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --card-bg: #161a22;
+        --accent: #818cf8;
+        --accent-2: #34d399;
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px 48px; }
+    header.page {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    h1 { font-size: 1.5rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+    h2 { font-size: 1.1rem; margin: 28px 0 8px; letter-spacing: -0.005em; }
+    .meta { color: var(--muted); font-size: 0.875rem; margin: 0 0 12px; }
+    .totals { display: flex; gap: 24px; flex-wrap: wrap; }
+    .totals > div { display: flex; flex-direction: column; }
+    .total-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .total-value { font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .hint { color: var(--muted); font-size: 0.85rem; margin: 0 0 12px; }
+    section { margin-bottom: 24px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .card header { margin-bottom: 4px; }
+    .card header a {
+      font-weight: 600;
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.95rem;
+      word-break: break-all;
+    }
+    .card header a:hover { text-decoration: underline; }
+    .card-stats { color: var(--muted); font-size: 0.8rem; margin: 2px 0 6px; font-variant-numeric: tabular-nums; }
+
+    figure { margin: 0; }
+    svg { max-width: 100%; height: auto; display: block; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+    }
+    th, td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+    th { cursor: pointer; user-select: none; font-weight: 600; background: var(--card-bg); position: sticky; top: 0; }
+    th[aria-sort]::after { content: ""; }
+    th[aria-sort="ascending"]::after { content: " ▲"; color: var(--muted); }
+    th[aria-sort="descending"]::after { content: " ▼"; color: var(--muted); }
+    .num { text-align: right; }
+    .table-scroll { max-height: 480px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
+    tbody tr:hover { background: var(--card-bg); }
+
+    footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
+    a { color: var(--accent); }
+    .status-error {
+      padding: 12px 16px;
+      border: 1px solid #ef4444;
+      border-radius: 8px;
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.06);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="page">
+      <h1>Traffic Dashboard</h1>
+      <p class="meta">
+        <a href="https://github.com/shimo4228" target="_blank" rel="noopener noreferrer">@shimo4228</a> の公開研究 repo 6 件 · <span id="last-updated">loading…</span>
+      </p>
+      <div class="totals">
+        <div><span class="total-label">Total clones (14d)</span><span id="total-clones" class="total-value">—</span></div>
+        <div><span class="total-label">Unique cloners</span><span id="total-clones-uniq" class="total-value">—</span></div>
+        <div><span class="total-label">Total views (14d)</span><span id="total-views" class="total-value">—</span></div>
+        <div><span class="total-label">Unique visitors</span><span id="total-views-uniq" class="total-value">—</span></div>
+      </div>
+    </header>
+
+    <main>
+      <div id="status"></div>
+
+      <section>
+        <h2>Aggregate timeline</h2>
+        <p class="hint">全 6 repo の日次合算。クローラ wave は同日に複数 repo に出るため、ここで山が立つ。</p>
+        <figure id="aggregate-chart"></figure>
+      </section>
+
+      <section>
+        <h2>Per-repo (small multiples)</h2>
+        <p class="hint">各 repo の clones (青) と views (緑) を 14 日。スケールは repo ごとに独立。</p>
+        <div id="small-multiples" class="grid"></div>
+      </section>
+
+      <section>
+        <h2>Clones : Views ratio</h2>
+        <p class="hint">ratio = sum(clones) ÷ max(sum(views), 1)。値が大きいほど人間 view が薄く、bot/crawler/CI clone が支配的。</p>
+        <figure id="ratio-chart"></figure>
+      </section>
+
+      <section>
+        <h2>Data table</h2>
+        <p class="hint">列ヘッダクリックでソート。初期表示は日付降順。</p>
+        <div id="table-container" class="table-scroll"></div>
+      </section>
+    </main>
+
+    <footer>
+      Source: <a href="https://github.com/shimo4228/shimo4228/tree/main/traffic">traffic/</a> ·
+      <a href="https://github.com/shimo4228/shimo4228/blob/main/.github/workflows/traffic-daily.yml">workflow</a> ·
+      License: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>
+    </footer>
+  </div>
+
+  <script type="module">
+    import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/+esm";
+
+    const REPOS = [
+      "contemplative-agent",
+      "agent-knowledge-cycle",
+      "agent-attribution-practice",
+      "contemplative-agent-data",
+      "zenn-content",
+      "shimo4228",
+    ];
+    const COLOR = { clones: "#6366f1", views: "#10b981" };
+
+    function num(v) { const n = Number(v); return Number.isFinite(n) ? n : 0; }
+
+    async function loadRepo(repo) {
+      const res = await fetch(`../data/${repo}.jsonl`, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`Failed to load ${repo}: HTTP ${res.status}`);
+      const text = await res.text();
+      const rows = [];
+      for (const line of text.split("\n")) {
+        const trimmed = line.trim();
+        if (!trimmed) continue;
+        const j = JSON.parse(trimmed);
+        rows.push({
+          repo,
+          date: String(j.date ?? ""),
+          dateObj: new Date(String(j.date ?? "") + "T00:00:00Z"),
+          clones: num(j.clones?.count),
+          clonesUniques: num(j.clones?.uniques),
+          views: num(j.views?.count),
+          viewsUniques: num(j.views?.uniques),
+          fetchedAt: String(j.fetched_at ?? ""),
+        });
+      }
+      return rows;
+    }
+
+    function fmt(n) { return n.toLocaleString("en-US"); }
+    function setText(id, v) { document.getElementById(id).textContent = v; }
+
+    async function render() {
+      let allData;
+      try {
+        allData = (await Promise.all(REPOS.map(loadRepo))).flat();
+      } catch (err) {
+        const div = document.createElement("div");
+        div.className = "status-error";
+        div.textContent = `データ読み込みに失敗しました: ${err.message}`;
+        document.getElementById("status").append(div);
+        console.error(err);
+        return;
+      }
+
+      // header
+      const lastUpdated = allData.reduce((m, r) => (r.fetchedAt > m ? r.fetchedAt : m), "");
+      setText("last-updated", lastUpdated ? `Last snapshot: ${lastUpdated.slice(0, 10)} UTC` : "no data");
+      setText("total-clones", fmt(allData.reduce((s, r) => s + r.clones, 0)));
+      setText("total-clones-uniq", fmt(allData.reduce((s, r) => s + r.clonesUniques, 0)));
+      setText("total-views", fmt(allData.reduce((s, r) => s + r.views, 0)));
+      setText("total-views-uniq", fmt(allData.reduce((s, r) => s + r.viewsUniques, 0)));
+
+      const bgColor = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#ffffff";
+
+      // aggregate timeline
+      const byDate = new Map();
+      for (const r of allData) {
+        const e = byDate.get(r.date) ?? { date: r.date, dateObj: r.dateObj, clones: 0, views: 0 };
+        e.clones += r.clones;
+        e.views += r.views;
+        byDate.set(r.date, e);
+      }
+      const aggLong = [...byDate.values()]
+        .sort((a, b) => a.dateObj - b.dateObj)
+        .flatMap((d) => [
+          { date: d.dateObj, metric: "clones", value: d.clones },
+          { date: d.dateObj, metric: "views", value: d.views },
+        ]);
+      document.getElementById("aggregate-chart").append(
+        Plot.plot({
+          height: 280,
+          marginLeft: 50,
+          x: { label: null, type: "utc" },
+          y: { label: "↑ count", grid: true },
+          color: { legend: true, domain: ["clones", "views"], range: [COLOR.clones, COLOR.views] },
+          marks: [
+            Plot.line(aggLong, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 2 }),
+            Plot.dot(aggLong, { x: "date", y: "value", stroke: "metric", fill: bgColor, r: 3 }),
+            Plot.tip(aggLong, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
+          ],
+        })
+      );
+
+      // small multiples
+      const smContainer = document.getElementById("small-multiples");
+      for (const repoName of REPOS) {
+        const rows = allData.filter((r) => r.repo === repoName).sort((a, b) => a.dateObj - b.dateObj);
+        const totals = {
+          clones: rows.reduce((s, r) => s + r.clones, 0),
+          views: rows.reduce((s, r) => s + r.views, 0),
+        };
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const cardHead = document.createElement("header");
+        const link = document.createElement("a");
+        link.href = `https://github.com/shimo4228/${repoName}`;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = repoName;
+        cardHead.append(link);
+        const stats = document.createElement("p");
+        stats.className = "card-stats";
+        stats.textContent = `clones ${fmt(totals.clones)} · views ${fmt(totals.views)}`;
+        cardHead.append(stats);
+        card.append(cardHead);
+
+        const long = rows.flatMap((d) => [
+          { date: d.dateObj, metric: "clones", value: d.clones },
+          { date: d.dateObj, metric: "views", value: d.views },
+        ]);
+        const fig = document.createElement("figure");
+        fig.append(
+          Plot.plot({
+            height: 140,
+            marginLeft: 32,
+            marginBottom: 22,
+            marginRight: 8,
+            x: { label: null, type: "utc", ticks: 3, tickFormat: "%m/%d" },
+            y: { label: null, grid: true, nice: true },
+            color: { domain: ["clones", "views"], range: [COLOR.clones, COLOR.views] },
+            marks: [
+              Plot.areaY(long.filter((d) => d.metric === "clones"), {
+                x: "date",
+                y: "value",
+                fill: COLOR.clones,
+                fillOpacity: 0.15,
+                curve: "monotone-x",
+              }),
+              Plot.line(long, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 1.5 }),
+              Plot.tip(long, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
+            ],
+          })
+        );
+        card.append(fig);
+        smContainer.append(card);
+      }
+
+      // clones:views ratio
+      const ratios = REPOS.map((repoName) => {
+        const rows = allData.filter((r) => r.repo === repoName);
+        const c = rows.reduce((s, r) => s + r.clones, 0);
+        const v = rows.reduce((s, r) => s + r.views, 0);
+        const ratio = c / Math.max(v, 1);
+        return { repo: repoName, clones: c, views: v, ratio, label: v === 0 ? `${fmt(c)} : 0` : `${ratio.toFixed(1)} : 1` };
+      }).sort((a, b) => b.ratio - a.ratio);
+
+      document.getElementById("ratio-chart").append(
+        Plot.plot({
+          height: 60 + ratios.length * 36,
+          marginLeft: 200,
+          marginRight: 80,
+          x: { label: "clones / views (log scale) →", type: "log", grid: true, nice: true },
+          y: { label: null, domain: ratios.map((r) => r.repo) },
+          marks: [
+            Plot.barX(ratios, { x: "ratio", y: "repo", fill: COLOR.clones, fillOpacity: 0.85 }),
+            Plot.text(ratios, { x: "ratio", y: "repo", text: "label", dx: 6, textAnchor: "start", fill: "currentColor" }),
+            Plot.ruleX([1], { stroke: "currentColor", strokeOpacity: 0.3, strokeDasharray: "3,3" }),
+          ],
+        })
+      );
+
+      // data table
+      const headers = [
+        { key: "repo", label: "repo", num: false },
+        { key: "date", label: "date", num: false },
+        { key: "clones", label: "clones", num: true },
+        { key: "clonesUniques", label: "unique cloners", num: true },
+        { key: "views", label: "views", num: true },
+        { key: "viewsUniques", label: "unique visitors", num: true },
+      ];
+      const tbl = document.createElement("table");
+      const thead = document.createElement("thead");
+      const trh = document.createElement("tr");
+      for (const h of headers) {
+        const th = document.createElement("th");
+        th.textContent = h.label;
+        th.dataset.key = h.key;
+        if (h.num) th.classList.add("num");
+        trh.append(th);
+      }
+      thead.append(trh);
+      tbl.append(thead);
+      const tbody = document.createElement("tbody");
+      tbl.append(tbody);
+
+      let sortKey = "date";
+      let sortAsc = false;
+
+      function compare(a, b) {
+        const av = a[sortKey];
+        const bv = b[sortKey];
+        const cmp = typeof av === "string" ? av.localeCompare(bv) : av - bv;
+        return sortAsc ? cmp : -cmp;
+      }
+      function applySortIndicators() {
+        for (const th of trh.children) {
+          if (th.dataset.key === sortKey) {
+            th.setAttribute("aria-sort", sortAsc ? "ascending" : "descending");
+          } else {
+            th.removeAttribute("aria-sort");
+          }
+        }
+      }
+      function rerender() {
+        const rows = [...allData].sort(compare);
+        const frag = document.createDocumentFragment();
+        for (const r of rows) {
+          const tr = document.createElement("tr");
+          for (const h of headers) {
+            const td = document.createElement("td");
+            td.textContent = r[h.key];
+            if (h.num) td.classList.add("num");
+            tr.append(td);
+          }
+          frag.append(tr);
+        }
+        tbody.replaceChildren(frag);
+      }
+      for (const th of trh.children) {
+        th.addEventListener("click", () => {
+          const k = th.dataset.key;
+          if (k === sortKey) sortAsc = !sortAsc;
+          else { sortKey = k; sortAsc = false; }
+          applySortIndicators();
+          rerender();
+        });
+      }
+      applySortIndicators();
+      rerender();
+      document.getElementById("table-container").append(tbl);
+    }
+
+    render();
+  </script>
+</body>
+</html>
