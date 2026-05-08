@@ -1,6 +1,6 @@
 # Shimo (@shimo4228) — AI Research Index
 
-> Research agenda by Tatsuya Shimomoto on sustaining intent alignment between AI coding agents and their operators across sessions. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice. All Zenodo links use concept DOIs that always resolve to the latest version.
+> Research agenda by Tatsuya Shimomoto on sustaining intent alignment between AI agents and their operators across sessions. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice. All Zenodo links use concept DOIs that always resolve to the latest version.
 
 ## Core documentation
 
