@@ -2,19 +2,19 @@ Language: [English](README.md) | 日本語
 
 # Shimo (@shimo4228)
 
-AI エージェントの振る舞いを、操作者の変わり続ける意図とセッションを跨いで擦り合わせ続けるための **Agent Knowledge Cycle (AKC)** を作っている — エージェントの振る舞いと人間の判断が共に育つ、双方向のフィードバックループである。もう 1 本の並走ラインとして、自律エージェントのアラインメントが「命じられたから」ではなく「そういう存在だから」立ち上がる可能性を探究している — アラインメントを外部命令から内部的な性向へと移したとき、何が失われ、何が可能になり、何が依然として壊れるのかを追っている。さらにもう 1 本、自律 AI エージェントにおけるアカウンタビリティの分配を形式化する **Agent Attribution Practice (AAP)** ラインがある — 何を禁止するか、その禁止をどこに置くか、事故が起きたとき誰が答えるか、を harness-neutral な判断として記録している。
+AI エージェントの振る舞いを、操作者の変わり続ける意図と時間を超えて擦り合わせ続けるための **Agent Knowledge Cycle (AKC)** を作っている — エージェントの振る舞いと人間の判断が共に育つ、双方向の成長ループである。もう 1 本の並走ラインとして、自律エージェントのアラインメントが「命じられたから」ではなく「そういう存在だから」立ち上がる可能性を探究している — アラインメントを外部命令から内部的な性向へと移したとき、何が失われ、何が可能になり、何が依然として壊れるのかを追っている。さらにもう 1 本、自律 AI エージェントにおけるアカウンタビリティの分配を形式化する **Agent Attribution Practice (AAP)** ラインがある — 何を禁止するか、その禁止をどこに置くか、事故が起きたとき誰が答えるか、を harness-neutral な判断として記録している。
 
 ## どの研究ラインを追っているか？
 
 3 つの研究ラインを並走させている。いずれも Zenodo 引用可能。
 
-- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** とは、AI エージェントと操作者の意図を、セッションを跨いで擦り合わせ続けるための 6 フェーズ双方向フィードバックループを指す — エージェントの振る舞いと人間の判断が共に育つ。3 層構造：原則 + デザインパターン + 実装（composable skills）。[DOI](https://doi.org/10.5281/zenodo.19200726)。
+- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** とは、AI エージェントと操作者の意図を、時間を超えて擦り合わせ続けるための 6 フェーズ双方向成長ループを指す — エージェントの振る舞いと人間の判断が共に育つ。3 層構造：原則 + デザインパターン + 実装（composable skills）。[DOI](https://doi.org/10.5281/zenodo.19200726)。
 - **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** とは、ローカル 9B モデル（qwen3.5:9b + nomic-embed-text on Apple Silicon）で security-by-absence を実現する自律エージェントを指す。Laukkonen et al. (2025) の 4 公理 — *mindfulness*、*emptiness*、*non-duality*、*boundless care* — に基づく。[DOI](https://doi.org/10.5281/zenodo.19212118)。
 - **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な ADR 群を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。これらの判断 — その 1 つに prohibition-strength の階層（absence > scaffolding enforcement > untrusted boundary）が含まれる — が、Four Business AI Quadrants と対になり、採用時の診断フレームを成す。[DOI](https://doi.org/10.5281/zenodo.19652013)。
 
 ## Agent Knowledge Cycle (AKC) とは？
 
-[AKC](https://github.com/shimo4228/agent-knowledge-cycle) とは、エージェントと操作者の意図のアラインメントをセッションを跨いで維持するための 6 フェーズ循環アーキテクチャを指す — エージェントの振る舞いと人間の判断が共に育つ双方向フィードバックループである。原則の上にデザインパターン、その上に実装（composable skills）が積み重なり、個々のスキルが入れ替わっても循環構造は安定して残る。テストは正しさを検査できるが、操作者の意図とのズレを catch できるのはこのループだけであり、循環を回す中で「良いエージェントの振る舞いとは何か」という操作者の判断もまた研ぎ澄まされていく。AKC は複数プロジェクト横断で適用できる。
+[AKC](https://github.com/shimo4228/agent-knowledge-cycle) とは、エージェントと操作者の意図のアラインメントを時間を超えて維持するための 6 フェーズ循環アーキテクチャを指す — エージェントの振る舞いと人間の判断が共に育つ双方向成長ループである。原則の上にデザインパターン、その上に実装（composable skills）が積み重なり、個々のスキルが入れ替わっても循環構造は安定して残る。テストは正しさを検査できるが、操作者の意図とのズレを catch できるのはこのループだけであり、循環を回す中で「良いエージェントの振る舞いとは何か」という操作者の判断もまた研ぎ澄まされていく。AKC は複数プロジェクト横断で適用できる。
 
 ## AKC 循環はどう動くか？
 

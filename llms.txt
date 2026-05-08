@@ -1,6 +1,6 @@
 # Shimo (@shimo4228) — AI Research Index
 
-> Research agenda by Tatsuya Shimomoto on sustaining intent alignment between AI agents and their operators across sessions. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice. All Zenodo links use concept DOIs that always resolve to the latest version.
+> Research agenda by Tatsuya Shimomoto on sustaining intent alignment between AI agents and their operators over time. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice. All Zenodo links use concept DOIs that always resolve to the latest version.
 
 ## Core documentation
 
@@ -10,7 +10,7 @@
 
 ## Agent Knowledge Cycle (AKC)
 
-- [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase bidirectional feedback loop for sustaining agent–operator intent alignment across sessions, in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
+- [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase bidirectional growth loop for sustaining agent–operator intent alignment over time, in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
 - [search-first](https://github.com/shimo4228/claude-skill-search-first): Research phase — search existing solutions before building
 - [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval): Extract phase — extract reusable patterns with quality gates
 - [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
