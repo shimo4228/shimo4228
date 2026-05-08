@@ -2,19 +2,19 @@ Language: [English](README.md) | 日本語
 
 # Shimo (@shimo4228)
 
-自らのセッションを忘れ去るのではなく、そこから学び続ける AI コーディングエージェントを作っている。もう 1 本の並走ラインとして、自律エージェントのアラインメントが「命じられたから」ではなく「そういう存在だから」立ち上がる可能性を探究している — アラインメントを外部命令から内部的な性向へと移したとき、何が失われ、何が可能になり、何が依然として壊れるのかを追っている。さらにもう 1 本、自律 AI エージェントにおけるアカウンタビリティの分配を形式化する **Agent Attribution Practice (AAP)** ラインがある — 何を禁止するか、その禁止をどこに置くか、事故が起きたとき誰が答えるか、を harness-neutral な判断として記録している。
+AI コーディングエージェントの振る舞いを、操作者の変わり続ける意図とセッションを跨いで擦り合わせ続けるための **Agent Knowledge Cycle (AKC)** を作っている — エージェントの振る舞いと人間の判断が共に育つ、双方向のフィードバックループである。もう 1 本の並走ラインとして、自律エージェントのアラインメントが「命じられたから」ではなく「そういう存在だから」立ち上がる可能性を探究している — アラインメントを外部命令から内部的な性向へと移したとき、何が失われ、何が可能になり、何が依然として壊れるのかを追っている。さらにもう 1 本、自律 AI エージェントにおけるアカウンタビリティの分配を形式化する **Agent Attribution Practice (AAP)** ラインがある — 何を禁止するか、その禁止をどこに置くか、事故が起きたとき誰が答えるか、を harness-neutral な判断として記録している。
 
 ## どの研究ラインを追っているか？
 
 3 つの研究ラインを並走させている。いずれも Zenodo 引用可能。
 
-- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** とは、AI コーディングエージェント向けの 6 フェーズ自己改善ループを指す。3 層構造：原則 + デザインパターン + 実装（composable skills）。[DOI](https://doi.org/10.5281/zenodo.19200726)。
+- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** とは、AI コーディングエージェントと操作者の意図を、セッションを跨いで擦り合わせ続けるための 6 フェーズ双方向フィードバックループを指す — エージェントの振る舞いと人間の判断が共に育つ。3 層構造：原則 + デザインパターン + 実装（composable skills）。[DOI](https://doi.org/10.5281/zenodo.19200726)。
 - **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** とは、ローカル 9B モデル（qwen3.5:9b + nomic-embed-text on Apple Silicon）で security-by-absence を実現する自律エージェントを指す。Laukkonen et al. (2025) の 4 公理 — *mindfulness*、*emptiness*、*non-duality*、*boundless care* — に基づく。[DOI](https://doi.org/10.5281/zenodo.19212118)。
-- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な ADR 群を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。prohibition-strength の階層（absence > scaffolding enforcement > untrusted boundary）が architecture を貫く軸となり、Four Business AI Quadrants が採用時の診断フレームとして対になる。[DOI](https://doi.org/10.5281/zenodo.19652013)。
+- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な ADR 群を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。これらの判断 — その 1 つに prohibition-strength の階層（absence > scaffolding enforcement > untrusted boundary）が含まれる — が、Four Business AI Quadrants と対になり、採用時の診断フレームを成す。[DOI](https://doi.org/10.5281/zenodo.19652013)。
 
 ## Agent Knowledge Cycle (AKC) とは？
 
-[AKC](https://github.com/shimo4228/agent-knowledge-cycle) とは循環型の自己改善アーキテクチャを指す。原則の上にデザインパターン、その上に実装（composable skills）が積み重なる。エージェントの過去セッションを捨てず、次回の振る舞いに反映させる設計だ。個々のスキルが入れ替わっても循環構造は安定して残るため、AKC は複数プロジェクト横断で適用できる。
+[AKC](https://github.com/shimo4228/agent-knowledge-cycle) とは、エージェントと操作者の意図のアラインメントをセッションを跨いで維持するための 6 フェーズ循環アーキテクチャを指す — エージェントの振る舞いと人間の判断が共に育つ双方向フィードバックループである。原則の上にデザインパターン、その上に実装（composable skills）が積み重なり、個々のスキルが入れ替わっても循環構造は安定して残る。テストは正しさを検査できるが、操作者の意図とのズレを catch できるのはこのループだけであり、循環を回す中で「良いエージェントの振る舞いとは何か」という操作者の判断もまた研ぎ澄まされていく。AKC は複数プロジェクト横断で適用できる。
 
 ## AKC 循環はどう動くか？
 
@@ -49,7 +49,7 @@ Contemplative Agent とは、自律エージェントが [Laukkonen et al. (2025
 
 ## contemplative-agent はどう AKC を実装しているか？
 
-**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** とは、ローカル 9B モデル（生成 qwen3.5:9b + 埋め込み nomic-embed-text）で完結する自己改善型 AI エージェントを指す。Apple Silicon Mac 1 台（約 16 GB RAM）で稼働する。**security-by-absence** を適用しており、シェル実行、任意 URL アクセス、ファイルシステム走査は、ルールで禁止されているのではなく、そもそも実装していない。認知ループは AKC の具体実装である — 最新の 6 フェーズマッピングは contemplative-agent repo を参照。
+**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** とは、自身のログに対して AKC の 6 フェーズ循環を回す CLI エージェントを指す。logs → patterns → skills → rules への各昇格は、すべて人間による承認ゲートを通過する。ローカル 9B モデル（生成 qwen3.5:9b + 埋め込み nomic-embed-text）で完結し、Apple Silicon Mac 1 台（約 16 GB RAM）で稼働する。**security-by-absence** を適用しており、シェル実行、任意 URL アクセス、ファイルシステム走査は、ルールで禁止されているのではなく、そもそも実装していない。contemplative-agent は AKC と AAP が共に走る運用リファレンスである — 最新の 6 フェーズマッピングは contemplative-agent repo を参照。
 
 ## Contemplative Agent エコシステムを支えているのは何か？
 
@@ -63,7 +63,7 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 
 ## Agent Attribution Practice (AAP) ラインとは？
 
-[AAP](https://github.com/shimo4228/agent-attribution-practice) とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な ADR 群を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。prohibition-strength の階層（absence > scaffolding enforcement > untrusted boundary）が architecture を貫く軸となり、Four Business AI Quadrants（Script / Algorithmic Search / LLM Workflow / Autonomous Agentic Loop）が、attribution を保てる architecture に作業をルーティングするための診断フレームとして対になる。各判断は contemplative-agent の運用実践から抽出され、project 固有の識別子を剥がして再表現されている — 任意の agent harness が採用できる形に。AAP は practice (content)、AKC は cycle (mechanism)。[DOI](https://doi.org/10.5281/zenodo.19652013)。
+[AAP](https://github.com/shimo4228/agent-attribution-practice) とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な ADR 群を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。harness-neutral な判断のひとつとして prohibition-strength の階層（absence > scaffolding enforcement > untrusted boundary）があり、Four Business AI Quadrants（Script / Algorithmic Search / LLM Workflow / Autonomous Agentic Loop）が、attribution を保てる architecture に作業をルーティングするための診断フレームとして対になる。各判断は contemplative-agent の運用実践から抽出され、project 固有の識別子を剥がして再表現されている — 任意の agent harness が採用できる形に。AAP は practice (content)、AKC は cycle (mechanism)。[DOI](https://doi.org/10.5281/zenodo.19652013)。
 
 ## shimo4228 が公開している Claude Code ツーリングは？
 

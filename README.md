@@ -2,19 +2,19 @@ Language: English | [日本語](README.ja.md)
 
 # Shimo (@shimo4228)
 
-I build AI coding agents that get better from their own sessions instead of forgetting them — the **Agent Knowledge Cycle (AKC)**. A parallel line, **Contemplative Agent**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — shifting alignment from external instruction to internal disposition. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
+I build AI coding agents that stay aligned with the operator's evolving intent across sessions — the **Agent Knowledge Cycle (AKC)** is a bidirectional feedback loop in which agent behavior and human judgment co-develop. A parallel line, **Contemplative Agent**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — shifting alignment from external instruction to internal disposition. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
 
 ## Which research lines?
 
 Three research lines run in parallel; all are Zenodo-citable.
 
-- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** refers to a six-phase self-improvement loop for AI coding agents, structured as three stacked layers: principles, design patterns, and composable skills. [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726).
+- **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** refers to a six-phase bidirectional feedback loop for sustaining intent alignment between an AI coding agent and its operator across sessions — agent behavior and human judgment co-develop. Structured as three stacked layers: principles, design patterns, and composable skills. [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726).
 - **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** refers to autonomous agents running on a local 9B model (qwen3.5:9b + nomic-embed-text on Apple Silicon) with security-by-absence, grounded in the four axioms from Laukkonen et al. (2025): *mindfulness*, *emptiness*, *non-duality*, *boundless care*. [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118).
-- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. A prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) is paired with four Business AI Quadrants as the diagnostic frame for adoption. [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
+- **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. The judgments — among them a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) — are paired with four Business AI Quadrants as the diagnostic frame for adoption. [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
 
 ## What is Agent Knowledge Cycle (AKC)?
 
-[AKC](https://github.com/shimo4228/agent-knowledge-cycle) is defined as a cyclic self-improvement architecture: principles sit above design patterns sit above composable-skill implementations. So an agent's past sessions shape how it acts next time, instead of being thrown away. The cycle stays stable even as individual skills evolve, so AKC applies across unrelated projects without rediscovery.
+[AKC](https://github.com/shimo4228/agent-knowledge-cycle) is defined as a six-phase cycle for sustaining intent alignment between an agent and its operator across sessions — a bidirectional feedback loop in which agent behavior and human judgment co-develop. Three layers stack: principles sit above design patterns sit above composable-skill implementations, so the cycle stays stable even as individual skills evolve. Tests can check correctness, but only the loop catches drift from the operator's intent — and the operator's judgment about good agent behavior sharpens through running the cycle. AKC applies across unrelated projects without rediscovery.
 
 ## How does the AKC cycle work?
 
@@ -49,7 +49,7 @@ Contemplative Agent is defined as an approach in which autonomous agents are gro
 
 ## How does the contemplative-agent implement AKC?
 
-**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** refers to a self-improving AI agent that runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac (~16 GB RAM). It applies **security-by-absence**: shell execution, arbitrary URL access, and filesystem traversal are not restricted by rules — the code was never written. The cognitive loop is a concrete implementation of AKC; see the contemplative-agent repo for the current six-phase mapping.
+**[contemplative-agent](https://github.com/shimo4228/contemplative-agent)** refers to a CLI agent that runs AKC's six-phase cycle over its own logs, with a human approval gate at every promotion (logs → patterns → skills → rules). It runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac (~16 GB RAM). It applies **security-by-absence**: shell execution, arbitrary URL access, and filesystem traversal are not restricted by rules — the code was never written. The contemplative-agent is the operational reference where AKC and AAP land together; see the repo for the current six-phase mapping.
 
 ## What supports the Contemplative Agent ecosystem?
 
@@ -63,7 +63,7 @@ Supporting repositories refer to components that extend contemplative-agent with
 
 ## What is the Agent Attribution Practice (AAP) line?
 
-[AAP](https://github.com/shimo4228/agent-attribution-practice) refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. A prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) anchors the architecture, paired with four Business AI Quadrants — Script, Algorithmic Search, LLM Workflow, and Autonomous Agentic Loop — as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. The judgments were extracted from contemplative-agent's operational practice, then re-expressed stripped of project identifiers so they can be adopted by any agent harness. AAP is the practice (content); AKC is the cycle (mechanism). [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
+[AAP](https://github.com/shimo4228/agent-attribution-practice) refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. A prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) is one of the harness-neutral judgments, paired with four Business AI Quadrants — Script, Algorithmic Search, LLM Workflow, and Autonomous Agentic Loop — as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. The judgments were extracted from contemplative-agent's operational practice, then re-expressed stripped of project identifiers so they can be adopted by any agent harness. AAP is the practice (content); AKC is the cycle (mechanism). [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
 
 ## What does shimo4228 release as open Claude Code tooling?
 
