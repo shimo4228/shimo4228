@@ -69,6 +69,13 @@ Supporting repositories refer to components that extend contemplative-agent with
 
 [claude-harness](https://github.com/shimo4228/claude-harness) refers to a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules — 10 skills + 5 agents + 5 rules, mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. The six AKC skills are also published as standalone `claude-skill-*` repositories, but claude-harness lets you read or fork the entire harness in one place. ECC-derived components (`origin: ECC` / `ECC-customized`) and auto-extracted artifacts are excluded.
 
+## Adjacent skills
+
+Adjacent skills refer to public Claude Code skill repos maintained alongside the AKC cycle but not part of its six phases — companion scaffolding under the same author and the same MIT license.
+
+- **[claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer)** — Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Combines the Answer.AI `llms.txt` standard with GEO-SFE 3-layer static analysis.
+- **[claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research)** — Cron-driven daily research digest. Two-pass `claude -p` pipeline: Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP and writes Markdown reports to an Obsidian vault.
+
 ## Writing
 
 Writing refers to the long-form counterpart to the repos above — context, failures, and in-progress thinking that do not fit in code comments.

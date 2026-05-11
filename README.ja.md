@@ -69,6 +69,13 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 
 [claude-harness](https://github.com/shimo4228/claude-harness) とは、shimo4228 が日常的に使っている Claude Code の skills / agents / rules を集約した公開アーティファクトを指す。10 skills + 5 agents + 5 rules を `~/.claude/` から `origin: shimo4228` タグで機械的に収集したもの。AKC の 6 スキルは個別の `claude-skill-*` repo としても公開しているが、claude-harness ではハーネス全体をまとめて読み・fork できる。ECC 由来コンポーネント (`origin: ECC` / `ECC-customized`) と自動抽出物は含まない。
 
+## 隣接スキル (Adjacent skills)
+
+隣接スキルとは、AKC サイクル本体には含まれないが同じ著者・同じ MIT ライセンスで並列に維持している companion scaffolding の公開 Claude Code skill repo を指す。
+
+- **[claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer)** — AI 検索エンジン (ChatGPT / Perplexity / Gemini) に引用されることを最適化した文書 (`llms.txt` / `llms-full.txt` / FAQ / 用語集) を書くスキル。Answer.AI `llms.txt` 標準 + GEO-SFE 3 階層静的解析の両輪。
+- **[claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research)** — cron 駆動の自律デイリーリサーチダイジェスト。`claude -p` 2 パスパイプライン: Opus がテーマ選定、Sonnet が WebSearch / WebFetch / Mem0 MCP でリサーチして Obsidian Vault に Markdown レポートを書く。
+
 ## 執筆
 
 執筆とは、上記リポジトリ群の長文版を指す — コメントに収まらない文脈・失敗・進行中の思考の置き場。
