@@ -24,6 +24,8 @@ This repo is a **hub**, not a source of truth. Its README / `llms.txt` / `llms-f
 
 Routine `vX.Y.Z` releases of any line should require **zero edits** here.
 
+The `graph.jsonld` artifact follows the same triggers: a new `Concept`, `EcosystemRepo`, or `ResearchLine` adds the corresponding node and edges; nothing else does. The schema has no fields for versions, counts, or enumerations of churning sets, so routine releases cannot leak into the graph even by accident.
+
 ## Files in scope
 
 - `README.md` / `README.ja.md` — human-facing hub

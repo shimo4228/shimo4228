@@ -5,6 +5,7 @@
 ## Core documentation
 
 - [Full AI Reference](llms-full.txt): self-contained AI-facing content with Q&A definitions, Project Facts, and citation table
+- [Knowledge Graph (JSON-LD)](graph.jsonld): machine-readable schema.org graph of the three research lines, ecosystem repos, and stable architectural concepts — encodes sibling-not-dependency relationships in the schema itself
 - [README (English)](README.md): human-facing narrative
 - [README (Japanese)](README.ja.md): 日本語版の人間向けナラティブ
 

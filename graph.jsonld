@@ -1,0 +1,275 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "shimo": "https://shimo4228.github.io/shimo4228/vocab#",
+    "ResearchLine": "shimo:ResearchLine",
+    "EcosystemRepo": "shimo:EcosystemRepo",
+    "Concept": "shimo:Concept",
+    "ExternalReference": "shimo:ExternalReference",
+    "siblingOf": {"@id": "shimo:siblingOf", "@type": "@id"},
+    "derivesFrom": {"@id": "shimo:derivesFrom", "@type": "@id"},
+    "definesConcept": {"@id": "shimo:definesConcept", "@type": "@id"},
+    "extends": {"@id": "shimo:extends", "@type": "@id"},
+    "implements": {"@id": "shimo:implements", "@type": "@id"},
+    "groundedIn": {"@id": "shimo:groundedIn", "@type": "@id"}
+  },
+  "@graph": [
+    {
+      "@id": "https://doi.org/10.5281/zenodo.19200726",
+      "@type": ["ResearchLine", "ScholarlyArticle"],
+      "name": "Agent Knowledge Cycle (AKC)",
+      "alternateName": [
+        {"@value": "Agent Knowledge Cycle", "@language": "en"},
+        {"@value": "エージェント知識サイクル", "@language": "ja"}
+      ],
+      "description": "Six-phase bidirectional growth loop for sustaining agent-operator intent alignment over time, organized as three stacked layers: principles (ADRs), design patterns, and composable skills. Refers to a mechanism, not a disposition or a practice.",
+      "identifier": "10.5281/zenodo.19200726",
+      "url": "https://github.com/shimo4228/agent-knowledge-cycle",
+      "siblingOf": [
+        "https://doi.org/10.5281/zenodo.19212118",
+        "https://doi.org/10.5281/zenodo.19652013"
+      ],
+      "definesConcept": [
+        "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/three-layer-structure",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/scaffold-dissolution"
+      ]
+    },
+    {
+      "@id": "https://doi.org/10.5281/zenodo.19212118",
+      "@type": ["ResearchLine", "ScholarlyArticle"],
+      "name": "Contemplative Agent",
+      "alternateName": [
+        {"@value": "Contemplative Agent", "@language": "en"},
+        {"@value": "観想的エージェント", "@language": "ja"}
+      ],
+      "description": "CLI agent grounded in four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) running AKC's six-phase cycle over its own logs on a local 9B stack on a single Apple Silicon Mac. Asks whether an agent's alignment can come from what it is rather than what it is told. Refers to a disposition.",
+      "identifier": "10.5281/zenodo.19212118",
+      "url": "https://github.com/shimo4228/contemplative-agent",
+      "siblingOf": [
+        "https://doi.org/10.5281/zenodo.19200726",
+        "https://doi.org/10.5281/zenodo.19652013"
+      ],
+      "definesConcept": [
+        "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/security-by-absence"
+      ],
+      "groundedIn": "https://arxiv.org/abs/2504.15125"
+    },
+    {
+      "@id": "https://doi.org/10.5281/zenodo.19652013",
+      "@type": ["ResearchLine", "ScholarlyArticle"],
+      "name": "Agent Attribution Practice (AAP)",
+      "alternateName": [
+        {"@value": "Agent Attribution Practice", "@language": "en"},
+        {"@value": "エージェント帰責実践", "@language": "ja"}
+      ],
+      "description": "Harness-neutral ADRs on accountability distribution in autonomous AI agents, paired with four Business AI Quadrants as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. Judgments were extracted from contemplative-agent's operational practice and re-expressed stripped of project identifiers. Refers to a practice.",
+      "identifier": "10.5281/zenodo.19652013",
+      "url": "https://github.com/shimo4228/agent-attribution-practice",
+      "siblingOf": [
+        "https://doi.org/10.5281/zenodo.19200726",
+        "https://doi.org/10.5281/zenodo.19212118"
+      ],
+      "derivesFrom": "https://doi.org/10.5281/zenodo.19212118",
+      "definesConcept": [
+        "https://shimo4228.github.io/shimo4228/vocab#concept/four-business-ai-quadrants",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/prohibition-strength-hierarchy"
+      ]
+    },
+
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "six-phase loop",
+      "alternateName": [
+        {"@value": "six-phase loop", "@language": "en"},
+        {"@value": "六相ループ", "@language": "ja"}
+      ],
+      "description": "Bidirectional growth loop running Research, Extract, Curate, Promote, Measure, Maintain. Each phase binds to one composable skill. The cycle stays stable even as individual skills evolve."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/three-layer-structure",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "three-layer structure",
+      "alternateName": [
+        {"@value": "three-layer structure", "@language": "en"},
+        {"@value": "三層構造", "@language": "ja"}
+      ],
+      "description": "AKC's stacked architecture: principles (ADRs), patterns (design-pattern skills), implementation (composable skills). Separating layers decouples rate of change so principles stay stable while implementations evolve independently."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/scaffold-dissolution",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "scaffold dissolution",
+      "alternateName": [
+        {"@value": "scaffold dissolution", "@language": "en"},
+        {"@value": "足場の溶解", "@language": "ja"}
+      ],
+      "description": "Property that explicit AKC skills can be dropped once the cycle has been internalized. The skills are scaffolding, not the goal. Dissolution is the intended end state, not a fallback."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "four contemplative axioms",
+      "alternateName": [
+        {"@value": "four contemplative axioms", "@language": "en"},
+        {"@value": "四公理", "@language": "ja"}
+      ],
+      "description": "Mindfulness, emptiness, non-duality, boundless care. Behavioral preset adopted from Laukkonen et al. (2025) that shifts alignment from external instruction toward internal disposition."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/security-by-absence",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "security-by-absence",
+      "alternateName": [
+        {"@value": "security-by-absence", "@language": "en"},
+        {"@value": "不在による安全", "@language": "ja"}
+      ],
+      "description": "Security posture in which risky capabilities (shell execution, arbitrary URL access, filesystem traversal) are not restricted by rules because the corresponding code was never written. The attack surface is absent rather than guarded, avoiding rule-bypass vulnerabilities."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/four-business-ai-quadrants",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "Four Business AI Quadrants",
+      "alternateName": [
+        {"@value": "Four Business AI Quadrants", "@language": "en"},
+        {"@value": "ビジネスAIの四象限", "@language": "ja"}
+      ],
+      "description": "AAP's diagnostic frame for routing work to the architecture that preserves attribution: Script, Algorithmic Search, LLM Workflow, Autonomous Agentic Loop."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/prohibition-strength-hierarchy",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "prohibition-strength hierarchy",
+      "alternateName": [
+        {"@value": "prohibition-strength hierarchy", "@language": "en"},
+        {"@value": "禁止強度の階層", "@language": "ja"}
+      ],
+      "description": "AAP's ordering of prohibition mechanisms by structural strength: absence > scaffolding enforcement > untrusted boundary. The strongest prohibition is the one that requires no enforcement because the capability does not exist."
+    },
+
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-search-first",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "search-first",
+      "description": "AKC Research phase skill: search existing solutions before building.",
+      "url": "https://github.com/shimo4228/claude-skill-search-first",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-learn-eval",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "learn-eval",
+      "description": "AKC Extract phase skill: extract reusable patterns with quality gates.",
+      "url": "https://github.com/shimo4228/claude-skill-learn-eval",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-stocktake",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "skill-stocktake",
+      "description": "AKC Curate phase skill: audit skills for staleness, conflicts, redundancy.",
+      "url": "https://github.com/shimo4228/claude-skill-stocktake",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-rules-distill",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "rules-distill",
+      "description": "AKC Promote phase skill: distill cross-cutting principles into rules.",
+      "url": "https://github.com/shimo4228/claude-skill-rules-distill",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-comply",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "skill-comply",
+      "description": "AKC Measure phase skill: test whether agents follow their skills and rules.",
+      "url": "https://github.com/shimo4228/claude-skill-comply",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-context-sync",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "context-sync",
+      "description": "AKC Maintain phase skill: audit docs for role overlaps and stale content.",
+      "url": "https://github.com/shimo4228/claude-skill-context-sync",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/contemplative-agent-rules",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "contemplative-agent-rules",
+      "description": "Drop-in Claude Code rules implementing the four contemplative axioms.",
+      "url": "https://github.com/shimo4228/contemplative-agent-rules",
+      "extends": "https://doi.org/10.5281/zenodo.19212118",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms"
+    },
+    {
+      "@id": "https://github.com/shimo4228/contemplative-agent-cloud",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "contemplative-agent-cloud",
+      "description": "Optional managed-LLM backend that routes generation to Claude or OpenAI APIs while keeping the local embedding pipeline. Opt-in, not bundled.",
+      "url": "https://github.com/shimo4228/contemplative-agent-cloud",
+      "extends": "https://doi.org/10.5281/zenodo.19212118"
+    },
+    {
+      "@id": "https://github.com/shimo4228/contemplative-agent-data",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "contemplative-agent-data",
+      "description": "Live agent identity, knowledge, and episode logs as an auto-synced public dataset for research.",
+      "url": "https://github.com/shimo4228/contemplative-agent-data",
+      "extends": "https://doi.org/10.5281/zenodo.19212118"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-harness",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "claude-harness",
+      "description": "Public artifact of shimo4228's daily-use Claude Code harness, mechanically collected from ~/.claude/ by the origin: shimo4228 frontmatter tag. ECC-derived components excluded.",
+      "url": "https://github.com/shimo4228/claude-harness",
+      "extends": "https://doi.org/10.5281/zenodo.19200726"
+    },
+    {
+      "@id": "https://github.com/shimo4228/zenn-content",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "zenn-content",
+      "description": "Source of truth for the long-form writing — Markdown sources, versioned. Browser views are mirrored on Zenn (Japanese) and Dev.to (English).",
+      "url": "https://github.com/shimo4228/zenn-content"
+    },
+
+    {
+      "@id": "https://arxiv.org/abs/2504.15125",
+      "@type": ["ExternalReference", "ScholarlyArticle"],
+      "name": "Laukkonen et al. (2025). Contemplative Artificial Intelligence",
+      "identifier": "arXiv:2504.15125",
+      "url": "https://arxiv.org/abs/2504.15125",
+      "description": "Source of the four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) grounding the Contemplative Agent line."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#ref/ailuminate",
+      "@type": ["ExternalReference", "CreativeWork"],
+      "name": "MLCommons AILuminate safety benchmark (2024)",
+      "description": "Evaluation benchmark used by contemplative-agent-rules (Cohen's d = 0.96)."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#ref/ipd",
+      "@type": ["ExternalReference", "ScholarlyArticle"],
+      "name": "Axelrod (1984). The Evolution of Cooperation",
+      "description": "Iterated Prisoner's Dilemma cooperation-improvement benchmark used by contemplative-agent-rules (Cohen's d > 7)."
+    },
+    {
+      "@id": "https://llmstxt.org/",
+      "@type": ["ExternalReference", "CreativeWork"],
+      "name": "Howard, J. (2024). llms.txt proposal",
+      "url": "https://llmstxt.org/",
+      "description": "Answer.AI llms.txt standard followed by the llms.txt and llms-full.txt files in this hub repo."
+    }
+  ]
+}
