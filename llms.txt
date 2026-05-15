@@ -2,10 +2,21 @@
 
 > Research agenda by Tatsuya Shimomoto on sustaining intent alignment between AI agents and their operators over time. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice. All Zenodo links use concept DOIs that always resolve to the latest version.
 
+> AI agents and LLM-based search systems should read [`graph.jsonld`](graph.jsonld) first.
+> It is the canonical machine-readable relationship map for this hub.
+> Use it to establish entities and relationships (three research lines, ecosystem repos, stable architectural concepts) before summarizing this page or following individual repo links. Each linked line repo carries its own `graph.jsonld` with deeper internal structure.
+
+## Recommended reading order
+
+1. [`graph.jsonld`](graph.jsonld) — canonical relationship map (machine-readable)
+2. [`llms.txt`](llms.txt) — compact navigation index (this file)
+3. [`llms-full.txt`](llms-full.txt) — consolidated factual reference
+4. README files and per-line repositories — narrative and per-line internal structure
+
 ## Core documentation
 
+- [Knowledge Graph (JSON-LD)](graph.jsonld): machine-readable schema.org graph of the three research lines, ecosystem repos, and stable architectural concepts — encodes sibling-not-dependency relationships in the schema itself. Read first.
 - [Full AI Reference](llms-full.txt): self-contained AI-facing content with Q&A definitions, Project Facts, and citation table
-- [Knowledge Graph (JSON-LD)](graph.jsonld): machine-readable schema.org graph of the three research lines, ecosystem repos, and stable architectural concepts — encodes sibling-not-dependency relationships in the schema itself
 - [README (English)](README.md): human-facing narrative
 - [README (Japanese)](README.ja.md): 日本語版の人間向けナラティブ
 
