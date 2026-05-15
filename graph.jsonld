@@ -11,7 +11,8 @@
     "definesConcept": {"@id": "shimo:definesConcept", "@type": "@id"},
     "extends": {"@id": "shimo:extends", "@type": "@id"},
     "implements": {"@id": "shimo:implements", "@type": "@id"},
-    "groundedIn": {"@id": "shimo:groundedIn", "@type": "@id"}
+    "groundedIn": {"@id": "shimo:groundedIn", "@type": "@id"},
+    "evaluatedBy": {"@id": "shimo:evaluatedBy", "@type": "@id"}
   },
   "@graph": [
     {
@@ -222,7 +223,11 @@
       "description": "Drop-in Claude Code rules implementing the four contemplative axioms.",
       "url": "https://github.com/shimo4228/contemplative-agent-rules",
       "extends": "https://doi.org/10.5281/zenodo.19212118",
-      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms"
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms",
+      "evaluatedBy": [
+        "https://shimo4228.github.io/shimo4228/vocab#ref/ailuminate",
+        "https://shimo4228.github.io/shimo4228/vocab#ref/ipd"
+      ]
     },
     {
       "@id": "https://github.com/shimo4228/contemplative-agent-cloud",
