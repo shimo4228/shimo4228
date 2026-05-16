@@ -43,7 +43,7 @@
 
 ## Open source harness
 
-- [claude-harness](https://github.com/shimo4228/claude-harness): public artifact of shimo4228's daily-use Claude Code harness — 10 skills + 5 agents + 5 rules, mechanically collected from `~/.claude/` by `origin: shimo4228` tag. ECC-derived components excluded
+- [claude-harness](https://github.com/shimo4228/claude-harness): public artifact of shimo4228's daily-use Claude Code harness — skills, agents, and rules mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. ECC-derived components excluded. See [its README](https://github.com/shimo4228/claude-harness#contents) for the current inventory
 
 ## Writing
 

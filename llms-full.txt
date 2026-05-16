@@ -27,7 +27,7 @@ Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto 
 - **Writing source of truth**: zenn-content GitHub repo (Markdown sources, versioned, clone-friendly)
 - **Writing browser views**: Zenn (Japanese), Dev.to (English mirror)
 - **Supporting repos**: contemplative-agent-rules, contemplative-agent-cloud, contemplative-agent-data
-- **Public harness**: claude-harness (10 skills + 5 agents + 5 rules, MIT license)
+- **Public harness**: claude-harness (Claude Code skills, agents, and rules from `~/.claude/`, MIT license — see its README for the current inventory)
 - **Harness collection method**: mechanical collection by `origin: shimo4228` frontmatter tag from `~/.claude/`
 
 ## Prior Research References
@@ -85,7 +85,7 @@ Writing refers to the long-form counterpart to the repositories — context, fai
 
 ## What is claude-harness?
 
-The claude-harness repository is defined as a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules. It contains 10 skills (search-first, learn-eval, skill-stocktake, rules-distill, skill-comply, context-sync, llms-txt-writer, writing-ecosystem, write-prompt, collect-context), 5 agents (scout, prompt-writer, editor, essay-reviewer, fact-checker), and 5 rules (agents, akc-cycle, planning, skills, contemplative-axioms). Components are mechanically collected from `~/.claude/` by the `origin: shimo4228` frontmatter tag, so ECC-derived components (`origin: ECC` or `ECC-customized`) and auto-extracted artifacts are excluded. The six AKC skills are also published as standalone `claude-skill-*` repositories for individual install. License: MIT.
+The claude-harness repository is defined as a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules. It bundles skills covering research-before-coding, knowledge extraction, skill auditing, AI-facing documentation, and human-facing writing review; agents for prompt generation and editorial review; and rules covering planning, the AKC cycle, and skill origin tracking. Components are mechanically collected from `~/.claude/` by the `origin: shimo4228` frontmatter tag, so ECC-derived components (`origin: ECC` or `ECC-customized`) and auto-extracted artifacts are excluded. The AKC cycle skills are also published as standalone `claude-skill-*` repositories for individual install. See the [claude-harness README](https://github.com/shimo4228/claude-harness#contents) for the current inventory. License: MIT.
 
 ## How do the three research lines relate?
 

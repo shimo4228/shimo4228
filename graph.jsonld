@@ -262,6 +262,46 @@
     },
 
     {
+      "@id": "https://github.com/shimo4228/claude-skill-llms-txt-writer",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "llms-txt-writer",
+      "description": "Writes AI-facing documents (llms.txt / llms-full.txt / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Combines the Answer.AI llms.txt standard with GEO-SFE 3-layer static analysis.",
+      "url": "https://github.com/shimo4228/claude-skill-llms-txt-writer"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-daily-research",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "daily-research",
+      "description": "Cron-driven daily research digest. Two-pass claude -p pipeline: Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP and writes Markdown reports to an Obsidian vault.",
+      "url": "https://github.com/shimo4228/claude-skill-daily-research"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "jsonld-knowledge-graph",
+      "description": "Designs and ships a companion JSON-LD knowledge graph (graph.jsonld) next to llms.txt for projects with stable concept-level structure. Encodes domain entities and relationships as schema.org triples for LLM citation.",
+      "url": "https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-writing-ecosystem",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "writing-ecosystem",
+      "description": "Orchestrator for human-facing writing & review. Holds the AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, and the role-boundary map across article-writing, editor, essay-reviewer, fact-checker. Audience-paired with llms-txt-writer.",
+      "url": "https://github.com/shimo4228/claude-skill-writing-ecosystem"
+    },
+
+    {
+      "@id": "https://github.com/shimo4228/shimo4228#traffic-dataset",
+      "@type": ["Dataset", "CreativeWork"],
+      "name": "shimo4228 GitHub Traffic Snapshots",
+      "description": "Daily append-only JSONL snapshots of the GitHub Traffic API for the public research repositories. Auto-generated companion dataset; observed data, not curated content.",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "creator": "https://github.com/shimo4228",
+      "url": "https://shimo4228.github.io/shimo4228/traffic/dashboard/",
+      "isBasedOn": "https://github.com/shimo4228/shimo4228"
+    },
+
+    {
       "@id": "https://arxiv.org/abs/2504.15125",
       "@type": ["ExternalReference", "ScholarlyArticle"],
       "name": "Laukkonen et al. (2025). Contemplative Artificial Intelligence",
