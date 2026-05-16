@@ -2,7 +2,7 @@ Language: English | [日本語](README.ja.md)
 
 # Shimo (@shimo4228)
 
-I build AI agents that stay aligned with the operator's evolving intent over time — the **Agent Knowledge Cycle (AKC)** is a bidirectional growth loop in which agent behavior and human judgment co-develop. A parallel line, **Contemplative Agent**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — shifting alignment from external instruction to internal disposition. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
+I build AI agents that stay aligned with the operator's evolving intent over time — the **Agent Knowledge Cycle (AKC)** is a bidirectional growth loop in which agent behavior and human judgment co-develop. A parallel line, **Contemplative Agent**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — replacing externally-stacked prohibitions with a four-axiom **default behavioral preset**, and watching what is lost, what becomes possible, and what still breaks. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
 
 <details>
 <summary>AI-facing reading order</summary>
