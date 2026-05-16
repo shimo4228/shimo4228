@@ -275,9 +275,12 @@
       const smContainer = document.getElementById("small-multiples");
       for (const repoName of REPOS) {
         const rows = allData.filter((r) => r.repo === repoName).sort((a, b) => a.dateObj - b.dateObj);
+        const recentRows = rows.filter((r) => r.dateObj.getTime() >= cutoffMs);
         const totals = {
           clones: rows.reduce((s, r) => s + r.clones, 0),
           views: rows.reduce((s, r) => s + r.views, 0),
+          clones14d: recentRows.reduce((s, r) => s + r.clones, 0),
+          views14d: recentRows.reduce((s, r) => s + r.views, 0),
         };
         const card = document.createElement("article");
         card.className = "card";
@@ -291,7 +294,7 @@
         cardHead.append(link);
         const stats = document.createElement("p");
         stats.className = "card-stats";
-        stats.textContent = `clones ${fmt(totals.clones)} · views ${fmt(totals.views)}`;
+        stats.textContent = `clones ${fmt(totals.clones)} (14d: ${fmt(totals.clones14d)}) · views ${fmt(totals.views)} (14d: ${fmt(totals.views14d)})`;
         cardHead.append(stats);
         card.append(cardHead);
 
