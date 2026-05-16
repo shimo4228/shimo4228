@@ -156,9 +156,15 @@
       </section>
 
       <section>
-        <h2>Co-traffic correlation</h2>
+        <h2>Co-traffic correlation (full range, zero-filled)</h2>
         <p class="hint">repo ペア間の日次 unique cloners の Spearman 順位相関 (全期間、欠損日は 0 埋め)。Spearman は単日 spike に引きずられず、uniques は CI/refetch ノイズを除いた "実 entity 数" 寄りなので、Pearson × count より関連トピック / リリース連動が見えやすい。対角は自明に 1.0。新しく hub 化した repo は古い repo と弱〜負相関に出る傾向あり (zero-fill の artifact)。</p>
         <figure id="correlation-chart"></figure>
+      </section>
+
+      <section>
+        <h2>Co-traffic correlation (pairwise overlap)</h2>
+        <p class="hint">各 repo の最初に非ゼロ unique cloners を記録した日を "birthday" と定義し、pair (A, B) の相関は <code>max(birthday_A, birthday_B)</code> 以降の日付のみで計算 (zero-fill artifact 排除)。後発 repo の真の co-movement signal を見る用。重複日数が 7 未満のペアは空欄。セルにカーソルを当てると重複日数 n が出る。</p>
+        <figure id="correlation-overlap-chart"></figure>
       </section>
 
       <section>
@@ -359,79 +365,125 @@
         })
       );
 
-      // co-traffic correlation (Spearman on daily unique cloners)
-      {
-        const allDates = [...new Set(allData.map((r) => r.date))].sort();
-        const dailyUniques = new Map(); // date -> repo -> unique cloners (summed across duplicate fetches)
-        for (const d of allDates) dailyUniques.set(d, new Map(REPOS.map((r) => [r, 0])));
-        for (const row of allData) {
-          const m = dailyUniques.get(row.date);
-          m.set(row.repo, m.get(row.repo) + row.clonesUniques);
+      // co-traffic correlation shared prep
+      const corrDates = [...new Set(allData.map((r) => r.date))].sort();
+      const dailyUniques = new Map(); // date -> repo -> unique cloners (summed across duplicate fetches)
+      for (const d of corrDates) dailyUniques.set(d, new Map(REPOS.map((r) => [r, 0])));
+      for (const row of allData) {
+        const m = dailyUniques.get(row.date);
+        m.set(row.repo, m.get(row.repo) + row.clonesUniques);
+      }
+      const pearson = (xs, ys) => {
+        const n = xs.length;
+        if (n === 0) return 0;
+        let sx = 0, sy = 0;
+        for (let i = 0; i < n; i++) { sx += xs[i]; sy += ys[i]; }
+        const mx = sx / n, my = sy / n;
+        let num = 0, dx2 = 0, dy2 = 0;
+        for (let i = 0; i < n; i++) {
+          const ex = xs[i] - mx, ey = ys[i] - my;
+          num += ex * ey;
+          dx2 += ex * ex;
+          dy2 += ey * ey;
         }
+        const denom = Math.sqrt(dx2 * dy2);
+        return denom === 0 ? 0 : num / denom;
+      };
+      // tie-aware average ranks (1-indexed)
+      const rank = (xs) => {
+        const indexed = xs.map((v, i) => [v, i]).sort((a, b) => a[0] - b[0]);
+        const ranks = new Array(xs.length);
+        let i = 0;
+        while (i < indexed.length) {
+          let j = i;
+          while (j < indexed.length && indexed[j][0] === indexed[i][0]) j++;
+          const avg = (i + j - 1) / 2 + 1;
+          for (let k = i; k < j; k++) ranks[indexed[k][1]] = avg;
+          i = j;
+        }
+        return ranks;
+      };
+      const spearman = (xs, ys) => pearson(rank(xs), rank(ys));
+      const corrHeatmapMarks = (pairs, labelFn = (d) => d.corr.toFixed(2)) => [
+        Plot.cell(pairs, { x: "repoA", y: "repoB", fill: "corr", inset: 0.5, title: (d) => `${d.repoA} ↔ ${d.repoB}\nρ = ${d.corr === null ? "n/a" : d.corr.toFixed(3)}\nn = ${d.n} days` }),
+        Plot.text(pairs.filter((d) => d.corr !== null), {
+          x: "repoA",
+          y: "repoB",
+          text: labelFn,
+          fill: (d) => (Math.abs(d.corr) > 0.55 ? "white" : "black"),
+          fontSize: 11,
+        }),
+      ];
+      const corrHeatmapOpts = (label) => ({
+        marginLeft: 200,
+        marginBottom: 140,
+        marginRight: 40,
+        x: { domain: REPOS, label: null, tickRotate: -30 },
+        y: { domain: REPOS, label: null },
+        color: {
+          type: "diverging",
+          scheme: "rdbu",
+          reverse: true,
+          domain: [-1, 1],
+          legend: true,
+          label,
+        },
+      });
+
+      // co-traffic correlation: full range (zero-filled)
+      {
         const vectors = new Map(
-          REPOS.map((repo) => [repo, allDates.map((d) => dailyUniques.get(d).get(repo))]),
+          REPOS.map((repo) => [repo, corrDates.map((d) => dailyUniques.get(d).get(repo))]),
         );
-        const pearson = (xs, ys) => {
-          const n = xs.length;
-          let sx = 0, sy = 0;
-          for (let i = 0; i < n; i++) { sx += xs[i]; sy += ys[i]; }
-          const mx = sx / n, my = sy / n;
-          let num = 0, dx2 = 0, dy2 = 0;
-          for (let i = 0; i < n; i++) {
-            const ex = xs[i] - mx, ey = ys[i] - my;
-            num += ex * ey;
-            dx2 += ex * ex;
-            dy2 += ey * ey;
-          }
-          const denom = Math.sqrt(dx2 * dy2);
-          return denom === 0 ? 0 : num / denom;
-        };
-        // tie-aware average ranks (1-indexed)
-        const rank = (xs) => {
-          const indexed = xs.map((v, i) => [v, i]).sort((a, b) => a[0] - b[0]);
-          const ranks = new Array(xs.length);
-          let i = 0;
-          while (i < indexed.length) {
-            let j = i;
-            while (j < indexed.length && indexed[j][0] === indexed[i][0]) j++;
-            const avg = (i + j - 1) / 2 + 1;
-            for (let k = i; k < j; k++) ranks[indexed[k][1]] = avg;
-            i = j;
-          }
-          return ranks;
-        };
-        const spearman = (xs, ys) => pearson(rank(xs), rank(ys));
         const corrPairs = [];
         for (const a of REPOS) {
           for (const b of REPOS) {
-            corrPairs.push({ repoA: a, repoB: b, corr: spearman(vectors.get(a), vectors.get(b)) });
+            corrPairs.push({
+              repoA: a,
+              repoB: b,
+              corr: spearman(vectors.get(a), vectors.get(b)),
+              n: corrDates.length,
+            });
           }
         }
         document.getElementById("correlation-chart").append(
           Plot.plot({
-            marginLeft: 200,
-            marginBottom: 140,
-            marginRight: 40,
-            x: { domain: REPOS, label: null, tickRotate: -30 },
-            y: { domain: REPOS, label: null },
-            color: {
-              type: "diverging",
-              scheme: "rdbu",
-              reverse: true,
-              domain: [-1, 1],
-              legend: true,
-              label: "Spearman ρ (unique cloners)",
-            },
-            marks: [
-              Plot.cell(corrPairs, { x: "repoA", y: "repoB", fill: "corr", inset: 0.5 }),
-              Plot.text(corrPairs, {
-                x: "repoA",
-                y: "repoB",
-                text: (d) => d.corr.toFixed(2),
-                fill: (d) => (Math.abs(d.corr) > 0.55 ? "white" : "black"),
-                fontSize: 11,
-              }),
-            ],
+            ...corrHeatmapOpts("Spearman ρ (unique cloners, full range)"),
+            marks: corrHeatmapMarks(corrPairs),
+          }),
+        );
+      }
+
+      // co-traffic correlation: pairwise overlap (birthday-aware)
+      {
+        const birthday = new Map();
+        for (const repo of REPOS) {
+          const first = corrDates.find((d) => dailyUniques.get(d).get(repo) > 0);
+          birthday.set(repo, first ?? corrDates[corrDates.length - 1]);
+        }
+        const MIN_OVERLAP = 7;
+        const corrPairs = [];
+        for (const a of REPOS) {
+          for (const b of REPOS) {
+            const start = birthday.get(a) > birthday.get(b) ? birthday.get(a) : birthday.get(b);
+            const xs = [], ys = [];
+            for (const d of corrDates) {
+              if (d < start) continue;
+              xs.push(dailyUniques.get(d).get(a));
+              ys.push(dailyUniques.get(d).get(b));
+            }
+            corrPairs.push({
+              repoA: a,
+              repoB: b,
+              corr: xs.length >= MIN_OVERLAP ? spearman(xs, ys) : null,
+              n: xs.length,
+            });
+          }
+        }
+        document.getElementById("correlation-overlap-chart").append(
+          Plot.plot({
+            ...corrHeatmapOpts("Spearman ρ (unique cloners, pairwise overlap)"),
+            marks: corrHeatmapMarks(corrPairs.filter((d) => d.corr !== null)),
           }),
         );
       }
