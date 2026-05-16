@@ -45,9 +45,10 @@
     h2 { font-size: 1.1rem; margin: 28px 0 8px; letter-spacing: -0.005em; }
     .meta { color: var(--muted); font-size: 0.875rem; margin: 0 0 12px; }
     .totals { display: flex; gap: 24px; flex-wrap: wrap; }
-    .totals > div { display: flex; flex-direction: column; }
+    .totals > div { display: flex; flex-direction: column; gap: 2px; }
     .total-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .total-value { font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .total-value { font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+    .total-sub { font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
     .hint { color: var(--muted); font-size: 0.85rem; margin: 0 0 12px; }
     section { margin-bottom: 24px; }
 
@@ -110,10 +111,26 @@
         <a href="https://github.com/shimo4228" target="_blank" rel="noopener noreferrer">@shimo4228</a> の公開研究 repo 6 件 · <span id="last-updated">loading…</span>
       </p>
       <div class="totals">
-        <div><span class="total-label">Total clones (14d)</span><span id="total-clones" class="total-value">—</span></div>
-        <div><span class="total-label">Unique cloners</span><span id="total-clones-uniq" class="total-value">—</span></div>
-        <div><span class="total-label">Total views (14d)</span><span id="total-views" class="total-value">—</span></div>
-        <div><span class="total-label">Unique visitors</span><span id="total-views-uniq" class="total-value">—</span></div>
+        <div>
+          <span class="total-label">Total clones</span>
+          <span id="total-clones" class="total-value">—</span>
+          <span class="total-sub">last 14d: <span id="total-clones-14d">—</span></span>
+        </div>
+        <div>
+          <span class="total-label">Unique cloners</span>
+          <span id="total-clones-uniq" class="total-value">—</span>
+          <span class="total-sub">last 14d: <span id="total-clones-uniq-14d">—</span></span>
+        </div>
+        <div>
+          <span class="total-label">Total views</span>
+          <span id="total-views" class="total-value">—</span>
+          <span class="total-sub">last 14d: <span id="total-views-14d">—</span></span>
+        </div>
+        <div>
+          <span class="total-label">Unique visitors</span>
+          <span id="total-views-uniq" class="total-value">—</span>
+          <span class="total-sub">last 14d: <span id="total-views-uniq-14d">—</span></span>
+        </div>
       </div>
     </header>
 
@@ -213,6 +230,15 @@
       setText("total-clones-uniq", fmt(allData.reduce((s, r) => s + r.clonesUniques, 0)));
       setText("total-views", fmt(allData.reduce((s, r) => s + r.views, 0)));
       setText("total-views-uniq", fmt(allData.reduce((s, r) => s + r.viewsUniques, 0)));
+
+      // last 14 days totals (max date in data から13日遡る)
+      const maxDateMs = allData.reduce((m, r) => (r.dateObj > m ? r.dateObj : m), new Date(0)).getTime();
+      const cutoffMs = maxDateMs - 13 * 24 * 60 * 60 * 1000;
+      const recent = allData.filter((r) => r.dateObj.getTime() >= cutoffMs);
+      setText("total-clones-14d", fmt(recent.reduce((s, r) => s + r.clones, 0)));
+      setText("total-clones-uniq-14d", fmt(recent.reduce((s, r) => s + r.clonesUniques, 0)));
+      setText("total-views-14d", fmt(recent.reduce((s, r) => s + r.views, 0)));
+      setText("total-views-uniq-14d", fmt(recent.reduce((s, r) => s + r.viewsUniques, 0)));
 
       const bgColor = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#ffffff";
 
