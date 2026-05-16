@@ -156,6 +156,12 @@
       </section>
 
       <section>
+        <h2>Co-traffic correlation</h2>
+        <p class="hint">repo ペア間の日次 clones の Pearson 相関 (全期間、欠損日は 0 埋め)。赤いセル = 同じ日に一緒に spike しやすい (bot wave 共有 or 関連トピック)。対角は自明に 1.0。新しい repo は古い repo と弱相関に出る傾向あり (zero-fill のため)。</p>
+        <figure id="correlation-chart"></figure>
+      </section>
+
+      <section>
         <h2>Data table</h2>
         <p class="hint">列ヘッダクリックでソート。初期表示は日付降順。</p>
         <div id="table-container" class="table-scroll"></div>
@@ -352,6 +358,68 @@
           ],
         })
       );
+
+      // co-traffic correlation
+      {
+        const allDates = [...new Set(allData.map((r) => r.date))].sort();
+        const dailyClones = new Map(); // date -> repo -> clones (summed across duplicate fetches)
+        for (const d of allDates) dailyClones.set(d, new Map(REPOS.map((r) => [r, 0])));
+        for (const row of allData) {
+          const m = dailyClones.get(row.date);
+          m.set(row.repo, m.get(row.repo) + row.clones);
+        }
+        const vectors = new Map(
+          REPOS.map((repo) => [repo, allDates.map((d) => dailyClones.get(d).get(repo))]),
+        );
+        const pearson = (xs, ys) => {
+          const n = xs.length;
+          let sx = 0, sy = 0;
+          for (let i = 0; i < n; i++) { sx += xs[i]; sy += ys[i]; }
+          const mx = sx / n, my = sy / n;
+          let num = 0, dx2 = 0, dy2 = 0;
+          for (let i = 0; i < n; i++) {
+            const ex = xs[i] - mx, ey = ys[i] - my;
+            num += ex * ey;
+            dx2 += ex * ex;
+            dy2 += ey * ey;
+          }
+          const denom = Math.sqrt(dx2 * dy2);
+          return denom === 0 ? 0 : num / denom;
+        };
+        const corrPairs = [];
+        for (const a of REPOS) {
+          for (const b of REPOS) {
+            corrPairs.push({ repoA: a, repoB: b, corr: pearson(vectors.get(a), vectors.get(b)) });
+          }
+        }
+        document.getElementById("correlation-chart").append(
+          Plot.plot({
+            marginLeft: 200,
+            marginBottom: 140,
+            marginRight: 40,
+            x: { domain: REPOS, label: null, tickRotate: -30 },
+            y: { domain: REPOS, label: null },
+            color: {
+              type: "diverging",
+              scheme: "rdbu",
+              reverse: true,
+              domain: [-1, 1],
+              legend: true,
+              label: "Pearson r (clones)",
+            },
+            marks: [
+              Plot.cell(corrPairs, { x: "repoA", y: "repoB", fill: "corr", inset: 0.5 }),
+              Plot.text(corrPairs, {
+                x: "repoA",
+                y: "repoB",
+                text: (d) => d.corr.toFixed(2),
+                fill: (d) => (Math.abs(d.corr) > 0.55 ? "white" : "black"),
+                fontSize: 11,
+              }),
+            ],
+          }),
+        );
+      }
 
       // data table
       const headers = [
