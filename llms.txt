@@ -45,6 +45,19 @@
 
 - [claude-harness](https://github.com/shimo4228/claude-harness): public artifact of shimo4228's daily-use Claude Code harness — skills, agents, and rules mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. ECC-derived components excluded. See [its README](https://github.com/shimo4228/claude-harness#contents) for the current inventory
 
+## Adjacent skills
+
+Companion Claude Code skills maintained alongside the AKC cycle but not part of its six phases. Same author, same MIT license.
+
+- [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer): writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Answer.AI `llms.txt` standard + GEO-SFE 3-layer static analysis
+- [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph): designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure — encodes domain entities and relationships as schema.org triples for LLM citation
+- [claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem): orchestrator for human-facing writing & review — AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, role boundaries across article-writing / editor / essay-reviewer / fact-checker. Audience-paired with `llms-txt-writer`
+- [claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research): cron-driven daily research digest — two-pass `claude -p` pipeline (Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP, writes Markdown to an Obsidian vault)
+
+## Data
+
+- [GitHub Traffic Snapshots](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw JSONL](traffic/), CC0): daily append-only snapshots of the GitHub Traffic API for the public research repositories. Auto-generated companion dataset, sibling to the knowledge graph
+
 ## Writing
 
 - [zenn-content](https://github.com/shimo4228/zenn-content): source of truth for the articles — Markdown sources, versioned. Many readers clone/fork directly
