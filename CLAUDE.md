@@ -52,3 +52,20 @@ For each line, the source of truth is its own repo:
 | AAP ADRs / Quadrants details | `github.com/shimo4228/agent-attribution-practice` |
 
 When in doubt about a fact, link to the source repo rather than transcribing.
+
+## HF Datasets mirror
+
+`graph.jsonld` is mirrored on Hugging Face Datasets (primary ingest source for LLM training pipelines and knowledge-graph crawlers; auto-converted to Parquet, loadable directly from `pandas` / `Polars`). Sync procedure on graph update: see `~/.claude/skills/jsonld-knowledge-graph/SKILL.md` "Mirror Sync to Hugging Face Datasets" section.
+
+Repo mapping:
+
+| GitHub | HF dataset |
+|---|---|
+| `shimo4228/shimo4228` ← **this repo** (hub) | [`Shimo4228/research-program-hub`](https://huggingface.co/datasets/Shimo4228/research-program-hub) |
+| `shimo4228/agent-knowledge-cycle` | [`Shimo4228/agent-knowledge-cycle`](https://huggingface.co/datasets/Shimo4228/agent-knowledge-cycle) |
+| `shimo4228/contemplative-agent` (local clone: `contemplative-moltbook/`) | [`Shimo4228/contemplative-agent`](https://huggingface.co/datasets/Shimo4228/contemplative-agent) |
+| `shimo4228/agent-attribution-practice` | [`Shimo4228/agent-attribution-practice`](https://huggingface.co/datasets/Shimo4228/agent-attribution-practice) |
+
+The HF-side `README.md` (dataset card) is HF-customized (mirror notice, cross-links to sibling datasets) and is not synced from this repo on graph updates. To edit the dataset card, manually run `hf upload Shimo4228/research-program-hub README.md --repo-type dataset`.
+
+The HF hub dataset (`research-program-hub`) plays the same federation role for the HF side as this GitHub repo plays for the GitHub side: an entry point that lets crawlers hop between the three sibling lines. Keep both ends in sync conceptually even though file contents differ.
