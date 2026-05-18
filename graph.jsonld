@@ -60,7 +60,7 @@
         {"@value": "Contemplative Agent", "@language": "en"},
         {"@value": "観想的エージェント", "@language": "ja"}
       ],
-      "description": "CLI agent grounded in four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) running AKC's six-phase cycle over its own logs on a local 9B stack on a single Apple Silicon Mac. Asks whether an agent's alignment can come from what it is rather than what it is told. Refers to a disposition.",
+      "description": "CLI agent grounded in four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) running AKC's six-phase cycle over its own logs on a local 9B stack on a single Apple Silicon Mac. Asks whether an agent's alignment can come from what it is rather than what it is told. Refers to a disposition. Shares Buddhist phenomenological vocabulary with the Attention, Not Self line, but applies it as agent behavioral preset rather than as comparative cognitive framework.",
       "identifier": "10.5281/zenodo.19212118",
       "url": "https://github.com/shimo4228/contemplative-agent",
       "siblingOf": [
@@ -131,7 +131,7 @@
         {"@value": "Attention, Not Self", "@language": "en"},
         {"@value": "アテンション、ノット・セルフ", "@language": "ja"}
       ],
-      "description": "A personal essay collection and structured knowledge graph mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary frameworks in computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of \"attention, not self,\" juxtaposes ancient classifications of cognitive process with contemporary computational models. Refers to a cross-disciplinary inquiry — Buddhist phenomenology meeting computational cognitive science.",
+      "description": "A personal essay collection and structured knowledge graph mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary frameworks in computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of \"attention, not self,\" juxtaposes ancient classifications of cognitive process with contemporary computational models. Refers to a cross-disciplinary inquiry — Buddhist phenomenology meeting computational cognitive science. Shares Buddhist phenomenological vocabulary with the Contemplative Agent line, but uses it as comparative cognitive framework rather than as agent behavioral preset.",
       "identifier": "10.5281/zenodo.20262112",
       "url": "https://github.com/shimo4228/attention-not-self",
       "siblingOf": [
