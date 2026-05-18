@@ -370,8 +370,9 @@
       "@id": "https://github.com/shimo4228/claude-skill-llms-txt-writer",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "llms-txt-writer",
-      "description": "Writes AI-facing documents (llms.txt / llms-full.txt / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Combines the Answer.AI llms.txt standard with GEO-SFE 3-layer static analysis.",
-      "url": "https://github.com/shimo4228/claude-skill-llms-txt-writer"
+      "description": "Component skill of the Authorship Strategy line. Operational form of the Layer 4 structured-artifact tactic naming the Answer.AI llms.txt convention. Writes AI-facing documents (llms.txt / llms-full.txt / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini.",
+      "url": "https://github.com/shimo4228/claude-skill-llms-txt-writer",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
       "@id": "https://github.com/shimo4228/claude-skill-daily-research",
@@ -384,8 +385,9 @@
       "@id": "https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "jsonld-knowledge-graph",
-      "description": "Designs and ships a companion JSON-LD knowledge graph (graph.jsonld) next to llms.txt for projects with stable concept-level structure. Encodes domain entities and relationships as schema.org triples for LLM citation.",
-      "url": "https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph"
+      "description": "Component skill of the Authorship Strategy line. Operational form of the Layer 4 structured-artifact tactic naming the JSON-LD knowledge graph. Designs and ships a companion graph.jsonld next to llms.txt for projects with stable concept-level structure, encoding domain entities and relationships as schema.org triples for LLM citation.",
+      "url": "https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
       "@id": "https://github.com/shimo4228/claude-skill-writing-ecosystem",
