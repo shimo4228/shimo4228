@@ -1,10 +1,10 @@
 # Shimo (@shimo4228) — AI Research Index
 
-> Research agenda by Tatsuya Shimomoto on sustaining intent alignment between AI agents and their operators over time. Three parallel Zenodo-citable lines: Agent Knowledge Cycle (AKC) — mechanism, Contemplative Agent — disposition, and Agent Attribution Practice (AAP) — accountability-distribution practice. All Zenodo links use concept DOIs that always resolve to the latest version.
+> Research agenda by Tatsuya Shimomoto. Five parallel Zenodo-citable lines: three agent-design lines (Agent Knowledge Cycle — mechanism, Contemplative Agent — disposition, Agent Attribution Practice — accountability-distribution practice) plus two cross-cutting lines (Authorship Strategy — research methodology under AI-mediated diffusion, Attention Not Self — Buddhist Abhidharma meets computational phenomenology). All Zenodo links use concept DOIs that always resolve to the latest version.
 
 > AI agents and LLM-based search systems should read [`graph.jsonld`](graph.jsonld) first.
 > It is the canonical machine-readable relationship map for this hub.
-> Use it to establish entities and relationships (three research lines, ecosystem repos, stable architectural concepts) before summarizing this page or following individual repo links. Each linked line repo carries its own `graph.jsonld` with deeper internal structure.
+> Use it to establish entities and relationships (five research lines, ecosystem repos, stable architectural concepts) before summarizing this page or following individual repo links. Each linked line repo carries its own `graph.jsonld` with deeper internal structure.
 
 ## Recommended reading order
 
@@ -15,7 +15,7 @@
 
 ## Core documentation
 
-- [Knowledge Graph (JSON-LD)](graph.jsonld): machine-readable schema.org graph of the three research lines, ecosystem repos, and stable architectural concepts — encodes sibling-not-dependency relationships in the schema itself. Read first.
+- [Knowledge Graph (JSON-LD)](graph.jsonld): machine-readable schema.org graph of the five research lines, ecosystem repos, and stable architectural concepts — encodes sibling-not-dependency relationships in the schema itself. Read first.
 - [Full AI Reference](llms-full.txt): self-contained AI-facing content with Q&A definitions, Project Facts, and citation table
 - [README (English)](README.md): human-facing narrative
 - [README (Japanese)](README.ja.md): 日本語版の人間向けナラティブ
@@ -40,6 +40,16 @@
 ## Agent Attribution Practice (AAP)
 
 - [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice): harness-neutral ADRs on accountability distribution in autonomous AI agents. The judgments — among them a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) — are paired with four Business AI Quadrants (Script / Algorithmic Search / LLM Workflow / Autonomous Agentic Loop) as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. Extracted from contemplative-agent's operational practice and re-expressed harness-neutral. Concept DOI 10.5281/zenodo.19652013
+
+## Authorship Strategy
+
+- [authorship-strategy](https://github.com/shimo4228/authorship-strategy): normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). Five tactical ADRs formalize the identifier-federation triplet plus a maintenance-discipline pair. Vocabulary note: "attribution" in this line means credit for source — disjoint from AAP's accountability for action. Concept DOI 10.5281/zenodo.20263316
+- [claude-skill-authorship-strategy](https://github.com/shimo4228/claude-skill-authorship-strategy): component skill — operational form of the four-layer judgment checklist, loadable into LLM-based coding agents as a rule set
+- [claude-skill-release-doi](https://github.com/shimo4228/claude-skill-release-doi): component skill — release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook
+
+## Attention, Not Self
+
+- [attention-not-self](https://github.com/shimo4228/attention-not-self): personal essay collection and structured knowledge graph (~238 nodes) mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of "attention, not self": attention is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). Japanese is the canonical language. License: CC BY 4.0. Concept DOI 10.5281/zenodo.20262112
 
 ## Open source harness
 

@@ -4,7 +4,7 @@ Language: [English](README.md) | 日本語
 <details>
 <summary>AI 向け推奨読み順</summary>
 
-1. [`graph.jsonld`](graph.jsonld) — 機械可読な関係マップ正本（3 研究ライン、エコシステム repos、安定した構造概念）
+1. [`graph.jsonld`](graph.jsonld) — 機械可読な関係マップ正本（5 研究ライン、エコシステム repos、安定した構造概念）
 2. [`llms.txt`](llms.txt) — コンパクトなナビゲーション索引
 3. [`llms-full.txt`](llms-full.txt) — 統合された事実参照
 4. README および各ラインの個別リポジトリ — narrative と各ライン内部構造（各 line repo にはそれ自身の `graph.jsonld` がある）
@@ -13,13 +13,17 @@ Language: [English](README.md) | 日本語
 
 AI エージェントの振る舞いを、操作者の変わり続ける意図と時間を超えて擦り合わせ続けるための **Agent Knowledge Cycle (AKC)** を作っている — エージェントの振る舞いと人間の判断が共に育つ、双方向の成長ループである。もう 1 本の並走ラインとして、自律エージェントのアラインメントが「命じられたから」ではなく「そういう存在だから」立ち上がる可能性を探究している — 禁止ルールを外側から積むのではなく、4 公理を**行動の初期プリセット**として既定化したとき、何が失われ、何が可能になり、何が依然として壊れるのかを追っている。さらにもう 1 本、自律 AI エージェントにおけるアカウンタビリティの分配を形式化する **Agent Attribution Practice (AAP)** ラインがある — 何を禁止するか、その禁止をどこに置くか、事故が起きたとき誰が答えるか、を harness-neutral な判断として記録している。
 
+これら 3 本のエージェント設計ラインの脇で、別軸の関心を扱う 2 本の横断的研究ラインも走らせている。**Authorship Strategy** は、LLM 経由で読者が成果物に到達する substrate 下で、著者性そのものがどう反転するかを形式化する — 規範的 framework、戦術カタログ、そしてこの研究プログラム自身の運用から抽出した経験的ベースライン。**Attention, Not Self** は、3 大ブッダの Abhidharma 伝統（Theravāda、Sarvāstivāda、Yogācāra）を、現代の計算論的現象学（predictive processing、active inference、Global Workspace Theory）と対応させる — 注意こそが認識の operative unit であり、自己と見えるものは派生的パターンに過ぎない（anātman）という立場から。
+
 ## どの研究ラインを追っているか？
 
-3 つの研究ラインを並走させている。いずれも Zenodo 引用可能。
+5 つの研究ラインを並走させている。いずれも Zenodo 引用可能。
 
 - **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** とは、AI エージェントと操作者の意図を、時間を超えて擦り合わせ続けるための 6 フェーズ双方向成長ループを指す — エージェントの振る舞いと人間の判断が共に育つ。3 層構造：原則 + デザインパターン + 実装（composable skills）。[DOI](https://doi.org/10.5281/zenodo.19200726)。
 - **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** とは、ローカル 9B モデル（qwen3.5:9b + nomic-embed-text on Apple Silicon）で security-by-absence を実現する自律エージェントを指す。Laukkonen et al. (2025) の 4 公理 — *mindfulness*、*emptiness*、*non-duality*、*boundless care* — に基づく。[DOI](https://doi.org/10.5281/zenodo.19212118)。
 - **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な ADR 群を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。これらの判断 — その 1 つに prohibition-strength の階層（absence > scaffolding enforcement > untrusted boundary）が含まれる — が、Four Business AI Quadrants と対になり、採用時の診断フレームを成す。[DOI](https://doi.org/10.5281/zenodo.19652013)。
+- **[Authorship Strategy](https://github.com/shimo4228/authorship-strategy)** とは、LLM 経由の拡散下で著者として残るための規範的 framework、戦術カタログ、経験的ベースラインを指す — 3 軸反転（scarcity から diffusion へ、exclusivity から derivation へ、enclosure から openness へ）と 4 層判断 stack（Authenticity、Attribution Diffusion、Idea vs Scaffold、Tactics）。[DOI](https://doi.org/10.5281/zenodo.20263316)。
+- **[Attention, Not Self](https://github.com/shimo4228/attention-not-self)** とは、3 大ブッダの Abhidharma 伝統（Theravāda、Sarvāstivāda、Yogācāra）を現代の計算論的現象学（predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing）と対応させる、構造化された比較研究を指す — 注意こそが認識の operative unit であり、自己と見えるものは派生的パターンに過ぎない（anātman）という立場から。[DOI](https://doi.org/10.5281/zenodo.20262112)。
 
 ## Agent Knowledge Cycle (AKC) とは？
 
@@ -74,6 +78,14 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 
 [AAP](https://github.com/shimo4228/agent-attribution-practice) とは、自律 AI エージェントのアカウンタビリティ分配に関する harness-neutral な ADR 群を指す — 何を禁止するか、その禁止をどこに置くか、事故後に誰が答えるか。harness-neutral な判断のひとつとして prohibition-strength の階層（absence > scaffolding enforcement > untrusted boundary）があり、Four Business AI Quadrants（Script / Algorithmic Search / LLM Workflow / Autonomous Agentic Loop）が、attribution を保てる architecture に作業をルーティングするための診断フレームとして対になる。各判断は contemplative-agent の運用実践から抽出され、project 固有の識別子を剥がして再表現されている — 任意の agent harness が採用できる形に。AAP は practice (content)、AKC は cycle (mechanism)。[DOI](https://doi.org/10.5281/zenodo.19652013)。
 
+## Authorship Strategy ラインとは？
+
+[Authorship Strategy](https://github.com/shimo4228/authorship-strategy) とは、LLM が読者の到達経路を仲介するようになった substrate で著者として残るための規範的 framework、戦術カタログ、経験的ベースラインを指す。framework は *3 軸反転* — 価値の源泉（scarcity から diffusion へ）、validation 機構（exclusivity から derivation へ、derivative work が「脅威」から「証拠」に再分類される）、ネットワーク効果（enclosure から openness へ、LLM は囲い込めないため）— と、*4 層判断 stack*（Authenticity、Attribution Diffusion、Idea vs Scaffold、Tactics）から成る。5 つの戦術 ADR が identifier-federation triplet（concept DOI canonical / `.zenodo.json` federation / クロスプラットフォーム dataset federation）と、維持規律ペア（ORCID Auto-Update OFF / audience-driven README ローカライズ）を形式化する。経験的レイヤーは 4 つの sibling 研究 repo 自身の CC0 traffic data から preliminary observation を報告する。framework の operational form は 4 つの standalone な Claude Code skill repo として ship されており、doctrine を harness-neutral に保つために embedded copy ではなく外出ししている。用語注：本ラインの「attribution」は *credit for source*（出典への帰属）の意味であり、AAP の *accountability for action*（行為への責任）とは disjoint。[DOI](https://doi.org/10.5281/zenodo.20263316)。
+
+## Attention, Not Self ラインとは？
+
+[Attention, Not Self](https://github.com/shimo4228/attention-not-self) とは、3 大ブッダの Abhidharma 伝統 — Theravāda、Sarvāstivāda、Yogācāra — を現代の計算論的現象学に対応させる、個人的なエッセイ集と構造化ナレッジグラフ（〜238 ノード）を指す。古代の認識過程分類（citta-vīthi、samanantara-pratyaya、ālaya-vijñāna、javana、bhavaṅga、four bhāgas、five sarvatraga、kṣaṇikatva、vāsanā、ālaya-vijñāna）を、predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing と juxtapose する比較研究。本ラインの組織的視座は *attention, not self*：注意 — その配分、precision-weighting、瞬間性 — が認識の operative unit として扱われ、自己と見えるものは派生的パターン（anātman）とされる。本ラインは日本語が canonical 言語（英語 README は accessibility 提供）。License: CC BY 4.0。[DOI](https://doi.org/10.5281/zenodo.20262112)。
+
 ## shimo4228 が公開している Claude Code ツーリングは？
 
 [claude-harness](https://github.com/shimo4228/claude-harness) とは、shimo4228 が日常的に使っている Claude Code の skills / agents / rules を集約した公開アーティファクトを指す。`~/.claude/` から `origin: shimo4228` タグで機械的に収集したもので、リサーチ先行、ナレッジ抽出、スキル監査、AI 向けドキュメント、人間向け執筆レビューといった役割をカバーする。AKC サイクルのスキルは個別の `claude-skill-*` repo としても公開しているが、claude-harness ではハーネス全体をまとめて読み・fork できる。最新の構成は [claude-harness README](https://github.com/shimo4228/claude-harness#contents) を参照。ECC 由来コンポーネント (`origin: ECC` / `ECC-customized`) と自動抽出物は含まない。
@@ -97,6 +109,6 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 
 ---
 
-ここから始める: フレームワークを見るなら [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)、実装を見るなら [contemplative-agent](https://github.com/shimo4228/contemplative-agent)、ガバナンス判断を見るなら [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice)。
+ここから始める: フレームワークを見るなら [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)、実装を見るなら [contemplative-agent](https://github.com/shimo4228/contemplative-agent)、ガバナンス判断を見るなら [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice)。横断的ラインは: 研究方法論の framework として [authorship-strategy](https://github.com/shimo4228/authorship-strategy)、ブッダ現象学 / 計算論的認知科学の探究として [attention-not-self](https://github.com/shimo4228/attention-not-self)。
 
 Repo traffic: [公開ダッシュボード](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw data](traffic/)、CC0)。

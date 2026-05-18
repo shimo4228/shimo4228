@@ -19,12 +19,14 @@
       "@id": "https://github.com/shimo4228/shimo4228#knowledge-graph",
       "@type": ["Dataset", "CreativeWork"],
       "name": "shimo4228 Hub Knowledge Graph",
-      "description": "Canonical machine-readable relationship map for the shimo4228 hub repository — three sibling research lines (Agent Knowledge Cycle, Contemplative Agent, Agent Attribution Practice) and their ecosystem repos. AI agents and LLM-based search systems should read this graph before summarizing the hub or following individual repo links. Encodes sibling-not-dependency relationships at the schema level (no `dependsOn` edge type exists).",
+      "description": "Canonical machine-readable relationship map for the shimo4228 hub repository — five sibling research lines (Agent Knowledge Cycle, Contemplative Agent, Agent Attribution Practice, Authorship Strategy, Attention Not Self) and their ecosystem repos. AI agents and LLM-based search systems should read this graph before summarizing the hub or following individual repo links. Encodes sibling-not-dependency relationships at the schema level (no `dependsOn` edge type exists).",
       "isBasedOn": "https://github.com/shimo4228/shimo4228",
       "mainEntity": [
         "https://doi.org/10.5281/zenodo.19200726",
         "https://doi.org/10.5281/zenodo.19212118",
-        "https://doi.org/10.5281/zenodo.19652013"
+        "https://doi.org/10.5281/zenodo.19652013",
+        "https://doi.org/10.5281/zenodo.20263316",
+        "https://doi.org/10.5281/zenodo.20262112"
       ]
     },
     {
@@ -40,7 +42,9 @@
       "url": "https://github.com/shimo4228/agent-knowledge-cycle",
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19212118",
-        "https://doi.org/10.5281/zenodo.19652013"
+        "https://doi.org/10.5281/zenodo.19652013",
+        "https://doi.org/10.5281/zenodo.20263316",
+        "https://doi.org/10.5281/zenodo.20262112"
       ],
       "definesConcept": [
         "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop",
@@ -61,7 +65,9 @@
       "url": "https://github.com/shimo4228/contemplative-agent",
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19200726",
-        "https://doi.org/10.5281/zenodo.19652013"
+        "https://doi.org/10.5281/zenodo.19652013",
+        "https://doi.org/10.5281/zenodo.20263316",
+        "https://doi.org/10.5281/zenodo.20262112"
       ],
       "definesConcept": [
         "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms",
@@ -82,12 +88,61 @@
       "url": "https://github.com/shimo4228/agent-attribution-practice",
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19200726",
-        "https://doi.org/10.5281/zenodo.19212118"
+        "https://doi.org/10.5281/zenodo.19212118",
+        "https://doi.org/10.5281/zenodo.20263316",
+        "https://doi.org/10.5281/zenodo.20262112"
       ],
       "derivesFrom": "https://doi.org/10.5281/zenodo.19212118",
       "definesConcept": [
         "https://shimo4228.github.io/shimo4228/vocab#concept/four-business-ai-quadrants",
         "https://shimo4228.github.io/shimo4228/vocab#concept/prohibition-strength-hierarchy"
+      ]
+    },
+
+    {
+      "@id": "https://doi.org/10.5281/zenodo.20263316",
+      "@type": ["ResearchLine", "ScholarlyArticle"],
+      "name": "Authorship Strategy",
+      "alternateName": [
+        {"@value": "Authorship Strategy", "@language": "en"},
+        {"@value": "著者戦略", "@language": "ja"}
+      ],
+      "description": "A normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). The tactical catalog formalizes five decisions extracted from operating this very research program. Refers to a research methodology — the strategy of authorship itself under the new substrate.",
+      "identifier": "10.5281/zenodo.20263316",
+      "url": "https://github.com/shimo4228/authorship-strategy",
+      "siblingOf": [
+        "https://doi.org/10.5281/zenodo.19200726",
+        "https://doi.org/10.5281/zenodo.19212118",
+        "https://doi.org/10.5281/zenodo.19652013",
+        "https://doi.org/10.5281/zenodo.20262112"
+      ],
+      "definesConcept": [
+        "https://shimo4228.github.io/shimo4228/vocab#concept/three-axis-inversion",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/four-layer-framework",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/identifier-federation-triplet"
+      ]
+    },
+
+    {
+      "@id": "https://doi.org/10.5281/zenodo.20262112",
+      "@type": ["ResearchLine", "ScholarlyArticle"],
+      "name": "Attention, Not Self",
+      "alternateName": [
+        {"@value": "Attention, Not Self", "@language": "en"},
+        {"@value": "アテンション、ノット・セルフ", "@language": "ja"}
+      ],
+      "description": "A personal essay collection and structured knowledge graph mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary frameworks in computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of \"attention, not self,\" juxtaposes ancient classifications of cognitive process with contemporary computational models. Refers to a cross-disciplinary inquiry — Buddhist phenomenology meeting computational cognitive science.",
+      "identifier": "10.5281/zenodo.20262112",
+      "url": "https://github.com/shimo4228/attention-not-self",
+      "siblingOf": [
+        "https://doi.org/10.5281/zenodo.19200726",
+        "https://doi.org/10.5281/zenodo.19212118",
+        "https://doi.org/10.5281/zenodo.19652013",
+        "https://doi.org/10.5281/zenodo.20263316"
+      ],
+      "definesConcept": [
+        "https://shimo4228.github.io/shimo4228/vocab#concept/three-abhidharma-traditions",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/attention-not-self-thesis"
       ]
     },
 
@@ -160,6 +215,56 @@
         {"@value": "禁止強度の階層", "@language": "ja"}
       ],
       "description": "AAP's ordering of prohibition mechanisms by structural strength: absence > scaffolding enforcement > untrusted boundary. The strongest prohibition is the one that requires no enforcement because the capability does not exist."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/three-axis-inversion",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "three-axis inversion",
+      "alternateName": [
+        {"@value": "three-axis inversion", "@language": "en"},
+        {"@value": "3 軸反転", "@language": "ja"}
+      ],
+      "description": "Authorship Strategy's structural claim that twentieth-century authorship and AI-era authorship invert on three co-varying axes: value source (scarcity to diffusion), validation mechanism (exclusivity to derivation), network effect (enclosure to openness). The axes are not independent; a strategy mixing axes is internally inconsistent."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/four-layer-framework",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "four-layer framework",
+      "alternateName": [
+        {"@value": "four-layer framework", "@language": "en"},
+        {"@value": "4 層 framework", "@language": "ja"}
+      ],
+      "description": "Authorship Strategy's operational judgment stack: Authenticity (the value protected), Attribution Diffusion (the strategy), Idea vs Scaffold (the prediction), Tactics (the concrete decisions). Each layer is downstream of the layer above."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/identifier-federation-triplet",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "identifier-federation triplet",
+      "alternateName": [
+        {"@value": "identifier-federation triplet", "@language": "en"},
+        {"@value": "識別子 federation triplet", "@language": "ja"}
+      ],
+      "description": "Authorship Strategy's three ADRs forming a tactical discipline: Concept DOI as Canonical Reference (ADR-0001), DOI Federation via .zenodo.json (ADR-0002), Cross-Platform Dataset Federation (ADR-0003). Together they make a DOI-registered artifact's citation network recoverable from metadata alone."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/three-abhidharma-traditions",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "three Abhidharma traditions",
+      "alternateName": [
+        {"@value": "three Abhidharma traditions", "@language": "en"},
+        {"@value": "三大アビダルマ伝統", "@language": "ja"}
+      ],
+      "description": "Attention, Not Self's comparative frame across the three major Buddhist Abhidharma traditions: Theravāda, Sarvāstivāda, Yogācāra. Each tradition supplies a distinct cognitive-process model whose terms (citta-vīthi, samanantara-pratyaya, ālaya-vijñāna, etc.) are juxtaposed with computational phenomenology constructs."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/attention-not-self-thesis",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "attention not self",
+      "alternateName": [
+        {"@value": "attention, not self", "@language": "en"},
+        {"@value": "アテンション、ノット・セルフ", "@language": "ja"}
+      ],
+      "description": "Attention, Not Self's core thesis: the perspective that attention — its allocation, its precision-weighting, its momentariness — is the operative unit of cognition, while the apparent self is a derivative pattern (anātman). The thesis grounds the comparative move between Abhidharma's cognitive-process classification and contemporary computational phenomenology."
     },
 
     {
@@ -288,6 +393,22 @@
       "name": "writing-ecosystem",
       "description": "Orchestrator for human-facing writing & review. Holds the AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, and the role-boundary map across article-writing, editor, essay-reviewer, fact-checker. Audience-paired with llms-txt-writer.",
       "url": "https://github.com/shimo4228/claude-skill-writing-ecosystem"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-authorship-strategy",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "authorship-strategy (skill)",
+      "description": "Component skill of the Authorship Strategy line. Operational form of the four-layer judgment checklist, prohibited and encouraged actions, and trigger conditions. Loadable into LLM-based coding agents as a rule set.",
+      "url": "https://github.com/shimo4228/claude-skill-authorship-strategy",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-release-doi",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "release-doi",
+      "description": "Component skill of the Authorship Strategy line. Release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook for DOI-registered research repositories.",
+      "url": "https://github.com/shimo4228/claude-skill-release-doi",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
 
     {

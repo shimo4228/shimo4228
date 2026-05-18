@@ -1,6 +1,6 @@
 # shimo4228 (hub repo)
 
-This repo is a **hub**, not a source of truth. Its README / `llms.txt` / `llms-full.txt` aggregate links to the three independently-evolving research lines (AKC / Contemplative Agent / AAP) and the supporting ecosystem.
+This repo is a **hub**, not a source of truth. Its README / `llms.txt` / `llms-full.txt` aggregate links to the five independently-evolving research lines — three agent-design lines (AKC / Contemplative Agent / AAP) and two cross-cutting lines (Authorship Strategy / Attention Not Self) — and the supporting ecosystem.
 
 ## Design rules for hub content
 
@@ -10,6 +10,8 @@ This repo is a **hub**, not a source of truth. Its README / `llms.txt` / `llms-f
    - AKC: `10.5281/zenodo.19200726`
    - Contemplative Agent: `10.5281/zenodo.19212118`
    - AAP: `10.5281/zenodo.19652013`
+   - Authorship Strategy: `10.5281/zenodo.20263316`
+   - Attention Not Self: `10.5281/zenodo.20262112`
 
 3. **Describe what something *is*, not what state it's *in***. Stable architectural facts (`three-layer structure`, `six-phase loop`, `local 9B stack on Apple Silicon`, `prohibition-strength hierarchy`, `Four Business AI Quadrants`) are fine. Counts, versions, enumerations of churning sets are not.
 
@@ -50,6 +52,8 @@ For each line, the source of truth is its own repo:
 | AKC structure / ADR list | `github.com/shimo4228/agent-knowledge-cycle` |
 | Contemplative agent state / phase mapping | `github.com/shimo4228/contemplative-agent` |
 | AAP ADRs / Quadrants details | `github.com/shimo4228/agent-attribution-practice` |
+| Authorship Strategy thesis / ADRs / empirical baseline | `github.com/shimo4228/authorship-strategy` |
+| Attention Not Self essays / knowledge graph (~238 nodes) | `github.com/shimo4228/attention-not-self` |
 
 When in doubt about a fact, link to the source repo rather than transcribing.
 
@@ -65,6 +69,8 @@ Repo mapping:
 | `shimo4228/agent-knowledge-cycle` | [`Shimo4228/agent-knowledge-cycle`](https://huggingface.co/datasets/Shimo4228/agent-knowledge-cycle) |
 | `shimo4228/contemplative-agent` (local clone: `contemplative-moltbook/`) | [`Shimo4228/contemplative-agent`](https://huggingface.co/datasets/Shimo4228/contemplative-agent) |
 | `shimo4228/agent-attribution-practice` | [`Shimo4228/agent-attribution-practice`](https://huggingface.co/datasets/Shimo4228/agent-attribution-practice) |
+| `shimo4228/authorship-strategy` | [`Shimo4228/authorship-strategy`](https://huggingface.co/datasets/Shimo4228/authorship-strategy) (Phase J to be created) |
+| `shimo4228/attention-not-self` | (HF mirror status TBD — line maintains its own mirror decision) |
 
 The HF-side `README.md` (dataset card) is HF-customized (mirror notice, cross-links to sibling datasets) and is not synced from this repo on graph updates. To edit the dataset card, manually run `hf upload Shimo4228/research-program-hub README.md --repo-type dataset`.
 

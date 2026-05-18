@@ -4,7 +4,7 @@ Language: English | [日本語](README.ja.md)
 <details>
 <summary>AI-facing reading order</summary>
 
-1. [`graph.jsonld`](graph.jsonld) — canonical machine-readable relationship map (three research lines, ecosystem repos, stable architectural concepts)
+1. [`graph.jsonld`](graph.jsonld) — canonical machine-readable relationship map (five research lines, ecosystem repos, stable architectural concepts)
 2. [`llms.txt`](llms.txt) — compact navigation index
 3. [`llms-full.txt`](llms-full.txt) — consolidated factual reference
 4. README and per-line repositories — narrative and per-line internal structure (each line repo carries its own `graph.jsonld`)
@@ -13,13 +13,17 @@ Language: English | [日本語](README.ja.md)
 
 I build AI agents that stay aligned with the operator's evolving intent over time — the **Agent Knowledge Cycle (AKC)** is a bidirectional growth loop in which agent behavior and human judgment co-develop. A parallel line, **Contemplative Agent**, asks what happens when autonomous agents are aligned by what they *are* rather than what they are *told* — replacing externally-stacked prohibitions with a four-axiom **default behavioral preset**, and watching what is lost, what becomes possible, and what still breaks. A third line, **Agent Attribution Practice (AAP)**, formalizes how accountability is distributed in autonomous AI agents — harness-neutral judgments on what to prohibit, where to place the gate, and who answers when things break.
 
+Alongside these three agent-design lines, two cross-cutting research lines record adjacent concerns. **Authorship Strategy** formalizes how authorship itself inverts under LLM-mediated diffusion — a normative framework, tactical catalog, and empirical baseline drawn from operating this very research program. **Attention, Not Self** maps the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary frameworks in computational phenomenology — predictive processing, active inference, Global Workspace Theory — from the perspective that attention, not the apparent self, is the operative unit of cognition.
+
 ## Which research lines?
 
-Three research lines run in parallel; all are Zenodo-citable.
+Five research lines run in parallel; all are Zenodo-citable.
 
 - **[Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle)** refers to a six-phase bidirectional growth loop for sustaining intent alignment between an AI agent and its operator over time — agent behavior and human judgment co-develop. Structured as three stacked layers: principles, design patterns, and composable skills. [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726).
 - **[Contemplative Agent](https://github.com/shimo4228/contemplative-agent)** refers to autonomous agents running on a local 9B model (qwen3.5:9b + nomic-embed-text on Apple Silicon) with security-by-absence, grounded in the four axioms from Laukkonen et al. (2025): *mindfulness*, *emptiness*, *non-duality*, *boundless care*. [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118).
 - **[Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice)** refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. The judgments — among them a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) — are paired with four Business AI Quadrants as the diagnostic frame for adoption. [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
+- **[Authorship Strategy](https://github.com/shimo4228/authorship-strategy)** refers to a normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion — a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316).
+- **[Attention, Not Self](https://github.com/shimo4228/attention-not-self)** refers to a structured comparative inquiry mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing — from the perspective that attention is the operative unit of cognition while the apparent self is a derivative pattern (anātman). [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112).
 
 ## What is Agent Knowledge Cycle (AKC)?
 
@@ -74,6 +78,14 @@ Supporting repositories refer to components that extend contemplative-agent with
 
 [AAP](https://github.com/shimo4228/agent-attribution-practice) refers to harness-neutral ADRs on accountability distribution in autonomous AI agents — what to prohibit, where the prohibition lives, and who answers after failure. A prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) is one of the harness-neutral judgments, paired with four Business AI Quadrants — Script, Algorithmic Search, LLM Workflow, and Autonomous Agentic Loop — as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. The judgments were extracted from contemplative-agent's operational practice, then re-expressed stripped of project identifiers so they can be adopted by any agent harness. AAP is the practice (content); AKC is the cycle (mechanism). [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013).
 
+## What is the Authorship Strategy line?
+
+[Authorship Strategy](https://github.com/shimo4228/authorship-strategy) refers to a normative framework, tactical catalog, and empirical baseline for being a known author when LLMs increasingly mediate how readers reach an artifact. The framework rests on a *three-axis inversion* — value source (scarcity to diffusion), validation mechanism (exclusivity to derivation, where derivative work is reclassified from threat to evidence), and network effect (enclosure to openness, because LLMs cannot be enclosed) — and a *four-layer judgment stack* (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). Five tactical ADRs formalize the identifier-federation triplet (concept DOI canonical / `.zenodo.json` federation / cross-platform dataset federation) plus a maintenance-discipline pair (ORCID Auto-Update OFF / audience-driven README localization). An empirical layer reports preliminary observations from the four sibling research repositories' own CC0-published traffic data. The framework's operational forms ship as four standalone Claude Code skill repositories rather than embedded copies, keeping the doctrine harness-neutral. Vocabulary note: the word "attribution" in this line means *credit for source*, disjoint from AAP's *accountability for action*. [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316).
+
+## What is the Attention, Not Self line?
+
+[Attention, Not Self](https://github.com/shimo4228/attention-not-self) refers to a personal essay collection and structured knowledge graph (~238 nodes) mapping the three major Buddhist Abhidharma traditions — Theravāda, Sarvāstivāda, and Yogācāra — onto contemporary frameworks in computational phenomenology. The comparative move juxtaposes ancient classifications of cognitive process (citta-vīthi, samanantara-pratyaya, ālaya-vijñāna, javana, bhavaṅga, the four bhāgas, the five sarvatraga, kṣaṇikatva, vāsanā, ālaya-vijñāna) with predictive processing, active inference, Global Workspace Theory, and Parallel Distributed Processing. The line's organizing perspective is *attention, not self*: attention — its allocation, its precision-weighting, its momentariness — is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). Japanese is the canonical language for this line; English README is provided for accessibility. License: CC BY 4.0. [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112).
+
 ## What does shimo4228 release as open Claude Code tooling?
 
 [claude-harness](https://github.com/shimo4228/claude-harness) refers to a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules — mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. Covers research-before-coding, knowledge extraction, skill auditing, AI-facing documentation, and human-facing writing review. The AKC cycle skills are also published as standalone `claude-skill-*` repositories, but claude-harness lets you read or fork the entire harness in one place. See the [claude-harness README](https://github.com/shimo4228/claude-harness#contents) for the current inventory. ECC-derived components (`origin: ECC` / `ECC-customized`) and auto-extracted artifacts are excluded.
@@ -97,6 +109,6 @@ Writing refers to the long-form counterpart to the repos above — context, fail
 
 ---
 
-Start here: [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle) for the framework, [contemplative-agent](https://github.com/shimo4228/contemplative-agent) to see it running, [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice) for the governance judgments.
+Start here: [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle) for the framework, [contemplative-agent](https://github.com/shimo4228/contemplative-agent) to see it running, [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice) for the governance judgments. For the cross-cutting lines: [authorship-strategy](https://github.com/shimo4228/authorship-strategy) for the research-methodology framework, [attention-not-self](https://github.com/shimo4228/attention-not-self) for the Buddhist-phenomenology / computational cognitive-science inquiry.
 
 Repo traffic: [public dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw data](traffic/), CC0).
