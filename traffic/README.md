@@ -1,8 +1,8 @@
 # Traffic Data
 
-Daily snapshots of the GitHub Traffic API for six public research repositories by [@shimo4228](https://github.com/shimo4228).
+Daily snapshots of the GitHub Traffic API for eight public research repositories by [@shimo4228](https://github.com/shimo4228).
 
-**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — all six repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
+**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — all eight repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
 
 ## What
 
@@ -11,6 +11,8 @@ Append-only JSONL time series under `data/`, one file per repository:
 - [contemplative-agent](https://github.com/shimo4228/contemplative-agent)
 - [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)
 - [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice)
+- [authorship-strategy](https://github.com/shimo4228/authorship-strategy)
+- [attention-not-self](https://github.com/shimo4228/attention-not-self)
 - [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data)
 - [zenn-content](https://github.com/shimo4228/zenn-content)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (this profile repo)
