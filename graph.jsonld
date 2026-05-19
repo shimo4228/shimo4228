@@ -107,7 +107,7 @@
         {"@value": "Authorship Strategy", "@language": "en"},
         {"@value": "著者戦略", "@language": "ja"}
       ],
-      "description": "A normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). The tactical catalog formalizes five decisions extracted from operating this very research program. Refers to a research methodology — the strategy of authorship itself under the new substrate.",
+      "description": "A normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). The tactical catalog clusters into the identifier-federation triplet, a maintenance-discipline pair, and an LLM-first ingest decision via dual entry points — all extracted from operating this very research program. Refers to a research methodology — the strategy of authorship itself under the new substrate.",
       "identifier": "10.5281/zenodo.20263316",
       "url": "https://github.com/shimo4228/authorship-strategy",
       "siblingOf": [
@@ -119,7 +119,8 @@
       "definesConcept": [
         "https://shimo4228.github.io/shimo4228/vocab#concept/three-axis-inversion",
         "https://shimo4228.github.io/shimo4228/vocab#concept/four-layer-framework",
-        "https://shimo4228.github.io/shimo4228/vocab#concept/identifier-federation-triplet"
+        "https://shimo4228.github.io/shimo4228/vocab#concept/identifier-federation-triplet",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/dual-entry-point"
       ]
     },
 
@@ -245,6 +246,16 @@
         {"@value": "識別子 federation triplet", "@language": "ja"}
       ],
       "description": "Authorship Strategy's three ADRs forming a tactical discipline: Concept DOI as Canonical Reference (ADR-0001), DOI Federation via .zenodo.json (ADR-0002), Cross-Platform Dataset Federation (ADR-0003). Together they make a DOI-registered artifact's citation network recoverable from metadata alone."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/dual-entry-point",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "dual entry point",
+      "alternateName": [
+        {"@value": "dual entry point", "@language": "en"},
+        {"@value": "dual entry point", "@language": "ja"}
+      ],
+      "description": "Authorship Strategy's structural decision (ADR-0006) that any framework-governed artifact deploys two complementary structured entry points — a prose-form navigator (e.g., an llms.txt convention file) and a concept-form linked-data graph (e.g., a JSON-LD knowledge graph) — released synchronously. Each entry point addresses a distinct LLM-mediated reader sub-population the other cannot reach. The pair is the operational embodiment of the enclosure-to-openness axis on the ingest surface."
     },
     {
       "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/three-abhidharma-traditions",
