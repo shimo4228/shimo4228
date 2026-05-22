@@ -47,6 +47,8 @@
 - [doctrine-corpus](https://github.com/shimo4228/doctrine-corpus): Layer 4 tactic 7 (LLM-first ingest) implementation — bilingual (EN + JA) judgment-eliciting Q&A corpus across the four sibling research lines, deposited CC0. Data sibling of authorship-strategy. Corpus is the deliverable; the verification LoRA was a disposable probe (FAIL verdict on the v0.1.0 probe, corpus retained per the corpus-as-primary-artifact policy). Concept DOI 10.5281/zenodo.20337008
 - [claude-skill-authorship-strategy](https://github.com/shimo4228/claude-skill-authorship-strategy): component skill — operational form of the four-layer judgment checklist, loadable into LLM-based coding agents as a rule set
 - [claude-skill-release-doi](https://github.com/shimo4228/claude-skill-release-doi): component skill — release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook
+- [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer): component skill — operational form of the LLM-first ingest decision (prose-form half). Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Answer.AI `llms.txt` standard + GEO-SFE 3-layer static analysis
+- [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph): component skill — operational form of the LLM-first ingest decision (concept-form half). Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure
 
 ## Attention, Not Self
 
@@ -60,8 +62,6 @@
 
 Companion Claude Code skills maintained alongside the AKC cycle but not part of its six phases. Same author, same MIT license.
 
-- [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer): writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Answer.AI `llms.txt` standard + GEO-SFE 3-layer static analysis
-- [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph): designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure — encodes domain entities and relationships as schema.org triples for LLM citation
 - [claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem): orchestrator for human-facing writing & review — AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, role boundaries across article-writing / editor / essay-reviewer / fact-checker. Audience-paired with `llms-txt-writer`
 - [claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research): cron-driven daily research digest — two-pass `claude -p` pipeline (Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP, writes Markdown to an Obsidian vault)
 

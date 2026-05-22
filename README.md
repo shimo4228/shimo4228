@@ -89,6 +89,10 @@ Supporting repositories operationalize specific Layer 4 tactics from the Authors
 | Project | What it does |
 |---------|-------------|
 | [doctrine-corpus](https://github.com/shimo4228/doctrine-corpus) | Layer 4 tactic 7 (LLM-first ingest) implementation. Bilingual (EN + JA) judgment-eliciting Q&A corpus across the four sibling research lines, deposited CC0 for LLM-mediated diffusion. The corpus is the deliverable; the verification LoRA was a disposable probe (FAIL verdict recorded per the corpus-as-primary-artifact policy). [DOI 10.5281/zenodo.20337008](https://doi.org/10.5281/zenodo.20337008) |
+| [claude-skill-authorship-strategy](https://github.com/shimo4228/claude-skill-authorship-strategy) | Component skill. Operational form of the four-layer judgment stack (Authenticity / Attribution Diffusion / Idea vs Scaffold / Tactics) as a loadable rule set for LLM-based coding agents. |
+| [claude-skill-release-doi](https://github.com/shimo4228/claude-skill-release-doi) | Component skill. Operational form of the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook for DOI-registered research repositories. |
+| [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer) | Component skill. Operational form of the LLM-first ingest decision (prose-form half). Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini, combining the Answer.AI `llms.txt` standard with GEO-SFE 3-layer static analysis. |
+| [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph) | Component skill. Operational form of the LLM-first ingest decision (concept-form half). Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure, encoding domain entities and relationships as schema.org triples. |
 
 ## What is the Attention, Not Self line?
 
@@ -102,8 +106,6 @@ Supporting repositories operationalize specific Layer 4 tactics from the Authors
 
 Adjacent skills refer to public Claude Code skill repos maintained alongside the AKC cycle but not part of its six phases — companion scaffolding under the same author and the same MIT license.
 
-- **[claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer)** — Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Combines the Answer.AI `llms.txt` standard with GEO-SFE 3-layer static analysis.
-- **[claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph)** — Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure. Encodes domain entities and relationships as schema.org triples for LLM citation.
 - **[claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem)** — Orchestrator for human-facing writing & review. Holds the AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, and the role-boundary map across `article-writing` / `editor` / `essay-reviewer` / `fact-checker`. Audience-paired with `llms-txt-writer`.
 - **[claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research)** — Cron-driven daily research digest. Two-pass `claude -p` pipeline: Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP and writes Markdown reports to an Obsidian vault.
 

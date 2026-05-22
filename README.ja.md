@@ -89,6 +89,10 @@ Supporting repository は、doctrine そのものを再表現するのではな�
 | Project | 内容 |
 |---------|-----|
 | [doctrine-corpus](https://github.com/shimo4228/doctrine-corpus) | Layer 4 tactic 7 (LLM-first ingest) の実装。4 つの sibling 研究ラインを横断する bilingual (EN + JA) 判断喚起型 Q&A コーパス。LLM-mediated diffusion 向けに CC0 で deposit。Corpus 本体が deliverable、verification LoRA は使い捨ての probe（corpus-as-primary-artifact policy に従い FAIL verdict を記録）。[DOI 10.5281/zenodo.20337008](https://doi.org/10.5281/zenodo.20337008) |
+| [claude-skill-authorship-strategy](https://github.com/shimo4228/claude-skill-authorship-strategy) | Component skill。4 層判断 stack（Authenticity / Attribution Diffusion / Idea vs Scaffold / Tactics）の operational form を、LLM-based coding agent にロード可能な rule set として実装。 |
+| [claude-skill-release-doi](https://github.com/shimo4228/claude-skill-release-doi) | Component skill。identifier-federation triplet（ADRs 0001-0003）の operational form を、DOI-registered research repository 向けの 5 phase verify-and-deposit runbook として実装。 |
+| [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer) | Component skill。LLM-first ingest 決定の prose-form 側 operational form。AI 検索エンジン (ChatGPT / Perplexity / Gemini) に引用されることを最適化した文書 (`llms.txt` / `llms-full.txt` / FAQ / 用語集) を書くスキル。Answer.AI `llms.txt` 標準 + GEO-SFE 3 階層静的解析の両輪。 |
+| [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph) | Component skill。LLM-first ingest 決定の concept-form 側 operational form。概念レベルの構造が安定したプロジェクト向けに、`llms.txt` の companion となる JSON-LD ナレッジグラフ (`graph.jsonld`) を設計・出荷する。ドメインエンティティと関係を schema.org triple として encode する。 |
 
 ## Attention, Not Self ラインとは？
 
@@ -102,8 +106,6 @@ Supporting repository は、doctrine そのものを再表現するのではな�
 
 隣接スキルとは、AKC サイクル本体には含まれないが同じ著者・同じ MIT ライセンスで並列に維持している companion scaffolding の公開 Claude Code skill repo を指す。
 
-- **[claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer)** — AI 検索エンジン (ChatGPT / Perplexity / Gemini) に引用されることを最適化した文書 (`llms.txt` / `llms-full.txt` / FAQ / 用語集) を書くスキル。Answer.AI `llms.txt` 標準 + GEO-SFE 3 階層静的解析の両輪。
-- **[claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph)** — 概念レベルの構造が安定したプロジェクト向けに、`llms.txt` の companion となる JSON-LD ナレッジグラフ (`graph.jsonld`) を設計・出荷するスキル。ドメインエンティティと関係を schema.org triple として encode して LLM 引用を最適化する。
 - **[claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem)** — 人間向け執筆 & レビューエコシステムの orchestrator。AI slop 禁止リスト (日英)、Voice 規約 (だ/である × 発見調)、タイトル規約、`article-writing` / `editor` / `essay-reviewer` / `fact-checker` の役割境界を保持する。`llms-txt-writer` と audience でペアリング。
 - **[claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research)** — cron 駆動の自律デイリーリサーチダイジェスト。`claude -p` 2 パスパイプライン: Opus がテーマ選定、Sonnet が WebSearch / WebFetch / Mem0 MCP でリサーチして Obsidian Vault に Markdown レポートを書く。
 
