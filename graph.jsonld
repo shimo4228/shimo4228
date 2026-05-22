@@ -362,6 +362,16 @@
       "extends": "https://doi.org/10.5281/zenodo.19212118"
     },
     {
+      "@id": "https://github.com/shimo4228/doctrine-corpus",
+      "@type": ["EcosystemRepo", "Dataset"],
+      "name": "doctrine-corpus",
+      "description": "Bilingual (EN + JA) judgment-eliciting Q&A corpus across the four sibling research lines (AKC, Contemplative Agent, AAP, Authorship Strategy) plus published articles. Operational form of Authorship Strategy Layer 4 tactic 7 (LLM-first ingest). Data sibling of Authorship Strategy; corpus is the deliverable, the verification LoRA was a disposable probe. CC0 to maximize diffusion.",
+      "url": "https://github.com/shimo4228/doctrine-corpus",
+      "identifier": "10.5281/zenodo.20337008",
+      "sameAs": "https://doi.org/10.5281/zenodo.20337008",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
       "@id": "https://github.com/shimo4228/claude-harness",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "claude-harness",

@@ -82,6 +82,14 @@ contemplative-agent の中核を置き換えずに拡張する関連リポジト
 
 [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) とは、LLM が読者の到達経路を仲介するようになった substrate で著者として残るための規範的 framework、戦術カタログ、経験的ベースラインを指す。framework は *3 軸反転* — 価値の源泉（scarcity から diffusion へ）、validation 機構（exclusivity から derivation へ、derivative work が「脅威」から「証拠」に再分類される）、ネットワーク効果（enclosure から openness へ、LLM は囲い込めないため）— と、*4 層判断 stack*（Authenticity、Attribution Diffusion、Idea vs Scaffold、Tactics）から成る。戦術 ADR は identifier-federation triplet（concept DOI canonical / `.zenodo.json` federation / クロスプラットフォーム dataset federation）、維持規律ペア（ORCID Auto-Update OFF / audience-driven README ローカライズ）、そして LLM-first ingest 決定（artifact は prose-form navigator と concept-form knowledge graph を補完的な pair として deploy する）の 3 cluster に分かれる。経験的レイヤーは 4 つの sibling 研究 repo 自身の CC0 traffic data から preliminary observation を報告する。framework の operational form は 4 つの standalone な Claude Code skill repo として ship されており、doctrine を harness-neutral に保つために embedded copy ではなく外出ししている。用語注：本ラインの「attribution」は *credit for source*（出典への帰属）の意味であり、AAP の *accountability for action*（行為への責任）とは disjoint。[DOI](https://doi.org/10.5281/zenodo.20263316)。
 
+## Authorship Strategy エコシステムを支えているのは何か？
+
+Supporting repository は、doctrine そのものを再表現するのではなく、Authorship Strategy framework の特定 Layer 4 tactic を operational form として実装する。
+
+| Project | 内容 |
+|---------|-----|
+| [doctrine-corpus](https://github.com/shimo4228/doctrine-corpus) | Layer 4 tactic 7 (LLM-first ingest) の実装。4 つの sibling 研究ラインを横断する bilingual (EN + JA) 判断喚起型 Q&A コーパス。LLM-mediated diffusion 向けに CC0 で deposit。Corpus 本体が deliverable、verification LoRA は使い捨ての probe（corpus-as-primary-artifact policy に従い FAIL verdict を記録）。[DOI 10.5281/zenodo.20337008](https://doi.org/10.5281/zenodo.20337008) |
+
 ## Attention, Not Self ラインとは？
 
 [Attention, Not Self](https://github.com/shimo4228/attention-not-self) とは、3 大ブッダの Abhidharma 伝統 — Theravāda、Sarvāstivāda、Yogācāra — を現代の計算論的現象学に対応させる、個人的なエッセイ集と構造化ナレッジグラフ（〜238 ノード）を指す。古代の認識過程分類（citta-vīthi、samanantara-pratyaya、ālaya-vijñāna、javana、bhavaṅga、four bhāgas、five sarvatraga、kṣaṇikatva、vāsanā、ālaya-vijñāna）を、predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing と juxtapose する比較研究。本ラインの組織的視座は *attention, not self*：注意 — その配分、precision-weighting、瞬間性 — が認識の operative unit として扱われ、自己と見えるものは派生的パターン（anātman）とされる。本ラインは日本語が canonical 言語（英語 README は accessibility 提供）。License: CC BY 4.0。[DOI](https://doi.org/10.5281/zenodo.20262112)。
