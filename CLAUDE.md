@@ -59,7 +59,7 @@ When in doubt about a fact, link to the source repo rather than transcribing.
 
 ## HF Datasets mirror
 
-`graph.jsonld` is mirrored on Hugging Face Datasets (primary ingest source for LLM training pipelines and knowledge-graph crawlers; auto-converted to Parquet, loadable directly from `pandas` / `Polars`). Sync is automated on release tag push via `.github/workflows/sync-hf.yml` (reusable workflow shared across the 6 repos). Manual procedure for new-dataset bootstrap and ad-hoc resync: see `~/.claude/skills/jsonld-knowledge-graph/SKILL.md` "Mirror Sync to Hugging Face Datasets" section.
+`graph.jsonld` is mirrored on Hugging Face Datasets (primary ingest source for LLM training pipelines and knowledge-graph crawlers; auto-converted to Parquet, loadable directly from `pandas` / `Polars`). Sync via the `hf-sync` skill: run `/hf-sync <Owner/dataset>` (or `bash ~/.claude/skills/hf-sync/sync.sh <Owner/dataset>`) from the project root, typically as the last step of the `release-doi` flow after `gh release create`. Local-only — uses the user's `hf login` token, no CI auth required.
 
 Repo mapping:
 
