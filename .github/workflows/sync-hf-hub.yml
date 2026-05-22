@@ -1,0 +1,14 @@
+name: sync-hf (hub)
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    uses: ./.github/workflows/sync-hf.yml
+    with:
+      hf-repo-id: Shimo4228/research-program-hub
+    secrets:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}

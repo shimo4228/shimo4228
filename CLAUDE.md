@@ -59,7 +59,7 @@ When in doubt about a fact, link to the source repo rather than transcribing.
 
 ## HF Datasets mirror
 
-`graph.jsonld` is mirrored on Hugging Face Datasets (primary ingest source for LLM training pipelines and knowledge-graph crawlers; auto-converted to Parquet, loadable directly from `pandas` / `Polars`). Sync procedure on graph update: see `~/.claude/skills/jsonld-knowledge-graph/SKILL.md` "Mirror Sync to Hugging Face Datasets" section.
+`graph.jsonld` is mirrored on Hugging Face Datasets (primary ingest source for LLM training pipelines and knowledge-graph crawlers; auto-converted to Parquet, loadable directly from `pandas` / `Polars`). Sync is automated on release tag push via `.github/workflows/sync-hf.yml` (reusable workflow shared across the 6 repos). Manual procedure for new-dataset bootstrap and ad-hoc resync: see `~/.claude/skills/jsonld-knowledge-graph/SKILL.md` "Mirror Sync to Hugging Face Datasets" section.
 
 Repo mapping:
 
@@ -69,8 +69,8 @@ Repo mapping:
 | `shimo4228/agent-knowledge-cycle` | [`Shimo4228/agent-knowledge-cycle`](https://huggingface.co/datasets/Shimo4228/agent-knowledge-cycle) |
 | `shimo4228/contemplative-agent` (local clone: `contemplative-moltbook/`) | [`Shimo4228/contemplative-agent`](https://huggingface.co/datasets/Shimo4228/contemplative-agent) |
 | `shimo4228/agent-attribution-practice` | [`Shimo4228/agent-attribution-practice`](https://huggingface.co/datasets/Shimo4228/agent-attribution-practice) |
-| `shimo4228/authorship-strategy` | [`Shimo4228/authorship-strategy`](https://huggingface.co/datasets/Shimo4228/authorship-strategy) (Phase J to be created) |
-| `shimo4228/attention-not-self` | (HF mirror status TBD — line maintains its own mirror decision) |
+| `shimo4228/authorship-strategy` | [`Shimo4228/authorship-strategy`](https://huggingface.co/datasets/Shimo4228/authorship-strategy) |
+| `shimo4228/attention-not-self` | [`Shimo4228/attention-not-self`](https://huggingface.co/datasets/Shimo4228/attention-not-self) |
 
 The HF-side `README.md` (dataset card) is HF-customized (mirror notice, cross-links to sibling datasets) and is not synced from this repo on graph updates. To edit the dataset card, manually run `hf upload Shimo4228/research-program-hub README.md --repo-type dataset`.
 

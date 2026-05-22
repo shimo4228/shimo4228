@@ -1,0 +1,60 @@
+name: sync-hf (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      hf-repo-id:
+        description: Target Hugging Face dataset repo ID (e.g. Shimo4228/agent-knowledge-cycle)
+        required: true
+        type: string
+    secrets:
+      HF_TOKEN:
+        description: HF write token with access to the dataset repo
+        required: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: hf-sync-${{ inputs.hf-repo-id }}
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install --quiet huggingface_hub pyld
+
+      - name: Validate graph.jsonld with pyld
+        run: |
+          python - <<'PY'
+          import json, sys
+          from pyld import jsonld
+
+          with open("graph.jsonld") as f:
+              doc = json.load(f)
+
+          if "@context" not in doc:
+              sys.exit("graph.jsonld missing @context")
+          if not isinstance(doc.get("@graph"), list) or not doc["@graph"]:
+              sys.exit("graph.jsonld @graph must be a non-empty array")
+
+          expanded = jsonld.expand(doc)
+          print(f"Expanded into {len(expanded)} top-level nodes")
+          PY
+
+      - name: Flatten @graph into graph.jsonl
+        run: jq -c '.["@graph"][]' graph.jsonld > graph.jsonl
+
+      - name: Upload graph.jsonld and graph.jsonl to HF
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          MSG="Sync from ${GITHUB_REPOSITORY}@${GITHUB_REF_NAME} (${GITHUB_SHA::7})"
+          hf upload "${{ inputs.hf-repo-id }}" graph.jsonld --repo-type dataset --commit-message "$MSG"
+          hf upload "${{ inputs.hf-repo-id }}" graph.jsonl --repo-type dataset --commit-message "$MSG"
