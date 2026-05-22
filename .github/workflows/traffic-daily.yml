@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Fetch traffic and append JSONL
+      - name: Fetch traffic and merge JSONL
         uses: actions/github-script@v9
         with:
           github-token: ${{ secrets.TRAFFIC_PAT }}
@@ -37,17 +37,30 @@ jobs:
             const dataDir = 'traffic/data';
             const fetchedAt = new Date().toISOString();
             const todayUTC = fetchedAt.slice(0, 10);
+            // GitHub Traffic API back-fills clone/view counts for up to ~48h
+            // after the day ends. Treat any date within this window as mutable
+            // and overwrite with the latest API value; older dates are frozen.
+            const STALE_WINDOW_DAYS = 14;
+            const staleSince = new Date(Date.now() - STALE_WINDOW_DAYS * 86400000)
+              .toISOString().slice(0, 10);
+
+            const sameCounts = (a, b) =>
+              a.clones.count === b.clones.count &&
+              a.clones.uniques === b.clones.uniques &&
+              a.views.count === b.views.count &&
+              a.views.uniques === b.views.uniques;
 
             for (const repo of repos) {
               const filePath = path.join(dataDir, `${repo}.jsonl`);
 
-              const existing = new Set();
+              const existing = new Map();
               if (fs.existsSync(filePath)) {
                 const content = fs.readFileSync(filePath, 'utf8');
                 for (const line of content.split('\n')) {
                   if (!line.trim()) continue;
                   try {
-                    existing.add(JSON.parse(line).date);
+                    const obj = JSON.parse(line);
+                    existing.set(obj.date, obj);
                   } catch (e) {
                     core.warning(`Malformed line in ${filePath}: ${line.slice(0, 80)}`);
                   }
@@ -80,24 +93,35 @@ jobs:
               }
               const allDates = new Set([...Object.keys(clonesByDate), ...Object.keys(viewsByDate)]);
 
-              const newLines = [];
-              for (const date of [...allDates].sort()) {
+              const merged = new Map(existing);
+              let added = 0;
+              let updated = 0;
+              for (const date of allDates) {
                 if (date === todayUTC) continue;
-                if (existing.has(date)) continue;
-                newLines.push(JSON.stringify({
+                const entry = {
                   date,
                   clones: clonesByDate[date] || { count: 0, uniques: 0 },
                   views: viewsByDate[date] || { count: 0, uniques: 0 },
                   fetched_at: fetchedAt,
-                }));
+                };
+                const prev = merged.get(date);
+                if (!prev) {
+                  merged.set(date, entry);
+                  added++;
+                } else if (date >= staleSince && !sameCounts(prev, entry)) {
+                  merged.set(date, entry);
+                  updated++;
+                }
               }
 
-              if (newLines.length > 0) {
-                fs.appendFileSync(filePath, newLines.join('\n') + '\n');
-                core.info(`${repo}: appended ${newLines.length} day(s)`);
-              } else {
-                core.info(`${repo}: no new dates`);
+              if (added === 0 && updated === 0) {
+                core.info(`${repo}: no changes`);
+                continue;
               }
+              const sortedDates = [...merged.keys()].sort();
+              const output = sortedDates.map(d => JSON.stringify(merged.get(d))).join('\n') + '\n';
+              fs.writeFileSync(filePath, output);
+              core.info(`${repo}: added ${added}, updated ${updated}`);
             }
 
       - name: Commit and push
