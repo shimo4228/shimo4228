@@ -74,6 +74,7 @@ Companion Claude Code skills maintained alongside the AKC cycle but not part of 
 - [zenn-content](https://github.com/shimo4228/zenn-content): source of truth for the articles — Markdown sources, versioned. Many readers clone/fork directly
 - [Zenn](https://zenn.dev/shimo4228): browser view of the Japanese articles — Claude Code, AKC skills, harness design, contemplative-agent case studies
 - [Dev.to](https://dev.to/shimo4228): browser view of the English mirror
+- [Substack](https://substack.com/@shimo4228): newsletter / long-form essays
 
 ## Related
 

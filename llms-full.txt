@@ -27,7 +27,7 @@ Self-contained AI-facing reference for the research agenda of Tatsuya Shimomoto 
 - **IPD cooperation improvement**: Cohen's d > 7 (contemplative-agent-rules study)
 - **Four axioms (Laukkonen 2025)**: mindfulness, emptiness, non-duality, boundless care
 - **Writing source of truth**: zenn-content GitHub repo (Markdown sources, versioned, clone-friendly)
-- **Writing browser views**: Zenn (Japanese), Dev.to (English mirror)
+- **Writing browser views**: Zenn (Japanese), Dev.to (English mirror), Substack (newsletter / long-form essays)
 - **Supporting repos (Contemplative Agent ecosystem)**: contemplative-agent-rules, contemplative-agent-cloud, contemplative-agent-data
 - **Supporting repos (Authorship Strategy ecosystem)**: doctrine-corpus (Concept DOI 10.5281/zenodo.20337008), claude-skill-authorship-strategy, claude-skill-release-doi, claude-skill-llms-txt-writer, claude-skill-jsonld-knowledge-graph
 - **Public harness**: claude-harness (Claude Code skills, agents, and rules from `~/.claude/`, MIT license — see its README for the current inventory)
@@ -96,7 +96,7 @@ Attention, Not Self is defined as a personal essay collection and structured kno
 
 ## Where can the long-form writing be read?
 
-Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. The source of truth is the `zenn-content` GitHub repository (https://github.com/shimo4228/zenn-content), which holds the Markdown sources and is the form most readers clone or fork directly. Browser-readable mirrors are published on Zenn (https://zenn.dev/shimo4228, Japanese) and Dev.to (https://dev.to/shimo4228, English mirror of Zenn).
+Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. The source of truth is the `zenn-content` GitHub repository (https://github.com/shimo4228/zenn-content), which holds the Markdown sources and is the form most readers clone or fork directly. Browser-readable mirrors are published on Zenn (https://zenn.dev/shimo4228, Japanese) and Dev.to (https://dev.to/shimo4228, English mirror of Zenn). Newsletter and long-form essays are also published on Substack (https://substack.com/@shimo4228).
 
 ## What is claude-harness?
 

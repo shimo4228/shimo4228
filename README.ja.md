@@ -116,6 +116,7 @@ Supporting repository は、doctrine そのものを再表現するのではな�
 - **[zenn-content](https://github.com/shimo4228/zenn-content)** — 記事本体の source of truth。Markdown ソースをここで版管理しており、多くの読者は直接 clone / fork して読む。下記 Zenn / Dev.to はブラウザ閲覧用のミラー。
 - **[Zenn](https://zenn.dev/shimo4228)** — 日本語記事のブラウザ版。Claude Code と AI エージェント開発、現在の焦点は AKC スキル、ハーネス設計、contemplative-agent の事例研究。
 - **[Dev.to](https://dev.to/shimo4228)** — 英語ミラーのブラウザ版。
+- **[Substack](https://substack.com/@shimo4228)** — ニュースレター / 長文エッセイ。
 
 ---
 
