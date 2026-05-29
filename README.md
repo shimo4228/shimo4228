@@ -1,6 +1,6 @@
 Language: English | [日本語](README.ja.md)
 
-# Shimo (@shimo4228)
+# Tatsuya Shimomoto (@shimo4228)
 <details>
 <summary>AI-facing reading order</summary>
 
