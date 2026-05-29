@@ -1,6 +1,9 @@
 Language: [English](README.md) | 日本語
 
 # Shimo (@shimo4228)
+
+> AI エージェント設計と、その隣接領域である著者性・認知をめぐる 5 本の並走研究ラインへの索引。いずれも Zenodo 引用可能で、各ラインは個別 repo にある。
+
 <details>
 <summary>AI 向け推奨読み順</summary>
 

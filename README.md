@@ -1,6 +1,9 @@
 Language: English | [日本語](README.ja.md)
 
 # Tatsuya Shimomoto (@shimo4228)
+
+> An index to five parallel research lines on AI agent design and adjacent questions of authorship and cognition — all Zenodo-citable, each in its own repo.
+
 <details>
 <summary>AI-facing reading order</summary>
 
