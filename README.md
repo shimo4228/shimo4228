@@ -123,6 +123,7 @@ Writing refers to the long-form counterpart to the repos above — context, fail
 - **[Zenn](https://zenn.dev/shimo4228)** — Browser view of the Japanese articles. Claude Code and AI agent development; current focus: AKC skills, harness design, contemplative-agent case studies.
 - **[Dev.to](https://dev.to/shimo4228)** — Browser view of the English mirror.
 - **[Substack](https://substack.com/@shimo4228)** — Newsletter / long-form essays.
+- **[SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068)** — Academic working papers, cross-deposited with Zenodo. The Zenodo concept DOIs are canonical; per-paper records live in each line's repo.
 
 ---
 

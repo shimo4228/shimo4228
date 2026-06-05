@@ -122,6 +122,7 @@ Supporting repository は、doctrine そのものを再表現するのではな�
 - **[Zenn](https://zenn.dev/shimo4228)** — 日本語記事のブラウザ版。Claude Code と AI エージェント開発、現在の焦点は AKC スキル、ハーネス設計、contemplative-agent の事例研究。
 - **[Dev.to](https://dev.to/shimo4228)** — 英語ミラーのブラウザ版。
 - **[Substack](https://substack.com/@shimo4228)** — ニュースレター / 長文エッセイ。
+- **[SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068)** — 学術 working paper。Zenodo と二重 deposit（正準は Zenodo の concept DOI、論文ごとの記録は各 line repo にある）。
 
 ---
 
