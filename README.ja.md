@@ -4,6 +4,8 @@ Language: [English](README.md) | 日本語
 
 > AI エージェント設計と、その隣接領域である著者性・認知をめぐる 5 本の並走研究ラインへの索引。いずれも Zenodo 引用可能で、各ラインは個別 repo にある。
 
+限られた環境で工夫して作ることが好き — beats, meditation, public service, AI agents。長文は [Zenn](https://zenn.dev/shimo4228)（日本語）と [Substack](https://substack.com/@shimo4228)（英語）に。
+
 <details>
 <summary>AI 向け推奨読み順</summary>
 
