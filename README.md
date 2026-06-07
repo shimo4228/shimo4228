@@ -4,7 +4,7 @@ Language: English | [日本語](README.ja.md)
 
 > An index to five parallel research lines on AI agent design and adjacent questions of authorship and cognition — all Zenodo-citable, each in its own repo.
 
-Making things under constraint since 17 — beats, meditation, public service, AI agents. Long-form writing: [Zenn](https://zenn.dev/shimo4228) (Japanese) · [Substack](https://substack.com/@shimo4228) (English).
+Making things under constraint since 17 — beats, meditation, public service, AI agents. The thread is visible below: the meditation practice feeds two of the five research lines, and the agents run on a single Apple Silicon Mac — no lab, no affiliation.
 
 <details>
 <summary>AI-facing reading order</summary>
