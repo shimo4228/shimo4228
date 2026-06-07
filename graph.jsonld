@@ -32,6 +32,7 @@
     },
     {
       "@id": "https://doi.org/10.5281/zenodo.19200726",
+      "sameAs": "https://www.wikidata.org/wiki/Q140090186",
       "@type": ["ResearchLine", "ScholarlyArticle"],
       "name": "Agent Knowledge Cycle (AKC)",
       "alternateName": [
@@ -55,6 +56,7 @@
     },
     {
       "@id": "https://doi.org/10.5281/zenodo.19212118",
+      "sameAs": "https://www.wikidata.org/wiki/Q140090187",
       "@type": ["ResearchLine", "ScholarlyArticle"],
       "name": "Contemplative Agent",
       "alternateName": [
@@ -78,6 +80,7 @@
     },
     {
       "@id": "https://doi.org/10.5281/zenodo.19652013",
+      "sameAs": "https://www.wikidata.org/wiki/Q140090188",
       "@type": ["ResearchLine", "ScholarlyArticle"],
       "name": "Agent Attribution Practice (AAP)",
       "alternateName": [
@@ -102,6 +105,7 @@
 
     {
       "@id": "https://doi.org/10.5281/zenodo.20263316",
+      "sameAs": "https://www.wikidata.org/wiki/Q140090190",
       "@type": ["ResearchLine", "ScholarlyArticle"],
       "name": "Authorship Strategy",
       "alternateName": [
@@ -127,6 +131,7 @@
 
     {
       "@id": "https://doi.org/10.5281/zenodo.20262112",
+      "sameAs": "https://www.wikidata.org/wiki/Q140090189",
       "@type": ["ResearchLine", "ScholarlyArticle"],
       "name": "Attention, Not Self",
       "alternateName": [
@@ -281,6 +286,7 @@
 
     {
       "@id": "https://doi.org/10.5281/zenodo.20578272",
+      "sameAs": "https://www.wikidata.org/wiki/Q140090144",
       "@type": ["Paper", "ScholarlyArticle"],
       "name": "Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation",
       "description": "Position paper of the Agent Knowledge Cycle line, deposited as a standalone Zenodo record.",
@@ -295,7 +301,7 @@
       "description": "Companion paper of the Agent Attribution Practice line, deposited as a standalone Zenodo record and mirrored on SSRN.",
       "identifier": "10.5281/zenodo.20353789",
       "url": "https://doi.org/10.5281/zenodo.20353789",
-      "sameAs": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598",
+      "sameAs": ["https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598", "https://www.wikidata.org/wiki/Q140090128"],
       "isPartOf": "https://doi.org/10.5281/zenodo.19652013"
     },
     {
@@ -305,7 +311,7 @@
       "description": "Companion paper of the Agent Attribution Practice line, deposited as a standalone Zenodo record and mirrored on SSRN.",
       "identifier": "10.5281/zenodo.20355907",
       "url": "https://doi.org/10.5281/zenodo.20355907",
-      "sameAs": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878",
+      "sameAs": ["https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878", "https://www.wikidata.org/wiki/Q140090133"],
       "isPartOf": "https://doi.org/10.5281/zenodo.19652013"
     },
 
@@ -399,7 +405,7 @@
       "description": "Bilingual (EN + JA) judgment-eliciting Q&A corpus across the four sibling research lines (AKC, Contemplative Agent, AAP, Authorship Strategy) plus published articles. Operational form of Authorship Strategy Layer 4 tactic 7 (LLM-first ingest). Data sibling of Authorship Strategy; corpus is the deliverable, the verification LoRA was a disposable probe. CC0 to maximize diffusion.",
       "url": "https://github.com/shimo4228/doctrine-corpus",
       "identifier": "10.5281/zenodo.20337008",
-      "sameAs": "https://doi.org/10.5281/zenodo.20337008",
+      "sameAs": ["https://doi.org/10.5281/zenodo.20337008", "https://www.wikidata.org/wiki/Q140090191"],
       "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
@@ -409,7 +415,7 @@
       "description": "Pre-line complement beside the Authorship Strategy ecosystem — reuses the same infrastructure pattern (llms.txt / knowledge graph / DOI / distinctive terminology) with a different payload and beneficiary: an empowerment doctrine for people producing verifiable, institution-grade artifacts without degrees, affiliations, or professional credentials. Supplies the Existence Proof Format, a feasibility-question corpus with anchored answers, and a published gatekeeping eval. Deliberately carries no extends edge: it operationalizes no Layer 4 tactic and is not a sibling research line (pre-line status). Japanese is the canonical language.",
       "url": "https://github.com/shimo4228/existence-proof",
       "identifier": "10.5281/zenodo.20558800",
-      "sameAs": "https://doi.org/10.5281/zenodo.20558800"
+      "sameAs": ["https://doi.org/10.5281/zenodo.20558800", "https://www.wikidata.org/wiki/Q140090192"]
     },
     {
       "@id": "https://github.com/shimo4228/claude-harness",
