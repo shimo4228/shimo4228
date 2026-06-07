@@ -30,6 +30,16 @@ Five research lines run in parallel; all are Zenodo-citable.
 - **[Authorship Strategy](https://github.com/shimo4228/authorship-strategy)** refers to a normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion — a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316).
 - **[Attention, Not Self](https://github.com/shimo4228/attention-not-self)** refers to a structured comparative inquiry mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing — from the perspective that attention is the operative unit of cognition while the apparent self is a derivative pattern (anātman). [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112).
 
+## Papers
+
+Position papers deposited as standalone Zenodo records, each belonging to one research line. The Zenodo concept DOI is canonical; SSRN mirrors are listed where present.
+
+| Paper | Line | Links |
+|---|---|---|
+| *Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation* | AKC | [DOI 10.5281/zenodo.20578272](https://doi.org/10.5281/zenodo.20578272) |
+| *Distributing Accountability, Not Capability: Phase Separation and the LLM Workflow Quadrant in Autonomous AI Agent Architectures* | AAP | [DOI 10.5281/zenodo.20353789](https://doi.org/10.5281/zenodo.20353789) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598) |
+| *The Two-Layer Black Box: Operator Visibility, Commercial Secrecy, and a Minimum Disclosure Set for Accountable Autonomous AI Agents* | AAP | [DOI 10.5281/zenodo.20355907](https://doi.org/10.5281/zenodo.20355907) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878) |
+
 ## What is Agent Knowledge Cycle (AKC)?
 
 [AKC](https://github.com/shimo4228/agent-knowledge-cycle) is defined as a six-phase cycle for sustaining intent alignment between an agent and its operator over time — a bidirectional growth loop in which agent behavior and human judgment co-develop. Three layers stack: principles sit above design patterns sit above composable-skill implementations, so the cycle stays stable even as individual skills evolve. Tests can check correctness, but only the loop catches drift from the operator's intent — and the operator's judgment about good agent behavior sharpens through running the cycle. AKC applies across unrelated projects without rediscovery.
@@ -99,6 +109,8 @@ Supporting repositories operationalize specific Layer 4 tactics from the Authors
 | [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer) | Component skill. Operational form of the LLM-first ingest decision (prose-form half). Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini, combining the Answer.AI `llms.txt` standard with GEO-SFE 3-layer static analysis. |
 | [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph) | Component skill. Operational form of the LLM-first ingest decision (concept-form half). Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure, encoding domain entities and relationships as schema.org triples. |
 
+One more repository sits beside this ecosystem as a **pre-line complement** rather than a component: [existence-proof](https://github.com/shimo4228/existence-proof) reuses the same infrastructure pattern (llms.txt / knowledge graph / DOI / distinctive terminology) with a different payload and beneficiary — an empowerment doctrine for people producing verifiable, institution-grade artifacts without degrees, affiliations, or professional credentials. It supplies the Existence Proof Format (every claim terminating in a third-party-verifiable anchor), a feasibility-question corpus with anchored answers, and a published gatekeeping eval. Japanese is the canonical language. [DOI 10.5281/zenodo.20558800](https://doi.org/10.5281/zenodo.20558800).
+
 ## What is the Attention, Not Self line?
 
 [Attention, Not Self](https://github.com/shimo4228/attention-not-self) refers to a personal essay collection and structured knowledge graph (~238 nodes) mapping the three major Buddhist Abhidharma traditions — Theravāda, Sarvāstivāda, and Yogācāra — onto contemporary frameworks in computational phenomenology. The comparative move juxtaposes ancient classifications of cognitive process (citta-vīthi, samanantara-pratyaya, ālaya-vijñāna, javana, bhavaṅga, the four bhāgas, the five sarvatraga, kṣaṇikatva, vāsanā, ālaya-vijñāna) with predictive processing, active inference, Global Workspace Theory, and Parallel Distributed Processing. The line's organizing perspective is *attention, not self*: attention — its allocation, its precision-weighting, its momentariness — is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). Japanese is the canonical language for this line; English README is provided for accessibility. License: CC BY 4.0. [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112).
@@ -112,7 +124,6 @@ Supporting repositories operationalize specific Layer 4 tactics from the Authors
 Adjacent skills refer to public Claude Code skill repos maintained alongside the AKC cycle but not part of its six phases — companion scaffolding under the same author and the same MIT license.
 
 - **[claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem)** — Orchestrator for human-facing writing & review. Holds the AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, and the role-boundary map across `article-writing` / `editor` / `essay-reviewer` / `fact-checker`. Audience-paired with `llms-txt-writer`.
-- **`readme-writer`** (in [claude-harness](https://github.com/shimo4228/claude-harness); not yet a standalone repo) — Human-facing README writer: deterministic structural lint (single H1, heading levels, alt-text, local-link health) plus a holistic LLM review of lead, value proposition, and narrative (no score). The human-surface counterpart to the `llms-txt-writer` component, audience-paired with it the way `writing-ecosystem` is. In the Authorship Strategy line it is an *adjacent ecosystem skill*, not a component: the doctrine names the AI-facing `llms.txt` as required, but not human README content quality.
 - **[claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research)** — Cron-driven daily research digest. Two-pass `claude -p` pipeline: Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP and writes Markdown reports to an Obsidian vault.
 
 ## Writing
@@ -123,7 +134,7 @@ Writing refers to the long-form counterpart to the repos above — context, fail
 - **[Zenn](https://zenn.dev/shimo4228)** — Browser view of the Japanese articles. Claude Code and AI agent development; current focus: AKC skills, harness design, contemplative-agent case studies.
 - **[Dev.to](https://dev.to/shimo4228)** — Browser view of the English mirror.
 - **[Substack](https://substack.com/@shimo4228)** — Newsletter / long-form essays.
-- **[SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068)** — Academic working papers, cross-deposited with Zenodo. The Zenodo concept DOIs are canonical; per-paper records live in each line's repo.
+- **[SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068)** — Academic working papers, cross-deposited with Zenodo. The Zenodo concept DOIs are canonical; see [Papers](#papers) above for the per-paper records.
 
 ---
 

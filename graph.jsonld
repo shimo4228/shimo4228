@@ -6,6 +6,7 @@
     "EcosystemRepo": "shimo:EcosystemRepo",
     "Concept": "shimo:Concept",
     "ExternalReference": "shimo:ExternalReference",
+    "Paper": "shimo:Paper",
     "siblingOf": {"@id": "shimo:siblingOf", "@type": "@id"},
     "derivesFrom": {"@id": "shimo:derivesFrom", "@type": "@id"},
     "definesConcept": {"@id": "shimo:definesConcept", "@type": "@id"},
@@ -279,6 +280,36 @@
     },
 
     {
+      "@id": "https://doi.org/10.5281/zenodo.20578272",
+      "@type": ["Paper", "ScholarlyArticle"],
+      "name": "Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation",
+      "description": "Position paper of the Agent Knowledge Cycle line, deposited as a standalone Zenodo record.",
+      "identifier": "10.5281/zenodo.20578272",
+      "url": "https://doi.org/10.5281/zenodo.20578272",
+      "isPartOf": "https://doi.org/10.5281/zenodo.19200726"
+    },
+    {
+      "@id": "https://doi.org/10.5281/zenodo.20353789",
+      "@type": ["Paper", "ScholarlyArticle"],
+      "name": "Distributing Accountability, Not Capability: Phase Separation and the LLM Workflow Quadrant in Autonomous AI Agent Architectures",
+      "description": "Companion paper of the Agent Attribution Practice line, deposited as a standalone Zenodo record and mirrored on SSRN.",
+      "identifier": "10.5281/zenodo.20353789",
+      "url": "https://doi.org/10.5281/zenodo.20353789",
+      "sameAs": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598",
+      "isPartOf": "https://doi.org/10.5281/zenodo.19652013"
+    },
+    {
+      "@id": "https://doi.org/10.5281/zenodo.20355907",
+      "@type": ["Paper", "ScholarlyArticle"],
+      "name": "The Two-Layer Black Box: Operator Visibility, Commercial Secrecy, and a Minimum Disclosure Set for Accountable Autonomous AI Agents",
+      "description": "Companion paper of the Agent Attribution Practice line, deposited as a standalone Zenodo record and mirrored on SSRN.",
+      "identifier": "10.5281/zenodo.20355907",
+      "url": "https://doi.org/10.5281/zenodo.20355907",
+      "sameAs": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878",
+      "isPartOf": "https://doi.org/10.5281/zenodo.19652013"
+    },
+
+    {
       "@id": "https://github.com/shimo4228/claude-skill-search-first",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "search-first",
@@ -370,6 +401,15 @@
       "identifier": "10.5281/zenodo.20337008",
       "sameAs": "https://doi.org/10.5281/zenodo.20337008",
       "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
+      "@id": "https://github.com/shimo4228/existence-proof",
+      "@type": ["EcosystemRepo", "CreativeWork"],
+      "name": "existence-proof",
+      "description": "Pre-line complement beside the Authorship Strategy ecosystem — reuses the same infrastructure pattern (llms.txt / knowledge graph / DOI / distinctive terminology) with a different payload and beneficiary: an empowerment doctrine for people producing verifiable, institution-grade artifacts without degrees, affiliations, or professional credentials. Supplies the Existence Proof Format, a feasibility-question corpus with anchored answers, and a published gatekeeping eval. Deliberately carries no extends edge: it operationalizes no Layer 4 tactic and is not a sibling research line (pre-line status). Japanese is the canonical language.",
+      "url": "https://github.com/shimo4228/existence-proof",
+      "identifier": "10.5281/zenodo.20558800",
+      "sameAs": "https://doi.org/10.5281/zenodo.20558800"
     },
     {
       "@id": "https://github.com/shimo4228/claude-harness",

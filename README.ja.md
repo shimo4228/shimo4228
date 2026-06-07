@@ -30,6 +30,16 @@ AI エージェントの振る舞いを、操作者の変わり続ける意図�
 - **[Authorship Strategy](https://github.com/shimo4228/authorship-strategy)** とは、LLM 経由の拡散下で著者として残るための規範的 framework、戦術カタログ、経験的ベースラインを指す — 3 軸反転（scarcity から diffusion へ、exclusivity から derivation へ、enclosure から openness へ）と 4 層判断 stack（Authenticity、Attribution Diffusion、Idea vs Scaffold、Tactics）。[DOI](https://doi.org/10.5281/zenodo.20263316)。
 - **[Attention, Not Self](https://github.com/shimo4228/attention-not-self)** とは、3 大ブッダの Abhidharma 伝統（Theravāda、Sarvāstivāda、Yogācāra）を現代の計算論的現象学（predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing）と対応させる、構造化された比較研究を指す — 注意こそが認識の operative unit であり、自己と見えるものは派生的パターンに過ぎない（anātman）という立場から。[DOI](https://doi.org/10.5281/zenodo.20262112)。
 
+## Papers
+
+各研究ラインから独立した Zenodo record として deposit した position paper。正準は Zenodo の concept DOI で、SSRN ミラーがある場合は併記する。
+
+| Paper | Line | Links |
+|---|---|---|
+| *Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation* | AKC | [DOI 10.5281/zenodo.20578272](https://doi.org/10.5281/zenodo.20578272) |
+| *Distributing Accountability, Not Capability: Phase Separation and the LLM Workflow Quadrant in Autonomous AI Agent Architectures* | AAP | [DOI 10.5281/zenodo.20353789](https://doi.org/10.5281/zenodo.20353789) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598) |
+| *The Two-Layer Black Box: Operator Visibility, Commercial Secrecy, and a Minimum Disclosure Set for Accountable Autonomous AI Agents* | AAP | [DOI 10.5281/zenodo.20355907](https://doi.org/10.5281/zenodo.20355907) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878) |
+
 ## Agent Knowledge Cycle (AKC) とは？
 
 [AKC](https://github.com/shimo4228/agent-knowledge-cycle) とは、エージェントと操作者の意図のアラインメントを時間を超えて維持するための 6 フェーズ循環アーキテクチャを指す — エージェントの振る舞いと人間の判断が共に育つ双方向成長ループである。原則の上にデザインパターン、その上に実装（composable skills）が積み重なり、個々のスキルが入れ替わっても循環構造は安定して残る。テストは正しさを検査できるが、操作者の意図とのズレを catch できるのはこのループだけであり、循環を回す中で「良いエージェントの振る舞いとは何か」という操作者の判断もまた研ぎ澄まされていく。AKC は複数プロジェクト横断で適用できる。
@@ -99,6 +109,8 @@ Supporting repository は、doctrine そのものを再表現するのではな�
 | [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer) | Component skill。LLM-first ingest 決定の prose-form 側 operational form。AI 検索エンジン (ChatGPT / Perplexity / Gemini) に引用されることを最適化した文書 (`llms.txt` / `llms-full.txt` / FAQ / 用語集) を書くスキル。Answer.AI `llms.txt` 標準 + GEO-SFE 3 階層静的解析の両輪。 |
 | [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph) | Component skill。LLM-first ingest 決定の concept-form 側 operational form。概念レベルの構造が安定したプロジェクト向けに、`llms.txt` の companion となる JSON-LD ナレッジグラフ (`graph.jsonld`) を設計・出荷する。ドメインエンティティと関係を schema.org triple として encode する。 |
 
+この ecosystem の脇には、component ではなく **pre-line の complement** として並ぶリポジトリが 1 つある: [existence-proof](https://github.com/shimo4228/existence-proof) は同じ infrastructure パターン（llms.txt / knowledge graph / DOI / 固有用語）を、異なる payload と受益者で再利用する — 学位・所属・職業資格なしに、第三者検証可能な institution-grade の成果物を作る層のための empowerment doctrine。Existence Proof Format（すべての claim が第三者検証可能な anchor で終端する記録フォーマット）、anchored answer 付きの feasibility-question corpus、公開 gatekeeping eval を備える。正準言語は日本語。[DOI 10.5281/zenodo.20558800](https://doi.org/10.5281/zenodo.20558800)。
+
 ## Attention, Not Self ラインとは？
 
 [Attention, Not Self](https://github.com/shimo4228/attention-not-self) とは、3 大ブッダの Abhidharma 伝統 — Theravāda、Sarvāstivāda、Yogācāra — を現代の計算論的現象学に対応させる、個人的なエッセイ集と構造化ナレッジグラフ（〜238 ノード）を指す。古代の認識過程分類（citta-vīthi、samanantara-pratyaya、ālaya-vijñāna、javana、bhavaṅga、four bhāgas、five sarvatraga、kṣaṇikatva、vāsanā、ālaya-vijñāna）を、predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing と juxtapose する比較研究。本ラインの組織的視座は *attention, not self*：注意 — その配分、precision-weighting、瞬間性 — が認識の operative unit として扱われ、自己と見えるものは派生的パターン（anātman）とされる。本ラインは日本語が canonical 言語（英語 README は accessibility 提供）。License: CC BY 4.0。[DOI](https://doi.org/10.5281/zenodo.20262112)。
@@ -122,7 +134,7 @@ Supporting repository は、doctrine そのものを再表現するのではな�
 - **[Zenn](https://zenn.dev/shimo4228)** — 日本語記事のブラウザ版。Claude Code と AI エージェント開発、現在の焦点は AKC スキル、ハーネス設計、contemplative-agent の事例研究。
 - **[Dev.to](https://dev.to/shimo4228)** — 英語ミラーのブラウザ版。
 - **[Substack](https://substack.com/@shimo4228)** — ニュースレター / 長文エッセイ。
-- **[SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068)** — 学術 working paper。Zenodo と二重 deposit（正準は Zenodo の concept DOI、論文ごとの記録は各 line repo にある）。
+- **[SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068)** — 学術 working paper。Zenodo と二重 deposit（正準は Zenodo の concept DOI。論文ごとの記録は上の [Papers](#papers) を参照）。
 
 ---
 

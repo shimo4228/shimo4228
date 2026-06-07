@@ -49,10 +49,19 @@
 - [claude-skill-release-doi](https://github.com/shimo4228/claude-skill-release-doi): component skill — release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook
 - [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer): component skill — operational form of the LLM-first ingest decision (prose-form half). Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Answer.AI `llms.txt` standard + GEO-SFE 3-layer static analysis
 - [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph): component skill — operational form of the LLM-first ingest decision (concept-form half). Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure
+- [existence-proof](https://github.com/shimo4228/existence-proof): pre-line complement — not a component (it operationalizes no Layer 4 tactic) and not a sibling research line (pre-line status). Reuses the same infrastructure pattern (llms.txt / knowledge graph / DOI / distinctive terminology) with a different payload and beneficiary: an empowerment doctrine for people producing verifiable, institution-grade artifacts without degrees, affiliations, or professional credentials. Supplies the Existence Proof Format, a feasibility-question corpus with anchored answers, and a published gatekeeping eval. Japanese is the canonical language. Concept DOI 10.5281/zenodo.20558800
 
 ## Attention, Not Self
 
 - [attention-not-self](https://github.com/shimo4228/attention-not-self): personal essay collection and structured knowledge graph (~238 nodes) mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of "attention, not self": attention is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). Japanese is the canonical language. License: CC BY 4.0. Concept DOI 10.5281/zenodo.20262112
+
+## Papers
+
+Position papers deposited as standalone Zenodo records, each belonging to one research line. The Zenodo concept DOI is canonical; SSRN mirrors listed where present.
+
+- [Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation](https://doi.org/10.5281/zenodo.20578272): AKC line position paper. Concept DOI 10.5281/zenodo.20578272
+- [Distributing Accountability, Not Capability: Phase Separation and the LLM Workflow Quadrant in Autonomous AI Agent Architectures](https://doi.org/10.5281/zenodo.20353789): AAP line companion paper. Concept DOI 10.5281/zenodo.20353789. [SSRN mirror](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598)
+- [The Two-Layer Black Box: Operator Visibility, Commercial Secrecy, and a Minimum Disclosure Set for Accountable Autonomous AI Agents](https://doi.org/10.5281/zenodo.20355907): AAP line companion paper. Concept DOI 10.5281/zenodo.20355907. [SSRN mirror](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878)
 
 ## Open source harness
 
@@ -75,7 +84,7 @@ Companion Claude Code skills maintained alongside the AKC cycle but not part of 
 - [Zenn](https://zenn.dev/shimo4228): browser view of the Japanese articles — Claude Code, AKC skills, harness design, contemplative-agent case studies
 - [Dev.to](https://dev.to/shimo4228): browser view of the English mirror
 - [Substack](https://substack.com/@shimo4228): newsletter / long-form essays
-- [SSRN author page](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068): academic working papers, cross-deposited with Zenodo — the Zenodo concept DOIs are canonical
+- [SSRN author page](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068): academic working papers, cross-deposited with Zenodo — the Zenodo concept DOIs are canonical; per-paper records in the Papers section above
 
 ## Related
 

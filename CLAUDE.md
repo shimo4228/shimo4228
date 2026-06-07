@@ -22,11 +22,12 @@ This repo is a **hub**, not a source of truth. Its README / `llms.txt` / `llms-f
 - A **new structural concept** appears in a line (e.g. AAP added `Four Business AI Quadrants` — that earned a 1-句 mention).
 - An **ecosystem repo** is added or retired.
 - A **new research line** starts.
+- A **paper is deposited** from a line as a standalone Zenodo record — add a membership row to the Papers section (all four surfaces) and a `Paper` node in `graph.jsonld`. Concept DOI only; rows are never edited afterwards (paper records are immutable once deposited).
 - The 3 concept DOIs themselves move (rare; only if a record is restructured on Zenodo).
 
 Routine `vX.Y.Z` releases of any line should require **zero edits** here.
 
-The `graph.jsonld` artifact follows the same triggers: a new `Concept`, `EcosystemRepo`, or `ResearchLine` adds the corresponding node and edges; nothing else does. The schema has no fields for versions, counts, or enumerations of churning sets, so routine releases cannot leak into the graph even by accident.
+The `graph.jsonld` artifact follows the same triggers: a new `Concept`, `EcosystemRepo`, `ResearchLine`, or `Paper` adds the corresponding node and edges; nothing else does. `Paper` nodes attach to their line via schema.org `isPartOf` (no custom edge type). The schema has no fields for versions, counts, or enumerations of churning sets, so routine releases cannot leak into the graph even by accident.
 
 ## Files in scope
 
