@@ -23,12 +23,12 @@
 ## Agent Knowledge Cycle (AKC)
 
 - [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase bidirectional growth loop for sustaining agent–operator intent alignment over time, in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
-- [search-first](https://github.com/shimo4228/claude-skill-search-first): Research phase — search existing solutions before building
-- [learn-eval](https://github.com/shimo4228/claude-skill-learn-eval): Extract phase — extract reusable patterns with quality gates
-- [skill-stocktake](https://github.com/shimo4228/claude-skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
-- [rules-distill](https://github.com/shimo4228/claude-skill-rules-distill): Promote phase — distill cross-cutting principles into rules
-- [skill-comply](https://github.com/shimo4228/claude-skill-comply): Measure phase — test whether agents follow their skills and rules
-- [context-sync](https://github.com/shimo4228/claude-skill-context-sync): Maintain phase — audit docs for role overlaps and stale content
+- [search-first](https://github.com/shimo4228/search-first): Research phase — search existing solutions before building
+- [learn-eval](https://github.com/shimo4228/learn-eval): Extract phase — extract reusable patterns with quality gates
+- [skill-stocktake](https://github.com/shimo4228/skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
+- [rules-distill](https://github.com/shimo4228/rules-distill): Promote phase — distill cross-cutting principles into rules
+- [skill-comply](https://github.com/shimo4228/skill-comply): Measure phase — test whether agents follow their skills and rules
+- [context-sync](https://github.com/shimo4228/context-sync): Maintain phase — audit docs for role overlaps and stale content
 
 ## Contemplative Agent
 
@@ -45,10 +45,12 @@
 
 - [authorship-strategy](https://github.com/shimo4228/authorship-strategy): normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). Tactical ADRs cluster into the identifier-federation triplet, a maintenance-discipline pair, an LLM-first ingest decision (artifacts deploy a prose-form navigator plus a concept-form knowledge graph as a complementary pair), a metric-rejection decision (human-attention platform signals excluded as success metrics), and a diffusion-mechanism pair (attribution diffusion split into parametric and retrieval channels; dual entry points rebalanced to asymmetric roles). Vocabulary note: "attribution" in this line means credit for source — disjoint from AAP's accountability for action. Concept DOI 10.5281/zenodo.20263316
 - [doctrine-corpus](https://github.com/shimo4228/doctrine-corpus): Layer 4 tactic 7 (LLM-first ingest) implementation — bilingual (EN + JA) judgment-eliciting Q&A corpus across the four sibling research lines, deposited CC0. Data sibling of authorship-strategy. Corpus is the deliverable; the verification LoRA was a disposable probe (FAIL verdict on the v0.1.0 probe, corpus retained per the corpus-as-primary-artifact policy). Concept DOI 10.5281/zenodo.20337008
-- [claude-skill-authorship-strategy](https://github.com/shimo4228/claude-skill-authorship-strategy): component skill — operational form of the four-layer judgment checklist, loadable into LLM-based coding agents as a rule set
-- [claude-skill-release-doi](https://github.com/shimo4228/claude-skill-release-doi): component skill — release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook
-- [claude-skill-llms-txt-writer](https://github.com/shimo4228/claude-skill-llms-txt-writer): component skill — operational form of the LLM-first ingest decision (prose-form half). Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Answer.AI `llms.txt` standard + GEO-SFE 3-layer static analysis
-- [claude-skill-jsonld-knowledge-graph](https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph): component skill — operational form of the LLM-first ingest decision (concept-form half). Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure
+- [authorship-strategy-skill](https://github.com/shimo4228/authorship-strategy-skill): component skill — operational form of the four-layer judgment checklist, loadable into LLM-based coding agents as a rule set
+- [release-doi](https://github.com/shimo4228/release-doi): component skill — release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook
+- [llms-txt-writer](https://github.com/shimo4228/llms-txt-writer): component skill — operational form of the LLM-first ingest decision (prose-form half). Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Answer.AI `llms.txt` standard + GEO-SFE 3-layer static analysis
+- [jsonld-knowledge-graph](https://github.com/shimo4228/jsonld-knowledge-graph): component skill — operational form of the LLM-first ingest decision (concept-form half). Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure
+- [readme-writer](https://github.com/shimo4228/readme-writer): component skill — human-surface counterpart to the LLM-first ingest pair. Writes the single canonical human + search + AI-Overviews README, splitting deterministic structural lint from never-scored holistic review
+- [wikidata-federation](https://github.com/shimo4228/wikidata-federation): component skill — extends the identifier-federation triplet to Wikidata. Registers researchers / papers / repos as QIDs cross-linked with ORCID / DOI / `graph.jsonld` sameAs
 - [existence-proof](https://github.com/shimo4228/existence-proof): pre-line complement — not a component (it operationalizes no Layer 4 tactic) and not a sibling research line (pre-line status). Reuses the same infrastructure pattern (llms.txt / knowledge graph / DOI / distinctive terminology) with a different payload and beneficiary: an empowerment doctrine for people producing verifiable, institution-grade artifacts without degrees, affiliations, or professional credentials. Supplies the Existence Proof Format, a feasibility-question corpus with anchored answers, and a published gatekeeping eval. Japanese is the canonical language. Concept DOI 10.5281/zenodo.20558800
 
 ## Attention, Not Self
@@ -72,7 +74,8 @@ Position papers deposited as standalone Zenodo records, each belonging to one re
 Companion Claude Code skills maintained alongside the AKC cycle but not part of its six phases. Same author, same MIT license.
 
 - [claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem): orchestrator for human-facing writing & review — AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, role boundaries across article-writing / editor / essay-reviewer / fact-checker. Audience-paired with `llms-txt-writer`
-- [claude-skill-daily-research](https://github.com/shimo4228/claude-skill-daily-research): cron-driven daily research digest — two-pass `claude -p` pipeline (Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP, writes Markdown to an Obsidian vault)
+- [daily-research](https://github.com/shimo4228/daily-research): cron-driven daily research digest — two-pass `claude -p` pipeline (Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP, writes Markdown to an Obsidian vault)
+- [claude-skill-paper-ecosystem](https://github.com/shimo4228/claude-skill-paper-ecosystem): academic paper write/review bundle (SSRN / arXiv / Zenodo / journals) — orchestrator skill + draft skill + five reviewer agents (paper-reviewer / source-fidelity-checker / vocabulary-consistency-checker / clarity-reviewer / citation-formatter), bundled together. Keeps the claude-skill- prefix because it bundles Claude Code subagents
 
 ## Data
 

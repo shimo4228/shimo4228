@@ -316,56 +316,56 @@
     },
 
     {
-      "@id": "https://github.com/shimo4228/claude-skill-search-first",
+      "@id": "https://github.com/shimo4228/search-first",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "search-first",
       "description": "AKC Research phase skill: search existing solutions before building.",
-      "url": "https://github.com/shimo4228/claude-skill-search-first",
+      "url": "https://github.com/shimo4228/search-first",
       "extends": "https://doi.org/10.5281/zenodo.19200726",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-learn-eval",
+      "@id": "https://github.com/shimo4228/learn-eval",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "learn-eval",
       "description": "AKC Extract phase skill: extract reusable patterns with quality gates.",
-      "url": "https://github.com/shimo4228/claude-skill-learn-eval",
+      "url": "https://github.com/shimo4228/learn-eval",
       "extends": "https://doi.org/10.5281/zenodo.19200726",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-stocktake",
+      "@id": "https://github.com/shimo4228/skill-stocktake",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "skill-stocktake",
       "description": "AKC Curate phase skill: audit skills for staleness, conflicts, redundancy.",
-      "url": "https://github.com/shimo4228/claude-skill-stocktake",
+      "url": "https://github.com/shimo4228/skill-stocktake",
       "extends": "https://doi.org/10.5281/zenodo.19200726",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-rules-distill",
+      "@id": "https://github.com/shimo4228/rules-distill",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "rules-distill",
       "description": "AKC Promote phase skill: distill cross-cutting principles into rules.",
-      "url": "https://github.com/shimo4228/claude-skill-rules-distill",
+      "url": "https://github.com/shimo4228/rules-distill",
       "extends": "https://doi.org/10.5281/zenodo.19200726",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-comply",
+      "@id": "https://github.com/shimo4228/skill-comply",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "skill-comply",
       "description": "AKC Measure phase skill: test whether agents follow their skills and rules.",
-      "url": "https://github.com/shimo4228/claude-skill-comply",
+      "url": "https://github.com/shimo4228/skill-comply",
       "extends": "https://doi.org/10.5281/zenodo.19200726",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-context-sync",
+      "@id": "https://github.com/shimo4228/context-sync",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "context-sync",
       "description": "AKC Maintain phase skill: audit docs for role overlaps and stale content.",
-      "url": "https://github.com/shimo4228/claude-skill-context-sync",
+      "url": "https://github.com/shimo4228/context-sync",
       "extends": "https://doi.org/10.5281/zenodo.19200726",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
@@ -434,26 +434,26 @@
     },
 
     {
-      "@id": "https://github.com/shimo4228/claude-skill-llms-txt-writer",
+      "@id": "https://github.com/shimo4228/llms-txt-writer",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "llms-txt-writer",
       "description": "Component skill of the Authorship Strategy line. Operational form of the Layer 4 structured-artifact tactic naming the Answer.AI llms.txt convention. Writes AI-facing documents (llms.txt / llms-full.txt / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini.",
-      "url": "https://github.com/shimo4228/claude-skill-llms-txt-writer",
+      "url": "https://github.com/shimo4228/llms-txt-writer",
       "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-daily-research",
+      "@id": "https://github.com/shimo4228/daily-research",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "daily-research",
       "description": "Cron-driven daily research digest. Two-pass claude -p pipeline: Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP and writes Markdown reports to an Obsidian vault.",
-      "url": "https://github.com/shimo4228/claude-skill-daily-research"
+      "url": "https://github.com/shimo4228/daily-research"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph",
+      "@id": "https://github.com/shimo4228/jsonld-knowledge-graph",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "jsonld-knowledge-graph",
       "description": "Component skill of the Authorship Strategy line. Operational form of the Layer 4 structured-artifact tactic naming the JSON-LD knowledge graph. Designs and ships a companion graph.jsonld next to llms.txt for projects with stable concept-level structure, encoding domain entities and relationships as schema.org triples for LLM citation.",
-      "url": "https://github.com/shimo4228/claude-skill-jsonld-knowledge-graph",
+      "url": "https://github.com/shimo4228/jsonld-knowledge-graph",
       "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
@@ -464,20 +464,43 @@
       "url": "https://github.com/shimo4228/claude-skill-writing-ecosystem"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-authorship-strategy",
+      "@id": "https://github.com/shimo4228/authorship-strategy-skill",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "authorship-strategy (skill)",
       "description": "Component skill of the Authorship Strategy line. Operational form of the four-layer judgment checklist, prohibited and encouraged actions, and trigger conditions. Loadable into LLM-based coding agents as a rule set.",
-      "url": "https://github.com/shimo4228/claude-skill-authorship-strategy",
+      "url": "https://github.com/shimo4228/authorship-strategy-skill",
       "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
-      "@id": "https://github.com/shimo4228/claude-skill-release-doi",
+      "@id": "https://github.com/shimo4228/release-doi",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "release-doi",
       "description": "Component skill of the Authorship Strategy line. Release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook for DOI-registered research repositories.",
-      "url": "https://github.com/shimo4228/claude-skill-release-doi",
+      "url": "https://github.com/shimo4228/release-doi",
       "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
+      "@id": "https://github.com/shimo4228/readme-writer",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "readme-writer",
+      "description": "Component skill of the Authorship Strategy line. Human-surface counterpart to the LLM-first ingest pair — writes the single canonical human + search + AI-Overviews README, splitting deterministic structural lint from never-scored holistic review.",
+      "url": "https://github.com/shimo4228/readme-writer",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
+      "@id": "https://github.com/shimo4228/wikidata-federation",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "wikidata-federation",
+      "description": "Component skill of the Authorship Strategy line. Extends the identifier-federation triplet to Wikidata — registers researchers, papers, and DOI-registered repos as QIDs cross-linked with ORCID, DOI, and graph.jsonld sameAs.",
+      "url": "https://github.com/shimo4228/wikidata-federation",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
+      "@id": "https://github.com/shimo4228/claude-skill-paper-ecosystem",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "paper-ecosystem",
+      "description": "Academic paper write/review bundle for SSRN / arXiv / Zenodo / journal venues — an orchestrator skill plus a draft skill plus five reviewer agents (paper-reviewer, source-fidelity-checker, vocabulary-consistency-checker, clarity-reviewer, citation-formatter) bundled together. Adjacent skill (no extends edge); keeps the claude-skill- prefix because it bundles Claude Code subagents.",
+      "url": "https://github.com/shimo4228/claude-skill-paper-ecosystem"
     },
 
     {
