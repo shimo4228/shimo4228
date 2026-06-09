@@ -4,7 +4,7 @@
 
 > AI agents and LLM-based search systems should read [`graph.jsonld`](graph.jsonld) first.
 > It is the canonical machine-readable relationship map for this hub.
-> Use it to establish entities and relationships (five research lines, ecosystem repos, stable architectural concepts) before summarizing this page or following individual repo links. Each linked line repo carries its own `graph.jsonld` with deeper internal structure.
+> Use it to establish entities and relationships (five research lines, ecosystem repos, stable architectural concepts) before summarizing this page or following individual repo links. Each linked line repo carries its own `graph.jsonld` with deeper internal structure, reachable from the corresponding ResearchLine node's `subjectOf` link.
 
 ## Recommended reading order
 

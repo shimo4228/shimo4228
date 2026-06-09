@@ -20,7 +20,7 @@
       "@id": "https://github.com/shimo4228/shimo4228#knowledge-graph",
       "@type": ["Dataset", "CreativeWork"],
       "name": "shimo4228 Hub Knowledge Graph",
-      "description": "Canonical machine-readable relationship map for the shimo4228 hub repository — five sibling research lines (Agent Knowledge Cycle, Contemplative Agent, Agent Attribution Practice, Authorship Strategy, Attention Not Self) and their ecosystem repos. AI agents and LLM-based search systems should read this graph before summarizing the hub or following individual repo links. Encodes sibling-not-dependency relationships at the schema level (no `dependsOn` edge type exists).",
+      "description": "Canonical machine-readable relationship map for the shimo4228 hub repository — five sibling research lines (Agent Knowledge Cycle, Contemplative Agent, Agent Attribution Practice, Authorship Strategy, Attention Not Self) and their ecosystem repos. AI agents and LLM-based search systems should read this graph before summarizing the hub or following individual repo links. Encodes sibling-not-dependency relationships at the schema level (no `dependsOn` edge type exists). This hub graph stays at membership level; each ResearchLine node points to its fine-grained line-level graph via `subjectOf` — follow that link for per-line detail instead of expecting it here.",
       "isBasedOn": "https://github.com/shimo4228/shimo4228",
       "mainEntity": [
         "https://doi.org/10.5281/zenodo.19200726",
@@ -42,6 +42,12 @@
       "description": "Six-phase bidirectional growth loop for sustaining agent-operator intent alignment over time, organized as three stacked layers: principles (ADRs), design patterns, and composable skills. Refers to a mechanism, not a disposition or a practice.",
       "identifier": "10.5281/zenodo.19200726",
       "url": "https://github.com/shimo4228/agent-knowledge-cycle",
+      "subjectOf": {
+        "@id": "https://raw.githubusercontent.com/shimo4228/agent-knowledge-cycle/main/graph.jsonld",
+        "@type": "Dataset",
+        "name": "Agent Knowledge Cycle line-level knowledge graph",
+        "encodingFormat": "application/ld+json"
+      },
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19212118",
         "https://doi.org/10.5281/zenodo.19652013",
@@ -66,6 +72,12 @@
       "description": "CLI agent grounded in four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) running AKC's six-phase cycle over its own logs on a local 9B stack on a single Apple Silicon Mac. Asks whether an agent's alignment can come from what it is rather than what it is told. Refers to a disposition. Shares Buddhist phenomenological vocabulary with the Attention, Not Self line, but applies it as agent behavioral preset rather than as comparative cognitive framework.",
       "identifier": "10.5281/zenodo.19212118",
       "url": "https://github.com/shimo4228/contemplative-agent",
+      "subjectOf": {
+        "@id": "https://raw.githubusercontent.com/shimo4228/contemplative-agent/main/graph.jsonld",
+        "@type": "Dataset",
+        "name": "Contemplative Agent line-level knowledge graph",
+        "encodingFormat": "application/ld+json"
+      },
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19200726",
         "https://doi.org/10.5281/zenodo.19652013",
@@ -90,6 +102,12 @@
       "description": "Harness-neutral ADRs on accountability distribution in autonomous AI agents, paired with four Business AI Quadrants as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. Judgments were extracted from contemplative-agent's operational practice and re-expressed stripped of project identifiers. Refers to a practice.",
       "identifier": "10.5281/zenodo.19652013",
       "url": "https://github.com/shimo4228/agent-attribution-practice",
+      "subjectOf": {
+        "@id": "https://raw.githubusercontent.com/shimo4228/agent-attribution-practice/main/graph.jsonld",
+        "@type": "Dataset",
+        "name": "Agent Attribution Practice line-level knowledge graph",
+        "encodingFormat": "application/ld+json"
+      },
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19200726",
         "https://doi.org/10.5281/zenodo.19212118",
@@ -115,6 +133,12 @@
       "description": "A normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). The tactical catalog clusters into the identifier-federation triplet, a maintenance-discipline pair, and an LLM-first ingest decision via dual entry points — all extracted from operating this very research program. Refers to a research methodology — the strategy of authorship itself under the new substrate.",
       "identifier": "10.5281/zenodo.20263316",
       "url": "https://github.com/shimo4228/authorship-strategy",
+      "subjectOf": {
+        "@id": "https://raw.githubusercontent.com/shimo4228/authorship-strategy/main/graph.jsonld",
+        "@type": "Dataset",
+        "name": "Authorship Strategy line-level knowledge graph",
+        "encodingFormat": "application/ld+json"
+      },
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19200726",
         "https://doi.org/10.5281/zenodo.19212118",
@@ -141,6 +165,12 @@
       "description": "A personal essay collection and structured knowledge graph mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary frameworks in computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of \"attention, not self,\" juxtaposes ancient classifications of cognitive process with contemporary computational models. Refers to a cross-disciplinary inquiry — Buddhist phenomenology meeting computational cognitive science. Shares Buddhist phenomenological vocabulary with the Contemplative Agent line, but uses it as comparative cognitive framework rather than as agent behavioral preset.",
       "identifier": "10.5281/zenodo.20262112",
       "url": "https://github.com/shimo4228/attention-not-self",
+      "subjectOf": {
+        "@id": "https://raw.githubusercontent.com/shimo4228/attention-not-self/main/graph.jsonld",
+        "@type": "Dataset",
+        "name": "Attention, Not Self line-level knowledge graph",
+        "encodingFormat": "application/ld+json"
+      },
       "siblingOf": [
         "https://doi.org/10.5281/zenodo.19200726",
         "https://doi.org/10.5281/zenodo.19212118",
