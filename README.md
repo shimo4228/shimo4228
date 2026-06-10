@@ -115,7 +115,7 @@ The long-form counterpart to the repos above — context, failures, and in-progr
 - **[Zenn](https://zenn.dev/shimo4228)** — browser view of the Japanese articles. Claude Code and AI agent development; current focus: AKC skills, harness design, contemplative-agent case studies.
 - **[Dev.to](https://dev.to/shimo4228)** — browser view of the English mirror.
 - **[Substack](https://substack.com/@shimo4228)** — newsletter and long-form essays.
-- **[SSRN](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068)** — academic working papers, cross-deposited with Zenodo. The Zenodo concept DOIs are canonical; see [Papers](#papers) above for the per-paper records.
+- **[SSRN](https://ssrn.com/author=11618068)** — academic working papers, cross-deposited with Zenodo. The Zenodo concept DOIs are canonical; see [Papers](#papers) above for the per-paper records.
 
 ---
 

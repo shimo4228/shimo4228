@@ -89,7 +89,7 @@ Companion Claude Code skills maintained alongside the AKC cycle but not part of 
 - [Zenn](https://zenn.dev/shimo4228): browser view of the Japanese articles — Claude Code, AKC skills, harness design, contemplative-agent case studies
 - [Dev.to](https://dev.to/shimo4228): browser view of the English mirror
 - [Substack](https://substack.com/@shimo4228): newsletter / long-form essays
-- [SSRN author page](https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11618068): academic working papers, cross-deposited with Zenodo — the Zenodo concept DOIs are canonical; per-paper records in the Papers section above
+- [SSRN author page](https://ssrn.com/author=11618068): academic working papers, cross-deposited with Zenodo — the Zenodo concept DOIs are canonical; per-paper records in the Papers section above
 
 ## Related
 
