@@ -122,3 +122,5 @@ framework は **3 軸反転** に立つ — 価値の源泉（scarcity から di
 ここから始める: フレームワークを見るなら [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)、実装を見るなら [contemplative-agent](https://github.com/shimo4228/contemplative-agent)、ガバナンス判断を見るなら [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice)。横断的ラインは: 研究方法論の framework として [authorship-strategy](https://github.com/shimo4228/authorship-strategy)、ブッダ現象学 / 計算論的認知科学の探究として [attention-not-self](https://github.com/shimo4228/attention-not-self)。
 
 Repo traffic: [公開ダッシュボード](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw data](traffic/)、CC0)。
+
+著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)

@@ -122,3 +122,5 @@ The long-form counterpart to the repos above — context, failures, and in-progr
 Start here: [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle) for the framework, [contemplative-agent](https://github.com/shimo4228/contemplative-agent) to see it running, [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice) for the governance judgments. For the cross-cutting lines: [authorship-strategy](https://github.com/shimo4228/authorship-strategy) for the research-methodology framework, [attention-not-self](https://github.com/shimo4228/attention-not-self) for the Buddhist-phenomenology / computational cognitive-science inquiry.
 
 Repo traffic: [public dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw data](traffic/), CC0).
+
+Author: Tatsuya Shimomoto — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)

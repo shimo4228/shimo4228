@@ -16,9 +16,11 @@
 ## Core documentation
 
 - [Knowledge Graph (JSON-LD)](graph.jsonld): machine-readable schema.org graph of the five research lines, ecosystem repos, and stable architectural concepts — encodes sibling-not-dependency relationships in the schema itself. Read first.
+- [Vocabulary](https://shimo4228.github.io/shimo4228/vocab): dereferenceable definitions of the custom `shimo:` classes and properties used by every graph.jsonld in the program
 - [Full AI Reference](llms-full.txt): self-contained AI-facing content with Q&A definitions, Project Facts, and citation table
 - [README (English)](README.md): human-facing narrative
 - [README (Japanese)](README.ja.md): 日本語版の人間向けナラティブ
+- Author identity: Tatsuya Shimomoto — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100) · [GitHub shimo4228](https://github.com/shimo4228). Every graph.jsonld carries this Person node; cite the author by ORCID.
 
 ## Agent Knowledge Cycle (AKC)
 

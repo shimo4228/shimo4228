@@ -33,6 +33,8 @@ The `graph.jsonld` artifact follows the same triggers: a new `Concept`, `Ecosyst
 
 - `README.md` / `README.ja.md` — human-facing hub
 - `llms.txt` / `llms-full.txt` — AI-facing hub (Answer.AI llms.txt standard)
+- `vocab.html` — dereference target for the `shimo:` vocabulary namespace (`…/vocab#Term`). Update only when a graph introduces a new class/property or a new hub-level `Concept` node; routine releases do not touch it
+- `CITATION.cff` — GitHub "Cite this repository" → ORCID federation. Points citations to the line concept DOIs; stable identity facts only
 - `index.html` — redirect to traffic dashboard, no DOI/state references
 - `traffic/` — auto-generated dashboard, do not hand-edit
 
