@@ -192,7 +192,11 @@ def run_one(provider: str, probe: dict, channel: str, config: dict, run_id: str)
             completion_tokens = usage.get("output_tokens")
             cost = None  # responses endpoint is outside litellm's cost map
         else:
-            response = litellm.completion(**kwargs)
+            # In-call retry with backoff for transient provider failures
+            # (429/503) — observed: gemini-3.5-flash returned 503 bursts
+            # lasting minutes. Cross-run gaps are still fillable via
+            # same-run-id retries; this just absorbs the short tail.
+            response = litellm.completion(**kwargs, num_retries=2)
             response_dict = response.model_dump()
             text = response_text(response_dict)
             cited_urls, citation_source = extract_citations(response_dict)
@@ -291,7 +295,7 @@ def run_currency_check(config: dict, data_dir: Path, strict: bool) -> int:
                     (config.get("param_overrides") or {}).get(provider),
                 )
                 ping_kwargs["max_tokens"] = 16
-                resp = litellm.completion(**ping_kwargs)
+                resp = litellm.completion(**ping_kwargs, num_retries=2)
                 record["model_returned"] = resp.model_dump().get("model")
                 prev = record["previous_model_returned"]
                 if prev is not None and record["model_returned"] != prev:

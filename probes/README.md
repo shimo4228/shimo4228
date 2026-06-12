@@ -82,8 +82,11 @@ Cost guard: the runner aborts if a run exceeds `--cost-ceiling` (default $2).
 
 ## Scheduling
 
-Manual during the prototype phase; automation is added after two clean
-manual runs. The two channels are scheduled differently:
+Scheduled locally via launchd (`scripts/run-weekly-retrieval.sh`, Sundays
+10:17 JST; `scripts/run-monthly-currency.sh`, 1st of the month 10:47 JST —
+a slot missed while the machine sleeps runs at the next wake, and every
+record carries its own timestamp). The two channels are scheduled
+differently:
 
 - **Retrieval — weekly calendar cadence.** The citation pool's entry and
   decay dynamics move in days, even against frozen models.

@@ -74,8 +74,10 @@ uv run probe_runner.py --currency-check               # 月次の変化検出
 
 ## Scheduling
 
-プロトタイプ期は手動。クリーンな手動 run が 2 回成立した後に自動化を追加する。
-2 チャネルの schedule は異なる:
+launchd によるローカル定期実行 (`scripts/run-weekly-retrieval.sh` = 日曜
+10:17 JST / `scripts/run-monthly-currency.sh` = 毎月 1 日 10:47 JST —
+スリープ中に逃した slot は次の wake で実行され、全レコードが自身の
+timestamp を持つ)。2 チャネルの schedule は異なる:
 
 - **Retrieval — 週次 calendar cadence.** citation pool の entry / decay は
   モデルが凍結されていても日単位で動く。
