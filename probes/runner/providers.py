@@ -57,6 +57,11 @@ def build_call_kwargs(
         kwargs["model"] = f"openai/{model.split('/', 1)[-1]}"
         kwargs["api_base"] = DASHSCOPE_INTL_BASE
         kwargs["api_key"] = os.environ.get("DASHSCOPE_API_KEY", "")
+        # DashScope does not count thinking tokens against max_tokens; one
+        # probe burned 23k thinking tokens and returned no visible text
+        # (observed 2026-06-12). Thinking off also matches the default-tier
+        # consumer profile.
+        kwargs["extra_body"] = {"enable_thinking": False}
     if channel != "retrieval":
         return kwargs
 
@@ -68,9 +73,9 @@ def build_call_kwargs(
         # in provider-specific response fields, not normalized annotations.
         kwargs["tools"] = [{"googleSearch": {}}]
     elif provider == "qwen":
-        # DashScope server-side web search; passed through in the request
-        # body on the OpenAI-compatible endpoint.
-        kwargs["extra_body"] = {"enable_search": True}
+        # DashScope server-side web search; merged into the transport
+        # extra_body (enable_thinking) set above.
+        kwargs["extra_body"] = {**kwargs.get("extra_body", {}), "enable_search": True}
     elif provider in ("openai", "xai"):
         # Retrieval for these two does NOT go through chat completions:
         # xAI's chat search surface is retired and OpenAI's returns empty
@@ -138,6 +143,42 @@ def extract_citations(response_dict: dict) -> tuple[list[str], str]:
     if urls:
         return urls, "text_regex"
     return [], "none"
+
+
+# Citation-redirect wrappers that hide the cited domain from detection.
+# Gemini grounding returns opaque vertexaisearch redirect URLs; resolving
+# them (one no-follow request reading the Location header) recovers the
+# real cited source so owned-URL detection sees the same surface across
+# providers.
+REDIRECT_HOSTS = ("vertexaisearch.cloud.google.com",)
+
+
+def is_redirect_url(url: str) -> bool:
+    return any(host in url for host in REDIRECT_HOSTS)
+
+
+def resolve_redirect_urls(urls: list[str], timeout: float = 15.0) -> tuple[list[str], bool]:
+    """Resolve known citation-redirect URLs to their targets.
+
+    Returns (resolved_urls, any_resolved). Unresolvable redirects are kept
+    as-is — degradation stays visible rather than dropping the citation.
+    """
+    resolved: list[str] = []
+    changed = False
+    for url in urls:
+        target = url
+        if is_redirect_url(url):
+            try:
+                resp = httpx.get(url, follow_redirects=False, timeout=timeout)
+                location = resp.headers.get("location")
+                if location and location.startswith("http"):
+                    target = location
+                    changed = True
+            except Exception:
+                pass
+        if target not in resolved:
+            resolved.append(target)
+    return resolved, changed
 
 
 def response_text(response_dict: dict) -> str:

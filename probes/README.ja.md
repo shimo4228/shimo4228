@@ -18,6 +18,14 @@ two-channel probe のログ。
 2 チャネルは決して単一スコアに混合しない。混合指標はどちらのチャネルが
 失敗しているかを隠す (ADR-0008)。
 
+probe set v2 以降、**すべての prompt が両設定で走る (A/B)**: 質問を固定した
+arm 間差分が「retrieval が何を足したか」を分離する。副産物として 2 つの
+対照が無償で手に入る: 引用誘発 prompt の抑制 arm は記憶からの引用
+(hallucinated-citation floor) を、negative-control prompt の有効 arm は
+grounded confabulation を測る。parametric arm は model snapshot ごとに
+凍結なので、1 回の parametric 測定が同 snapshot の全 retrieval run と
+ペアになる——両 arm の cadence は別のまま。
+
 ## 1 レコードの中身
 
 `data/parametric.jsonl` / `data/retrieval.jsonl` に 1 行 1 JSON

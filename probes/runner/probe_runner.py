@@ -48,14 +48,15 @@ from providers import (
     build_call_kwargs,
     extract_citations,
     extract_citations_responses,
+    resolve_redirect_urls,
     response_text,
     responses_call,
     responses_output_text,
 )
 
-RUNNER_VERSION = "0.1.0"
+RUNNER_VERSION = "0.2.0"  # 0.2.0: responses-API retrieval (openai/xai), redirect resolution, qwen thinking off
 HERE = Path(__file__).resolve().parent
-DEFAULT_CONFIG = HERE.parent / "config" / "probes-v1.yaml"
+DEFAULT_CONFIG = HERE.parent / "config" / "probes-v4.yaml"
 DEFAULT_DATA_DIR = HERE.parent / "data"
 
 
@@ -99,16 +100,31 @@ def existing_triples(data_file: Path) -> set[tuple[str, str, str]]:
     return triples
 
 
-def select_probes(config: dict, channel: str | None, probe_id: str | None) -> list[dict]:
-    probes = config["probes"]
-    if channel:
-        probes = [p for p in probes if p["channel"] == channel]
-    if probe_id:
-        probes = [p for p in probes if p["id"] == probe_id]
-    return probes
+def probe_channels(probe: dict) -> list[str]:
+    """Channels a probe runs on. v2 probes carry `channels` (A/B crossed
+    design — same prompt, both settings); v1 probes carried a single
+    `channel`, still accepted for older config files."""
+    if "channels" in probe:
+        return list(probe["channels"])
+    return [probe["channel"]]
 
 
-def run_one(provider: str, probe: dict, config: dict, run_id: str) -> dict:
+def select_arms(
+    config: dict, channel: str | None, probe_id: str | None
+) -> list[tuple[dict, str]]:
+    """(probe, channel) execution arms matching the filters."""
+    arms = []
+    for probe in config["probes"]:
+        if probe_id and probe["id"] != probe_id:
+            continue
+        for ch in probe_channels(probe):
+            if channel and ch != channel:
+                continue
+            arms.append((probe, ch))
+    return arms
+
+
+def run_one(provider: str, probe: dict, channel: str, config: dict, run_id: str) -> dict:
     """One API call → one JSONL record (dict)."""
     from importlib.metadata import version as pkg_version
 
@@ -124,7 +140,7 @@ def run_one(provider: str, probe: dict, config: dict, run_id: str) -> dict:
     defaults = config.get("defaults", {})
     # openai/xai retrieval lives on the responses endpoint (chat completions
     # returns no citation metadata there) — direct HTTP adapter.
-    use_responses = provider in RESPONSES_PROVIDERS and probe["channel"] == "retrieval"
+    use_responses = provider in RESPONSES_PROVIDERS and channel == "retrieval"
     kwargs = (
         None
         if use_responses
@@ -132,7 +148,7 @@ def run_one(provider: str, probe: dict, config: dict, run_id: str) -> dict:
             provider,
             model,
             prompt,
-            probe["channel"],
+            channel,
             defaults,
             (config.get("param_overrides") or {}).get(provider),
         )
@@ -140,7 +156,7 @@ def run_one(provider: str, probe: dict, config: dict, run_id: str) -> dict:
     record = {
         "run_id": run_id,
         "ts": datetime.now(timezone.utc).isoformat(),
-        "channel": probe["channel"],
+        "channel": channel,
         "provider": provider,
         "model_requested": model,
         "model_returned": None,
@@ -148,7 +164,7 @@ def run_one(provider: str, probe: dict, config: dict, run_id: str) -> dict:
         "probe_set_version": config["version"],
         "prompt_sha256": prompt_sha256(prompt),
         "temperature": (kwargs or {}).get("temperature"),  # None = provider default
-        "web_search_enabled": probe["channel"] == "retrieval",
+        "web_search_enabled": channel == "retrieval",
         "response_text": "",
         "cited_urls": [],
         "citation_source": "none",
@@ -189,6 +205,10 @@ def run_one(provider: str, probe: dict, config: dict, run_id: str) -> dict:
                 cost = None
         record["model_returned"] = response_dict.get("model")
         record["response_text"] = text
+        resolved_urls, any_resolved = resolve_redirect_urls(cited_urls)
+        if any_resolved:
+            record["cited_urls_unresolved"] = cited_urls
+            cited_urls = resolved_urls
         record["cited_urls"] = cited_urls
         record["citation_source"] = citation_source
         record["detect"] = detect(
@@ -358,9 +378,9 @@ def main(argv: list[str] | None = None) -> int:
         return run_currency_check(config, args.data_dir, args.strict)
 
     providers = args.provider or list(PROVIDERS)
-    probes = select_probes(config, args.channel, args.probe)
-    if not probes:
-        print("no probes match the given filters", file=sys.stderr)
+    arms = select_arms(config, args.channel, args.probe)
+    if not arms:
+        print("no probe arms match the given filters", file=sys.stderr)
         return 1
 
     run_id = args.run_id or (
@@ -372,10 +392,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"# dry-run — config {args.config.name} (probe set {config['version']})")
         print(f"# run_id would be: {run_id}")
         print(f"# providers: {', '.join(providers)}")
-        print(f"# calls that would be made: {len(probes) * len(providers) * max(args.repeat, 1)}")
-        for probe in probes:
+        print(f"# calls that would be made: {len(arms) * len(providers) * max(args.repeat, 1)}")
+        for probe, channel in arms:
             prompt = render_prompt(probe)
-            print(f"\n## {probe['id']} [{probe['channel']}] sha256={prompt_sha256(prompt)[:16]}…")
+            print(f"\n## {probe['id']} [{channel}] sha256={prompt_sha256(prompt)[:16]}…")
             print(prompt)
         return 0
 
@@ -389,8 +409,8 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     for rep_run_id in rep_run_ids:
-        for probe in probes:
-            data_file = args.data_dir / f"{probe['channel']}.jsonl"
+        for probe, channel in arms:
+            data_file = args.data_dir / f"{channel}.jsonl"
             triples = existing_triples(data_file)
             for provider in providers:
                 key = (rep_run_id, provider, probe["id"])
@@ -399,10 +419,10 @@ def main(argv: list[str] | None = None) -> int:
                     skipped += 1
                     continue
                 print(
-                    f"probe: {provider} × {probe['id']} [{probe['channel']}] ({rep_run_id}) …",
+                    f"probe: {provider} × {probe['id']} [{channel}] ({rep_run_id}) …",
                     flush=True,
                 )
-                record = run_one(provider, probe, config, rep_run_id)
+                record = run_one(provider, probe, channel, config, rep_run_id)
                 with data_file.open("a") as f:
                     f.write(json.dumps(record, ensure_ascii=False) + "\n")
                 if record["error"]:

@@ -20,6 +20,15 @@ ADR-0011 in the same repository.
 The channels are never blended into one score. A single blended metric hides
 which channel is failing (ADR-0008).
 
+Since probe set v2, **every prompt runs on both settings (A/B)**: the
+per-question delta between arms isolates what retrieval adds with the
+question held fixed. Two derived controls come free: citation-eliciting
+prompts on the suppressed arm measure citations-from-memory
+(hallucinated-citation floor), and the negative-control prompt on the
+enabled arm measures grounded confabulation. A parametric arm is frozen per
+model snapshot, so one parametric measurement pairs with every retrieval
+run of that snapshot — the arms keep separate cadences.
+
 ## What one record contains
 
 One JSON object per line in `data/parametric.jsonl` / `data/retrieval.jsonl`,
