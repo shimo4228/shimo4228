@@ -123,4 +123,6 @@ Start here: [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge
 
 Repo traffic: [public dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw data](traffic/), CC0).
 
+LLM probes: [two-channel probe log](probes/) (CC0) — scheduled parametric (search-suppressed naming) and retrieval (search-grounded citation) probes of frontier models, measuring whether the ecosystem's ideas surface with their author attached.
+
 Author: Tatsuya Shimomoto — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)

@@ -123,4 +123,6 @@ framework は **3 軸反転** に立つ — 価値の源泉（scarcity から di
 
 Repo traffic: [公開ダッシュボード](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw data](traffic/)、CC0)。
 
+LLM probes: [two-channel probe log](probes/)（CC0）— frontier model への定期 probe（parametric = 検索抑制の naming probe / retrieval = 検索有効の citation probe）。エコシステムのアイデアが著者と一緒に浮上するかを測定する。
+
 著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)

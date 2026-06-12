@@ -1,0 +1,14 @@
+{
+  "id": "fixture-parametric",
+  "model": "grok-4-0709",
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "The Agent Knowledge Cycle is a six-phase loop for agent knowledge management. Its repository lives at https://github.com/shimo4228/agent-knowledge-cycle."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {"prompt_tokens": 60, "completion_tokens": 39}
+}

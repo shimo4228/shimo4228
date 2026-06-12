@@ -1,0 +1,25 @@
+{
+  "id": "chatcmpl-fixture-openai",
+  "model": "gpt-5.1-2026-04-14",
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "One notable open project on this topic records a strategy of authorship under AI-mediated diffusion ([1]).",
+        "annotations": [
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://github.com/shimo4228/authorship-strategy",
+              "title": "authorship-strategy",
+              "start_index": 4,
+              "end_index": 96
+            }
+          }
+        ]
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {"prompt_tokens": 120, "completion_tokens": 64}
+}

@@ -1,0 +1,27 @@
+{
+  "id": "fixture-gemini",
+  "model": "gemini-2.5-flash",
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "A contemplative behavioral preset framework for coding agents exists as an open-source project."
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "vertex_ai_grounding_metadata": [
+    {
+      "groundingChunks": [
+        {
+          "web": {
+            "uri": "https://github.com/shimo4228/contemplative-agent",
+            "title": "contemplative-agent"
+          }
+        }
+      ],
+      "webSearchQueries": ["contemplative behavioral presets AI agents"]
+    }
+  ],
+  "usage": {"prompt_tokens": 95, "completion_tokens": 41}
+}

@@ -1,0 +1,5 @@
+# probes runner — secrets and local environments
+probes/.env
+.venv/
+__pycache__/
+.pytest_cache/

@@ -1,0 +1,28 @@
+{
+  "id": "resp-fixture-xai",
+  "model": "grok-4.3",
+  "output": [
+    {
+      "type": "web_search_call",
+      "status": "completed"
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "Open research on this topic includes a contemplative behavioral preset framework for coding agents.",
+          "annotations": [
+            {
+              "type": "url_citation",
+              "url": "https://github.com/shimo4228/contemplative-agent",
+              "title": "contemplative-agent"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "usage": {"input_tokens": 180, "output_tokens": 95}
+}

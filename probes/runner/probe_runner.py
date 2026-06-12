@@ -1,0 +1,430 @@
+"""Two-channel LLM probe runner.
+
+Sends versioned controlled prompts to four model providers and appends one
+JSONL line per (run × provider × probe) to probes/data/<channel>.jsonl.
+
+Channels (never blended — see authorship-strategy ADR-0008):
+  parametric — web search OFF; measures what the model names from trained knowledge
+  retrieval  — web search ON; measures whether owned identifiers are cited
+
+The parametric channel is event-driven (a frozen model's weights cannot
+change between runs): run the full parametric set with --repeat 3 when a
+model enters the panel, and run --currency-check monthly to detect the
+change events (silent alias swaps, new catalog ids, stale verification).
+
+Usage:
+  uv run probe_runner.py --dry-run
+  uv run probe_runner.py --provider anthropic --probe parametric-concept-akc
+  uv run probe_runner.py --channel parametric --repeat 3
+  uv run probe_runner.py --channel retrieval
+  uv run probe_runner.py --currency-check [--strict]
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+import yaml
+from dotenv import load_dotenv
+
+from currency import (
+    ENV_KEYS,
+    diff_catalog,
+    fetch_model_ids,
+    filter_chat_candidates,
+    is_stale,
+    latest_per_provider,
+)
+from extract import Lexicon, detect
+from providers import (
+    PROVIDERS,
+    RESPONSES_PROVIDERS,
+    build_call_kwargs,
+    extract_citations,
+    extract_citations_responses,
+    response_text,
+    responses_call,
+    responses_output_text,
+)
+
+RUNNER_VERSION = "0.1.0"
+HERE = Path(__file__).resolve().parent
+DEFAULT_CONFIG = HERE.parent / "config" / "probes-v1.yaml"
+DEFAULT_DATA_DIR = HERE.parent / "data"
+
+
+def render_prompt(probe: dict) -> str:
+    return probe["template"].format(**probe.get("vars", {}))
+
+
+def prompt_sha256(prompt: str) -> str:
+    return hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+
+
+def load_config(path: Path) -> dict:
+    with path.open() as f:
+        config = yaml.safe_load(f)
+    for key in ("version", "models", "detection", "probes"):
+        if key not in config:
+            raise ValueError(f"config missing required key: {key}")
+    return config
+
+
+def existing_triples(data_file: Path) -> set[tuple[str, str, str]]:
+    """(run_id, provider, probe_id) triples already written successfully.
+
+    Errored records are excluded so re-invoking with the same --run-id
+    retries exactly the failed calls (gap fill); the errored lines stay in
+    the append-only log, and analysis prefers the non-error record.
+    """
+    triples = set()
+    if not data_file.exists():
+        return triples
+    with data_file.open() as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            rec = json.loads(line)
+            # Pre-guard records could be error-free yet empty (degenerate);
+            # treat those as not-done so a retry can fill them.
+            if rec.get("error") is None and (rec.get("response_text") or rec.get("cited_urls")):
+                triples.add((rec["run_id"], rec["provider"], rec["probe_id"]))
+    return triples
+
+
+def select_probes(config: dict, channel: str | None, probe_id: str | None) -> list[dict]:
+    probes = config["probes"]
+    if channel:
+        probes = [p for p in probes if p["channel"] == channel]
+    if probe_id:
+        probes = [p for p in probes if p["id"] == probe_id]
+    return probes
+
+
+def run_one(provider: str, probe: dict, config: dict, run_id: str) -> dict:
+    """One API call → one JSONL record (dict)."""
+    from importlib.metadata import version as pkg_version
+
+    import litellm
+
+    # Reasoning-tier models reject explicit temperature; drop unsupported
+    # params at the provider boundary instead of failing the probe. The
+    # record's temperature field documents what was requested.
+    litellm.drop_params = True
+
+    model = config["models"][provider]
+    prompt = render_prompt(probe)
+    defaults = config.get("defaults", {})
+    # openai/xai retrieval lives on the responses endpoint (chat completions
+    # returns no citation metadata there) — direct HTTP adapter.
+    use_responses = provider in RESPONSES_PROVIDERS and probe["channel"] == "retrieval"
+    kwargs = (
+        None
+        if use_responses
+        else build_call_kwargs(
+            provider,
+            model,
+            prompt,
+            probe["channel"],
+            defaults,
+            (config.get("param_overrides") or {}).get(provider),
+        )
+    )
+    record = {
+        "run_id": run_id,
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "channel": probe["channel"],
+        "provider": provider,
+        "model_requested": model,
+        "model_returned": None,
+        "probe_id": probe["id"],
+        "probe_set_version": config["version"],
+        "prompt_sha256": prompt_sha256(prompt),
+        "temperature": (kwargs or {}).get("temperature"),  # None = provider default
+        "web_search_enabled": probe["channel"] == "retrieval",
+        "response_text": "",
+        "cited_urls": [],
+        "citation_source": "none",
+        "detect": None,
+        "usage": None,
+        "error": None,
+        "runner": {"version": RUNNER_VERSION, "litellm": pkg_version("litellm")},
+    }
+    try:
+        if use_responses:
+            response_dict = responses_call(
+                provider,
+                model,
+                prompt,
+                (config.get("param_overrides") or {}).get(provider, {}).get(
+                    "max_tokens"
+                )
+                or defaults.get("max_tokens", 1024),
+                os.environ.get(ENV_KEYS[provider], ""),
+            )
+            text = responses_output_text(response_dict)
+            cited_urls, citation_source = extract_citations_responses(response_dict)
+            usage = response_dict.get("usage") or {}
+            prompt_tokens = usage.get("input_tokens")
+            completion_tokens = usage.get("output_tokens")
+            cost = None  # responses endpoint is outside litellm's cost map
+        else:
+            response = litellm.completion(**kwargs)
+            response_dict = response.model_dump()
+            text = response_text(response_dict)
+            cited_urls, citation_source = extract_citations(response_dict)
+            usage = response_dict.get("usage") or {}
+            prompt_tokens = usage.get("prompt_tokens")
+            completion_tokens = usage.get("completion_tokens")
+            try:
+                cost = litellm.completion_cost(completion_response=response)
+            except Exception:
+                cost = None
+        record["model_returned"] = response_dict.get("model")
+        record["response_text"] = text
+        record["cited_urls"] = cited_urls
+        record["citation_source"] = citation_source
+        record["detect"] = detect(
+            text, cited_urls, Lexicon.from_config(config["detection"]), prompt
+        )
+        record["usage"] = {
+            "prompt_tokens": prompt_tokens,
+            "completion_tokens": completion_tokens,
+            "cost_usd": round(cost, 6) if cost is not None else None,
+        }
+        if not text and not cited_urls:
+            # A degenerate call (e.g. reasoning tokens exhausting max_tokens)
+            # must not count as an observation; marking it an error keeps it
+            # out of analysis and lets a same-run-id retry fill the gap.
+            record["error"] = (
+                "EmptyResponse: no visible text "
+                f"(completion_tokens={completion_tokens}; check reasoning token budget)"
+            )
+    except Exception as exc:  # recorded, not raised — one bad call must not kill a run
+        record["error"] = f"{type(exc).__name__}: {exc}"
+    return record
+
+
+def run_currency_check(config: dict, data_dir: Path, strict: bool) -> int:
+    """Monthly change-event detector. Exit 0 = no events; 3 = events found
+    (only when strict); per-provider errors are recorded, not fatal."""
+    import litellm
+
+    data_dir.mkdir(parents=True, exist_ok=True)
+    catalog_path = data_dir / "model-catalog.jsonl"
+    currency_path = data_dir / "currency.jsonl"
+    prev_catalog = latest_per_provider(catalog_path)
+    prev_currency = latest_per_provider(currency_path)
+    ts = datetime.now(timezone.utc).isoformat()
+    events: list[str] = []
+
+    stale = is_stale(
+        config.get("verified_current", "1970-01-01"),
+        datetime.now(timezone.utc).date(),
+        int(config.get("staleness_days", 90)),
+    )
+    if stale:
+        events.append(
+            f"STALE: panel verification ({config.get('verified_current')}) is older "
+            f"than {config.get('staleness_days', 90)} days — re-verify the default "
+            "tier per provider and update verified_current in the config"
+        )
+
+    for provider in PROVIDERS:
+        api_key = os.environ.get(ENV_KEYS[provider], "")
+        record = {
+            "ts": ts,
+            "provider": provider,
+            "pinned_model": config["models"][provider],
+            "model_returned": None,
+            "previous_model_returned": (prev_currency.get(provider) or {}).get("model_returned"),
+            "swap_detected": False,
+            "catalog_new_ids": [],
+            "catalog_removed_ids": [],
+            "catalog_new_chat_candidates": [],
+            # pyyaml parses an unquoted ISO date as datetime.date — stringify
+            "verified_current": str(config.get("verified_current", "")),
+            "stale": stale,
+            "error": None,
+        }
+        if not api_key:
+            record["error"] = f"missing {ENV_KEYS[provider]}"
+        else:
+            # 1. silent-swap detection: one minimal completion, compare the
+            #    served model identity against the last observation.
+            try:
+                resp = litellm.completion(
+                    model=config["models"][provider],
+                    messages=[{"role": "user", "content": "ping"}],
+                    max_tokens=16,
+                )
+                record["model_returned"] = resp.model_dump().get("model")
+                prev = record["previous_model_returned"]
+                if prev is not None and record["model_returned"] != prev:
+                    record["swap_detected"] = True
+                    events.append(
+                        f"SWAP {provider}: {prev} -> {record['model_returned']} "
+                        "(silent change behind the pinned alias — series break; "
+                        "consider a parametric full run)"
+                    )
+            except Exception as exc:
+                record["error"] = f"ping: {type(exc).__name__}: {exc}"
+            # 2. catalog diff: newly published / removed model ids.
+            try:
+                ids = fetch_model_ids(provider, api_key)
+                with catalog_path.open("a") as f:
+                    f.write(json.dumps({"ts": ts, "provider": provider, "models": ids}) + "\n")
+                prev_ids = (prev_catalog.get(provider) or {}).get("models")
+                if prev_ids is None:
+                    print(f"{provider}: catalog baseline established ({len(ids)} ids)")
+                else:
+                    new, removed = diff_catalog(prev_ids, ids)
+                    record["catalog_new_ids"] = new
+                    record["catalog_removed_ids"] = removed
+                    record["catalog_new_chat_candidates"] = filter_chat_candidates(new)
+                    for mid in record["catalog_new_chat_candidates"]:
+                        events.append(
+                            f"NEW MODEL {provider}: {mid} (panel adoption is a "
+                            "human judgment — check the provider's default tier)"
+                        )
+            except Exception as exc:
+                err = f"catalog: {type(exc).__name__}: {exc}"
+                record["error"] = f"{record['error']}; {err}" if record["error"] else err
+        if record["error"]:
+            events.append(f"ERROR {provider}: {record['error']}")
+        with currency_path.open("a") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+        print(
+            f"{provider}: served={record['model_returned']} swap={record['swap_detected']} "
+            f"new_chat_ids={len(record['catalog_new_chat_candidates'])} "
+            f"err={record['error'] or '-'}"
+        )
+
+    if events:
+        print("\n== change events ==")
+        for e in events:
+            print(f"- {e}")
+        return 3 if strict else 0
+    print("\nno change events — panel is current")
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--channel", choices=["parametric", "retrieval"], default=None,
+                        help="run only this channel (default: both)")
+    parser.add_argument("--provider", action="append", choices=PROVIDERS, default=None,
+                        help="repeatable; default: all four providers")
+    parser.add_argument("--probe", default=None, help="run only this probe id")
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
+    parser.add_argument("--run-id", default=None,
+                        help="default: <UTC timestamp>-<channel|all>")
+    parser.add_argument("--cost-ceiling", type=float, default=2.0,
+                        help="abort the run if cumulative cost (USD) exceeds this")
+    parser.add_argument("--repeat", type=int, default=1,
+                        help="repetitions per (probe × provider), for within-model "
+                             "variance at model-entry events (run_id gets -rN suffix)")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="render prompts, validate config, write nothing, call nothing")
+    parser.add_argument("--currency-check", action="store_true",
+                        help="detect model-change events (silent swaps, new catalog ids, "
+                             "stale verification) instead of probing")
+    parser.add_argument("--strict", action="store_true",
+                        help="with --currency-check: exit 3 when change events are found")
+    args = parser.parse_args(argv)
+
+    load_dotenv(HERE.parent / ".env")
+    load_dotenv()  # cwd .env, if any
+
+    config = load_config(args.config)
+    Lexicon.from_config(config["detection"])  # validate lexicon early
+
+    if args.currency_check:
+        return run_currency_check(config, args.data_dir, args.strict)
+
+    providers = args.provider or list(PROVIDERS)
+    probes = select_probes(config, args.channel, args.probe)
+    if not probes:
+        print("no probes match the given filters", file=sys.stderr)
+        return 1
+
+    run_id = args.run_id or (
+        datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+        + "-" + (args.channel or "all")
+    )
+
+    if args.dry_run:
+        print(f"# dry-run — config {args.config.name} (probe set {config['version']})")
+        print(f"# run_id would be: {run_id}")
+        print(f"# providers: {', '.join(providers)}")
+        print(f"# calls that would be made: {len(probes) * len(providers) * max(args.repeat, 1)}")
+        for probe in probes:
+            prompt = render_prompt(probe)
+            print(f"\n## {probe['id']} [{probe['channel']}] sha256={prompt_sha256(prompt)[:16]}…")
+            print(prompt)
+        return 0
+
+    args.data_dir.mkdir(parents=True, exist_ok=True)
+    total_cost = 0.0
+    written = skipped = errors = 0
+    rep_run_ids = (
+        [run_id]
+        if args.repeat <= 1
+        else [f"{run_id}-r{n}" for n in range(1, args.repeat + 1)]
+    )
+
+    for rep_run_id in rep_run_ids:
+        for probe in probes:
+            data_file = args.data_dir / f"{probe['channel']}.jsonl"
+            triples = existing_triples(data_file)
+            for provider in providers:
+                key = (rep_run_id, provider, probe["id"])
+                if key in triples:
+                    print(f"skip duplicate: {provider} × {probe['id']} (run {rep_run_id})")
+                    skipped += 1
+                    continue
+                print(
+                    f"probe: {provider} × {probe['id']} [{probe['channel']}] ({rep_run_id}) …",
+                    flush=True,
+                )
+                record = run_one(provider, probe, config, rep_run_id)
+                with data_file.open("a") as f:
+                    f.write(json.dumps(record, ensure_ascii=False) + "\n")
+                if record["error"]:
+                    errors += 1
+                    print(f"  ERROR: {record['error']}", file=sys.stderr)
+                else:
+                    written += 1
+                    cost = (record["usage"] or {}).get("cost_usd") or 0.0
+                    total_cost += cost
+                    d = record["detect"]
+                    print(
+                        f"  author={d['author_named']} project={d['project_named']} "
+                        f"cited={d['doi_or_url_cited']} ghost={d['ghost_citation']} "
+                        f"src={record['citation_source']} cost=${cost:.4f}"
+                    )
+                if total_cost > args.cost_ceiling:
+                    print(
+                        f"cost ceiling ${args.cost_ceiling} exceeded "
+                        f"(${total_cost:.4f}) — aborting run",
+                        file=sys.stderr,
+                    )
+                    return 2
+
+    print(
+        f"\nrun {run_id}: {written} written, {skipped} skipped, "
+        f"{errors} errors, total ${total_cost:.4f}"
+    )
+    return 0 if errors == 0 else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

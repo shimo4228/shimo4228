@@ -1,0 +1,24 @@
+{
+  "id": "msg-fixture-anthropic",
+  "model": "claude-sonnet-4-5-20250929",
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "Open work on this topic includes a DOI-registered doctrine repository archived on Zenodo.",
+        "provider_specific_fields": {
+          "citations": [
+            {
+              "type": "web_search_result_location",
+              "url": "https://doi.org/10.5281/zenodo.20263316",
+              "title": "Authorship Strategy",
+              "cited_text": "a strategy of being a known author under AI-mediated diffusion"
+            }
+          ]
+        }
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {"prompt_tokens": 210, "completion_tokens": 58}
+}

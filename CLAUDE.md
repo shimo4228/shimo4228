@@ -37,6 +37,7 @@ The `graph.jsonld` artifact follows the same triggers: a new `Concept`, `Ecosyst
 - `CITATION.cff` — GitHub "Cite this repository" → ORCID federation. Points citations to the line concept DOIs; stable identity facts only
 - `index.html` — redirect to traffic dashboard, no DOI/state references
 - `traffic/` — auto-generated dashboard, do not hand-edit
+- `probes/` — two-channel LLM probe time series (parametric / retrieval, per authorship-strategy ADR-0011); `data/` is append-only, do not hand-edit; prompt set and detection lexicon are versioned in `config/`
 
 ## Language pair
 
