@@ -71,6 +71,7 @@ Repo mapping:
 | `shimo4228/shimo4228` ← **this repo** (hub) | [`Shimo4228/research-program-hub`](https://huggingface.co/datasets/Shimo4228/research-program-hub) |
 | `shimo4228/agent-knowledge-cycle` | [`Shimo4228/agent-knowledge-cycle`](https://huggingface.co/datasets/Shimo4228/agent-knowledge-cycle) |
 | `shimo4228/contemplative-agent` (local clone: `contemplative-agent/`) | [`Shimo4228/contemplative-agent`](https://huggingface.co/datasets/Shimo4228/contemplative-agent) |
+| `shimo4228/contemplative-agent-data` (not graph.jsonld — `patterns.jsonl` projection via `scripts/export-patterns-jsonl.py` in the framework repo) | [`Shimo4228/contemplative-agent-data`](https://huggingface.co/datasets/Shimo4228/contemplative-agent-data) |
 | `shimo4228/agent-attribution-practice` | [`Shimo4228/agent-attribution-practice`](https://huggingface.co/datasets/Shimo4228/agent-attribution-practice) |
 | `shimo4228/authorship-strategy` | [`Shimo4228/authorship-strategy`](https://huggingface.co/datasets/Shimo4228/authorship-strategy) |
 | `shimo4228/attention-not-self` | [`Shimo4228/attention-not-self`](https://huggingface.co/datasets/Shimo4228/attention-not-self) |
