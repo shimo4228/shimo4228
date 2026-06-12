@@ -3,3 +3,4 @@ probes/.env
 .venv/
 __pycache__/
 .pytest_cache/
+probes/logs/
