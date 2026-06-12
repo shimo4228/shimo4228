@@ -52,7 +52,7 @@ a cited URL is exactly the ghost-citation scenario and does not count.
   exists, and models confabulate agreeably. The negative-control probe (a
   plausible fake concept) quantifies that noise floor — read true-positive
   rates against it.
-- **N=1**: one author's ecosystem, a handful of probes, four providers.
+- **N=1**: one author's ecosystem, a handful of probes, five providers.
   Preliminary observations, not evidence.
 
 ## Running

@@ -258,13 +258,20 @@ def run_currency_check(config: dict, data_dir: Path, strict: bool) -> int:
             record["error"] = f"missing {ENV_KEYS[provider]}"
         else:
             # 1. silent-swap detection: one minimal completion, compare the
-            #    served model identity against the last observation.
+            #    served model identity against the last observation. Routed
+            #    through build_call_kwargs so provider transport adjustments
+            #    (endpoint overrides, param overrides) apply to the ping too.
             try:
-                resp = litellm.completion(
-                    model=config["models"][provider],
-                    messages=[{"role": "user", "content": "ping"}],
-                    max_tokens=16,
+                ping_kwargs = build_call_kwargs(
+                    provider,
+                    config["models"][provider],
+                    "ping",
+                    "parametric",
+                    {"temperature": 0, "max_tokens": 16},
+                    (config.get("param_overrides") or {}).get(provider),
                 )
+                ping_kwargs["max_tokens"] = 16
+                resp = litellm.completion(**ping_kwargs)
                 record["model_returned"] = resp.model_dump().get("model")
                 prev = record["previous_model_returned"]
                 if prev is not None and record["model_returned"] != prev:

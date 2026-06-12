@@ -45,7 +45,7 @@ handle が見えるのはまさに ghost citation のシナリオなのでカウ
 - **誘導質問**: 概念認識 prompt は概念の実在を前提とし、モデルは迎合的に
   confabulate する。negative-control probe (もっともらしい架空概念) がその
   noise floor を定量化する。true-positive はそれと対照して読む。
-- **N=1**: 一人の著者・少数 probe・4 provider。preliminary observation であって
+- **N=1**: 一人の著者・少数 probe・5 provider。preliminary observation であって
   evidence ではない。
 
 ## 実行

@@ -46,6 +46,12 @@ models:
   openai: openai/gpt-5.5
   gemini: gemini/gemini-3.5-flash
   xai: xai/grok-4.3
+  # Panel addition 2026-06-12 (entry event, parametric full run with
+  # repetitions). Continuity with the May 2026 pre-protocol regurgitation
+  # tests (which included a Qwen-class model); a non-Western training
+  # corpus; and the only open-weight family on the panel, so future
+  # white-box training-data-attribution methods can apply to it.
+  qwen: qwen3.7-plus
 
 # Detection lexicon v1 — deterministic, auditable string/regex matching.
 # Raw response text is stored in every JSONL line, so this lexicon can be

@@ -40,6 +40,7 @@ ENV_KEYS = {
     "openai": "OPENAI_API_KEY",
     "gemini": "GEMINI_API_KEY",
     "xai": "XAI_API_KEY",
+    "qwen": "DASHSCOPE_API_KEY",
 }
 
 
@@ -87,6 +88,12 @@ def fetch_model_ids(provider: str, api_key: str, timeout: float = 30.0) -> list[
         return _fetch_openai_style("https://api.openai.com/v1/models", api_key, timeout)
     if provider == "xai":
         return _fetch_openai_style("https://api.x.ai/v1/models", api_key, timeout)
+    if provider == "qwen":
+        return _fetch_openai_style(
+            "https://dashscope-intl.aliyuncs.com/compatible-mode/v1/models",
+            api_key,
+            timeout,
+        )
     if provider == "anthropic":
         ids: list[str] = []
         url = "https://api.anthropic.com/v1/models?limit=100"
