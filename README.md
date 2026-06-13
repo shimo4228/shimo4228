@@ -127,4 +127,4 @@ LLM probes: [two-channel probe log](probes/) (CC0) — scheduled parametric (sea
 
 Source-code archival: the program's public repositories are archived in [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228), giving each an intrinsic content-addressed identifier (SWHID) alongside its concept DOI.
 
-Author: Tatsuya Shimomoto — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)
+Author: Tatsuya Shimomoto — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)

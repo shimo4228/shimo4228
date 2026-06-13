@@ -127,4 +127,4 @@ LLM probes: [two-channel probe log](probes/)（CC0）— frontier model への�
 
 ソースコード保存: プログラムの公開リポジトリは [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) にアーカイブされ、concept DOI と並ぶ intrinsic な content-addressed 識別子 (SWHID) を各々が持つ。
 
-著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)
+著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
