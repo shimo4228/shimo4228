@@ -125,4 +125,6 @@ Repo traffic: [public dashboard](https://shimo4228.github.io/shimo4228/traffic/d
 
 LLM probes: [two-channel probe log](probes/) (CC0) — scheduled parametric (search-suppressed naming) and retrieval (search-grounded citation) probes of frontier models, measuring whether the ecosystem's ideas surface with their author attached.
 
+Source-code archival: the program's public repositories are archived in [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228), giving each an intrinsic content-addressed identifier (SWHID) alongside its concept DOI.
+
 Author: Tatsuya Shimomoto — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)

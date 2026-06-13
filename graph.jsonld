@@ -166,7 +166,8 @@
         "https://shimo4228.github.io/shimo4228/vocab#concept/three-axis-inversion",
         "https://shimo4228.github.io/shimo4228/vocab#concept/four-layer-framework",
         "https://shimo4228.github.io/shimo4228/vocab#concept/identifier-federation-triplet",
-        "https://shimo4228.github.io/shimo4228/vocab#concept/dual-entry-point"
+        "https://shimo4228.github.io/shimo4228/vocab#concept/dual-entry-point",
+        "https://shimo4228.github.io/shimo4228/vocab#concept/intrinsic-identifier-layer"
       ]
     },
 
@@ -310,6 +311,16 @@
         {"@value": "dual entry point", "@language": "ja"}
       ],
       "description": "Authorship Strategy's structural decision (ADR-0006) that any framework-governed artifact deploys two complementary structured entry points — a prose-form navigator (e.g., an llms.txt convention file) and a concept-form linked-data graph (e.g., a JSON-LD knowledge graph) — released synchronously. Each entry point addresses a distinct LLM-mediated reader sub-population the other cannot reach. The pair is the operational embodiment of the enclosure-to-openness axis on the ingest surface."
+    },
+    {
+      "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/intrinsic-identifier-layer",
+      "@type": ["Concept", "DefinedTerm"],
+      "name": "intrinsic identifier layer",
+      "alternateName": [
+        {"@value": "intrinsic identifier layer", "@language": "en"},
+        {"@value": "intrinsic identifier 層", "@language": "ja"}
+      ],
+      "description": "Authorship Strategy's structural decision (ADR-0013) that a content-derived intrinsic identifier — a SWHID, computed from an artifact and its version history and verifiable from the content alone without any registry — complements the extrinsic concept DOI rather than replacing it. The two layers cover each other's failure mode: if the DOI registry disappears the intrinsic identifier still verifies, and if the content is lost the DOI record still cites. It extends the identifier-federation triplet, and for artifact genres where DOI registration is impractical it serves as the substitute priority-claim mechanism. Archival in a content-addressed software archive also opens a parametric-channel ingest surface for code-focused training corpora."
     },
     {
       "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/three-abhidharma-traditions",

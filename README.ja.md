@@ -125,4 +125,6 @@ Repo traffic: [公開ダッシュボード](https://shimo4228.github.io/shimo422
 
 LLM probes: [two-channel probe log](probes/)（CC0）— frontier model への定期 probe（parametric = 検索抑制の naming probe / retrieval = 検索有効の citation probe）。エコシステムのアイデアが著者と一緒に浮上するかを測定する。
 
+ソースコード保存: プログラムの公開リポジトリは [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) にアーカイブされ、concept DOI と並ぶ intrinsic な content-addressed 識別子 (SWHID) を各々が持つ。
+
 著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100)
