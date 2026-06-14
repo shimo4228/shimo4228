@@ -27,6 +27,7 @@ import hashlib
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -54,10 +55,36 @@ from providers import (
     responses_output_text,
 )
 
-RUNNER_VERSION = "0.2.0"  # 0.2.0: responses-API retrieval (openai/xai), redirect resolution, qwen thinking off
+RUNNER_VERSION = "0.3.0"  # 0.3.0: per-provider call throttle (anthropic input-TPM); 0.2.0: responses-API retrieval (openai/xai), redirect resolution, qwen thinking off
 HERE = Path(__file__).resolve().parent
 DEFAULT_CONFIG = HERE.parent / "config" / "probes-v4.yaml"
 DEFAULT_DATA_DIR = HERE.parent / "data"
+
+# Minimum seconds between successive calls to the same provider, measured
+# start-to-start. Operational throttle (not part of the experiment / prompt
+# hash): a single anthropic retrieval probe accumulates 20k-68k input tokens
+# across its agentic web-search loop, so two back-to-back calls blow the org's
+# 30k input-tokens-per-minute limit on claude-sonnet. ~60s start-to-start keeps
+# the run under the cap; big calls that already take >60s incur no extra wait.
+# Providers absent from this map are uncapped.
+PROVIDER_MIN_INTERVAL_S = {"anthropic": 60.0}
+_last_call_start: dict[str, float] = {}
+
+
+def throttle(provider: str) -> None:
+    """Sleep so successive same-provider calls respect PROVIDER_MIN_INTERVAL_S.
+
+    No-op for the first call to a provider in a run (nothing to space against),
+    so single-probe gap-fills never wait.
+    """
+    interval = PROVIDER_MIN_INTERVAL_S.get(provider, 0.0)
+    last = _last_call_start.get(provider)
+    if interval and last is not None:
+        wait = interval - (time.monotonic() - last)
+        if wait > 0:
+            print(f"  throttle: {provider} sleeping {wait:.0f}s (input-TPM)", flush=True)
+            time.sleep(wait)
+    _last_call_start[provider] = time.monotonic()
 
 
 def render_prompt(probe: dict) -> str:
@@ -426,6 +453,7 @@ def main(argv: list[str] | None = None) -> int:
                     f"probe: {provider} × {probe['id']} [{channel}] ({rep_run_id}) …",
                     flush=True,
                 )
+                throttle(provider)
                 record = run_one(provider, probe, channel, config, rep_run_id)
                 with data_file.open("a") as f:
                     f.write(json.dumps(record, ensure_ascii=False) + "\n")
