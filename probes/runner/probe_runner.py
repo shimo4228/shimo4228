@@ -151,6 +151,34 @@ def select_arms(
     return arms
 
 
+def token_cost(
+    provider: str,
+    model: str,
+    prompt_tokens: int | None,
+    completion_tokens: int | None,
+) -> float | None:
+    """USD token cost via litellm's price map; None if the model is unmapped.
+
+    Used for the responses-endpoint providers (openai/xai), whose direct-HTTP
+    path bypasses litellm's automatic cost map. custom_llm_provider is required
+    so unprefixed ids like "grok-4.3" resolve to the right price table. Token
+    cost captures ~96-100% of the real bill; the web-search tool fee (a few %
+    on retrieval) is not itemized.
+    """
+    import litellm
+
+    try:
+        prompt_cost, completion_cost = litellm.cost_per_token(
+            model=model,
+            prompt_tokens=prompt_tokens or 0,
+            completion_tokens=completion_tokens or 0,
+            custom_llm_provider=provider,
+        )
+        return prompt_cost + completion_cost
+    except Exception:
+        return None
+
+
 def run_one(provider: str, probe: dict, channel: str, config: dict, run_id: str) -> dict:
     """One API call → one JSONL record (dict)."""
     from importlib.metadata import version as pkg_version
@@ -217,7 +245,9 @@ def run_one(provider: str, probe: dict, channel: str, config: dict, run_id: str)
             usage = response_dict.get("usage") or {}
             prompt_tokens = usage.get("input_tokens")
             completion_tokens = usage.get("output_tokens")
-            cost = None  # responses endpoint is outside litellm's cost map
+            # responses endpoint bypasses litellm's auto cost map; price the
+            # tokens ourselves (web-search tool fee, a few %, is not itemized).
+            cost = token_cost(provider, model, prompt_tokens, completion_tokens)
         else:
             # In-call retry with backoff for transient provider failures
             # (429/503) — observed: gemini-3.5-flash returned 503 bursts
@@ -385,8 +415,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
     parser.add_argument("--run-id", default=None,
                         help="default: <UTC timestamp>-<channel|all>")
-    parser.add_argument("--cost-ceiling", type=float, default=2.0,
-                        help="abort the run if cumulative cost (USD) exceeds this")
+    parser.add_argument("--cost-budget", type=float, default=10.0,
+                        help="soft budget (USD): warn once if cumulative cost "
+                             "exceeds this, but do not abort (the run is a bounded "
+                             "probe×provider×repeat loop, so cost cannot run away)")
     parser.add_argument("--repeat", type=int, default=1,
                         help="repetitions per (probe × provider), for within-model "
                              "variance at model-entry events (run_id gets -rN suffix)")
@@ -432,6 +464,7 @@ def main(argv: list[str] | None = None) -> int:
 
     args.data_dir.mkdir(parents=True, exist_ok=True)
     total_cost = 0.0
+    budget_warned = False
     written = skipped = errors = 0
     rep_run_ids = (
         [run_id]
@@ -470,13 +503,13 @@ def main(argv: list[str] | None = None) -> int:
                         f"cited={d['doi_or_url_cited']} ghost={d['ghost_citation']} "
                         f"src={record['citation_source']} cost=${cost:.4f}"
                     )
-                if total_cost > args.cost_ceiling:
+                if not budget_warned and total_cost > args.cost_budget:
                     print(
-                        f"cost ceiling ${args.cost_ceiling} exceeded "
-                        f"(${total_cost:.4f}) — aborting run",
+                        f"  WARNING: cost budget ${args.cost_budget} exceeded "
+                        f"(${total_cost:.4f}) — continuing (run is bounded)",
                         file=sys.stderr,
                     )
-                    return 2
+                    budget_warned = True
 
     print(
         f"\nrun {run_id}: {written} written, {skipped} skipped, "

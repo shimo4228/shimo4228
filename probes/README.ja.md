@@ -70,7 +70,10 @@ uv run probe_runner.py --channel parametric --repeat 3  # モデル参入 event 
 uv run probe_runner.py --currency-check               # 月次の変化検出
 ```
 
-コストガード: 1 run が `--cost-ceiling` (default $2) を超えたら中断する。
+コスト: 各 record の `usage.cost_usd` に、chat / responses (openai/xai) の両 endpoint とも
+litellm の price map で算出した実コストが入る (web search tool fee 数 % のみ未計上)。
+`--cost-budget` (default $10) は soft guard で、累計が超えたら警告を 1 回出すだけで**中断しない**
+(probe×provider×repeat の有限ループなのでコストは bounded)。
 
 ## Scheduling
 

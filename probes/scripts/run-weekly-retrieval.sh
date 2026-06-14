@@ -36,7 +36,7 @@ WEEKLY_TO="2026-11-30"
   fi
   echo "=== retrieval run $(date -u +%Y-%m-%dT%H:%M:%SZ) (ISO week $WEEK) ==="
   cd "$REPO/probes/runner"
-  "$UV" run probe_runner.py --channel retrieval --cost-ceiling 5.0
+  "$UV" run probe_runner.py --channel retrieval --cost-budget 8.0
   echo "runner exit: $? (non-zero = errored cells, gap-fill later)"
 
   cd "$REPO"

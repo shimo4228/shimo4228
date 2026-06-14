@@ -78,7 +78,11 @@ uv run probe_runner.py --channel parametric --repeat 3  # model-entry event run
 uv run probe_runner.py --currency-check               # monthly change-event detector
 ```
 
-Cost guard: the runner aborts if a run exceeds `--cost-ceiling` (default $2).
+Cost: every record carries `usage.cost_usd`, priced via litellm's map for both
+the chat and responses (openai/xai) endpoints — only the web-search tool fee (a
+few % on retrieval) is unpriced. `--cost-budget` (default $10) is a soft guard:
+the runner warns once when cumulative cost exceeds it but does not abort, since
+the probe×provider×repeat loop is bounded.
 
 ## Scheduling
 
