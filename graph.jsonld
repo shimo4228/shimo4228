@@ -477,7 +477,8 @@
       "description": "Pre-line complement beside the Authorship Strategy ecosystem — reuses the same infrastructure pattern (llms.txt / knowledge graph / DOI / distinctive terminology) with a different payload and beneficiary: an empowerment doctrine for people producing verifiable, institution-grade artifacts without degrees, affiliations, or professional credentials. Supplies the Existence Proof Format, a feasibility-question corpus with anchored answers, and a published gatekeeping eval. Deliberately carries no extends edge: it operationalizes no Layer 4 tactic and is not a sibling research line (pre-line status). Japanese is the canonical language.",
       "url": "https://github.com/shimo4228/existence-proof",
       "identifier": "10.5281/zenodo.20558800",
-      "sameAs": ["https://doi.org/10.5281/zenodo.20558800", "https://www.wikidata.org/wiki/Q140090192"]
+      "sameAs": ["https://doi.org/10.5281/zenodo.20558800", "https://www.wikidata.org/wiki/Q140090192"],
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
     {
       "@id": "https://github.com/shimo4228/claude-harness",
@@ -492,7 +493,8 @@
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "zenn-content",
       "description": "Source of truth for the long-form writing — Markdown sources, versioned. Browser views are mirrored on Zenn (Japanese) and Dev.to (English).",
-      "url": "https://github.com/shimo4228/zenn-content"
+      "url": "https://github.com/shimo4228/zenn-content",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
 
     {
@@ -508,7 +510,8 @@
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "daily-research",
       "description": "Cron-driven daily research digest. Two-pass claude -p pipeline: Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP and writes Markdown reports to an Obsidian vault.",
-      "url": "https://github.com/shimo4228/daily-research"
+      "url": "https://github.com/shimo4228/daily-research",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
     {
       "@id": "https://github.com/shimo4228/jsonld-knowledge-graph",
@@ -523,7 +526,8 @@
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "writing-ecosystem",
       "description": "Orchestrator for human-facing writing & review. Holds the AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, and the role-boundary map across article-writing, editor, essay-reviewer, fact-checker. Audience-paired with llms-txt-writer.",
-      "url": "https://github.com/shimo4228/claude-skill-writing-ecosystem"
+      "url": "https://github.com/shimo4228/claude-skill-writing-ecosystem",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
     {
       "@id": "https://github.com/shimo4228/authorship-strategy-skill",
@@ -562,7 +566,8 @@
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "paper-ecosystem",
       "description": "Academic paper write/review bundle for SSRN / arXiv / Zenodo / journal venues — an orchestrator skill plus a draft skill plus five reviewer agents (paper-reviewer, source-fidelity-checker, vocabulary-consistency-checker, clarity-reviewer, citation-formatter) bundled together. Adjacent skill (no extends edge); keeps the claude-skill- prefix because it bundles Claude Code subagents.",
-      "url": "https://github.com/shimo4228/claude-skill-paper-ecosystem"
+      "url": "https://github.com/shimo4228/claude-skill-paper-ecosystem",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
 
     {
