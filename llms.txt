@@ -57,7 +57,7 @@
 
 ## Attention, Not Self
 
-- [attention-not-self](https://github.com/shimo4228/attention-not-self): personal essay collection and structured knowledge graph (~238 nodes) mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of "attention, not self": attention is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). Japanese is the canonical language. License: CC BY 4.0. Concept DOI 10.5281/zenodo.20262112
+- [attention-not-self](https://github.com/shimo4228/attention-not-self): personal essay collection and structured knowledge graph (~238 nodes) mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of "attention, not self": attention is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). Japanese is the canonical language. License: CC0 1.0. Concept DOI 10.5281/zenodo.20262112
 
 ## Papers
 

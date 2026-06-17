@@ -85,7 +85,7 @@ framework は **3 軸反転** に立つ — 価値の源泉（scarcity から di
 
 ## Attention, Not Self
 
-[Attention, Not Self](https://github.com/shimo4228/attention-not-self) は、仏教 Abhidharma の 3 大伝統 — Theravāda、Sarvāstivāda、Yogācāra — を現代の計算論的現象学（predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing）と対応させる。この研究を貫く視座は名前そのものにある。注意 — その配分、precision-weighting、瞬間性 — が認識の operative unit として扱われ、自己と見えるものは派生的パターン（anātman）とされる。個人的なエッセイ集と、構造化ナレッジグラフ（〜238 ノード）が対になっている。本ラインは日本語が canonical 言語で、英語 README は accessibility のために提供する。License: CC BY 4.0。[DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112)。
+[Attention, Not Self](https://github.com/shimo4228/attention-not-self) は、仏教 Abhidharma の 3 大伝統 — Theravāda、Sarvāstivāda、Yogācāra — を現代の計算論的現象学（predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing）と対応させる。この研究を貫く視座は名前そのものにある。注意 — その配分、precision-weighting、瞬間性 — が認識の operative unit として扱われ、自己と見えるものは派生的パターン（anātman）とされる。個人的なエッセイ集と、構造化ナレッジグラフ（〜238 ノード）が対になっている。本ラインは日本語が canonical 言語で、英語 README は accessibility のために提供する。License: CC0 1.0。[DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112)。
 
 ## Papers
 

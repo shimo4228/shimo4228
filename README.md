@@ -85,7 +85,7 @@ One repository sits beside this ecosystem as a **pre-line complement** rather th
 
 ## Attention, Not Self
 
-[Attention, Not Self](https://github.com/shimo4228/attention-not-self) maps the three major Buddhist Abhidharma traditions — Theravāda, Sarvāstivāda, Yogācāra — onto contemporary computational phenomenology: predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. The organizing view is in the name. Attention — its allocation, its precision-weighting, its momentariness — is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). It is a personal essay collection paired with a structured knowledge graph (~238 nodes). Japanese is the canonical language; an English README is provided for access. License: CC BY 4.0. [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112).
+[Attention, Not Self](https://github.com/shimo4228/attention-not-self) maps the three major Buddhist Abhidharma traditions — Theravāda, Sarvāstivāda, Yogācāra — onto contemporary computational phenomenology: predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. The organizing view is in the name. Attention — its allocation, its precision-weighting, its momentariness — is treated as the operative unit of cognition, while the apparent self is a derivative pattern (anātman). It is a personal essay collection paired with a structured knowledge graph (~238 nodes). Japanese is the canonical language; an English README is provided for access. License: CC0 1.0. [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112).
 
 ## Papers
 
