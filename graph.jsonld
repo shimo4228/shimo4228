@@ -50,7 +50,8 @@
       "name": "Agent Knowledge Cycle (AKC)",
       "alternateName": [
         {"@value": "Agent Knowledge Cycle", "@language": "en"},
-        {"@value": "エージェント知識サイクル", "@language": "ja"}
+        {"@value": "エージェント知識サイクル", "@language": "ja"},
+        "AKC"
       ],
       "description": "Six-phase bidirectional growth loop for sustaining agent-operator intent alignment over time, organized as three stacked layers: principles (ADRs), design patterns, and composable skills. Refers to a mechanism, not a disposition or a practice.",
       "identifier": "10.5281/zenodo.19200726",
@@ -81,7 +82,8 @@
       "name": "Contemplative Agent",
       "alternateName": [
         {"@value": "Contemplative Agent", "@language": "en"},
-        {"@value": "観想的エージェント", "@language": "ja"}
+        {"@value": "観想的エージェント", "@language": "ja"},
+        "CA"
       ],
       "description": "CLI agent grounded in four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) running AKC's six-phase cycle over its own logs on a local 9B stack on a single Apple Silicon Mac. Asks whether an agent's alignment can come from what it is rather than what it is told. Refers to a disposition. Shares Buddhist phenomenological vocabulary with the Attention, Not Self line, but applies it as agent behavioral preset rather than as comparative cognitive framework.",
       "identifier": "10.5281/zenodo.19212118",
@@ -112,7 +114,8 @@
       "name": "Agent Attribution Practice (AAP)",
       "alternateName": [
         {"@value": "Agent Attribution Practice", "@language": "en"},
-        {"@value": "エージェント帰責実践", "@language": "ja"}
+        {"@value": "エージェント帰責実践", "@language": "ja"},
+        "AAP"
       ],
       "description": "Harness-neutral ADRs on accountability distribution in autonomous AI agents, paired with four Business AI Quadrants as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. Judgments were extracted from contemplative-agent's operational practice and re-expressed stripped of project identifiers. Refers to a practice.",
       "identifier": "10.5281/zenodo.19652013",
@@ -144,7 +147,8 @@
       "name": "Authorship Strategy",
       "alternateName": [
         {"@value": "Authorship Strategy", "@language": "en"},
-        {"@value": "著者戦略", "@language": "ja"}
+        {"@value": "著者戦略", "@language": "ja"},
+        "AS"
       ],
       "description": "A normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). The tactical catalog clusters into the identifier-federation triplet, a maintenance-discipline pair, and an LLM-first ingest decision via dual entry points — all extracted from operating this very research program. Refers to a research methodology — the strategy of authorship itself under the new substrate.",
       "identifier": "10.5281/zenodo.20263316",
@@ -178,7 +182,8 @@
       "name": "Attention, Not Self",
       "alternateName": [
         {"@value": "Attention, Not Self", "@language": "en"},
-        {"@value": "アテンション、ノット・セルフ", "@language": "ja"}
+        {"@value": "アテンション、ノット・セルフ", "@language": "ja"},
+        "ANS"
       ],
       "description": "A personal essay collection and structured knowledge graph mapping the three major Buddhist Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto contemporary frameworks in computational phenomenology — predictive processing, active inference, Global Workspace Theory, Parallel Distributed Processing. From the perspective of \"attention, not self,\" juxtaposes ancient classifications of cognitive process with contemporary computational models. Refers to a cross-disciplinary inquiry — Buddhist phenomenology meeting computational cognitive science. Shares Buddhist phenomenological vocabulary with the Contemplative Agent line, but uses it as comparative cognitive framework rather than as agent behavioral preset.",
       "identifier": "10.5281/zenodo.20262112",
