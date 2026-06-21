@@ -63,7 +63,7 @@ framework は 3 層が積み重なる — 原則（ADR 群）、デザインパ�
 
 ## Authorship Strategy
 
-[Authorship Strategy](https://github.com/shimo4228/authorship-strategy) は、LLM が読者の到達経路を仲介するようになった途端、著者性そのものがどう反転するかを形式化する。規範的 framework、戦術カタログ、そして経験的ベースライン — 最後のひとつはこの研究プログラム自身の運用から引いている。[DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316)。
+[Authorship Strategy](https://github.com/shimo4228/authorship-strategy) は、LLM が読者の到達経路を仲介するようになった途端、著者性そのものがどう反転するかを形式化する。規範的 framework、戦術カタログ、そして経験的ベースライン — 最後のひとつはこの研究エコシステム自身の運用から引いている。[DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316)。
 
 framework は **3 軸反転** に立つ — 価値の源泉（scarcity から diffusion へ）、validation（exclusivity から derivation へ、derivative work が「脅威」ではなく「証拠」になる）、ネットワーク効果（enclosure から openness へ、LLM は囲い込めないため）— と、**4 層判断 stack**（Authenticity、Attribution Diffusion、Idea vs Scaffold、Tactics）から成る。経験的レイヤーは sibling repo 自身の CC0 公開 traffic data から preliminary observation を報告する。
 

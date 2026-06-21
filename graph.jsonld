@@ -150,7 +150,7 @@
         {"@value": "著者戦略", "@language": "ja"},
         "AS"
       ],
-      "description": "A normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). The tactical catalog clusters into the identifier-federation triplet, a maintenance-discipline pair, and an LLM-first ingest decision via dual entry points — all extracted from operating this very research program. Refers to a research methodology — the strategy of authorship itself under the new substrate.",
+      "description": "A normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). The tactical catalog clusters into the identifier-federation triplet, a maintenance-discipline pair, and an LLM-first ingest decision via dual entry points — all extracted from operating this very research ecosystem. Refers to a methodology — the strategy of authorship itself under the new substrate.",
       "identifier": "10.5281/zenodo.20263316",
       "author": {"@id": "https://orcid.org/0009-0002-6168-4162"},
       "url": "https://github.com/shimo4228/authorship-strategy",

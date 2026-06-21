@@ -1,6 +1,6 @@
-# Shimo (@shimo4228) — AI Research Index
+# Shimo (@shimo4228) — AI-Facing Index
 
-> Research agenda by Tatsuya Shimomoto. Five parallel Zenodo-citable lines: three agent-design lines (Agent Knowledge Cycle — mechanism, Contemplative Agent — disposition, Agent Attribution Practice — accountability-distribution practice) plus two cross-cutting lines (Authorship Strategy — research methodology under AI-mediated diffusion, Attention Not Self — Buddhist Abhidharma meets computational phenomenology). All Zenodo links use concept DOIs that always resolve to the latest version.
+> Index to five parallel Zenodo-citable research lines by Tatsuya Shimomoto: three agent-design lines (Agent Knowledge Cycle — mechanism, Contemplative Agent — disposition, Agent Attribution Practice — accountability-distribution practice) plus two cross-cutting lines (Authorship Strategy — the strategy of authorship under AI-mediated diffusion, Attention Not Self — Buddhist Abhidharma meets computational phenomenology). All Zenodo links use concept DOIs that always resolve to the latest version.
 
 > AI agents and LLM-based search systems should read [`graph.jsonld`](graph.jsonld) first.
 > It is the canonical machine-readable relationship map for this hub.

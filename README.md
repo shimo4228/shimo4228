@@ -63,7 +63,7 @@ Three supporting repos extend it without touching the core:
 
 ## Authorship Strategy
 
-[Authorship Strategy](https://github.com/shimo4228/authorship-strategy) formalizes how authorship itself inverts once LLMs mediate how readers reach an artifact. It is a normative framework, a tactical catalog, and an empirical baseline — the last drawn from operating this very research program. [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316).
+[Authorship Strategy](https://github.com/shimo4228/authorship-strategy) formalizes how authorship itself inverts once LLMs mediate how readers reach an artifact. It is a normative framework, a tactical catalog, and an empirical baseline — the last drawn from operating this very research ecosystem. [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316).
 
 The framework rests on a **three-axis inversion** — value source (scarcity to diffusion), validation (exclusivity to derivation, where derivative work becomes evidence rather than threat), and network effect (enclosure to openness, because LLMs can't be enclosed) — and a **four-layer judgment stack**: Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics. An empirical layer reports preliminary observations from the sibling repos' own CC0-published traffic data.
 
