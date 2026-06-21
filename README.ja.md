@@ -83,6 +83,8 @@ framework は **3 軸反転** に立つ — 価値の源泉（scarcity から di
 
 この ecosystem の脇には、component ではなく **pre-line の complement** として並ぶ repo が 1 つある。[existence-proof](https://github.com/shimo4228/existence-proof) は同じ infrastructure パターン — llms.txt、knowledge graph、DOI、固有用語 — を、異なる payload と受益者で再利用する。学位・所属・職業資格なしに、第三者検証可能な institution-grade の成果物を作る層のための empowerment doctrine だ。Existence Proof Format（すべての claim が第三者検証可能な anchor で終端する記録フォーマット）、anchored answer 付きの feasibility-question corpus、公開 gatekeeping eval を備える。正準言語は日本語。[DOI 10.5281/zenodo.20558800](https://doi.org/10.5281/zenodo.20558800)。
 
+その並びに、フォーマットの worked instance が 1 つある。[einstein-arena](https://github.com/shimo4228/einstein-arena) — 著者が指揮し、同じ承認ゲート付き harness で動く自律エージェントが、公開数学アリーナ [EinsteinArena](https://einsteinarena.com) の素数定理構成問題でサーバ検証済みのトップスコアに到達した。ローカルスコアとサーバスコアは全桁一致（0.9955806）、前公開トップ 0.994901 を +0.00068 上回り、前トップが頼った 1.0001 のわずかな数値的許容ではなく、問題が要求する clean な上界（g(x) ≤ 1）をそのまま保つ — より厳しく、より正直な構成だ。著者は数学・数値最適化に学位も研究職歴も持たない。それでも検証可能な成果物は存在する — AI は経路で、結果への説明責任は著者にある。これは Existence Proof Format の instance #1 として、公開 repo とアリーナ・プラットフォームをアンカーに記録される。研究ラインでも component skill でもなく、一つの witness だ。
+
 ## Attention, Not Self
 
 [Attention, Not Self](https://github.com/shimo4228/attention-not-self) は、仏教 Abhidharma の 3 大伝統 — Theravāda、Sarvāstivāda、Yogācāra — を現代の計算論的現象学（predictive processing、active inference、Global Workspace Theory、Parallel Distributed Processing）と対応させる。この研究を貫く視座は名前そのものにある。注意 — その配分、precision-weighting、瞬間性 — が認識の operative unit として扱われ、自己と見えるものは派生的パターン（anātman）とされる。個人的なエッセイ集と、構造化ナレッジグラフ（〜238 ノード）が対になっている。本ラインは日本語が canonical 言語で、英語 README は accessibility のために提供する。License: CC0 1.0。[DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112)。

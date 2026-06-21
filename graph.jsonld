@@ -486,6 +486,14 @@
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
     {
+      "@id": "https://github.com/shimo4228/einstein-arena",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "einstein-arena",
+      "description": "Worked instance of the Existence Proof Format defined in existence-proof. An autonomous agent, directed by the author and run under the same approval-gated harness, reached a server-verified top score on EinsteinArena's Prime Number Theorem construction problem: the server score equals the local score to all digits (0.9955806), beating the prior published best (0.994901) by +0.00068 while holding the clean g(x) <= 1 bound rather than the 1.0001 tolerance the prior top spent. The author holds no degree or research background in mathematics or numerical optimization; the AI is the path and the result is the author's to account for (consistent with the AAP operator-accountability framing). Filed as Existence Proof Format instance #1, anchored to the public repository and the arena platform. Deliberately carries no extends edge: it operationalizes no Layer 4 tactic and is not a sibling research line — a witness, not a component skill.",
+      "url": "https://github.com/shimo4228/einstein-arena",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
       "@id": "https://github.com/shimo4228/claude-harness",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "claude-harness",
