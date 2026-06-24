@@ -25,11 +25,10 @@ Three of the lines are about how agents are designed — **Agent Knowledge Cycle
 One iteration runs six phases, each bound to one composable skill:
 
 ```
-Experience → learn-eval → skill-stocktake → rules-distill → Behavior change → ...
-               (extract)    (curate)          (promote)            ↑
-                                                            skill-comply
-                                                              (measure)
-                                              context-sync ← (maintain)
+Research → Extract → Curate → Promote → Measure → Maintain → (back to Research)
+   │          │         │         │          │          │
+search-    learn-     skill-    rules-     skill-     context-
+ first      eval     stocktake  distill    comply      sync
 ```
 
 | Skill | Phase | What it does |

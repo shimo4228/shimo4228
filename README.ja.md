@@ -25,11 +25,10 @@ Language: [English](README.md) | 日本語
 循環 1 周は 6 フェーズを一巡し、各フェーズに 1 つの実装スキルが対応する。
 
 ```
-経験 → learn-eval → skill-stocktake → rules-distill → 行動変容 → ...
-        (抽出)        (淘汰)            (原則昇格)         ↑
-                                                     skill-comply
-                                                       (計測)
-                                        context-sync ← (保守)
+Research → Extract → Curate → Promote → Measure → Maintain → (back to Research)
+   │          │         │         │          │          │
+search-    learn-     skill-    rules-     skill-     context-
+ first      eval     stocktake  distill    comply      sync
 ```
 
 | スキル | Phase | 概要 |
