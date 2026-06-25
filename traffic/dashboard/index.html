@@ -255,6 +255,55 @@
 
     .status-error { padding: 12px 16px; border: 1px solid #ef4444; border-radius: var(--r-card); color: #ef4444; background: rgba(239, 68, 68, 0.06); }
 
+    /* ---- attribution diffusion probes ---- */
+    .probe-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+    .probe-head h2 { margin: 0; }
+    .caveat { color: var(--faint); font-size: 0.78rem; line-height: 1.55; margin: 14px 0 0; }
+    .probe-caveat { padding: 13px 16px; margin-bottom: 18px; border-left: 3px solid var(--accent-2); font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .probe-caveat b { color: var(--fg); font-weight: 650; }
+
+    .probe-channels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media (max-width: 640px) { .probe-channels { grid-template-columns: 1fr; } }
+    .channel-card { padding: 16px 18px; }
+    .channel-card .ch-name { font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; }
+    .channel-card.parametric .ch-name { color: var(--accent); }
+    .channel-card.retrieval .ch-name { color: var(--accent-2); }
+    .channel-card .ch-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .channel-card .ch-sub { font-size: 0.78rem; color: var(--faint); margin: 6px 0 14px; line-height: 1.5; }
+    .sigbar { margin-bottom: 11px; }
+    .sigbar .sig-top { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px; }
+    .sigbar .sig-label { color: var(--muted); }
+    .sigbar .sig-val { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .sigbar .track { height: 8px; }
+    .channel-card.parametric .track > span { background: var(--accent); }
+    .channel-card.retrieval .track > span { background: var(--accent-2); }
+    .sigbar.ghost .track > span { background: var(--down) !important; }
+    .sigbar.ghost .sig-val { color: var(--down); }
+    .ch-ghost-chip { margin-top: 6px; font-size: 0.76rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--r-pill); border: 1px solid var(--border); }
+    .ch-ghost-chip.good { color: var(--up); }
+    .ch-ghost-chip.warn { color: var(--down); border-color: color-mix(in srgb, var(--down) 45%, transparent); }
+
+    .delta-strip { padding: 13px 16px; margin-bottom: 16px; }
+    .delta-strip .ds-head { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-bottom: 9px; }
+    .delta-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
+    .delta-chip { display: flex; flex-direction: column; gap: 1px; padding: 7px 11px; border-radius: 10px; background: var(--border); }
+    .delta-chip .dc-label { font-size: 0.72rem; color: var(--muted); }
+    .delta-chip .dc-val { font-weight: 750; font-variant-numeric: tabular-nums; }
+    .delta-chip .dc-val.up { color: var(--up); }
+    .delta-chip .dc-val.down { color: var(--down); }
+    .delta-chip .dc-val.flat { color: var(--muted); }
+
+    .ghost-callout { padding: 16px 18px; margin-bottom: 18px; border-left: 3px solid var(--accent-2); display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+    .ghost-callout .gc-num { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--down); font-variant-numeric: tabular-nums; line-height: 1; }
+    .ghost-callout .gc-body { flex: 1; min-width: 220px; }
+    .ghost-callout .gc-lead { font-weight: 650; }
+    .ghost-callout .gc-sub { font-size: 0.78rem; color: var(--faint); margin-top: 4px; }
+
+    .watchlist { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; }
+    .watchlist .obs-chip { padding: 9px 14px; border-radius: 12px; font-size: 0.83rem; color: var(--muted); border: 1px solid var(--border); background: var(--card); backdrop-filter: blur(8px); }
+    .watchlist .obs-chip.meta { color: var(--faint); font-style: italic; }
+    .watchlist .obs-chip b { color: var(--fg); font-weight: 650; }
+
     /* entrance */
     .reveal { opacity: 0; transform: translateY(10px); }
     .reveal.in { opacity: 1; transform: none; transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -352,6 +401,34 @@
         <h2><span class="lead">▦</span>Data table</h2>
         <p class="hint">列ヘッダクリックでソート。初期表示は日付降順。</p>
         <div id="table-container" class="table-scroll"></div>
+      </section>
+
+      <section class="reveal" aria-label="attribution diffusion probes">
+        <div class="probe-head">
+          <h2><span class="lead">◑</span>Attribution diffusion probes</h2>
+          <span class="live-pill"><span class="live-dot"></span>retrieval: discoverable now ・ parametric: watch it climb</span>
+        </div>
+        <p class="hint">定期 probe が frontier LLM に研究概念を尋ね、回答が著者・プロジェクト名・DOI を名指しするかを<b>決定論的 regex</b> (LLM judge ではない) で判定する。重みに染みた知識 (parametric) と検索あり (retrieval) を<b>別々に</b>追い、絶対に混ぜない — その差分こそが信号。N はまだ予備的で trend の証拠ではない。</p>
+
+        <div id="probe-status"></div>
+
+        <div id="probe-caveat" class="probe-caveat glass"></div>
+
+        <div id="probe-channels" class="probe-channels"></div>
+
+        <div id="probe-delta" class="delta-strip glass"></div>
+
+        <div id="ghost-callout" class="ghost-callout glass"></div>
+
+        <figure id="probe-signal-chart" class="chart-card glass"></figure>
+
+        <figure id="probe-matrix-chart" class="chart-card glass"></figure>
+
+        <figure id="probe-trend-chart"></figure>
+
+        <ul id="probe-watchlist" class="watchlist"></ul>
+
+        <p id="probe-foot" class="caveat"></p>
       </section>
     </main>
 
@@ -919,7 +996,287 @@
       setupReveal();
     }
 
+    // ===== Attribution diffusion probes (separate dataset, independent render) =====
+    const PROBE_SIGNALS = [
+      { key: "author_named", label: "author (in prose)", short: "author" },
+      { key: "project_named", label: "project", short: "project" },
+      { key: "doi_or_url_cited", label: "DOI", short: "DOI" },
+      { key: "ghost_citation", label: "ghost", short: "ghost" },
+    ];
+
+    function pct(r) { return r == null ? "—" : Math.round(r * 100) + "%"; }
+
+    function animatePct(el, rate) {
+      const target = (rate || 0) * 100;
+      if (REDUCED || target <= 0) { el.textContent = Math.round(target) + "%"; return; }
+      const t0 = performance.now(), dur = 900, ease = (t) => 1 - Math.pow(1 - t, 4);
+      function step(now) {
+        const p = Math.min(1, (now - t0) / dur);
+        el.textContent = Math.round(target * ease(p)) + "%";
+        if (p < 1) requestAnimationFrame(step); else el.textContent = Math.round(target) + "%";
+      }
+      requestAnimationFrame(step);
+    }
+
+    function isoWeek(d) {
+      const dt = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+      const day = dt.getUTCDay() || 7;
+      dt.setUTCDate(dt.getUTCDate() + 4 - day);
+      const ys = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+      const wk = Math.ceil((((dt - ys) / 86400000) + 1) / 7);
+      return `${dt.getUTCFullYear()}-W${String(wk).padStart(2, "0")}`;
+    }
+
+    async function loadProbe(channel) {
+      const res = await fetch(`../../probes/data/${channel}.jsonl`, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`probes/${channel}: HTTP ${res.status}`);
+      const text = await res.text();
+      const rows = [];
+      for (const line of text.split("\n")) {
+        const t = line.trim();
+        if (!t) continue;
+        let j;
+        try { j = JSON.parse(t); } catch { continue; }
+        // keep only the small fields we aggregate on — drop the heavy response_text
+        rows.push({
+          channel,
+          provider: String(j.provider ?? ""),
+          probe_id: String(j.probe_id ?? ""),
+          probe_set_version: String(j.probe_set_version ?? ""),
+          ts: String(j.ts ?? ""),
+          valid: j.detect != null && j.error == null,
+          detect: j.detect || null,
+          urlOnlyAuthor: j.detect && j.detect.author_named === false && (j.detect.matched?.author_in_url?.length > 0),
+        });
+      }
+      return rows;
+    }
+
+    async function renderProbes() {
+      // Resilient load: a missing channel file must not discard the healthy one
+      // (the two channels are never blended, so either alone is still valid).
+      const settled = await Promise.allSettled(["parametric", "retrieval"].map(loadProbe));
+      const failedCh = [];
+      let rows = [];
+      settled.forEach((s, i) => {
+        if (s.status === "fulfilled") rows.push(...s.value);
+        else { failedCh.push(["parametric", "retrieval"][i]); console.error(s.reason); }
+      });
+      if (rows.length === 0) {
+        const div = document.createElement("div");
+        div.className = "status-error";
+        div.textContent = `probe データ読み込みに失敗しました: ${failedCh.join(", ")}`;
+        document.getElementById("probe-status").append(div);
+        return;
+      }
+      if (failedCh.length) {
+        const div = document.createElement("div");
+        div.className = "status-error";
+        div.style.cssText = "border-color: var(--down); color: var(--down); margin-bottom: 14px;";
+        div.textContent = `channel ${failedCh.join(", ")} は読み込めず除外。残りで描画。`;
+        document.getElementById("probe-status").append(div);
+      }
+
+      const C = {
+        clones: cssVar("--accent") || "#6366f1",
+        views: cssVar("--accent-2") || "#10b981",
+        down: cssVar("--down") || "#d97706",
+        fg: cssVar("--fg") || "#111827",
+      };
+      const CHANNELS = ["parametric", "retrieval"];
+
+      // ---- one-pass aggregation over VALID rows only ----
+      const valid = rows.filter((r) => r.valid);
+      const nByCh = {}, excluded = {};
+      const rate = {}; // rate[channel][sigKey] = fraction over valid rows
+      for (const ch of CHANNELS) {
+        const vs = valid.filter((r) => r.channel === ch);
+        nByCh[ch] = vs.length;
+        excluded[ch] = rows.filter((r) => r.channel === ch).length - vs.length;
+        rate[ch] = {};
+        for (const s of PROBE_SIGNALS) rate[ch][s.key] = vs.length ? vs.filter((r) => r.detect[s.key] === true).length / vs.length : null;
+      }
+      const kcount = (ch, key) => valid.filter((r) => r.channel === ch && r.detect[key] === true).length;
+
+      // provider × channel × signal
+      const providers = [...new Set(valid.map((r) => r.provider))];
+      const cellRate = (ch, prov, key) => {
+        const vs = valid.filter((r) => r.channel === ch && r.provider === prov);
+        return { n: vs.length, k: vs.filter((r) => r.detect[key] === true).length, rate: vs.length ? vs.filter((r) => r.detect[key] === true).length / vs.length : null };
+      };
+      // provider order = retrieval project_named desc (the frontier reads top-down)
+      const provOrder = [...providers].sort((a, b) => (cellRate("retrieval", b, "project_named").rate || -1) - (cellRate("retrieval", a, "project_named").rate || -1));
+
+      // ghost detail (retrieval)
+      const ghostRows = valid.filter((r) => r.channel === "retrieval" && r.detect.ghost_citation === true);
+      const ghostByProbe = {};
+      for (const r of ghostRows) ghostByProbe[r.probe_id] = (ghostByProbe[r.probe_id] || 0) + 1;
+      const ghostProbeStr = Object.entries(ghostByProbe).sort((a, b) => b[1] - a[1]).map(([p, c]) => `${p} (${c})`).join(" · ");
+      const urlOnlyRetrieval = valid.filter((r) => r.channel === "retrieval" && r.urlOnlyAuthor).length;
+
+      // meta for footer
+      const dates = valid.map((r) => r.ts.slice(0, 10)).filter(Boolean).sort();
+      const versions = [...new Set(valid.map((r) => r.probe_set_version).filter(Boolean))].sort();
+      const probesByCh = {};
+      for (const ch of CHANNELS) probesByCh[ch] = new Set(valid.filter((r) => r.channel === ch).map((r) => r.probe_id)).size;
+      const weeks = [...new Set(valid.map((r) => (r.ts ? isoWeek(new Date(r.ts)) : "")).filter(Boolean))].sort();
+
+      // ---- caveat strip (read before any number) ----
+      const totalExcluded = excluded.parametric + excluded.retrieval;
+      document.getElementById("probe-caveat").innerHTML =
+        `<b>予備的な観測であって trend の証拠ではない。</b> 期間 ≈3 日・実質 1 週バケット — 断面の rate であり時系列ではない。` +
+        `検出は<b>決定論的 regex</b> (detector v1・温度 0・再現可能) で、LLM の判定ではない。` +
+        `<b>自己汚染</b>: この公開ログ自体が測定対象の retrieval channel に流れ込む (測定する channel を自ら養う)。` +
+        `API エラー (detect:null/error) の <b>${totalExcluded}</b> 件は全 denominator から除外し、有効行 (parametric ${nByCh.parametric} / retrieval ${nByCh.retrieval}) のみで算出。`;
+
+      // ---- paired channel cards ----
+      const channelMeta = {
+        parametric: { name: "Parametric · 重みの中", sub: "model weights, no web — 0 近傍が期待値。ここが伸びれば「重みに入った」合図。" },
+        retrieval: { name: "Retrieval · 検索あり", sub: "web-search on — 研究がいま「見つけられる」かどうか。" },
+      };
+      const channelsWrap = document.getElementById("probe-channels");
+      for (const ch of CHANNELS) {
+        const card = document.createElement("article");
+        card.className = `channel-card glass ${ch}`;
+        const top = document.createElement("div");
+        top.className = "ch-top";
+        top.innerHTML = `<span class="ch-name">${channelMeta[ch].name}</span><span class="rank">n=${nByCh[ch]} valid</span>`;
+        card.append(top);
+        const sub = document.createElement("div");
+        sub.className = "ch-sub";
+        sub.textContent = channelMeta[ch].sub;
+        card.append(sub);
+        for (const s of PROBE_SIGNALS) {
+          const r = rate[ch][s.key];
+          const bar = document.createElement("div");
+          bar.className = "sigbar" + (s.key === "ghost_citation" ? " ghost" : "");
+          bar.innerHTML = `<div class="sig-top"><span class="sig-label">${s.label}</span><span class="sig-val">—</span></div><div class="track"><span></span></div>`;
+          card.append(bar);
+          animatePct(bar.querySelector(".sig-val"), r);
+          requestAnimationFrame(() => { bar.querySelector(".track > span").style.width = ((r || 0) * 100).toFixed(1) + "%"; });
+        }
+        const gr = rate[ch].ghost_citation;
+        const chip = document.createElement("div");
+        if (ch === "parametric") { chip.className = "ch-ghost-chip good"; chip.textContent = `✓ ghost-citation ${kcount("parametric", "ghost_citation")} / ${nByCh.parametric}`; }
+        else { chip.className = "ch-ghost-chip warn"; chip.textContent = `⚠ ghost ${pct(gr)} — 引用したが著者名を prose に出さない`; }
+        card.append(chip);
+        channelsWrap.append(card);
+      }
+
+      // ---- delta strip (per-signal, never summed) ----
+      const dstrip = document.getElementById("probe-delta");
+      dstrip.innerHTML = `<div class="ds-head">retrieval が足すもの (signal ごと・決して合算しない)</div>`;
+      const drow = document.createElement("div");
+      drow.className = "delta-row";
+      for (const s of PROBE_SIGNALS) {
+        const d = Math.round(((rate.retrieval[s.key] || 0) - (rate.parametric[s.key] || 0)) * 100);
+        const isGhost = s.key === "ghost_citation";
+        // ghost is the bad direction ONLY when retrieval actually adds ghosting;
+        // a 0pp ghost delta is the clean/expected state, not a warning.
+        const cls = isGhost ? (d > 0 ? "down" : "flat") : (d >= 0 ? "up" : "down");
+        const chip = document.createElement("div");
+        chip.className = "delta-chip";
+        chip.innerHTML = `<span class="dc-label">${s.short}</span><span class="dc-val ${cls}">${d >= 0 ? "+" : ""}${d}pp${isGhost && d > 0 ? " ✕" : ""}</span>`;
+        drow.append(chip);
+      }
+      dstrip.append(drow);
+
+      // ---- ghost callout ----
+      const gco = document.getElementById("ghost-callout");
+      gco.innerHTML =
+        `<div class="gc-num" id="gc-num">—</div>` +
+        `<div class="gc-body"><div class="gc-lead">ghost citation — 引用したのに著者を名指さない、この計器が捕まえるための失敗モード</div>` +
+        `<div class="gc-sub">retrieval ${ghostRows.length} / ${nByCh.retrieval} 件。${ghostProbeStr ? "集中: " + ghostProbeStr + "。" : ""} parametric は ${kcount("parametric", "ghost_citation")} / ${nByCh.parametric} (ゼロも明示)。</div></div>`;
+      animatePct(document.getElementById("gc-num"), rate.retrieval.ghost_citation);
+
+      // ---- Chart A: four-signal grouped bar (channels side by side, never stacked) ----
+      const chartA = [];
+      for (const ch of CHANNELS) { if (!nByCh[ch]) continue; for (const s of PROBE_SIGNALS) chartA.push({ signal: s.label, channel: ch, rate: rate[ch][s.key] ?? 0, k: kcount(ch, s.key), n: nByCh[ch] }); }
+      document.getElementById("probe-signal-chart").append(
+        Plot.plot({
+          height: 300, marginLeft: 48, marginTop: 14,
+          style: { background: "transparent", color: C.fg },
+          fx: { domain: PROBE_SIGNALS.map((s) => s.label), label: null },
+          x: { axis: null, domain: CHANNELS },
+          y: { domain: [0, 1], grid: true, label: "↑ detection rate", tickFormat: (d) => Math.round(d * 100) + "%" },
+          color: { domain: CHANNELS, range: [C.clones, C.views], legend: true },
+          marks: [
+            Plot.barY(chartA, { fx: "signal", x: "channel", y: "rate", fill: "channel" }),
+            Plot.ruleY([0]),
+            Plot.text(chartA, { fx: "signal", x: "channel", y: "rate", text: (d) => pct(d.rate), dy: -6, fontSize: 10, fill: "currentColor" }),
+            Plot.tip(chartA, Plot.pointer({ fx: "signal", x: "channel", y: "rate", title: (d) => `${d.signal} · ${d.channel}\n${d.k}/${d.n} = ${pct(d.rate)}` })),
+          ],
+        })
+      );
+
+      // ---- Chart B: provider × signal matrix, faceted by channel (n-aware) ----
+      const cells = [];
+      for (const ch of CHANNELS) for (const prov of provOrder) for (const s of PROBE_SIGNALS) {
+        const c = cellRate(ch, prov, s.key);
+        cells.push({ channel: ch, provider: prov, signal: s.short, rate: c.n === 0 ? null : c.rate, k: c.k, n: c.n });
+      }
+      document.getElementById("probe-matrix-chart").append(
+        Plot.plot({
+          height: 60 + provOrder.length * 34, marginLeft: 78, marginBottom: 34,
+          style: { background: "transparent", color: C.fg },
+          fx: { domain: CHANNELS, label: null },
+          x: { domain: PROBE_SIGNALS.map((s) => s.short), label: null },
+          y: { domain: provOrder, label: null },
+          color: { type: "linear", domain: [0, 1], range: ["transparent", C.clones], legend: true, label: "detection rate" },
+          marks: [
+            Plot.cell(cells, { fx: "channel", x: "signal", y: "provider", fill: "rate", inset: 0.5 }),
+            Plot.text(cells, { fx: "channel", x: "signal", y: "provider", text: (d) => d.n === 0 ? "·" : pct(d.rate), fill: (d) => (d.rate != null && d.rate > 0.45 ? "white" : "currentColor"), fontSize: 10 }),
+            Plot.tip(cells, Plot.pointer({ fx: "channel", x: "signal", y: "provider", title: (d) => `${d.provider} · ${d.channel} · ${d.signal}\n${d.n === 0 ? "not measured" : d.k + "/" + d.n + " = " + pct(d.rate)}` })),
+          ],
+        })
+      );
+
+      // ---- trend chart only when >1 week bucket exists ----
+      if (weeks.length > 1) {
+        const byWeek = [];
+        for (const wk of weeks) for (const ch of CHANNELS) for (const s of PROBE_SIGNALS) {
+          const vs = valid.filter((r) => r.channel === ch && r.ts && isoWeek(new Date(r.ts)) === wk);
+          if (!vs.length) continue;
+          byWeek.push({ week: wk, channel: ch, signal: s.short, rate: vs.filter((r) => r.detect[s.key] === true).length / vs.length });
+        }
+        document.getElementById("probe-trend-chart").className = "chart-card glass";
+        document.getElementById("probe-trend-chart").append(
+          Plot.plot({
+            height: 220, marginLeft: 48,
+            style: { background: "transparent", color: C.fg },
+            fx: { domain: CHANNELS, label: null },
+            x: { label: null }, y: { domain: [0, 1], grid: true, tickFormat: (d) => Math.round(d * 100) + "%", label: "↑ rate" },
+            color: { legend: true, domain: PROBE_SIGNALS.map((s) => s.short) },
+            marks: [Plot.lineY(byWeek, { fx: "channel", x: "week", y: "rate", stroke: "signal", curve: "monotone-x", strokeWidth: 2 })],
+          })
+        );
+      }
+
+      // ---- watchlist (computed from the SAME aggregation → cannot drift) ----
+      const wl = document.getElementById("probe-watchlist");
+      const obs = [];
+      const topProv = provOrder[0];
+      if (topProv) obs.push(`<b>${topProv}</b> は検索ありで project を ${pct(cellRate("retrieval", topProv, "project_named").rate)} 名指す (検索なしでは ${pct(cellRate("parametric", topProv, "project_named").rate)})。`);
+      const zeroProv = provOrder.filter((p) => (cellRate("retrieval", p, "project_named").rate || 0) === 0 && (cellRate("parametric", p, "project_named").rate || 0) === 0);
+      if (zeroProv.length) obs.push(`<b>${zeroProv.join(", ")}</b>: まだどちらの channel でも 0 — これからの watch 対象。`);
+      obs.push(`retrieval は DOI を ${pct(rate.retrieval.doi_or_url_cited)} 引くが、著者を prose に出すのは ${pct(rate.retrieval.author_named)} — ghost が出る構造。`);
+      obs.push(`author_named は <b>prose の中</b>のみ。引用 URL の中の handle は数えない (retrieval で ${urlOnlyRetrieval} 件の URL-only)。`);
+      const metaObs = [
+        `N は予備的 — ${dates[0] || "—"}〜${dates[dates.length - 1] || "—"} の窓で、まだ証拠ではない。`,
+        `この公開ダッシュボード自体が測定対象の retrieval channel に流れ込む (自己汚染)。`,
+      ];
+      for (const o of obs) { const li = document.createElement("li"); li.className = "obs-chip"; li.innerHTML = o; wl.append(li); }
+      for (const o of metaObs) { const li = document.createElement("li"); li.className = "obs-chip meta"; li.innerHTML = o; wl.append(li); }
+
+      // ---- footer ----
+      document.getElementById("probe-foot").textContent =
+        `probe set ${versions.join("/")} · probe_id ${probesByCh.parametric} (parametric) / ${probesByCh.retrieval} (retrieval) · providers ${provOrder.join(", ")} · ` +
+        `${dates[0] || "—"}…${dates[dates.length - 1] || "—"} · ` +
+        (weeks.length > 1 ? "weekly time view 有効。" : "週次系列が貯まり次第、time view が自動で出る (現在 1 週バケット)。");
+    }
+
     render();
+    renderProbes();
   </script>
 </body>
 </html>
