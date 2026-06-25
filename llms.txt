@@ -83,6 +83,7 @@ Companion Claude Code skills maintained alongside the AKC cycle but not part of 
 ## Data
 
 - [GitHub Traffic Snapshots](https://shimo4228.github.io/shimo4228/traffic/dashboard/) ([raw JSONL](traffic/), CC0): daily append-only snapshots of the GitHub Traffic API for the public research repositories. Auto-generated companion dataset, sibling to the knowledge graph
+- [LLM Attribution-Diffusion Probes](https://shimo4228.github.io/shimo4228/traffic/dashboard/) (raw JSONL: [parametric](https://shimo4228.github.io/shimo4228/probes/data/parametric.jsonl) / [retrieval](https://shimo4228.github.io/shimo4228/probes/data/retrieval.jsonl), CC0): scheduled two-channel probes of frontier LLMs measuring whether this program's research concepts — and the author — surface in model answers. Parametric (web search off) and retrieval (web search on) channels are kept strictly separate per Authorship Strategy ADR-0008; the per-channel contrast is the signal, never blended. Detection is deterministic regex (author named in prose / project named / owned DOI cited / ghost-citation), not LLM judging. Preliminary observation, not evidence
 
 ## Writing
 

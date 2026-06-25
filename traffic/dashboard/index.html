@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <title>Traffic Dashboard — shimo4228</title>
+  <meta name="description" content="GitHub traffic snapshots and two-channel LLM attribution-diffusion probes for @shimo4228's research program. CC0 append-only JSONL.">
+  <!-- Static dataset metadata for non-JS crawlers: the charts render client-side,
+       so the underlying datasets are described here as schema.org Dataset nodes. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Dataset",
+        "@id": "https://github.com/shimo4228/shimo4228#traffic-dataset",
+        "name": "shimo4228 GitHub Traffic Snapshots",
+        "description": "Daily append-only JSONL snapshots of the GitHub Traffic API (clones / unique cloners / views / unique visitors) for the public research repositories. Auto-generated companion dataset; observed data, not curated content.",
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "creator": {"@type": "Person", "@id": "https://orcid.org/0009-0002-6168-4162", "name": "shimo4228"},
+        "isAccessibleForFree": true,
+        "url": "https://shimo4228.github.io/shimo4228/traffic/dashboard/",
+        "distribution": {"@type": "DataDownload", "encodingFormat": "application/x-ndjson", "contentUrl": "https://github.com/shimo4228/shimo4228/tree/main/traffic/data"}
+      },
+      {
+        "@type": "Dataset",
+        "@id": "https://github.com/shimo4228/shimo4228#probe-dataset",
+        "name": "shimo4228 LLM Attribution-Diffusion Probes",
+        "description": "Scheduled two-channel probes of frontier LLMs measuring whether this program's research concepts — and the author — surface in model answers. Parametric (web search off) and retrieval (web search on) channels are kept strictly separate per Authorship Strategy ADR-0008; the per-channel contrast is the signal, never blended. Deterministic-regex detection (author named in prose / project named / owned DOI cited / ghost-citation), not LLM judging. Preliminary observation, not evidence.",
+        "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "creator": {"@type": "Person", "@id": "https://orcid.org/0009-0002-6168-4162", "name": "shimo4228"},
+        "isAccessibleForFree": true,
+        "measurementTechnique": "Deterministic regex detection over scheduled frontier-LLM probe responses, on two separate channels (parametric / retrieval)",
+        "variableMeasured": ["author_named (in prose)", "project_named", "doi_or_url_cited", "ghost_citation (derived)"],
+        "about": {"@id": "https://doi.org/10.5281/zenodo.20263316"},
+        "url": "https://shimo4228.github.io/shimo4228/traffic/dashboard/",
+        "distribution": [
+          {"@type": "DataDownload", "name": "parametric channel", "encodingFormat": "application/x-ndjson", "contentUrl": "https://shimo4228.github.io/shimo4228/probes/data/parametric.jsonl"},
+          {"@type": "DataDownload", "name": "retrieval channel", "encodingFormat": "application/x-ndjson", "contentUrl": "https://shimo4228.github.io/shimo4228/probes/data/retrieval.jsonl"}
+        ]
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --bg: #f5f6fb;

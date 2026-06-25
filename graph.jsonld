@@ -595,6 +595,24 @@
     },
 
     {
+      "@id": "https://github.com/shimo4228/shimo4228#probe-dataset",
+      "@type": ["Dataset", "CreativeWork"],
+      "name": "shimo4228 LLM Attribution-Diffusion Probes",
+      "description": "Scheduled two-channel probes of frontier LLMs measuring whether the research concepts of @shimo4228's program — and the author — surface in model answers. A parametric channel (web search off, probing trained-in knowledge) and a retrieval channel (web search on, probing grounded citation) are kept strictly separate per Authorship Strategy ADR-0008/0011; the per-channel contrast is the signal and is never blended into one score. Detection is deterministic regex over response text (author named in prose, project named, owned DOI/URL cited, ghost-citation derived), not LLM judgement. Append-only JSONL; preliminary observation, not evidence.",
+      "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "creator": {"@id": "https://orcid.org/0009-0002-6168-4162"},
+      "measurementTechnique": "Deterministic regex detection over scheduled frontier-LLM probe responses, run on two separate channels (parametric / retrieval)",
+      "variableMeasured": ["author_named (in prose)", "project_named", "doi_or_url_cited", "ghost_citation (derived)"],
+      "url": "https://shimo4228.github.io/shimo4228/traffic/dashboard/",
+      "distribution": [
+        {"@type": "DataDownload", "name": "parametric channel (web search off)", "encodingFormat": "application/x-ndjson", "contentUrl": "https://shimo4228.github.io/shimo4228/probes/data/parametric.jsonl"},
+        {"@type": "DataDownload", "name": "retrieval channel (web search on)", "encodingFormat": "application/x-ndjson", "contentUrl": "https://shimo4228.github.io/shimo4228/probes/data/retrieval.jsonl"}
+      ],
+      "about": {"@id": "https://doi.org/10.5281/zenodo.20263316"},
+      "isBasedOn": "https://github.com/shimo4228/shimo4228"
+    },
+
+    {
       "@id": "https://arxiv.org/abs/2504.15125",
       "sameAs": "https://www.wikidata.org/wiki/Q140181291",
       "@type": ["ExternalReference", "ScholarlyArticle"],
