@@ -176,7 +176,7 @@
     .stat .value { font-size: 1.85rem; font-weight: 720; letter-spacing: -0.02em; line-height: 1.05; margin-top: 4px; }
     .stat .value.muted { color: var(--faint); font-weight: 600; }
     .stat .sub { font-size: 0.76rem; color: var(--faint); margin-top: 3px; }
-    .stat .spark { position: absolute; right: 10px; bottom: 8px; opacity: 0.85; }
+    .stat .spark { display: block; width: 100%; height: 30px; margin-top: 12px; opacity: 0.9; }
     .delta { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; }
     .delta.up { color: var(--up); }
     .delta.down { color: var(--down); }
@@ -430,6 +430,7 @@
       const ns = "http://www.w3.org/2000/svg";
       const svg = document.createElementNS(ns, "svg");
       svg.setAttribute("width", w); svg.setAttribute("height", h); svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      svg.setAttribute("preserveAspectRatio", "none"); // stretch to the card's full width
       svg.setAttribute("aria-hidden", "true");
       const n = values.length;
       if (n < 2) return svg;
@@ -442,6 +443,7 @@
       const line = document.createElementNS(ns, "path");
       line.setAttribute("d", d); line.setAttribute("fill", "none");
       line.setAttribute("stroke", color); line.setAttribute("stroke-width", "1.6");
+      line.setAttribute("vector-effect", "non-scaling-stroke");
       line.setAttribute("stroke-linejoin", "round"); line.setAttribute("stroke-linecap", "round");
       svg.append(area, line);
       return svg;
@@ -601,18 +603,18 @@
       // ---- stat strip ----
       {
         const strip = document.getElementById("stat-strip");
-        const last30Clones = (() => {
-          const m = new Map(dailyAgg.map((d) => [d.date, d.clones]));
-          return dailyAgg.slice(-30).map((d) => m.get(d.date));
-        })();
-        const last30Reach = dailyAgg.slice(-30).map((d) => d.clonesUniques);
+        const last30 = dailyAgg.slice(-30);
+        const last30Clones = last30.map((d) => d.clones);
+        const last30Reach = last30.map((d) => d.clonesUniques);
+        const last30Views = last30.map((d) => d.views);
 
+        // every card carries a 30-day sparkline so the row reads as one set
         const cards = [
           { label: "Total clones", value: fmt(totalClones), sub: `全 ${REPOS.length} repo・全期間`, spark: sparkline(last30Clones, C.clones) },
           { label: "Unique cloners", value: fmt(cumReach), sub: "= cumulative reach", spark: sparkline(last30Reach, C.clones), accent: true },
-          { label: "Peak day", value: fmt(peak.clones), sub: `${peak.date} の最高記録`, record: true },
-          { label: "Reach streak", value: `${curStreak}d`, sub: `最長 ${longest} 日連続`, },
-          { label: "Total views", value: fmt(totalViews), sub: "human pageviews (薄い)", muted: true },
+          { label: "Peak day", value: fmt(peak.clones), sub: `${peak.date} の最高記録`, spark: sparkline(last30Clones, C.clones), record: true },
+          { label: "Reach streak", value: `${curStreak}d`, sub: `最長 ${longest} 日連続`, spark: sparkline(last30Reach, C.clones) },
+          { label: "Total views", value: fmt(totalViews), sub: "human pageviews (薄い)", spark: sparkline(last30Views, C.views), muted: true },
         ];
         for (const c of cards) {
           const el = document.createElement("article");
