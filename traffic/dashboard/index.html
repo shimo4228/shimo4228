@@ -7,171 +7,362 @@
   <title>Traffic Dashboard — shimo4228</title>
   <style>
     :root {
-      --bg: #ffffff;
-      --fg: #111827;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --card-bg: #f9fafb;
+      --bg: #f5f6fb;
+      --bg-floor: #ffffff;
+      --fg: #1a2030;
+      --muted: #5b6472;
+      --faint: #9aa1b0;
+      --border: rgba(15, 23, 42, 0.09);
+      --border-strong: rgba(15, 23, 42, 0.16);
+      --card: rgba(255, 255, 255, 0.66);
+      --card-solid: #ffffff;
       --accent: #6366f1;
       --accent-2: #10b981;
+      --grad: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
+      --gold: #c98a16;
+      --up: #0f9d6b;
+      --down: #d97706;
+      --glow: rgba(99, 102, 241, 0.20);
+      --shadow: 0 10px 34px rgba(79, 70, 229, 0.10);
+      --shadow-hover: 0 14px 44px rgba(79, 70, 229, 0.16);
+      --mesh-a: rgba(99, 102, 241, 0.14);
+      --mesh-b: rgba(139, 92, 246, 0.12);
+      --mesh-c: rgba(16, 185, 129, 0.12);
+      --r-card: 18px;
+      --r-pill: 999px;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0f1115;
-        --fg: #e5e7eb;
-        --muted: #9ca3af;
-        --border: #1f2937;
-        --card-bg: #161a22;
+        --bg: #0b0d12;
+        --bg-floor: #070809;
+        --fg: #e8eaf0;
+        --muted: #9ba3b4;
+        --faint: #6b7280;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-strong: rgba(255, 255, 255, 0.17);
+        --card: rgba(22, 26, 34, 0.55);
+        --card-solid: #161a22;
         --accent: #818cf8;
         --accent-2: #34d399;
+        --grad: linear-gradient(135deg, #818cf8 0%, #34d399 100%);
+        --gold: #fcd34d;
+        --up: #34d399;
+        --down: #fbbf24;
+        --glow: rgba(129, 140, 248, 0.40);
+        --shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+        --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.55);
+        --mesh-a: rgba(99, 102, 241, 0.20);
+        --mesh-b: rgba(139, 92, 246, 0.16);
+        --mesh-c: rgba(45, 212, 191, 0.15);
       }
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      background: var(--bg);
+      background: var(--bg-floor);
       color: var(--fg);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
       line-height: 1.5;
       font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums;
+      min-height: 100vh;
     }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 24px 20px 48px; }
-    header.page {
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 16px;
-      margin-bottom: 24px;
+    /* Aurora gradient-mesh backdrop */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(50% 50% at 12% 8%, var(--mesh-a) 0%, transparent 70%),
+        radial-gradient(46% 46% at 88% 18%, var(--mesh-b) 0%, transparent 70%),
+        radial-gradient(60% 60% at 70% 100%, var(--mesh-c) 0%, transparent 72%),
+        var(--bg);
+      animation: drift 48s ease-in-out infinite alternate;
     }
-    h1 { font-size: 1.5rem; margin: 0 0 6px; letter-spacing: -0.01em; }
-    h2 { font-size: 1.1rem; margin: 28px 0 8px; letter-spacing: -0.005em; }
-    .meta { color: var(--muted); font-size: 0.875rem; margin: 0 0 12px; }
-    .totals { display: flex; gap: 24px; flex-wrap: wrap; }
-    .totals > div { display: flex; flex-direction: column; gap: 2px; }
-    .total-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .total-value { font-size: 1.5rem; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
-    .total-sub { font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-    .hint { color: var(--muted); font-size: 0.85rem; margin: 0 0 12px; }
-    section { margin-bottom: 24px; }
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to   { transform: translate3d(0, -1.5%, 0) scale(1.05); }
+    }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 16px;
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; }
+
+    /* ---- header ---- */
+    header.page { margin-bottom: 22px; }
+    .brandline { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    h1 {
+      font-size: clamp(1.5rem, 3.4vw, 2rem);
+      margin: 0;
+      letter-spacing: -0.02em;
+      font-weight: 750;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    .card {
+    .live-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em;
+      padding: 4px 11px; border-radius: var(--r-pill);
+      color: var(--up); border: 1px solid var(--border-strong);
+      background: var(--card);
+      backdrop-filter: blur(8px);
+    }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--up); box-shadow: 0 0 0 0 var(--up); animation: ping 2.4s ease-out infinite; }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 var(--up); } 70%, 100% { box-shadow: 0 0 0 7px transparent; } }
+    .meta { color: var(--muted); font-size: 0.875rem; margin: 8px 0 0; }
+    .meta a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border-strong); }
+    .meta a:hover { color: var(--accent); }
+
+    /* ---- glass card primitive ---- */
+    .glass {
+      background: var(--card);
       border: 1px solid var(--border);
-      background: var(--card-bg);
-      border-radius: 8px;
-      padding: 12px 14px;
+      border-radius: var(--r-card);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
     }
-    .card header { margin-bottom: 4px; }
-    .card header a {
-      font-weight: 600;
-      color: var(--fg);
-      text-decoration: none;
-      font-size: 0.95rem;
-      word-break: break-all;
+
+    h2 { font-size: 1.05rem; margin: 0 0 4px; letter-spacing: -0.005em; font-weight: 680; }
+    h2 .lead { color: var(--accent); margin-right: 8px; }
+    .hint { color: var(--muted); font-size: 0.84rem; margin: 0 0 12px; max-width: 78ch; }
+    section { margin-bottom: 26px; }
+
+    /* ---- narrative dek ---- */
+    .dek {
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      font-size: clamp(1rem, 2.1vw, 1.22rem);
+      line-height: 1.5;
+      color: var(--muted);
+      letter-spacing: -0.005em;
     }
-    .card header a:hover { text-decoration: underline; }
-    .card-stats { color: var(--muted); font-size: 0.8rem; margin: 2px 0 6px; font-variant-numeric: tabular-nums; }
+    .dek b { color: var(--fg); font-weight: 700; }
+    .dek .accent { color: var(--accent); font-weight: 700; }
+    .dek .up { color: var(--up); font-weight: 700; }
+    .dek .down { color: var(--down); font-weight: 700; }
+
+    /* ---- hero ---- */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.9fr) 1.3fr;
+      gap: 8px 28px;
+      align-items: center;
+      padding: 24px 26px;
+      margin-bottom: 22px;
+    }
+    .hero-num {
+      font-size: clamp(2.8rem, 8vw, 4.4rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px var(--glow);
+    }
+    .hero-label { font-size: 0.7rem; font-weight: 650; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin-bottom: 6px; }
+    .hero-sub { font-size: 0.86rem; color: var(--faint); margin-top: 8px; }
+    .hero-mo { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; }
+    .hero-fig { min-width: 0; }
+    .hero-fig svg { filter: drop-shadow(0 4px 14px var(--glow)); }
+
+    /* ---- stat strip ---- */
+    .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+    .stat { padding: 15px 16px 13px; position: relative; overflow: hidden; }
+    .stat .label { font-size: 0.68rem; font-weight: 650; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+    .stat .value { font-size: 1.85rem; font-weight: 720; letter-spacing: -0.02em; line-height: 1.05; margin-top: 4px; }
+    .stat .value.muted { color: var(--faint); font-weight: 600; }
+    .stat .sub { font-size: 0.76rem; color: var(--faint); margin-top: 3px; }
+    .stat .spark { position: absolute; right: 10px; bottom: 8px; opacity: 0.85; }
+    .delta { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; }
+    .delta.up { color: var(--up); }
+    .delta.down { color: var(--down); }
+    .delta.flat { color: var(--muted); }
+
+    /* ---- milestones ---- */
+    .badge-shelf { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 13px; border-radius: var(--r-pill);
+      font-size: 0.82rem; font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--card); backdrop-filter: blur(8px);
+    }
+    .badge.unlocked { color: var(--fg); border-color: color-mix(in srgb, var(--gold) 55%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 30%, transparent), 0 6px 18px -6px color-mix(in srgb, var(--gold) 60%, transparent); }
+    .badge.unlocked .gem { color: var(--gold); }
+    .badge.locked { color: var(--faint); opacity: 0.6; }
+    .badge .gem { font-size: 0.7rem; }
+    .badge.recent { animation: glowpulse 2.6s ease-in-out infinite; }
+    @keyframes glowpulse { 0%, 100% { box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 30%, transparent), 0 6px 18px -6px color-mix(in srgb, var(--gold) 60%, transparent); } 50% { box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 55%, transparent), 0 8px 26px -4px color-mix(in srgb, var(--gold) 80%, transparent); } }
+
+    .progress-card { padding: 16px 18px; }
+    .progress-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .progress-goal { font-weight: 650; }
+    .progress-togo { font-size: 0.82rem; color: var(--muted); }
+    .progress-togo b { color: var(--accent); }
+    .track { height: 12px; border-radius: var(--r-pill); background: var(--border); overflow: hidden; }
+    .track > span { display: block; height: 100%; border-radius: var(--r-pill); background: var(--grad); width: 0; transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 14px var(--glow); }
+
+    /* ---- streak heatmap ---- */
+    .heat-wrap { padding: 16px 18px; overflow-x: auto; }
+    .heat {
+      display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 13px);
+      gap: 3px; min-width: max-content;
+    }
+    .heat i { width: 13px; height: 13px; border-radius: 3px; background: var(--border); display: block; }
+    .heat i.l1 { background: color-mix(in srgb, var(--accent) 26%, transparent); }
+    .heat i.l2 { background: color-mix(in srgb, var(--accent) 48%, transparent); }
+    .heat i.l3 { background: color-mix(in srgb, var(--accent) 72%, transparent); }
+    .heat i.l4 { background: var(--accent); box-shadow: 0 0 7px var(--glow); }
+    .heat-legend { display: flex; align-items: center; gap: 6px; justify-content: flex-end; margin-top: 10px; font-size: 0.74rem; color: var(--faint); }
+    .heat-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+    /* ---- grids / charts ---- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+    .card { padding: 13px 15px; transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--border-strong); }
+    .card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+    .rank { flex: none; font-size: 0.72rem; font-weight: 750; padding: 2px 8px; border-radius: var(--r-pill); background: var(--border); color: var(--muted); font-variant-numeric: tabular-nums; }
+    .rank.gold { background: color-mix(in srgb, var(--gold) 24%, transparent); color: var(--gold); }
+    .card-head a { font-weight: 650; color: var(--fg); text-decoration: none; font-size: 0.92rem; word-break: break-all; flex: 1; min-width: 0; }
+    .card-head a:hover { color: var(--accent); }
+    .card-stats { color: var(--muted); font-size: 0.78rem; margin: 1px 0 6px; }
+    .card-stats .delta { font-size: 0.74rem; }
 
     figure { margin: 0; }
     svg { max-width: 100%; height: auto; display: block; }
+    figure svg { color: var(--muted); }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      font-variant-numeric: tabular-nums;
-    }
-    th, td { padding: 6px 10px; border-bottom: 1px solid var(--border); text-align: left; }
-    th { cursor: pointer; user-select: none; font-weight: 600; background: var(--card-bg); position: sticky; top: 0; }
-    th[aria-sort]::after { content: ""; }
-    th[aria-sort="ascending"]::after { content: " ▲"; color: var(--muted); }
-    th[aria-sort="descending"]::after { content: " ▼"; color: var(--muted); }
+    .chart-card { padding: 16px 18px; }
+
+    /* ---- table ---- */
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+    th, td { padding: 7px 12px; border-bottom: 1px solid var(--border); text-align: left; }
+    th { cursor: pointer; user-select: none; font-weight: 650; background: var(--card-solid); position: sticky; top: 0; z-index: 1; }
+    th[aria-sort="ascending"]::after { content: " ▲"; color: var(--accent); }
+    th[aria-sort="descending"]::after { content: " ▼"; color: var(--accent); }
     .num { text-align: right; }
-    .table-scroll { max-height: 480px; overflow: auto; border: 1px solid var(--border); border-radius: 8px; }
-    tbody tr:hover { background: var(--card-bg); }
+    .table-scroll { max-height: 480px; overflow: auto; border: 1px solid var(--border); border-radius: var(--r-card); }
+    tbody tr { transition: background 0.1s ease; }
+    tbody tr:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
 
-    footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
-    a { color: var(--accent); }
-    .status-error {
-      padding: 12px 16px;
-      border: 1px solid #ef4444;
-      border-radius: 8px;
-      color: #ef4444;
-      background: rgba(239, 68, 68, 0.06);
+    footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-tag { color: var(--faint); font-style: italic; margin-top: 4px; }
+
+    .status-error { padding: 12px 16px; border: 1px solid #ef4444; border-radius: var(--r-card); color: #ef4444; background: rgba(239, 68, 68, 0.06); }
+
+    /* entrance */
+    .reveal { opacity: 0; transform: translateY(10px); }
+    .reveal.in { opacity: 1; transform: none; transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .aurora { animation: none; }
+      .live-dot { animation: none; }
+      .badge.recent { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .track > span { transition: none; }
+      * { scroll-behavior: auto; }
     }
   </style>
 </head>
 <body>
+  <div class="aurora" aria-hidden="true"></div>
   <div class="wrap">
     <header class="page">
-      <h1>Traffic Dashboard</h1>
-      <p class="meta">
-        <a href="https://github.com/shimo4228" target="_blank" rel="noopener noreferrer">@shimo4228</a> の公開研究 repo 6 件 · <span id="last-updated">loading…</span>
-      </p>
-      <div class="totals">
-        <div>
-          <span class="total-label">Total clones</span>
-          <span id="total-clones" class="total-value">—</span>
-          <span class="total-sub">last 14d: <span id="total-clones-14d">—</span></span>
-        </div>
-        <div>
-          <span class="total-label">Unique cloners</span>
-          <span id="total-clones-uniq" class="total-value">—</span>
-          <span class="total-sub">last 14d: <span id="total-clones-uniq-14d">—</span></span>
-        </div>
-        <div>
-          <span class="total-label">Total views</span>
-          <span id="total-views" class="total-value">—</span>
-          <span class="total-sub">last 14d: <span id="total-views-14d">—</span></span>
-        </div>
-        <div>
-          <span class="total-label">Unique visitors</span>
-          <span id="total-views-uniq" class="total-value">—</span>
-          <span class="total-sub">last 14d: <span id="total-views-uniq-14d">—</span></span>
-        </div>
+      <div class="brandline">
+        <h1>Traffic Dashboard</h1>
+        <span class="live-pill"><span class="live-dot"></span><span id="momentum-pill">growing</span></span>
       </div>
+      <p class="meta">
+        <a href="https://github.com/shimo4228" target="_blank" rel="noopener noreferrer">@shimo4228</a>
+        · <span id="repo-count">—</span> public repos · <span id="last-updated">loading…</span>
+      </p>
     </header>
 
-    <main>
-      <div id="status"></div>
+    <div id="status"></div>
 
-      <section>
-        <h2>Aggregate timeline</h2>
-        <p class="hint">全 6 repo の日次合算。クローラ wave は同日に複数 repo に出るため、ここで山が立つ。</p>
-        <figure id="aggregate-chart"></figure>
+    <!-- auto-written narrative -->
+    <p id="dek" class="dek glass reveal">読み込み中…</p>
+
+    <!-- hero -->
+    <section class="hero glass reveal" aria-label="cumulative reach">
+      <div>
+        <div class="hero-label">Cumulative reach</div>
+        <div id="hero-reach" class="hero-num">—</div>
+        <div class="hero-sub">unique cloners、全 repo・全期間の日次合算</div>
+        <div id="hero-mo" class="hero-mo"></div>
+      </div>
+      <figure id="hero-fig" class="hero-fig"></figure>
+    </section>
+
+    <!-- stat strip -->
+    <section class="stat-strip" id="stat-strip" aria-label="key stats"></section>
+
+    <!-- milestones -->
+    <section class="reveal">
+      <h2><span class="lead">◆</span>Milestones</h2>
+      <p class="hint">累積リーチ (unique cloners) のしきい値で解放。次の目標までの距離は常に到達可能な一歩として示す。</p>
+      <div id="badge-shelf" class="badge-shelf"></div>
+      <div id="progress" class="progress-card glass"></div>
+    </section>
+
+    <!-- streak heatmap -->
+    <section class="reveal">
+      <h2><span class="lead">▦</span>Reach streak</h2>
+      <p class="hint">日次の集計 unique cloners をマス目化 (GitHub contributions 風)。色が濃い日ほど多くの人があなたの研究を手元に引いた。</p>
+      <div class="heat-wrap glass">
+        <div id="heatmap" class="heat" aria-hidden="true"></div>
+        <div class="heat-legend"><span>less</span><i class="hl0" aria-hidden="true"></i><i class="hl1" aria-hidden="true"></i><i class="hl2" aria-hidden="true"></i><i class="hl3" aria-hidden="true"></i><i class="hl4" aria-hidden="true"></i><span>more</span></div>
+      </div>
+    </section>
+
+    <main>
+      <section class="reveal">
+        <h2><span class="lead">↗</span>Aggregate timeline</h2>
+        <p class="hint">全 repo の日次合算。クローラ wave は同日に複数 repo に出るため、ここで山が立つ。最高記録日を注釈表示。</p>
+        <figure id="aggregate-chart" class="chart-card glass"></figure>
       </section>
 
-      <section>
-        <h2>Per-repo (small multiples)</h2>
-        <p class="hint">各 repo の clones (青) と views (緑) を 14 日。スケールは repo ごとに独立。</p>
+      <section class="reveal">
+        <h2><span class="lead">🏆</span>Per-repo leaderboard</h2>
+        <p class="hint">累積 unique cloners 順。各 repo の clones (青) と views (緑) を全期間、スケールは repo ごとに独立。直近 7 日 vs 前 7 日の勢いを矢印で。</p>
         <div id="small-multiples" class="grid"></div>
       </section>
 
-      <section>
-        <h2>Clones : Views ratio</h2>
-        <p class="hint">ratio = sum(clones) ÷ max(sum(views), 1)。値が大きいほど人間 view が薄く、bot/crawler/CI clone が支配的。</p>
-        <figure id="ratio-chart"></figure>
+      <section class="reveal">
+        <h2><span class="lead">⚖</span>Clones : Views ratio</h2>
+        <p class="hint">ratio = sum(clones) ÷ max(sum(views), 1)。値が大きいほど人間 view が薄く、bot/crawler/CI clone が支配的 — つまりこのダッシュボードが clone 駆動である理由。</p>
+        <figure id="ratio-chart" class="chart-card glass"></figure>
       </section>
 
-      <section>
-        <h2>Co-traffic correlation</h2>
-        <p class="hint">repo ペア間の日次 unique cloners の Spearman 順位相関 (全期間、欠損日は 0 埋め)。Spearman は単日 spike に引きずられず、uniques は CI/refetch ノイズを除いた "実 entity 数" 寄りなので、Pearson × count より関連トピック / リリース連動が見えやすい。対角は自明に 1.0。新しく hub 化した repo は古い repo と弱〜負相関に出る傾向あり (zero-fill の artifact)。</p>
-        <figure id="correlation-chart"></figure>
+      <section class="reveal">
+        <h2><span class="lead">▤</span>Co-traffic correlation</h2>
+        <p class="hint">repo ペア間の日次 unique cloners の Spearman 順位相関 (全期間、欠損日は 0 埋め)。Spearman は単日 spike に引きずられず、uniques は CI/refetch ノイズを除いた "実 entity 数" 寄りなので、関連トピック / リリース連動が見えやすい。対角は自明に 1.0。</p>
+        <figure id="correlation-chart" class="chart-card glass"></figure>
       </section>
 
-      <section>
-        <h2>Data table</h2>
+      <section class="reveal">
+        <h2><span class="lead">▦</span>Data table</h2>
         <p class="hint">列ヘッダクリックでソート。初期表示は日付降順。</p>
         <div id="table-container" class="table-scroll"></div>
       </section>
     </main>
 
     <footer>
-      Source: <a href="https://github.com/shimo4228/shimo4228/tree/main/traffic">traffic/</a> ·
-      <a href="https://github.com/shimo4228/shimo4228/blob/main/.github/workflows/traffic-daily.yml">workflow</a> ·
-      License: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>
+      <div>
+        Source: <a href="https://github.com/shimo4228/shimo4228/tree/main/traffic">traffic/</a> ·
+        <a href="https://github.com/shimo4228/shimo4228/blob/main/.github/workflows/traffic-daily.yml">workflow</a> ·
+        License: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>
+      </div>
+      <div class="footer-tag">consistency compounds — 公開研究は積み上がる。</div>
     </footer>
   </div>
 
@@ -188,9 +379,14 @@
       "zenn-content",
       "shimo4228",
     ];
-    const COLOR = { clones: "#6366f1", views: "#10b981" };
+    const DAY = 86400000;
+    const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const REACH_MILESTONES = [100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000];
 
     function num(v) { const n = Number(v); return Number.isFinite(n) ? n : 0; }
+    function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
+    function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
+    function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
 
     async function loadRepo(repo) {
       const res = await fetch(`../data/${repo}.jsonl`, { cache: "no-cache" });
@@ -201,10 +397,11 @@
         const trimmed = line.trim();
         if (!trimmed) continue;
         const j = JSON.parse(trimmed);
+        const date = String(j.date ?? "");
         rows.push({
           repo,
-          date: String(j.date ?? ""),
-          dateObj: new Date(String(j.date ?? "") + "T00:00:00Z"),
+          date,
+          dateObj: new Date(date + "T00:00:00Z"),
           clones: num(j.clones?.count),
           clonesUniques: num(j.clones?.uniques),
           views: num(j.views?.count),
@@ -215,187 +412,421 @@
       return rows;
     }
 
-    function fmt(n) { return n.toLocaleString("en-US"); }
-    function setText(id, v) { document.getElementById(id).textContent = v; }
+    function animateCount(el, target, dur = 1100) {
+      if (REDUCED || target <= 0) { el.textContent = fmt(target); return; }
+      const t0 = performance.now();
+      const ease = (t) => 1 - Math.pow(1 - t, 4);
+      function step(now) {
+        const p = Math.min(1, (now - t0) / dur);
+        el.textContent = fmt(target * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = fmt(target);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // tiny inline sparkline
+    function sparkline(values, color, w = 88, h = 26) {
+      const ns = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("width", w); svg.setAttribute("height", h); svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      svg.setAttribute("aria-hidden", "true");
+      const n = values.length;
+      if (n < 2) return svg;
+      const max = Math.max(1, ...values);
+      const pts = values.map((v, i) => [(i / (n - 1)) * (w - 2) + 1, h - 2 - (v / max) * (h - 4)]);
+      const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+      const area = document.createElementNS(ns, "path");
+      area.setAttribute("d", `${d} L ${pts[n - 1][0].toFixed(1)} ${h} L ${pts[0][0].toFixed(1)} ${h} Z`);
+      area.setAttribute("fill", color); area.setAttribute("fill-opacity", "0.14");
+      const line = document.createElementNS(ns, "path");
+      line.setAttribute("d", d); line.setAttribute("fill", "none");
+      line.setAttribute("stroke", color); line.setAttribute("stroke-width", "1.6");
+      line.setAttribute("stroke-linejoin", "round"); line.setAttribute("stroke-linecap", "round");
+      svg.append(area, line);
+      return svg;
+    }
+
+    function deltaEl(curr, prev, { positiveOnly = false } = {}) {
+      const span = document.createElement("span");
+      span.className = "delta ";
+      if (prev === 0 && curr === 0) { span.className += "flat"; span.textContent = "→ —"; return span; }
+      const diff = curr - prev;
+      if (diff > 0) { span.className += "up"; span.textContent = `▲ +${fmt(diff)}`; }
+      else if (diff < 0 && !positiveOnly) { span.className += "down"; span.textContent = `▽ ${fmt(Math.abs(diff))}`; }
+      else if (diff < 0) { span.className += "flat"; span.textContent = `→ steady`; }
+      else { span.className += "flat"; span.textContent = "→ ±0"; }
+      return span;
+    }
+
+    function setupReveal() {
+      const els = [...document.querySelectorAll(".reveal")];
+      if (REDUCED || !("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("in")); return; }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, { threshold: 0.08 });
+      els.forEach((e, i) => { e.style.transitionDelay = `${Math.min(i, 6) * 50}ms`; io.observe(e); });
+    }
 
     async function render() {
-      let allData;
-      try {
-        allData = (await Promise.all(REPOS.map(loadRepo))).flat();
-      } catch (err) {
+      // Resilient load: render the repos that succeed, warn (non-fatally) about
+      // any that 404 — a newly-tracked repo may not have its first snapshot yet.
+      const settled = await Promise.allSettled(REPOS.map(loadRepo));
+      const failed = [];
+      let allData = [];
+      settled.forEach((s, i) => {
+        if (s.status === "fulfilled") allData.push(...s.value);
+        else { failed.push(REPOS[i]); console.error(s.reason); }
+      });
+      if (allData.length === 0) {
         const div = document.createElement("div");
         div.className = "status-error";
-        div.textContent = `データ読み込みに失敗しました: ${err.message}`;
+        div.textContent = `データ読み込みに失敗しました: ${failed.join(", ")}`;
         document.getElementById("status").append(div);
-        console.error(err);
         return;
       }
+      if (failed.length) {
+        const div = document.createElement("div");
+        div.className = "status-error";
+        div.style.cssText = "border-color: var(--down); color: var(--down); margin-bottom: 16px;";
+        div.textContent = `スナップショット未取得の repo を除外しました: ${failed.join(", ")}`;
+        document.getElementById("status").append(div);
+      }
 
-      // header
+      const C = {
+        clones: cssVar("--accent") || "#6366f1",
+        views: cssVar("--accent-2") || "#10b981",
+        fg: cssVar("--fg") || "#111827",
+        bg: cssVar("--bg-floor") || "#ffffff",
+      };
+
+      setText("repo-count", REPOS.length);
       const lastUpdated = allData.reduce((m, r) => (r.fetchedAt > m ? r.fetchedAt : m), "");
-      setText("last-updated", lastUpdated ? `Last snapshot: ${lastUpdated.slice(0, 10)} UTC` : "no data");
-      setText("total-clones", fmt(allData.reduce((s, r) => s + r.clones, 0)));
-      setText("total-clones-uniq", fmt(allData.reduce((s, r) => s + r.clonesUniques, 0)));
-      setText("total-views", fmt(allData.reduce((s, r) => s + r.views, 0)));
-      setText("total-views-uniq", fmt(allData.reduce((s, r) => s + r.viewsUniques, 0)));
+      setText("last-updated", lastUpdated ? `snapshot ${lastUpdated.slice(0, 10)} UTC` : "no data");
 
-      // last 14 days totals (max date in data から13日遡る)
-      const maxDateMs = allData.reduce((m, r) => (r.dateObj > m ? r.dateObj : m), new Date(0)).getTime();
-      const cutoffMs = maxDateMs - 13 * 24 * 60 * 60 * 1000;
-      const recent = allData.filter((r) => r.dateObj.getTime() >= cutoffMs);
-      setText("total-clones-14d", fmt(recent.reduce((s, r) => s + r.clones, 0)));
-      setText("total-clones-uniq-14d", fmt(recent.reduce((s, r) => s + r.clonesUniques, 0)));
-      setText("total-views-14d", fmt(recent.reduce((s, r) => s + r.views, 0)));
-      setText("total-views-uniq-14d", fmt(recent.reduce((s, r) => s + r.viewsUniques, 0)));
+      const maxDateMs = allData.reduce((m, r) => (r.dateObj > m ? r.dateObj.getTime() : m), 0);
+      const win = (days, offset = 0) => {
+        const hi = maxDateMs - offset * DAY;
+        const lo = hi - (days - 1) * DAY;
+        return allData.filter((r) => { const t = r.dateObj.getTime(); return t >= lo && t <= hi; });
+      };
+      const sum = (rows, k) => rows.reduce((s, r) => s + r[k], 0);
 
-      const bgColor = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim() || "#ffffff";
+      // ---- totals & motivation primitives (all clone-driven) ----
+      const cumReach = sum(allData, "clonesUniques");
+      const totalClones = sum(allData, "clones");
+      const totalViews = sum(allData, "views");
 
-      // aggregate timeline
+      const last14 = sum(win(14, 0), "clonesUniques");
+      const prev14 = sum(win(14, 14), "clonesUniques");
+
+      // aggregate by date
       const byDate = new Map();
       for (const r of allData) {
-        const e = byDate.get(r.date) ?? { date: r.date, dateObj: r.dateObj, clones: 0, views: 0 };
-        e.clones += r.clones;
-        e.views += r.views;
+        const e = byDate.get(r.date) ?? { date: r.date, dateObj: r.dateObj, clones: 0, clonesUniques: 0, views: 0 };
+        e.clones += r.clones; e.clonesUniques += r.clonesUniques; e.views += r.views;
         byDate.set(r.date, e);
       }
-      const aggLong = [...byDate.values()]
-        .sort((a, b) => a.dateObj - b.dateObj)
-        .flatMap((d) => [
-          { date: d.dateObj, metric: "clones", value: d.clones },
-          { date: d.dateObj, metric: "views", value: d.views },
-        ]);
-      document.getElementById("aggregate-chart").append(
+      const dailyAgg = [...byDate.values()].sort((a, b) => a.dateObj - b.dateObj);
+
+      // peak day (by clones)
+      const peak = dailyAgg.reduce((m, d) => (d.clones > m.clones ? d : m), dailyAgg[0] ?? { clones: 0, date: "—" });
+
+      // streak: consecutive days (ending at last data day) with >=1 unique
+      // cloner — same metric the heatmap renders, so the two never disagree.
+      let curStreak = 0, longest = 0, run = 0, prevDay = null;
+      for (const d of dailyAgg) {
+        if (prevDay !== null && d.dateObj.getTime() - prevDay > DAY) run = 0; // gap in records
+        if (d.clonesUniques > 0) { run += 1; longest = Math.max(longest, run); } else run = 0;
+        prevDay = d.dateObj.getTime();
+      }
+      // current streak = trailing run; break on a zero day OR a calendar gap
+      for (let i = dailyAgg.length - 1; i >= 0; i--) {
+        if (dailyAgg[i].clonesUniques <= 0) break;
+        if (i < dailyAgg.length - 1 && dailyAgg[i + 1].dateObj.getTime() - dailyAgg[i].dateObj.getTime() > DAY) break;
+        curStreak++;
+      }
+
+      // ---- hero ----
+      animateCount(document.getElementById("hero-reach"), cumReach);
+      const heroMo = document.getElementById("hero-mo");
+      heroMo.append(document.createTextNode("直近 14 日 "));
+      heroMo.append(deltaEl(last14, prev14));
+      heroMo.append(document.createTextNode(` (前 14 日 ${fmt(prev14)})`));
+
+      // momentum pill text
+      setText("momentum-pill", last14 >= prev14 ? "momentum building" : "steady reach");
+
+      // cumulative growth line (monotonic — always climbs)
+      let acc = 0;
+      const cumSeries = dailyAgg.map((d) => { acc += d.clonesUniques; return { date: d.dateObj, value: acc }; });
+      document.getElementById("hero-fig").append(
         Plot.plot({
-          height: 280,
-          marginLeft: 50,
-          x: { label: null, type: "utc" },
-          y: { label: "↑ count", grid: true },
-          color: { legend: true, domain: ["clones", "views"], range: [COLOR.clones, COLOR.views] },
+          height: 200, marginLeft: 46, marginTop: 12, marginRight: 14,
+          style: { background: "transparent", color: C.fg },
+          x: { label: null, type: "utc", ticks: 4, tickFormat: "%m/%d" },
+          y: { label: null, grid: true, nice: true },
           marks: [
-            Plot.line(aggLong, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 2 }),
-            Plot.dot(aggLong, { x: "date", y: "value", stroke: "metric", fill: bgColor, r: 3 }),
-            Plot.tip(aggLong, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
+            Plot.areaY(cumSeries, { x: "date", y: "value", fill: C.clones, fillOpacity: 0.12, curve: "monotone-x" }),
+            Plot.line(cumSeries, { x: "date", y: "value", stroke: C.clones, strokeWidth: 2.4, curve: "monotone-x" }),
+            Plot.dot([cumSeries[cumSeries.length - 1]], { x: "date", y: "value", fill: C.clones, r: 4, stroke: C.bg, strokeWidth: 2 }),
           ],
         })
       );
 
-      // small multiples
-      const smContainer = document.getElementById("small-multiples");
-      for (const repoName of REPOS) {
-        const rows = allData.filter((r) => r.repo === repoName).sort((a, b) => a.dateObj - b.dateObj);
-        const recentRows = rows.filter((r) => r.dateObj.getTime() >= cutoffMs);
-        const totals = {
-          clones: rows.reduce((s, r) => s + r.clones, 0),
-          views: rows.reduce((s, r) => s + r.views, 0),
-          clones14d: recentRows.reduce((s, r) => s + r.clones, 0),
-          views14d: recentRows.reduce((s, r) => s + r.views, 0),
-        };
-        const card = document.createElement("article");
-        card.className = "card";
+      // ---- narrative dek ----
+      {
+        const repoTotals = REPOS.map((repo) => ({
+          repo,
+          all: sum(allData.filter((r) => r.repo === repo), "clonesUniques"),
+          l14: sum(win(14, 0).filter((r) => r.repo === repo), "clonesUniques"),
+          p14: sum(win(14, 14).filter((r) => r.repo === repo), "clonesUniques"),
+        }));
+        const leader = [...repoTotals].sort((a, b) => b.all - a.all)[0];
+        const riser = [...repoTotals]
+          .filter((r) => r.l14 > 0)
+          .sort((a, b) => (b.l14 / Math.max(b.p14, 1)) - (a.l14 / Math.max(a.p14, 1)))[0] || leader;
+        const pct = prev14 > 0 ? Math.round(((last14 - prev14) / prev14) * 100) : null;
+        let momentum;
+        if (pct === null) momentum = `直近 14 日で <span class="up">${fmt(last14)}</span> 人が新たに pull。`;
+        else if (pct >= 0) momentum = `直近 14 日のリーチは <span class="up">↑${pct}%</span>。`;
+        else momentum = `直近 14 日は少し静かな <span class="down">${pct}%</span> — それでも <b>${fmt(last14)}</b> 人が手元に引いた。`;
+        document.getElementById("dek").innerHTML =
+          `累積リーチが <b>${fmt(cumReach)}</b> unique cloners を突破。${momentum} ` +
+          `<span class="accent">${leader.repo}</span> が牽引 (累積 ${fmt(leader.all)})、` +
+          `最速の伸びは <span class="accent">${riser.repo}</span>。` +
+          `${curStreak} 日連続でリーチが途切れていない。`;
+      }
 
-        const cardHead = document.createElement("header");
-        const link = document.createElement("a");
-        link.href = `https://github.com/shimo4228/${repoName}`;
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        link.textContent = repoName;
-        cardHead.append(link);
-        const stats = document.createElement("p");
-        stats.className = "card-stats";
-        stats.textContent = `clones ${fmt(totals.clones)} (14d: ${fmt(totals.clones14d)}) · views ${fmt(totals.views)} (14d: ${fmt(totals.views14d)})`;
-        cardHead.append(stats);
-        card.append(cardHead);
+      // ---- stat strip ----
+      {
+        const strip = document.getElementById("stat-strip");
+        const last30Clones = (() => {
+          const m = new Map(dailyAgg.map((d) => [d.date, d.clones]));
+          return dailyAgg.slice(-30).map((d) => m.get(d.date));
+        })();
+        const last30Reach = dailyAgg.slice(-30).map((d) => d.clonesUniques);
 
-        const long = rows.flatMap((d) => [
+        const cards = [
+          { label: "Total clones", value: fmt(totalClones), sub: `全 ${REPOS.length} repo・全期間`, spark: sparkline(last30Clones, C.clones) },
+          { label: "Unique cloners", value: fmt(cumReach), sub: "= cumulative reach", spark: sparkline(last30Reach, C.clones), accent: true },
+          { label: "Peak day", value: fmt(peak.clones), sub: `${peak.date} の最高記録`, record: true },
+          { label: "Reach streak", value: `${curStreak}d`, sub: `最長 ${longest} 日連続`, },
+          { label: "Total views", value: fmt(totalViews), sub: "human pageviews (薄い)", muted: true },
+        ];
+        for (const c of cards) {
+          const el = document.createElement("article");
+          el.className = "stat glass";
+          el.innerHTML = `<div class="label">${c.label}</div>` +
+            `<div class="value${c.muted ? " muted" : ""}">${c.value}</div>` +
+            `<div class="sub">${c.sub}</div>`;
+          if (c.spark) el.querySelector(".sub").after(c.spark), c.spark.classList.add("spark");
+          strip.append(el);
+        }
+      }
+
+      // ---- milestones ----
+      {
+        const shelf = document.getElementById("badge-shelf");
+        const unlocked = REACH_MILESTONES.filter((t) => cumReach >= t);
+        const highestUnlocked = unlocked[unlocked.length - 1];
+        for (const t of REACH_MILESTONES) {
+          const on = cumReach >= t;
+          const b = document.createElement("span");
+          b.className = "badge " + (on ? "unlocked" : "locked") + (t === highestUnlocked ? " recent" : "");
+          b.innerHTML = `<span class="gem">${on ? "◆" : "🔒"}</span>${fmt(t)} reach`;
+          shelf.append(b);
+        }
+        // extra non-threshold badges
+        const extra = [];
+        if (longest >= 30) extra.push("30-day streak");
+        if (longest >= 60) extra.push("60-day streak");
+        if (REPOS.length >= 8) extra.push(`${REPOS.length} repos live`);
+        if (peak.clones >= 100) extra.push(`Peak day ${fmt(peak.clones)}`);
+        for (const label of extra) {
+          const b = document.createElement("span");
+          b.className = "badge unlocked";
+          b.innerHTML = `<span class="gem">★</span>${label}`;
+          shelf.append(b);
+        }
+
+        const next = REACH_MILESTONES.find((t) => t > cumReach);
+        const prog = document.getElementById("progress");
+        if (next) {
+          const base = unlocked[unlocked.length - 1] || 0;
+          const pctFill = Math.max(2, Math.min(100, ((cumReach - base) / (next - base)) * 100));
+          prog.innerHTML =
+            `<div class="progress-top"><span class="progress-goal">Next milestone — ${fmt(next)} reach</span>` +
+            `<span class="progress-togo">あと <b>${fmt(next - cumReach)}</b> unique cloners</span></div>` +
+            `<div class="track"><span></span></div>`;
+          requestAnimationFrame(() => { prog.querySelector(".track > span").style.width = pctFill + "%"; });
+        } else {
+          prog.innerHTML = `<div class="progress-goal">全マイルストーン達成 — 圧巻。</div>`;
+        }
+      }
+
+      // ---- streak heatmap ----
+      {
+        const heat = document.getElementById("heatmap");
+        const dmap = new Map(dailyAgg.map((d) => [d.date, d.clonesUniques]));
+        const maxU = Math.max(1, ...dailyAgg.map((d) => d.clonesUniques));
+        const WEEKS = 11;
+        const end = new Date(maxDateMs);
+        // align end to its week's Saturday so columns are whole weeks
+        const start = new Date(end.getTime() - (WEEKS * 7 - 1) * DAY);
+        // pad start back to Sunday
+        const startDow = start.getUTCDay();
+        const gridStart = new Date(start.getTime() - startDow * DAY);
+        const totalCells = Math.ceil((end.getTime() - gridStart.getTime()) / DAY) + 1;
+        const level = (v) => v <= 0 ? 0 : v >= maxU * 0.75 ? 4 : v >= maxU * 0.5 ? 3 : v >= maxU * 0.25 ? 2 : 1;
+        for (let i = 0; i < totalCells; i++) {
+          const d = new Date(gridStart.getTime() + i * DAY);
+          const iso = d.toISOString().slice(0, 10);
+          const v = dmap.has(iso) ? dmap.get(iso) : (d.getTime() <= maxDateMs && d.getTime() >= (dailyAgg[0]?.dateObj.getTime() ?? Infinity) ? 0 : -1);
+          const cell = document.createElement("i");
+          if (v >= 0) { const lv = level(v); if (lv) cell.className = "l" + lv; cell.title = `${iso} · ${v} unique cloners`; }
+          else { cell.style.visibility = "hidden"; }
+          heat.append(cell);
+        }
+        // legend swatches
+        const lg = document.querySelectorAll(".heat-legend i");
+        const swatch = ["var(--border)", "color-mix(in srgb, var(--accent) 26%, transparent)", "color-mix(in srgb, var(--accent) 48%, transparent)", "color-mix(in srgb, var(--accent) 72%, transparent)", "var(--accent)"];
+        lg.forEach((i, k) => i.style.background = swatch[k]);
+      }
+
+      // ---- aggregate timeline (with peak callout) ----
+      {
+        const aggLong = dailyAgg.flatMap((d) => [
           { date: d.dateObj, metric: "clones", value: d.clones },
           { date: d.dateObj, metric: "views", value: d.views },
         ]);
-        const fig = document.createElement("figure");
-        fig.append(
+        document.getElementById("aggregate-chart").append(
           Plot.plot({
-            height: 140,
-            marginLeft: 32,
-            marginBottom: 22,
-            marginRight: 8,
-            x: { label: null, type: "utc", ticks: 3, tickFormat: "%m/%d" },
-            y: { label: null, grid: true, nice: true },
-            color: { domain: ["clones", "views"], range: [COLOR.clones, COLOR.views] },
+            height: 280, marginLeft: 50,
+            style: { background: "transparent", color: C.fg },
+            x: { label: null, type: "utc" },
+            y: { label: "↑ count", grid: true },
+            color: { legend: true, domain: ["clones", "views"], range: [C.clones, C.views] },
             marks: [
-              Plot.areaY(long.filter((d) => d.metric === "clones"), {
-                x: "date",
-                y: "value",
-                fill: COLOR.clones,
-                fillOpacity: 0.15,
-                curve: "monotone-x",
-              }),
-              Plot.line(long, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 1.5 }),
-              Plot.tip(long, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
+              Plot.line(aggLong, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 2 }),
+              Plot.dot(aggLong, { x: "date", y: "value", stroke: "metric", fill: C.bg, r: 2.5 }),
+              Plot.dot([peak], { x: "dateObj", y: "clones", r: 5, fill: C.clones, stroke: C.bg, strokeWidth: 2 }),
+              Plot.text([peak], { x: "dateObj", y: "clones", text: () => `peak ${fmt(peak.clones)} · ${peak.date.slice(5)}`, dy: -12, fill: "currentColor", fontWeight: 600, fontSize: 11 }),
+              Plot.tip(aggLong, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
             ],
           })
         );
-        card.append(fig);
-        smContainer.append(card);
       }
 
-      // clones:views ratio
-      const ratios = REPOS.map((repoName) => {
-        const rows = allData.filter((r) => r.repo === repoName);
-        const c = rows.reduce((s, r) => s + r.clones, 0);
-        const v = rows.reduce((s, r) => s + r.views, 0);
-        const ratio = c / Math.max(v, 1);
-        return { repo: repoName, clones: c, views: v, ratio, label: v === 0 ? `${fmt(c)} : 0` : `${ratio.toFixed(1)} : 1` };
-      }).sort((a, b) => b.ratio - a.ratio);
+      // ---- per-repo leaderboard (small multiples, ranked) ----
+      {
+        const smContainer = document.getElementById("small-multiples");
+        const ranked = REPOS.map((repo) => {
+          const rows = allData.filter((r) => r.repo === repo).sort((a, b) => a.dateObj - b.dateObj);
+          return {
+            repo, rows,
+            all: sum(rows, "clonesUniques"),
+            l7: sum(win(7, 0).filter((r) => r.repo === repo), "clonesUniques"),
+            p7: sum(win(7, 7).filter((r) => r.repo === repo), "clonesUniques"),
+          };
+        }).sort((a, b) => b.all - a.all);
 
-      document.getElementById("ratio-chart").append(
-        Plot.plot({
-          height: 60 + ratios.length * 36,
-          marginLeft: 200,
-          marginRight: 80,
-          x: { label: "clones / views (log scale) →", type: "log", grid: true, nice: true },
-          y: { label: null, domain: ratios.map((r) => r.repo) },
-          marks: [
-            Plot.barX(ratios, { x: "ratio", y: "repo", fill: COLOR.clones, fillOpacity: 0.85 }),
-            Plot.text(ratios, { x: "ratio", y: "repo", text: "label", dx: 6, textAnchor: "start", fill: "currentColor" }),
-            Plot.ruleX([1], { stroke: "currentColor", strokeOpacity: 0.3, strokeDasharray: "3,3" }),
-          ],
-        })
-      );
+        ranked.forEach((entry, idx) => {
+          const { repo, rows } = entry;
+          const card = document.createElement("article");
+          card.className = "card glass";
 
-      // co-traffic correlation (Spearman on daily unique cloners)
+          const head = document.createElement("div");
+          head.className = "card-head";
+          const rank = document.createElement("span");
+          rank.className = "rank" + (idx === 0 ? " gold" : "");
+          rank.textContent = "#" + (idx + 1);
+          const link = document.createElement("a");
+          link.href = `https://github.com/shimo4228/${repo}`;
+          link.target = "_blank"; link.rel = "noopener noreferrer";
+          link.textContent = repo;
+          head.append(rank, link);
+          card.append(head);
+
+          const stats = document.createElement("p");
+          stats.className = "card-stats";
+          stats.append(document.createTextNode(`reach ${fmt(entry.all)} · clones ${fmt(sum(rows, "clones"))} · 7d `));
+          stats.append(deltaEl(entry.l7, entry.p7));
+          card.append(stats);
+
+          const long = rows.flatMap((d) => [
+            { date: d.dateObj, metric: "clones", value: d.clones },
+            { date: d.dateObj, metric: "views", value: d.views },
+          ]);
+          const fig = document.createElement("figure");
+          fig.append(
+            Plot.plot({
+              height: 132, marginLeft: 30, marginBottom: 20, marginRight: 8, marginTop: 6,
+              style: { background: "transparent", color: C.fg },
+              x: { label: null, type: "utc", ticks: 3, tickFormat: "%m/%d" },
+              y: { label: null, grid: true, nice: true },
+              color: { domain: ["clones", "views"], range: [C.clones, C.views] },
+              marks: [
+                Plot.areaY(long.filter((d) => d.metric === "clones"), { x: "date", y: "value", fill: C.clones, fillOpacity: 0.14, curve: "monotone-x" }),
+                Plot.line(long, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 1.6 }),
+                Plot.tip(long, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
+              ],
+            })
+          );
+          card.append(fig);
+          smContainer.append(card);
+        });
+      }
+
+      // ---- clones:views ratio ----
+      {
+        const ratios = REPOS.map((repo) => {
+          const rows = allData.filter((r) => r.repo === repo);
+          const c = sum(rows, "clones"), v = sum(rows, "views");
+          const ratio = c / Math.max(v, 1);
+          // plotX: a log scale can't place 0 (a zero-clone repo) — clamp so its
+          // bar still renders at the axis floor instead of dropping/throwing.
+          return { repo, ratio, plotX: Math.max(ratio, 0.1), label: v === 0 ? `${fmt(c)} : 0` : `${ratio.toFixed(1)} : 1` };
+        }).sort((a, b) => b.ratio - a.ratio);
+        document.getElementById("ratio-chart").append(
+          Plot.plot({
+            height: 60 + ratios.length * 36, marginLeft: 200, marginRight: 80,
+            style: { background: "transparent", color: C.fg },
+            x: { label: "clones / views (log scale) →", type: "log", grid: true, nice: true },
+            y: { label: null, domain: ratios.map((r) => r.repo) },
+            marks: [
+              Plot.barX(ratios, { x: "plotX", y: "repo", fill: C.clones, fillOpacity: 0.85 }),
+              Plot.text(ratios, { x: "plotX", y: "repo", text: "label", dx: 6, textAnchor: "start", fill: "currentColor" }),
+              Plot.ruleX([1], { stroke: "currentColor", strokeOpacity: 0.3, strokeDasharray: "3,3" }),
+            ],
+          })
+        );
+      }
+
+      // ---- co-traffic correlation ----
       {
         const allDates = [...new Set(allData.map((r) => r.date))].sort();
-        const dailyUniques = new Map(); // date -> repo -> unique cloners (summed across duplicate fetches)
+        const dailyUniques = new Map();
         for (const d of allDates) dailyUniques.set(d, new Map(REPOS.map((r) => [r, 0])));
         for (const row of allData) {
           const m = dailyUniques.get(row.date);
           m.set(row.repo, m.get(row.repo) + row.clonesUniques);
         }
-        const vectors = new Map(
-          REPOS.map((repo) => [repo, allDates.map((d) => dailyUniques.get(d).get(repo))]),
-        );
+        const vectors = new Map(REPOS.map((repo) => [repo, allDates.map((d) => dailyUniques.get(d).get(repo))]));
         const pearson = (xs, ys) => {
-          const n = xs.length;
-          let sx = 0, sy = 0;
+          const n = xs.length; let sx = 0, sy = 0;
           for (let i = 0; i < n; i++) { sx += xs[i]; sy += ys[i]; }
           const mx = sx / n, my = sy / n;
-          let num = 0, dx2 = 0, dy2 = 0;
-          for (let i = 0; i < n; i++) {
-            const ex = xs[i] - mx, ey = ys[i] - my;
-            num += ex * ey;
-            dx2 += ex * ex;
-            dy2 += ey * ey;
-          }
+          let nu = 0, dx2 = 0, dy2 = 0;
+          for (let i = 0; i < n; i++) { const ex = xs[i] - mx, ey = ys[i] - my; nu += ex * ey; dx2 += ex * ex; dy2 += ey * ey; }
           const denom = Math.sqrt(dx2 * dy2);
-          return denom === 0 ? 0 : num / denom;
+          return denom === 0 ? 0 : nu / denom;
         };
-        // tie-aware average ranks (1-indexed)
         const rank = (xs) => {
           const indexed = xs.map((v, i) => [v, i]).sort((a, b) => a[0] - b[0]);
-          const ranks = new Array(xs.length);
-          let i = 0;
+          const ranks = new Array(xs.length); let i = 0;
           while (i < indexed.length) {
-            let j = i;
-            while (j < indexed.length && indexed[j][0] === indexed[i][0]) j++;
+            let j = i; while (j < indexed.length && indexed[j][0] === indexed[i][0]) j++;
             const avg = (i + j - 1) / 2 + 1;
             for (let k = i; k < j; k++) ranks[indexed[k][1]] = avg;
             i = j;
@@ -404,109 +835,87 @@
         };
         const spearman = (xs, ys) => pearson(rank(xs), rank(ys));
         const corrPairs = [];
-        for (const a of REPOS) {
-          for (const b of REPOS) {
-            corrPairs.push({ repoA: a, repoB: b, corr: spearman(vectors.get(a), vectors.get(b)) });
-          }
-        }
+        for (const a of REPOS) for (const b of REPOS) corrPairs.push({ repoA: a, repoB: b, corr: spearman(vectors.get(a), vectors.get(b)) });
         document.getElementById("correlation-chart").append(
           Plot.plot({
-            marginLeft: 200,
-            marginBottom: 140,
-            marginRight: 40,
+            marginLeft: 200, marginBottom: 140, marginRight: 40,
+            style: { background: "transparent", color: C.fg },
             x: { domain: REPOS, label: null, tickRotate: -30 },
             y: { domain: REPOS, label: null },
-            color: {
-              type: "diverging",
-              scheme: "rdbu",
-              reverse: true,
-              domain: [-1, 1],
-              legend: true,
-              label: "Spearman ρ (unique cloners)",
-            },
+            color: { type: "diverging", scheme: "rdbu", reverse: true, domain: [-1, 1], legend: true, label: "Spearman ρ (unique cloners)" },
             marks: [
               Plot.cell(corrPairs, { x: "repoA", y: "repoB", fill: "corr", inset: 0.5 }),
-              Plot.text(corrPairs, {
-                x: "repoA",
-                y: "repoB",
-                text: (d) => d.corr.toFixed(2),
-                fill: (d) => (Math.abs(d.corr) > 0.55 ? "white" : "black"),
-                fontSize: 11,
-              }),
+              Plot.text(corrPairs, { x: "repoA", y: "repoB", text: (d) => d.corr.toFixed(2), fill: (d) => (Math.abs(d.corr) > 0.55 ? "white" : "black"), fontSize: 11 }),
             ],
-          }),
+          })
         );
       }
 
-      // data table
-      const headers = [
-        { key: "repo", label: "repo", num: false },
-        { key: "date", label: "date", num: false },
-        { key: "clones", label: "clones", num: true },
-        { key: "clonesUniques", label: "unique cloners", num: true },
-        { key: "views", label: "views", num: true },
-        { key: "viewsUniques", label: "unique visitors", num: true },
-      ];
-      const tbl = document.createElement("table");
-      const thead = document.createElement("thead");
-      const trh = document.createElement("tr");
-      for (const h of headers) {
-        const th = document.createElement("th");
-        th.textContent = h.label;
-        th.dataset.key = h.key;
-        if (h.num) th.classList.add("num");
-        trh.append(th);
-      }
-      thead.append(trh);
-      tbl.append(thead);
-      const tbody = document.createElement("tbody");
-      tbl.append(tbody);
-
-      let sortKey = "date";
-      let sortAsc = false;
-
-      function compare(a, b) {
-        const av = a[sortKey];
-        const bv = b[sortKey];
-        const cmp = typeof av === "string" ? av.localeCompare(bv) : av - bv;
-        return sortAsc ? cmp : -cmp;
-      }
-      function applySortIndicators() {
+      // ---- data table ----
+      {
+        const headers = [
+          { key: "repo", label: "repo", num: false },
+          { key: "date", label: "date", num: false },
+          { key: "clones", label: "clones", num: true },
+          { key: "clonesUniques", label: "unique cloners", num: true },
+          { key: "views", label: "views", num: true },
+          { key: "viewsUniques", label: "unique visitors", num: true },
+        ];
+        const tbl = document.createElement("table");
+        const thead = document.createElement("thead");
+        const trh = document.createElement("tr");
+        for (const h of headers) {
+          const th = document.createElement("th");
+          th.textContent = h.label; th.dataset.key = h.key;
+          th.tabIndex = 0; th.setAttribute("scope", "col"); th.setAttribute("role", "columnheader button");
+          if (h.num) th.classList.add("num");
+          trh.append(th);
+        }
+        thead.append(trh); tbl.append(thead);
+        const tbody = document.createElement("tbody"); tbl.append(tbody);
+        let sortKey = "date", sortAsc = false;
+        const compare = (a, b) => {
+          const av = a[sortKey], bv = b[sortKey];
+          const cmp = typeof av === "string" ? av.localeCompare(bv) : av - bv;
+          return sortAsc ? cmp : -cmp;
+        };
+        const applySortIndicators = () => {
+          for (const th of trh.children) {
+            if (th.dataset.key === sortKey) th.setAttribute("aria-sort", sortAsc ? "ascending" : "descending");
+            else th.removeAttribute("aria-sort");
+          }
+        };
+        const rerender = () => {
+          const rows = [...allData].sort(compare);
+          const frag = document.createDocumentFragment();
+          for (const r of rows) {
+            const tr = document.createElement("tr");
+            for (const h of headers) {
+              const td = document.createElement("td");
+              td.textContent = r[h.key];
+              if (h.num) td.classList.add("num");
+              tr.append(td);
+            }
+            frag.append(tr);
+          }
+          tbody.replaceChildren(frag);
+        };
         for (const th of trh.children) {
-          if (th.dataset.key === sortKey) {
-            th.setAttribute("aria-sort", sortAsc ? "ascending" : "descending");
-          } else {
-            th.removeAttribute("aria-sort");
-          }
+          const sort = () => {
+            const k = th.dataset.key;
+            if (k === sortKey) sortAsc = !sortAsc; else { sortKey = k; sortAsc = false; }
+            applySortIndicators(); rerender();
+          };
+          th.addEventListener("click", sort);
+          th.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sort(); }
+          });
         }
+        applySortIndicators(); rerender();
+        document.getElementById("table-container").append(tbl);
       }
-      function rerender() {
-        const rows = [...allData].sort(compare);
-        const frag = document.createDocumentFragment();
-        for (const r of rows) {
-          const tr = document.createElement("tr");
-          for (const h of headers) {
-            const td = document.createElement("td");
-            td.textContent = r[h.key];
-            if (h.num) td.classList.add("num");
-            tr.append(td);
-          }
-          frag.append(tr);
-        }
-        tbody.replaceChildren(frag);
-      }
-      for (const th of trh.children) {
-        th.addEventListener("click", () => {
-          const k = th.dataset.key;
-          if (k === sortKey) sortAsc = !sortAsc;
-          else { sortKey = k; sortAsc = false; }
-          applySortIndicators();
-          rerender();
-        });
-      }
-      applySortIndicators();
-      rerender();
-      document.getElementById("table-container").append(tbl);
+
+      setupReveal();
     }
 
     render();
