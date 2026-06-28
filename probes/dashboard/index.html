@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Probe Q&amp;A Reader — shimo4228</title>
+  <meta name="description" content="Readable browser for the two-channel LLM attribution-diffusion probes: the exact question asked of each frontier model and its raw answer, with deterministic-regex detection verdicts. Companion reader to the Traffic dashboard's probe metrics.">
+  <!-- Static dataset metadata for non-JS crawlers: the reader renders client-side,
+       so the underlying datasets are described here as schema.org Dataset nodes. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "@id": "https://github.com/shimo4228/shimo4228#probe-dataset",
+    "name": "shimo4228 LLM Attribution-Diffusion Probes",
+    "description": "Scheduled two-channel probes of frontier LLMs measuring whether this program's research concepts — and the author — surface in model answers. Parametric (web search off) and retrieval (web search on) channels are kept strictly separate per Authorship Strategy ADR-0008; the per-channel contrast is the signal, never blended. Deterministic-regex detection (author named in prose / project named / owned DOI cited / ghost-citation), not LLM judging. Preliminary observation, not evidence.",
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "creator": {"@type": "Person", "@id": "https://orcid.org/0009-0002-6168-4162", "name": "shimo4228"},
+    "isAccessibleForFree": true,
+    "measurementTechnique": "Deterministic regex detection over scheduled frontier-LLM probe responses, on two separate channels (parametric / retrieval)",
+    "variableMeasured": ["author_named (in prose)", "project_named", "doi_or_url_cited", "ghost_citation (derived)"],
+    "about": {"@id": "https://doi.org/10.5281/zenodo.20263316"},
+    "url": "https://shimo4228.github.io/shimo4228/probes/dashboard/",
+    "distribution": [
+      {"@type": "DataDownload", "name": "parametric channel", "encodingFormat": "application/x-ndjson", "contentUrl": "https://shimo4228.github.io/shimo4228/probes/data/parametric.jsonl"},
+      {"@type": "DataDownload", "name": "retrieval channel", "encodingFormat": "application/x-ndjson", "contentUrl": "https://shimo4228.github.io/shimo4228/probes/data/retrieval.jsonl"}
+    ]
+  }
+  </script>
+  <style>
+    /* Palette inherited from traffic/dashboard/index.html for visual parity. */
+    :root {
+      --bg: #f5f6fb;
+      --bg-floor: #ffffff;
+      --fg: #1a2030;
+      --muted: #5b6472;
+      --faint: #9aa1b0;
+      --border: rgba(15, 23, 42, 0.09);
+      --border-strong: rgba(15, 23, 42, 0.16);
+      --card: rgba(255, 255, 255, 0.66);
+      --card-solid: #ffffff;
+      --accent: #6366f1;
+      --accent-2: #10b981;
+      --grad: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
+      --gold: #c98a16;
+      --up: #0f9d6b;
+      --down: #d97706;
+      --glow: rgba(99, 102, 241, 0.20);
+      --shadow: 0 10px 34px rgba(79, 70, 229, 0.10);
+      --shadow-hover: 0 14px 44px rgba(79, 70, 229, 0.16);
+      --mesh-a: rgba(99, 102, 241, 0.14);
+      --mesh-b: rgba(139, 92, 246, 0.12);
+      --mesh-c: rgba(16, 185, 129, 0.12);
+      --r-card: 18px;
+      --r-pill: 999px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0d12;
+        --bg-floor: #070809;
+        --fg: #e8eaf0;
+        --muted: #9ba3b4;
+        --faint: #6b7280;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-strong: rgba(255, 255, 255, 0.17);
+        --card: rgba(22, 26, 34, 0.55);
+        --card-solid: #161a22;
+        --accent: #818cf8;
+        --accent-2: #34d399;
+        --grad: linear-gradient(135deg, #818cf8 0%, #34d399 100%);
+        --gold: #fcd34d;
+        --up: #34d399;
+        --down: #fbbf24;
+        --glow: rgba(129, 140, 248, 0.40);
+        --shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+        --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.55);
+        --mesh-a: rgba(99, 102, 241, 0.20);
+        --mesh-b: rgba(139, 92, 246, 0.16);
+        --mesh-c: rgba(45, 212, 191, 0.15);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg-floor);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.5;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      font-variant-numeric: tabular-nums;
+      min-height: 100vh;
+    }
+    .aurora {
+      position: fixed; inset: 0; z-index: -1;
+      background:
+        radial-gradient(50% 50% at 12% 8%, var(--mesh-a) 0%, transparent 70%),
+        radial-gradient(46% 46% at 88% 18%, var(--mesh-b) 0%, transparent 70%),
+        radial-gradient(60% 60% at 70% 100%, var(--mesh-c) 0%, transparent 72%),
+        var(--bg);
+      animation: drift 48s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0) scale(1); }
+      to   { transform: translate3d(0, -1.5%, 0) scale(1.05); }
+    }
+    @media (prefers-reduced-motion: reduce) { .aurora { animation: none; } }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 20px 56px; }
+    a { color: var(--accent); }
+
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      box-shadow: var(--shadow);
+    }
+
+    /* ---- header ---- */
+    header.page { margin-bottom: 18px; }
+    .crumb { font-size: 0.82rem; margin-bottom: 10px; }
+    .crumb a { text-decoration: none; font-weight: 600; }
+    .crumb a:hover { text-decoration: underline; }
+    .brandline { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    h1 { font-size: 1.6rem; margin: 0; letter-spacing: -0.02em; }
+    h1 .lead { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .tagline { color: var(--muted); font-size: 0.92rem; margin: 8px 0 0; max-width: 70ch; }
+    .meta { color: var(--faint); font-size: 0.8rem; margin: 10px 0 0; }
+    .meta b { color: var(--muted); font-weight: 650; }
+
+    /* ---- caveat ---- */
+    .caveat-box { padding: 13px 16px; margin: 16px 0 18px; border-left: 3px solid var(--accent-2); font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .caveat-box b { color: var(--fg); font-weight: 650; }
+
+    /* ---- filter bar ---- */
+    .filters {
+      position: sticky; top: 0; z-index: 20;
+      padding: 14px 16px; margin-bottom: 14px;
+      display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-end;
+    }
+    .fg { display: flex; flex-direction: column; gap: 4px; }
+    .fg label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--faint); font-weight: 650; }
+    .fg select, .fg input[type="search"] {
+      font: inherit; font-size: 0.85rem;
+      padding: 6px 9px; border-radius: 9px;
+      border: 1px solid var(--border-strong);
+      background: var(--card-solid); color: var(--fg);
+      max-width: 230px;
+    }
+    .fg input[type="search"] { min-width: 200px; }
+    .fg.grow { flex: 1 1 200px; }
+    .fg.grow input { width: 100%; max-width: none; }
+    .detbar { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+    .detbar .lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--faint); font-weight: 650; margin-right: 2px; }
+    .chip-toggle {
+      font: inherit; font-size: 0.76rem; cursor: pointer; user-select: none;
+      padding: 4px 10px; border-radius: var(--r-pill);
+      border: 1px solid var(--border-strong); background: transparent; color: var(--muted);
+    }
+    .chip-toggle[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .chip-toggle.warn[aria-pressed="true"] { background: var(--down); border-color: var(--down); }
+    .btn-reset {
+      font: inherit; font-size: 0.76rem; cursor: pointer;
+      padding: 5px 11px; border-radius: var(--r-pill);
+      border: 1px solid var(--border-strong); background: transparent; color: var(--muted);
+    }
+    .btn-reset:hover { color: var(--fg); border-color: var(--fg); }
+
+    /* ---- summary strip ---- */
+    .summary { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; padding: 12px 16px; margin-bottom: 18px; font-size: 0.82rem; }
+    .summary .count { font-weight: 750; font-size: 1.05rem; }
+    .summary .stat { color: var(--muted); }
+    .summary .stat b { color: var(--fg); font-weight: 700; }
+    .summary .stat.ghost b { color: var(--down); }
+    .summary .chgrp { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 4px 11px; border-radius: 11px; border: 1px solid var(--border); }
+    .summary .chlabel { font-weight: 700; }
+    .summary .chlabel.ch-parametric { color: var(--accent); }
+    .summary .chlabel.ch-retrieval { color: var(--accent-2); }
+    .summary .chgrp .nval { color: var(--faint); font-size: 0.74rem; }
+    .summary .note { color: var(--faint); font-size: 0.74rem; margin-left: auto; }
+
+    /* ---- cards ---- */
+    #cards { display: flex; flex-direction: column; gap: 14px; }
+    .card { padding: 18px 20px; transition: box-shadow 0.2s, transform 0.2s; }
+    .card:hover { box-shadow: var(--shadow-hover); }
+    .card-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .badge {
+      font-size: 0.72rem; font-weight: 650; padding: 3px 10px; border-radius: var(--r-pill);
+      border: 1px solid var(--border-strong); color: var(--muted); white-space: nowrap;
+    }
+    .badge.ch-parametric { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+    .badge.ch-retrieval { color: var(--accent-2); border-color: color-mix(in srgb, var(--accent-2) 45%, transparent); }
+    .badge.control { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 50%, transparent); }
+    .badge.model { font-weight: 600; }
+    .card-top .when { margin-left: auto; color: var(--faint); font-size: 0.76rem; white-space: nowrap; }
+
+    .q { margin-bottom: 12px; }
+    .q .q-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); font-weight: 700; margin-bottom: 4px; display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+    .q .q-id { color: var(--accent); font-weight: 650; }
+    .q .q-text {
+      font-size: 0.98rem; font-weight: 600; line-height: 1.55;
+      padding: 11px 14px; border-radius: 12px;
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+    .q .q-text.missing { font-weight: 500; color: var(--muted); background: transparent; border-style: dashed; }
+
+    .a-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); font-weight: 700; margin-bottom: 6px; }
+    .answer-wrap { position: relative; }
+    .answer-collapsed .answer-body { max-height: 11.5em; overflow: hidden; }
+    .answer-collapsed .answer-wrap::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4em;
+      background: linear-gradient(to bottom, transparent, var(--card-solid) 92%);
+      pointer-events: none;
+    }
+    .answer-body { font-size: 0.92rem; color: var(--fg); }
+    .answer-pre { white-space: pre-wrap; word-break: break-word; margin: 0; font: inherit; }
+    .answer-md > :first-child { margin-top: 0; }
+    .answer-md > :last-child { margin-bottom: 0; }
+    .answer-md h1, .answer-md h2, .answer-md h3, .answer-md h4 { line-height: 1.3; margin: 0.9em 0 0.4em; }
+    .answer-md h1 { font-size: 1.15rem; } .answer-md h2 { font-size: 1.05rem; } .answer-md h3 { font-size: 0.98rem; } .answer-md h4 { font-size: 0.92rem; }
+    .answer-md p { margin: 0.55em 0; }
+    .answer-md ul, .answer-md ol { margin: 0.5em 0; padding-left: 1.4em; }
+    .answer-md li { margin: 0.2em 0; }
+    .answer-md a { word-break: break-word; }
+    .answer-md code { background: color-mix(in srgb, var(--fg) 9%, transparent); padding: 0.1em 0.35em; border-radius: 5px; font-size: 0.88em; }
+    .answer-md pre { background: color-mix(in srgb, var(--fg) 7%, transparent); padding: 11px 13px; border-radius: 10px; overflow-x: auto; }
+    .answer-md pre code { background: none; padding: 0; }
+    .answer-md blockquote { margin: 0.6em 0; padding-left: 12px; border-left: 3px solid var(--border-strong); color: var(--muted); }
+    .answer-md table { border-collapse: collapse; font-size: 0.86em; display: block; overflow-x: auto; }
+    .answer-md th, .answer-md td { border: 1px solid var(--border-strong); padding: 5px 9px; }
+    .answer-empty { color: var(--faint); font-style: italic; }
+    .answer-error { color: var(--down); font-size: 0.85rem; padding: 10px 13px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--down) 40%, transparent); background: color-mix(in srgb, var(--down) 8%, transparent); white-space: pre-wrap; word-break: break-word; }
+
+    .toggle-full {
+      margin-top: 8px; font: inherit; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+      background: transparent; border: none; color: var(--accent); padding: 2px 0;
+    }
+    .toggle-full:hover { text-decoration: underline; }
+
+    /* ---- detection + urls ---- */
+    .detrow { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; align-items: center; }
+    .det {
+      font-size: 0.74rem; font-weight: 600; padding: 3px 10px; border-radius: var(--r-pill);
+      border: 1px solid var(--border); color: var(--faint); display: inline-flex; gap: 5px; align-items: center;
+    }
+    .det.on { color: var(--up); border-color: color-mix(in srgb, var(--up) 45%, transparent); background: color-mix(in srgb, var(--up) 9%, transparent); }
+    .det.ghost { color: var(--down); border-color: color-mix(in srgb, var(--down) 50%, transparent); background: color-mix(in srgb, var(--down) 10%, transparent); }
+    .det.echo { color: var(--faint); border-style: dashed; }
+
+    details.urls, details.raw { margin-top: 12px; }
+    details.urls summary, details.raw summary {
+      cursor: pointer; font-size: 0.78rem; font-weight: 650; color: var(--muted); list-style: none; user-select: none;
+    }
+    details.urls summary::-webkit-details-marker, details.raw summary::-webkit-details-marker { display: none; }
+    details.urls summary::before, details.raw summary::before { content: "▸ "; color: var(--faint); }
+    details[open].urls summary::before, details[open].raw summary::before { content: "▾ "; }
+    .url-list { list-style: none; padding: 8px 0 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+    .url-list li { font-size: 0.8rem; word-break: break-all; }
+    .url-list .owned { color: var(--gold); font-weight: 700; margin-right: 5px; }
+    .url-list .ext { color: var(--faint); }
+    .raw-json { white-space: pre-wrap; word-break: break-word; font-size: 0.74rem; color: var(--muted); margin: 8px 0 0; max-height: 320px; overflow: auto; background: color-mix(in srgb, var(--fg) 5%, transparent); padding: 10px 12px; border-radius: 10px; }
+
+    /* ---- meta footer of card ---- */
+    .cmeta { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.74rem; color: var(--faint); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+    .cmeta b { color: var(--muted); font-weight: 600; }
+
+    /* ---- load more / states ---- */
+    .loadmore-wrap { text-align: center; margin-top: 20px; }
+    .btn-load { font: inherit; font-size: 0.88rem; font-weight: 650; cursor: pointer; padding: 9px 22px; border-radius: var(--r-pill); border: 1px solid var(--border-strong); background: var(--card-solid); color: var(--fg); }
+    .btn-load:hover { border-color: var(--accent); color: var(--accent); }
+    .state-msg { padding: 40px 20px; text-align: center; color: var(--muted); }
+    .state-msg.err { color: var(--down); }
+
+    footer.page { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--faint); line-height: 1.7; }
+    footer.page a { color: var(--muted); }
+
+    @media (max-width: 640px) {
+      .fg select, .fg input[type="search"] { max-width: none; width: 100%; }
+      .summary .note { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora"></div>
+  <div class="wrap">
+
+    <header class="page">
+      <p class="crumb"><a href="../../traffic/dashboard/">← Traffic dashboard (metrics &amp; trends)</a></p>
+      <div class="brandline">
+        <h1><span class="lead">◑</span> Probe Q&amp;A Reader</h1>
+      </div>
+      <p class="tagline">
+        定期 probe が frontier LLM に研究概念を尋ねた <b>実際の質問文と生回答</b> をそのまま読むビュー。決定論的 regex の検出結果（著者名・プロジェクト名・DOI・ghost citation）付き。集計・トレンドは <a href="../../traffic/dashboard/">Traffic dashboard</a> の probe セクションを参照。
+      </p>
+      <p class="meta" id="meta-line">loading…</p>
+    </header>
+
+    <div class="caveat-box glass">
+      <b>Two channels, never blended.</b> Parametric (web search off) は重みに染みた知識、Retrieval (web search on) は検索ありで「いま見つけられるか」を測る。混ぜると<b>どちらの channel が失敗しているか</b>が消えるので、フィルタで分けて読むこと。<b>N=1 の予備観測</b>であり trend の証拠ではない。<code>control-fake</code> probe は存在しない概念を尋ねる confabulation のノイズ床。この公開ログ自体が retrieval channel に流れ込む自己汚染がある。
+    </div>
+
+    <div class="filters glass" id="filters" hidden>
+      <div class="fg">
+        <label for="f-channel">Channel</label>
+        <select id="f-channel"><option value="">All</option><option value="parametric">Parametric</option><option value="retrieval">Retrieval</option></select>
+      </div>
+      <div class="fg">
+        <label for="f-model">Model</label>
+        <select id="f-model"><option value="">All models</option></select>
+      </div>
+      <div class="fg">
+        <label for="f-probe">Probe</label>
+        <select id="f-probe"><option value="">All probes</option></select>
+      </div>
+      <div class="fg">
+        <label for="f-version">Probe set</label>
+        <select id="f-version"><option value="">All versions</option></select>
+      </div>
+      <div class="fg">
+        <label for="f-run">Run</label>
+        <select id="f-run"><option value="">All runs</option></select>
+      </div>
+      <div class="fg">
+        <label for="f-sort">Sort</label>
+        <select id="f-sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="probe">By probe</option><option value="model">By model</option></select>
+      </div>
+      <div class="fg grow">
+        <label for="f-search">Search (question + answer)</label>
+        <input type="search" id="f-search" placeholder="e.g. ghost, Shimomoto, contemplative…" autocomplete="off">
+      </div>
+      <div class="detbar" id="detbar">
+        <span class="lbl">Detection</span>
+        <button class="chip-toggle" id="d-author" aria-pressed="false">author named</button>
+        <button class="chip-toggle" id="d-project" aria-pressed="false">project named</button>
+        <button class="chip-toggle" id="d-doi" aria-pressed="false">DOI·URL cited</button>
+        <button class="chip-toggle warn" id="d-ghost" aria-pressed="false">ghost citation</button>
+        <button class="chip-toggle" id="d-error" aria-pressed="false">API error</button>
+        <button class="btn-reset" id="btn-reset">Reset</button>
+      </div>
+    </div>
+
+    <div class="summary glass" id="summary" hidden></div>
+
+    <div id="cards"></div>
+    <div id="state" class="state-msg">probe データを読み込み中…</div>
+    <div class="loadmore-wrap" id="loadmore-wrap" hidden>
+      <button class="btn-load" id="btn-load"></button>
+    </div>
+
+    <footer class="page">
+      Source: <a href="https://github.com/shimo4228/shimo4228/tree/main/probes">probes/</a> ·
+      <a href="https://github.com/shimo4228/shimo4228/blob/main/probes/README.md">README</a> ·
+      <a href="https://github.com/shimo4228/shimo4228/tree/main/probes/config">config (prompts &amp; lexicon)</a> ·
+      raw: <a href="../data/parametric.jsonl">parametric.jsonl</a> / <a href="../data/retrieval.jsonl">retrieval.jsonl</a> ·
+      License: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>
+      <br>Protocol: Authorship Strategy ADR-0008 / ADR-0011 · detection is deterministic regex, not LLM judging · <a href="../../traffic/dashboard/">← back to Traffic dashboard</a>
+    </footer>
+  </div>
+
+  <!-- CDN libraries pinned with Subresource Integrity (SRI). js-yaml: parse the
+       probe config; marked: render answer markdown; DOMPurify: sanitize the
+       untrusted model output before it touches the DOM. -->
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js" integrity="sha384-+pxiN6T7yvpryuJmE1gM9PX7yQit15auDb+ZwwvJOd/4be2Cie5/IuVXgQb/S9du" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js" integrity="sha384-XQqX/4yiUGu+oyr87jvWzRuqBUK/adrY0DunhL+tID9m/9dwSpV8h9Fk/Sg6ifVQ" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+  "use strict";
+  (function () {
+    const CHANNELS = ["parametric", "retrieval"];
+    const PAGE = 50; // cards rendered per page
+
+    const HAS_MD = typeof window.marked !== "undefined" && typeof window.DOMPurify !== "undefined";
+    const HAS_YAML = typeof window.jsyaml !== "undefined";
+
+    // Open every sanitized link safely in a new tab.
+    if (HAS_MD) {
+      DOMPurify.addHook("afterSanitizeAttributes", (node) => {
+        if (node.tagName === "A") {
+          node.setAttribute("target", "_blank");
+          node.setAttribute("rel", "noopener noreferrer nofollow");
+        }
+      });
+      if (window.marked && marked.setOptions) marked.setOptions({ gfm: true, breaks: false });
+    }
+
+    let ALL = [];                 // every parsed record
+    let PROMPTS = {};             // version -> probe_id -> { template, vars }
+    let view = [];                // current filtered+sorted records
+    let renderLimit = PAGE;
+
+    // ---- helpers ----------------------------------------------------------
+    const $ = (id) => document.getElementById(id);
+    const el = (tag, cls, txt) => { const n = document.createElement(tag); if (cls) n.className = cls; if (txt != null) n.textContent = txt; return n; };
+    const isHttp = (u) => typeof u === "string" && /^https?:\/\//i.test(u);
+
+    function fmtDate(ts) {
+      const d = new Date(ts);
+      if (isNaN(d)) return ts || "";
+      const p = (n) => String(n).padStart(2, "0");
+      return `${d.getUTCFullYear()}-${p(d.getUTCMonth() + 1)}-${p(d.getUTCDate())} ${p(d.getUTCHours())}:${p(d.getUTCMinutes())} UTC`;
+    }
+    function fmtInt(n) { return typeof n === "number" ? n.toLocaleString("en-US") : "—"; }
+    function fmtCost(n) { return typeof n === "number" ? "$" + n.toFixed(n < 0.1 ? 4 : 3) : "—"; }
+    function baseModel(m) { return typeof m === "string" ? m.split("/").pop() : ""; }
+
+    // Reconstruct the question text from the probe config (template + vars).
+    function questionFor(rec) {
+      const v = PROMPTS[rec.probe_set_version];
+      const p = v && v[rec.probe_id];
+      if (!p || !p.template) return null;
+      let s = p.template;
+      const vars = p.vars || {};
+      for (const k of Object.keys(vars)) s = s.split("{" + k + "}").join(String(vars[k]));
+      return s;
+    }
+
+    // ---- data loading -----------------------------------------------------
+    async function loadConfigs() {
+      if (!HAS_YAML) return;
+      // Sequentially fetch probes-v1.yaml, v2, … auto-discovering versions.
+      // A 404 is a structural gap (end of the series after 2 in a row); a
+      // transient error (network / 5xx / parse) must NOT be mistaken for a
+      // gap, or a blip on v3 would hide an existing v4+ — so it is counted
+      // separately and only bails the loop to avoid hanging.
+      let gaps = 0;
+      let errors = 0;
+      for (let n = 1; n <= 50 && gaps < 2 && errors < 3; n++) {
+        try {
+          const res = await fetch(`../config/probes-v${n}.yaml`, { cache: "no-cache" });
+          if (res.status === 404) { gaps++; continue; }
+          if (!res.ok) { errors++; continue; }
+          gaps = 0; errors = 0;
+          const cfg = jsyaml.load(await res.text());
+          const ver = cfg && cfg.version ? String(cfg.version) : `v${n}`;
+          const map = {};
+          for (const pr of (cfg.probes || [])) {
+            if (pr && pr.id) map[pr.id] = { template: pr.template || "", vars: pr.vars || {}, expect: pr.expect || {} };
+          }
+          PROMPTS[ver] = map;
+        } catch (e) { errors++; /* transient — not a structural gap */ }
+      }
+    }
+
+    async function loadChannel(channel) {
+      const res = await fetch(`../data/${channel}.jsonl`, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`${channel}: HTTP ${res.status}`);
+      const text = await res.text();
+      const out = [];
+      for (const line of text.split("\n")) {
+        const t = line.trim();
+        if (!t) continue;
+        try {
+          const j = JSON.parse(t);
+          if (!j.channel) j.channel = channel;
+          out.push(j);
+        } catch (e) { /* skip malformed line */ }
+      }
+      return out;
+    }
+
+    // ---- filter option population ----------------------------------------
+    function uniqueSorted(arr) { return [...new Set(arr.filter((v) => v != null && v !== ""))].sort(); }
+
+    function populateFilters() {
+      const models = uniqueSorted(ALL.map((r) => r.model_returned));
+      const probes = uniqueSorted(ALL.map((r) => r.probe_id));
+      const versions = uniqueSorted(ALL.map((r) => r.probe_set_version));
+      const runs = uniqueSorted(ALL.map((r) => r.run_id)).reverse(); // newest-ish first
+
+      const fill = (sel, vals, labelFn) => {
+        for (const v of vals) {
+          const o = document.createElement("option");
+          o.value = v; o.textContent = labelFn ? labelFn(v) : v;
+          sel.appendChild(o);
+        }
+      };
+      fill($("f-model"), models);
+      fill($("f-probe"), probes);
+      fill($("f-version"), versions);
+      fill($("f-run"), runs);
+    }
+
+    // ---- filtering --------------------------------------------------------
+    function activeDet() {
+      return {
+        author: $("d-author").getAttribute("aria-pressed") === "true",
+        project: $("d-project").getAttribute("aria-pressed") === "true",
+        doi: $("d-doi").getAttribute("aria-pressed") === "true",
+        ghost: $("d-ghost").getAttribute("aria-pressed") === "true",
+        error: $("d-error").getAttribute("aria-pressed") === "true",
+      };
+    }
+
+    function applyFilters() {
+      const ch = $("f-channel").value;
+      const model = $("f-model").value;
+      const probe = $("f-probe").value;
+      const ver = $("f-version").value;
+      const run = $("f-run").value;
+      const sort = $("f-sort").value;
+      const q = $("f-search").value.trim().toLowerCase();
+      const det = activeDet();
+
+      view = ALL.filter((r) => {
+        if (ch && r.channel !== ch) return false;
+        if (model && r.model_returned !== model) return false;
+        if (probe && r.probe_id !== probe) return false;
+        if (ver && r.probe_set_version !== ver) return false;
+        if (run && r.run_id !== run) return false;
+        if (det.error && !r.error) return false;
+        const d = r.detect || {};
+        if (det.author && !d.author_named) return false;
+        if (det.project && !d.project_named) return false;
+        if (det.doi && !d.doi_or_url_cited) return false;
+        if (det.ghost && !d.ghost_citation) return false;
+        if (q) {
+          const hay = ((r.response_text || "") + " " + (questionFor(r) || r.probe_id || "") + " " + (r.error || "")).toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      view.sort((a, b) => {
+        if (sort === "probe") return (a.probe_id || "").localeCompare(b.probe_id || "") || (b.ts || "").localeCompare(a.ts || "");
+        if (sort === "model") return (a.model_returned || "~").localeCompare(b.model_returned || "~") || (b.ts || "").localeCompare(a.ts || "");
+        const cmp = (a.ts || "").localeCompare(b.ts || "");
+        return sort === "old" ? cmp : -cmp;
+      });
+
+      renderLimit = PAGE;
+      renderSummary();
+      renderCards();
+    }
+
+    const SIGNALS = [["author", "author_named"], ["project", "project_named"], ["DOI·URL", "doi_or_url_cited"], ["ghost", "ghost_citation"]];
+
+    function renderSummary() {
+      const box = $("summary");
+      box.hidden = false;
+      box.replaceChildren();
+
+      box.appendChild(el("span", "count", String(view.length)));
+      box.appendChild(el("span", "stat", "records"));
+
+      const errs = view.filter((r) => r.error).length;
+      if (errs) {
+        const s = el("span", "stat");
+        s.append(document.createTextNode("errors "));
+        s.appendChild(el("b", null, String(errs)));
+        box.appendChild(s);
+      }
+
+      // Detection rates are computed PER CHANNEL and never blended — the
+      // per-channel contrast is the signal (Authorship Strategy ADR-0008).
+      for (const ch of CHANNELS) {
+        const valid = view.filter((r) => r.channel === ch && r.detect);
+        if (!valid.length) continue;
+        const grp = el("span", "chgrp");
+        grp.appendChild(el("span", "chlabel ch-" + ch, ch));
+        for (const [label, key] of SIGNALS) {
+          const pct = Math.round(100 * valid.filter((r) => r.detect[key]).length / valid.length);
+          const s = el("span", "stat" + (key === "ghost_citation" ? " ghost" : ""));
+          s.append(document.createTextNode(label + " "));
+          s.appendChild(el("b", null, pct + "%"));
+          grp.appendChild(s);
+        }
+        grp.appendChild(el("span", "nval", `(n=${valid.length})`));
+        box.appendChild(grp);
+      }
+      box.appendChild(el("span", "note", "detection rates per channel · never blended"));
+    }
+
+    // ---- card rendering ---------------------------------------------------
+    function detChip(label, on, cls) {
+      const c = el("span", "det" + (on ? (cls ? " " + cls : " on") : ""));
+      c.append(document.createTextNode((on ? "✓ " : "✗ ") + label));
+      return c;
+    }
+
+    function buildCard(rec) {
+      const card = el("div", "card glass");
+
+      // top row: channel · model · probe-set · control flag · timestamp
+      const top = el("div", "card-top");
+      top.appendChild(el("span", "badge ch-" + rec.channel, rec.channel));
+      const modelTxt = (rec.provider ? rec.provider + " · " : "") + (rec.model_returned || "(no response)");
+      top.appendChild(el("span", "badge model", modelTxt));
+      top.appendChild(el("span", "badge", rec.probe_set_version || "?"));
+      if ((rec.probe_id || "").includes("control-fake")) top.appendChild(el("span", "badge control", "control · fake concept"));
+      top.appendChild(el("span", "when", fmtDate(rec.ts)));
+      card.appendChild(top);
+
+      // question
+      const q = el("div", "q");
+      const ql = el("div", "q-label");
+      ql.appendChild(el("span", "q-id", rec.probe_id || "(unknown probe)"));
+      ql.append(document.createTextNode("question"));
+      q.appendChild(ql);
+      const qtext = questionFor(rec);
+      if (qtext) {
+        q.appendChild(el("div", "q-text", qtext));
+      } else {
+        q.appendChild(el("div", "q-text missing", `prompt text unavailable (config ${rec.probe_set_version || "?"} not found) · sha256 ${(rec.prompt_sha256 || "").slice(0, 12)}`));
+      }
+      card.appendChild(q);
+
+      // answer
+      card.appendChild(el("div", "a-label", "answer"));
+      if (rec.error) {
+        card.appendChild(el("div", "answer-error", "⚠ API error: " + rec.error));
+      } else {
+        const text = rec.response_text || "";
+        const wrap = el("div", "answer-wrap answer-collapsed");
+        const body = el("div", "answer-body");
+        if (!text.trim()) {
+          body.appendChild(el("div", "answer-empty", "(empty response)"));
+        } else {
+          const pre = el("pre", "answer-pre");
+          pre.textContent = text; // safe: plain-text preview, escaped by textContent
+          body.appendChild(pre);
+        }
+        wrap.appendChild(body);
+        card.appendChild(wrap);
+
+        if (text.trim()) {
+          const btn = el("button", "toggle-full", "Show full answer ▾");
+          let rendered = false;
+          btn.addEventListener("click", () => {
+            const collapsed = wrap.classList.toggle("answer-collapsed");
+            if (!collapsed && !rendered) {
+              rendered = true;
+              if (HAS_MD) {
+                const dirty = marked.parse(text);
+                const clean = DOMPurify.sanitize(dirty);
+                const md = el("div", "answer-md");
+                md.innerHTML = clean; // safe: sanitized by DOMPurify
+                body.replaceChildren(md);
+              }
+            }
+            btn.textContent = collapsed ? "Show full answer ▾" : "Collapse answer ▴";
+          });
+          card.appendChild(btn);
+        }
+      }
+
+      // detection row
+      if (rec.detect) {
+        const d = rec.detect;
+        const matched = d.matched || {};
+        const row = el("div", "detrow");
+        row.appendChild(detChip("author named", !!d.author_named));
+        const projOn = !!d.project_named;
+        const projKeys = Object.keys(matched.projects || {});
+        row.appendChild(detChip("project named" + (projOn && projKeys.length ? " (" + projKeys.join(", ") + ")" : ""), projOn));
+        row.appendChild(detChip("DOI·URL cited", !!d.doi_or_url_cited));
+        if (d.ghost_citation) {
+          const g = el("span", "det ghost");
+          g.append(document.createTextNode("⚠ ghost citation"));
+          row.appendChild(g);
+        }
+        const echoed = matched.echoed || {};
+        const echoedAny = (Array.isArray(echoed.author) && echoed.author.length > 0) ||
+          (echoed.projects && typeof echoed.projects === "object" && Object.keys(echoed.projects).length > 0);
+        if (echoedAny) {
+          const e = el("span", "det echo");
+          e.append(document.createTextNode("echoed from prompt (not counted)"));
+          row.appendChild(e);
+        }
+        card.appendChild(row);
+      }
+
+      // cited urls
+      const urls = Array.isArray(rec.cited_urls) ? rec.cited_urls : [];
+      if (urls.length) {
+        const ownedSet = new Set((rec.detect && rec.detect.matched && rec.detect.matched.owned_urls) || []);
+        const det = el("details", "urls");
+        det.appendChild(el("summary", null, `cited URLs (${urls.length})${rec.citation_source ? " · " + rec.citation_source : ""}`));
+        const ul = el("ul", "url-list");
+        for (const u of urls) {
+          const li = document.createElement("li");
+          if (ownedSet.has(u)) li.appendChild(el("span", "owned", "★ owned"));
+          if (isHttp(u)) {
+            const a = el("a", null, u);
+            a.href = u; a.target = "_blank"; a.rel = "noopener noreferrer nofollow";
+            li.appendChild(a);
+          } else {
+            li.appendChild(el("span", "ext", u)); // non-http: render as text, never a link
+          }
+          ul.appendChild(li);
+        }
+        det.appendChild(ul);
+        card.appendChild(det);
+      }
+
+      // card meta footer
+      const m = el("div", "cmeta");
+      const usage = rec.usage || {};
+      const addMeta = (label, val) => {
+        const span = document.createElement("span");
+        span.appendChild(el("b", null, label + ": "));
+        span.append(document.createTextNode(val));
+        m.appendChild(span);
+      };
+      addMeta("tokens", `${fmtInt(usage.prompt_tokens)} in / ${fmtInt(usage.completion_tokens)} out`);
+      addMeta("cost", fmtCost(usage.cost_usd));
+      addMeta("temp", rec.temperature == null ? "—" : String(rec.temperature));
+      addMeta("web search", rec.web_search_enabled ? "on" : "off");
+      if (baseModel(rec.model_requested) !== (rec.model_returned || "")) {
+        addMeta("requested", rec.model_requested || "—");
+      }
+      if (rec.detect && rec.detect.detector_version) addMeta("detector", rec.detect.detector_version);
+      card.appendChild(m);
+
+      // raw json
+      const raw = el("details", "raw");
+      raw.appendChild(el("summary", null, "raw JSON"));
+      const pre = el("pre", "raw-json");
+      pre.textContent = JSON.stringify(rec, null, 2); // safe: textContent
+      raw.appendChild(pre);
+      card.appendChild(raw);
+
+      return card;
+    }
+
+    function renderCards() {
+      const host = $("cards");
+      host.replaceChildren();
+      const state = $("state");
+
+      if (!view.length) {
+        state.hidden = false;
+        state.className = "state-msg";
+        state.textContent = "現在のフィルタに一致する probe がありません。";
+        $("loadmore-wrap").hidden = true;
+        return;
+      }
+      state.hidden = true;
+
+      const slice = view.slice(0, renderLimit);
+      const frag = document.createDocumentFragment();
+      for (const rec of slice) frag.appendChild(buildCard(rec));
+      host.appendChild(frag);
+
+      const lw = $("loadmore-wrap");
+      if (view.length > renderLimit) {
+        lw.hidden = false;
+        $("btn-load").textContent = `Load more (${renderLimit} / ${view.length})`;
+      } else {
+        lw.hidden = true;
+      }
+    }
+
+    // ---- wiring -----------------------------------------------------------
+    function wireEvents() {
+      ["f-channel", "f-model", "f-probe", "f-version", "f-run", "f-sort"].forEach((id) => $(id).addEventListener("change", applyFilters));
+      let t;
+      $("f-search").addEventListener("input", () => { clearTimeout(t); t = setTimeout(applyFilters, 180); });
+      ["d-author", "d-project", "d-doi", "d-ghost", "d-error"].forEach((id) => {
+        $(id).addEventListener("click", () => {
+          const b = $(id);
+          b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+          applyFilters();
+        });
+      });
+      $("btn-reset").addEventListener("click", () => {
+        ["f-channel", "f-model", "f-probe", "f-version", "f-run"].forEach((id) => ($(id).value = ""));
+        $("f-sort").value = "new";
+        $("f-search").value = "";
+        ["d-author", "d-project", "d-doi", "d-ghost", "d-error"].forEach((id) => $(id).setAttribute("aria-pressed", "false"));
+        applyFilters();
+      });
+      $("btn-load").addEventListener("click", () => { renderLimit += PAGE; renderCards(); });
+    }
+
+    function renderMetaLine() {
+      const valid = ALL.filter((r) => r.detect).length;
+      const byCh = CHANNELS.map((c) => `${c} ${ALL.filter((r) => r.channel === c).length}`).join(" · ");
+      const versions = uniqueSorted(ALL.map((r) => r.probe_set_version)).join(", ") || "—";
+      const last = ALL.reduce((mx, r) => (r.ts && r.ts > mx ? r.ts : mx), "");
+      // Built with text nodes only — data-derived values (versions, ts) never
+      // touch innerHTML, so a malformed JSONL field cannot inject markup here.
+      const m = $("meta-line");
+      m.replaceChildren();
+      const seg = (boldVal, tail) => { m.appendChild(el("b", null, String(boldVal))); if (tail) m.append(document.createTextNode(tail)); };
+      seg(ALL.length, ` records (${byCh}) · valid `);
+      seg(valid, " · probe sets ");
+      seg(versions, " · last updated ");
+      seg(last ? fmtDate(last) : "—", "");
+      if (!HAS_YAML) m.append(document.createTextNode(" · ⚠ js-yaml 未読込のため質問文を復元できません"));
+      if (!HAS_MD) m.append(document.createTextNode(" · ⚠ marked/DOMPurify 未読込のため回答は素のテキスト表示"));
+    }
+
+    async function init() {
+      try {
+        await loadConfigs(); // best-effort; reader still works without prompt text
+        const settled = await Promise.allSettled(CHANNELS.map(loadChannel));
+        const failed = [];
+        settled.forEach((s, i) => {
+          if (s.status === "fulfilled") ALL.push(...s.value);
+          else failed.push(CHANNELS[i]);
+        });
+
+        if (!ALL.length) {
+          const state = $("state");
+          state.className = "state-msg err";
+          state.textContent = `probe データを読み込めませんでした (${failed.join(", ") || "no data"})。ローカルでは簡易 HTTP サーバ経由で開いてください (file:// では fetch がブロックされます)。`;
+          return;
+        }
+
+        renderMetaLine();
+        populateFilters();
+        $("filters").hidden = false;
+        wireEvents();
+        applyFilters();
+
+        if (failed.length) {
+          const note = el("div", "state-msg err");
+          note.textContent = `注意: ${failed.join(", ")} channel の読み込みに失敗しました。`;
+          $("cards").parentNode.insertBefore(note, $("cards"));
+        }
+      } catch (e) {
+        const state = $("state");
+        state.className = "state-msg err";
+        state.textContent = "初期化に失敗しました: " + (e && e.message ? e.message : String(e));
+      }
+    }
+
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+    else init();
+  })();
+  </script>
+</body>
+</html>
