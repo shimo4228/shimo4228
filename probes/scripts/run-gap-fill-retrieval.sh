@@ -34,7 +34,7 @@ source "$SCRIPT_DIR/_lib.sh"
 
 {
   echo "=== gap-fill retrieval $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
-  probe_git_lock
+  probe_git_lock  # secondary: skip if the weekly run (or the other pass) holds it
   cd "$REPO/probes/runner" || exit 1
 
   # Freshness gate: resolve the latest run-id (dry-run = no API calls) and only

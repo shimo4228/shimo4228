@@ -38,7 +38,7 @@ WEEKLY_TO="2026-11-30"
     exit 0
   fi
   echo "=== retrieval run $(date -u +%Y-%m-%dT%H:%M:%SZ) (ISO week $WEEK) ==="
-  probe_git_lock
+  probe_git_lock 1800  # primary run: wait out a gap-fill that won the wake race
   cd "$REPO/probes/runner" || exit 1
   "$UV" run probe_runner.py --channel retrieval --cost-budget 8.0
   echo "runner exit: $? (non-zero = errored cells, gap-fill later)"

@@ -4,14 +4,23 @@
 
 # Single-writer git lock shared by every probe job that commits to this repo,
 # so concurrent launchd firings — e.g. all slots bunched at the next wake after
-# the Mac slept through Sunday — never race on the git index. Non-blocking: a
-# job that cannot take the lock exits cleanly; the next scheduled pass runs.
+# the Mac slept through Sunday — never race on the git index or interleave
+# appends to the same channel log.
+#
+#   probe_git_lock          non-blocking: a SECONDARY job (gap-fill) exits
+#                           cleanly if the lock is held; the next pass retries.
+#   probe_git_lock <secs>   the PRIMARY job (weekly run) waits up to <secs> for
+#                           the lock instead of dropping its sample. Without
+#                           this, a gap-fill that wins the post-sleep wake race
+#                           would make the weekly job exit before probing — and
+#                           that gap-fill then skips too (no same-day run yet),
+#                           losing the scheduled sample for a whole cadence.
 #
 # Uses an atomic mkdir (flock is not on stock macOS). A lock left by a process
 # killed before its EXIT trap fired (e.g. SIGKILL) is stolen once it is older
 # than an hour — far longer than any real run (~20 min worst case).
 probe_git_lock() {
-    local lockdir="/tmp/probes-git.lock.d"
+    local lockdir="/tmp/probes-git.lock.d" max_wait="${1:-0}" waited=0
     if [ -d "$lockdir" ]; then
         local age=$(( $(date +%s) - $(stat -f %m "$lockdir" 2>/dev/null || echo 0) ))
         if [ "$age" -gt 3600 ]; then
@@ -19,10 +28,14 @@ probe_git_lock() {
             rmdir "$lockdir" 2>/dev/null || true
         fi
     fi
-    if ! mkdir "$lockdir" 2>/dev/null; then
-        echo "another probe job holds the git lock — exiting"
-        exit 0
-    fi
+    until mkdir "$lockdir" 2>/dev/null; do
+        if [ "$waited" -ge "$max_wait" ]; then
+            echo "another probe job holds the git lock — exiting"
+            exit 0
+        fi
+        sleep 5
+        waited=$((waited + 5))
+    done
     trap 'rmdir "/tmp/probes-git.lock.d" 2>/dev/null || true' EXIT
 }
 
