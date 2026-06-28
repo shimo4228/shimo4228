@@ -78,12 +78,20 @@ litellm の price map で算出した実コストが入る (web search tool fee 
 ## Scheduling
 
 launchd によるローカル定期実行 (`scripts/run-weekly-retrieval.sh` = 日曜
-10:17 JST / `scripts/run-monthly-currency.sh` = 毎月 1 日 10:47 JST —
+10:17 JST / `scripts/run-gap-fill-retrieval.sh` = 日曜 14:17 & 18:17 JST /
+`scripts/run-monthly-currency.sh` = 毎月 1 日 10:47 JST —
 スリープ中に逃した slot は次の wake で実行され、全レコードが自身の
 timestamp を持つ)。2 チャネルの schedule は異なる:
 
 - **Retrieval — 週次 calendar cadence.** citation pool の entry / decay は
   モデルが凍結されていても日単位で動く。
+- **Gap-fill — 遅延リトライパス** (`--run-id latest`)。provider の 503 burst
+  (観測: `gemini-3.5-flash` の "high demand"、数十分続く) は in-call retry を
+  超えて weekly run に error stub を残しうる。数時間後の 2 パスが最新 run を
+  解決し未充足セルだけ retry する — 冪等 (`existing_triples()` が充足済みを
+  skip) なので、まだ失敗するセルにつき stub を高々 1 本足すだけ、gap が無ければ
+  commit もしない。cross-run fill は健全: 値は元の `run_id` にまとめられ、各
+  レコードは自身の call timestamp を保持する。
 - **Parametric — event 駆動.** 凍結モデルの weights は run 間で変化しないので、
   同一モデルへの再 probe は応答分散しか測らない; parametric の信号は
   **モデル世代間**にしか住まない。full parametric set はモデルの panel 参入時

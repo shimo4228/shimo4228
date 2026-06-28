@@ -17,9 +17,12 @@ set -uo pipefail
 
 REPO="$HOME/MyAI_Lab/shimo4228"
 UV="$HOME/.local/bin/uv"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_DIR="$REPO/probes/logs"
 mkdir -p "$LOG_DIR"
 LOG="$LOG_DIR/retrieval-$(date +%Y-%m-%d-%H%M).log"
+# shellcheck source=probes/scripts/_lib.sh
+source "$SCRIPT_DIR/_lib.sh"
 
 # Weekly window: run every week between these dates (inclusive); fortnightly
 # otherwise. Adjust the end when the autumn observation window is reset.
@@ -35,17 +38,15 @@ WEEKLY_TO="2026-11-30"
     exit 0
   fi
   echo "=== retrieval run $(date -u +%Y-%m-%dT%H:%M:%SZ) (ISO week $WEEK) ==="
-  cd "$REPO/probes/runner"
+  probe_git_lock
+  cd "$REPO/probes/runner" || exit 1
   "$UV" run probe_runner.py --channel retrieval --cost-budget 8.0
   echo "runner exit: $? (non-zero = errored cells, gap-fill later)"
 
-  cd "$REPO"
-  git add probes/data/
-  if git diff --cached --quiet; then
-    echo "no new probe data to commit"
-  else
-    git commit -m "chore(probes): retrieval $(date -u +%Y-%m-%d)"
-    git push
-  fi
+  cd "$REPO" || exit 1
+  # Rebase-aware commit+push (survives the traffic-snapshot job's concurrent
+  # commits; a failed push stays local and the gap-fill pass pushes it).
+  probe_commit_data "chore(probes): retrieval $(date -u +%Y-%m-%d)" \
+    || echo "no new probe data to commit"
   echo "=== done $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
 } >> "$LOG" 2>&1

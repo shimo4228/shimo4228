@@ -87,13 +87,22 @@ the probe×provider×repeat loop is bounded.
 ## Scheduling
 
 Scheduled locally via launchd (`scripts/run-weekly-retrieval.sh`, Sundays
-10:17 JST; `scripts/run-monthly-currency.sh`, 1st of the month 10:47 JST —
+10:17 JST; `scripts/run-gap-fill-retrieval.sh`, Sundays 14:17 & 18:17 JST;
+`scripts/run-monthly-currency.sh`, 1st of the month 10:47 JST —
 a slot missed while the machine sleeps runs at the next wake, and every
 record carries its own timestamp). The two channels are scheduled
 differently:
 
 - **Retrieval — weekly calendar cadence.** The citation pool's entry and
   decay dynamics move in days, even against frozen models.
+- **Gap-fill — delayed retry passes** (`--run-id latest`). A provider 503
+  burst (observed: `gemini-3.5-flash` "high demand", lasting tens of minutes)
+  can outlast the in-call retry and leave error stubs in the weekly run. Two
+  passes hours later resolve the most recent run and retry only its unfilled
+  cells — idempotent (`existing_triples()` skips filled cells), so it adds at
+  most one stub per still-failing cell and commits nothing when there is no
+  gap. Cross-run fill is sound: the value is grouped under the original
+  `run_id`, and each record keeps its own call timestamp.
 - **Parametric — event-driven.** A frozen model's weights cannot change
   between runs, so re-probing the same model only measures response
   variance; the parametric signal lives *across model generations*. The

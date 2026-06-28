@@ -17,6 +17,7 @@ Usage:
   uv run probe_runner.py --provider anthropic --probe parametric-concept-akc
   uv run probe_runner.py --channel parametric --repeat 3
   uv run probe_runner.py --channel retrieval
+  uv run probe_runner.py --channel retrieval --run-id latest  # gap-fill last run
   uv run probe_runner.py --currency-check [--strict]
 """
 
@@ -55,7 +56,7 @@ from providers import (
     responses_output_text,
 )
 
-RUNNER_VERSION = "0.3.0"  # 0.3.0: per-provider call throttle (anthropic input-TPM); 0.2.0: responses-API retrieval (openai/xai), redirect resolution, qwen thinking off
+RUNNER_VERSION = "0.4.0"  # 0.4.0: --run-id latest (scheduled gap-fill); 0.3.0: per-provider call throttle (anthropic input-TPM); 0.2.0: responses-API retrieval (openai/xai), redirect resolution, qwen thinking off
 HERE = Path(__file__).resolve().parent
 DEFAULT_CONFIG = HERE.parent / "config" / "probes-v4.yaml"
 DEFAULT_DATA_DIR = HERE.parent / "data"
@@ -119,12 +120,40 @@ def existing_triples(data_file: Path) -> set[tuple[str, str, str]]:
             line = line.strip()
             if not line:
                 continue
-            rec = json.loads(line)
+            try:
+                rec = json.loads(line)
+            except json.JSONDecodeError:
+                continue  # tolerate a truncated trailing write (crash mid-run)
             # Pre-guard records could be error-free yet empty (degenerate);
             # treat those as not-done so a retry can fill them.
             if rec.get("error") is None and (rec.get("response_text") or rec.get("cited_urls")):
                 triples.add((rec["run_id"], rec["provider"], rec["probe_id"]))
     return triples
+
+
+def resolve_latest_run_id(data_file: Path) -> str | None:
+    """Most recent run_id in an append-only channel log (for gap-fill).
+
+    run_ids are `<UTC ISO8601>-<channel>`, so the timestamp prefix makes
+    lexicographic max == chronological latest within one channel file. A
+    scheduled gap-fill pass uses this so it need not know the run's date;
+    combined with existing_triples() it retries exactly the unfilled cells.
+    """
+    latest = None
+    if not data_file.exists():
+        return None
+    with data_file.open() as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                rid = json.loads(line).get("run_id")
+            except json.JSONDecodeError:
+                continue  # tolerate a truncated trailing write (crash mid-run)
+            if isinstance(rid, str) and (latest is None or rid > latest):
+                latest = rid
+    return latest
 
 
 def probe_channels(probe: dict) -> list[str]:
@@ -414,7 +443,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
     parser.add_argument("--run-id", default=None,
-                        help="default: <UTC timestamp>-<channel|all>")
+                        help="default: <UTC timestamp>-<channel|all>; "
+                             "'latest' resolves the most recent run in the "
+                             "channel log to gap-fill its unfilled cells")
     parser.add_argument("--cost-budget", type=float, default=10.0,
                         help="soft budget (USD): warn once if cumulative cost "
                              "exceeds this, but do not abort (the run is a bounded "
@@ -446,10 +477,31 @@ def main(argv: list[str] | None = None) -> int:
         print("no probe arms match the given filters", file=sys.stderr)
         return 1
 
-    run_id = args.run_id or (
-        datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-        + "-" + (args.channel or "all")
-    )
+    if args.run_id == "latest":
+        # Gap-fill mode: resolve the most recent run from the channel log and
+        # retry only its unfilled cells (provider 503 bursts can outlast the
+        # in-call retry, so a delayed pass mops up what the live run missed).
+        if args.repeat > 1:
+            # Resolving "latest" picks one rep's run_id (e.g. -r3); appending a
+            # fresh -rN on top would match nothing and re-run every cell.
+            print("--run-id latest is incompatible with --repeat", file=sys.stderr)
+            return 1
+        if not args.channel:
+            print("--run-id latest requires --channel", file=sys.stderr)
+            return 1
+        run_id = resolve_latest_run_id(args.data_dir / f"{args.channel}.jsonl")
+        if run_id is None:
+            print(
+                f"--run-id latest: no prior runs in {args.channel}.jsonl",
+                file=sys.stderr,
+            )
+            return 1
+        print(f"# gap-fill: resolved latest run-id = {run_id}")
+    else:
+        run_id = args.run_id or (
+            datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
+            + "-" + (args.channel or "all")
+        )
 
     if args.dry_run:
         print(f"# dry-run — config {args.config.name} (probe set {config['version']})")
