@@ -2,6 +2,8 @@ Language: [English](README.md) | 日本語
 
 # Tatsuya Shimomoto (@shimo4228)
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228)
+
 > AI エージェント設計と、その隣接領域である著者性・認知をめぐる 5 本の並走研究ラインへの索引。いずれも Zenodo 引用可能で、各ラインは個別 repo にある。
 
 限られた環境で工夫して作ることが好きだ — beats, meditation, public service, AI agents。その線は以下にもつながっている。meditation の実践は 5 本のうち 2 本の研究ラインの源流にあり、エージェント群は Apple Silicon Mac 1 台で動く — ラボも所属もなしで。

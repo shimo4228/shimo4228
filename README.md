@@ -2,6 +2,8 @@ Language: English | [日本語](README.ja.md)
 
 # Tatsuya Shimomoto (@shimo4228)
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228)
+
 > An index to five parallel research lines on AI agent design and adjacent questions of authorship and cognition — all Zenodo-citable, each in its own repo.
 
 I like making things under constraint — beats, meditation, public service, AI agents. The thread runs through what's below: the meditation practice feeds two of the five research lines, and the agents run on a single Apple Silicon Mac — no lab, no affiliation.
