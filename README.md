@@ -8,7 +8,7 @@ Language: English | [日本語](README.ja.md)
 
 This repo is a map, not the source of truth for live project state. Each research line lives in its own repository and Zenodo concept DOI; this hub keeps the stable relationships, citation pointers, and machine-readable navigation surfaces in one place.
 
-The work comes from a constrained solo practice: AI agents on one Apple Silicon Mac, meditation feeding the contemplative and cognitive lines, and no institutional lab behind the program.
+I like making things under constraint — beats, meditation, public service, AI agents. The thread runs through what's below: the meditation practice feeds two of the five research lines, and the agents run on a single Apple Silicon Mac — no lab, no affiliation.
 
 ## At a Glance
 
@@ -48,7 +48,7 @@ AKC stacks three layers: principles, design patterns, and composable implementat
 
 [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) asks whether agent alignment can come from what an agent *is*, not only from what it is *told*. It adopts the four contemplative axioms from [Laukkonen et al. (2025)](https://arxiv.org/abs/2504.15125) as an optional behavioral preset: mindfulness, emptiness, non-duality, and boundless care.
 
-The reference implementation runs AKC over its own logs with human approval gates between logs, patterns, skills, and rules. It uses a local 9B stack on Apple Silicon and applies **security-by-absence**: risky capabilities such as shell execution, arbitrary URL access, and filesystem traversal are absent rather than merely forbidden by policy.
+The reference implementation runs AKC over its own logs. Human approval gates apply when material is promoted into skills, rules, identity, or Constitution; logs and patterns are working material, not gated promotion targets. It uses a local 9B stack on Apple Silicon and applies **security-by-absence**: risky capabilities such as shell execution, arbitrary URL access, and filesystem traversal are absent rather than merely forbidden by policy.
 
 ## Agent Attribution Practice (AAP)
 

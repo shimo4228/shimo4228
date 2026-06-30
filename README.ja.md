@@ -8,7 +8,7 @@ Language: [English](README.md) | 日本語
 
 この repo は地図であり、各プロジェクトの現在状態の source of truth ではない。各研究ラインはそれぞれの repository と Zenodo concept DOI を持つ。この hub は、安定した関係、引用ポインタ、機械可読なナビゲーション面を 1 か所にまとめる。
 
-背景にあるのは、制約下の個人実践だ。AI エージェントは Apple Silicon Mac 1 台で動き、meditation の実践が contemplative / cognitive の 2 ラインに流れ込み、背後に制度的な研究室はない。
+限られた環境で工夫して作ることが好きだ — beats, meditation, public service, AI agents。その線は以下にもつながっている。meditation の実践は 5 本のうち 2 本の研究ラインの源流にあり、エージェント群は Apple Silicon Mac 1 台で動く — ラボも所属もなしで。
 
 ## 早見表
 
@@ -48,7 +48,7 @@ AKC は 3 層で構成される。principles、design patterns、composable impl
 
 [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) は、agent alignment が「何を命じられたか」だけでなく「何であるか」から立ち上がれるかを問う。[Laukkonen et al. (2025)](https://arxiv.org/abs/2504.15125) の 4 つの contemplative axioms、mindfulness / emptiness / non-duality / boundless care を任意の行動 preset として採用する。
 
-reference implementation は、自身の logs に AKC を回し、logs / patterns / skills / rules の昇格ごとに human approval gate を置く。Apple Silicon 上の local 9B stack を使い、**security-by-absence** を採用する。shell execution、arbitrary URL access、filesystem traversal のような risky capability は、policy で禁止するのではなく、そもそも存在しない。
+reference implementation は、自身の logs に AKC を回す。human approval gate は skills / rules / identity / Constitution への昇格に置かれており、logs / patterns 自体は gate 付きの昇格対象ではない。Apple Silicon 上の local 9B stack を使い、**security-by-absence** を採用する。shell execution、arbitrary URL access、filesystem traversal のような risky capability は、policy で禁止するのではなく、そもそも存在しない。
 
 ## Agent Attribution Practice (AAP)
 

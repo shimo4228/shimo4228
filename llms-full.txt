@@ -72,7 +72,7 @@ Contemplative Agent is defined as an approach in which autonomous agents are gro
 
 ## How does contemplative-agent implement AKC?
 
-The contemplative-agent repository refers to a CLI agent that runs AKC's six-phase cycle over its own logs, with a human approval gate at every promotion (logs → patterns → skills → rules). It runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac with roughly 16 GB RAM. The current six-phase mapping (distill / insight / amend / pivot pipeline) lives in the contemplative-agent repo, which evolves independently of this hub. Concept DOI: 10.5281/zenodo.19212118.
+The contemplative-agent repository refers to a CLI agent that runs AKC's six-phase cycle over its own logs. Human approval gates apply when material is promoted into skills, rules, identity, or Constitution; logs and patterns are working material, not gated promotion targets. It runs entirely on a local 9B model — qwen3.5:9b for generation and nomic-embed-text for embeddings — on a single Apple Silicon Mac with roughly 16 GB RAM. The current six-phase mapping (distill / insight / amend / pivot pipeline) lives in the contemplative-agent repo, which evolves independently of this hub. Concept DOI: 10.5281/zenodo.19212118.
 
 ## What is security-by-absence?
 

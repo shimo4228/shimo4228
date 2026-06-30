@@ -35,7 +35,7 @@
 
 ## Contemplative Agent
 
-- [contemplative-agent](https://github.com/shimo4228/contemplative-agent): CLI agent that runs AKC's six-phase cycle over its own logs with human approval gates at every promotion, on a local 9B stack (qwen3.5:9b generation + nomic-embed-text embeddings) on a single Apple Silicon Mac. Concept DOI 10.5281/zenodo.19212118
+- [contemplative-agent](https://github.com/shimo4228/contemplative-agent): CLI agent that runs AKC's six-phase cycle over its own logs, with human approval gates for promotion into skills, rules, identity, and Constitution, on a local 9B stack (qwen3.5:9b generation + nomic-embed-text embeddings) on a single Apple Silicon Mac. Concept DOI 10.5281/zenodo.19212118
 - [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules): drop-in Claude Code rules implementing the four axioms — AILuminate d=0.96, IPD d>7
 - [contemplative-agent-cloud](https://github.com/shimo4228/contemplative-agent-cloud): optional managed-LLM backend — routes generation to Claude/OpenAI APIs while keeping the local embedding pipeline. Opt-in, not bundled
 - [contemplative-agent-mlx](https://github.com/shimo4228/contemplative-agent-mlx): MLX-based extension for Contemplative Agent on Apple Silicon
