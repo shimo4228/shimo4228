@@ -350,13 +350,13 @@
 
     {
       "@id": "https://doi.org/10.5281/zenodo.20578272",
-      "sameAs": "https://www.wikidata.org/wiki/Q140090144",
       "@type": ["Paper", "ScholarlyArticle"],
       "name": "Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation",
-      "description": "Position paper of the Agent Knowledge Cycle line, deposited as a standalone Zenodo record.",
+      "description": "Position paper of the Agent Knowledge Cycle line, deposited as a standalone Zenodo record and mirrored on SSRN.",
       "identifier": "10.5281/zenodo.20578272",
       "author": {"@id": "https://orcid.org/0009-0002-6168-4162"},
       "url": "https://doi.org/10.5281/zenodo.20578272",
+      "sameAs": ["https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6892740", "https://www.wikidata.org/wiki/Q140090144"],
       "isPartOf": "https://doi.org/10.5281/zenodo.19200726"
     },
     {
@@ -410,6 +410,15 @@
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
+      "@id": "https://github.com/shimo4228/skill-health",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "skill-health",
+      "description": "AKC Curate phase skill: scan skill libraries for structural debt, including missing scripts, agents, and sibling-skill references.",
+      "url": "https://github.com/shimo4228/skill-health",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
       "@id": "https://github.com/shimo4228/rules-distill",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "rules-distill",
@@ -455,6 +464,14 @@
       "name": "contemplative-agent-cloud",
       "description": "Optional managed-LLM backend that routes generation to Claude or OpenAI APIs while keeping the local embedding pipeline. Opt-in, not bundled.",
       "url": "https://github.com/shimo4228/contemplative-agent-cloud",
+      "extends": "https://doi.org/10.5281/zenodo.19212118"
+    },
+    {
+      "@id": "https://github.com/shimo4228/contemplative-agent-mlx",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "contemplative-agent-mlx",
+      "description": "MLX-based extension for Contemplative Agent on Apple Silicon.",
+      "url": "https://github.com/shimo4228/contemplative-agent-mlx",
       "extends": "https://doi.org/10.5281/zenodo.19212118"
     },
     {
