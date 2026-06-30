@@ -56,7 +56,7 @@ The Agent Knowledge Cycle (AKC) is defined as a six-phase bidirectional growth l
 
 ## How does the AKC cycle work?
 
-Each of the six AKC phases binds to composable skills. Research binds to search-first, Extract to learn-eval, Curate to skill-stocktake and skill-health, Promote to rules-distill, Measure to skill-comply, and Maintain to context-sync. Skills pass artifacts forward across the cycle; each artifact is gated by quality checks before it moves to the next phase. The cycle stays stable even as individual skills evolve, so adding a new skill or replacing one does not break the overall loop. `skill-health` is a Curate phase skill: it scans skill libraries for structural debt such as missing scripts, agents, and sibling-skill references.
+Each of the six AKC phases binds to composable skills. Research binds to search-first, Extract to learn-eval, Curate to skill-stocktake and skill-health, Promote to rules-distill, Measure to skill-comply, and Maintain to context-sync. Skills pass artifacts forward across the cycle; each artifact is gated by quality checks before it moves to the next phase. The cycle stays stable even as individual skills evolve, so adding a new skill or replacing one does not break the overall loop. `skill-health` is a Curate phase skill: it scans skill libraries for structural debt such as missing scripts, agents, and sibling-skill references. For installs that prefer one file over six, the whole cycle is also published as a single behavioral rules file, [akc-cycle](https://github.com/shimo4228/akc-cycle), which carries all six phases without the standalone skills.
 
 ## Why is AKC structured in three layers?
 

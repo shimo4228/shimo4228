@@ -25,6 +25,7 @@
 ## Agent Knowledge Cycle (AKC)
 
 - [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase bidirectional growth loop for sustaining agent–operator intent alignment over time, in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
+- [akc-cycle](https://github.com/shimo4228/akc-cycle): all six phases as a single behavioral rules file, without the six standalone skills
 - [search-first](https://github.com/shimo4228/search-first): Research phase — search existing solutions before building
 - [learn-eval](https://github.com/shimo4228/learn-eval): Extract phase — extract reusable patterns with quality gates
 - [skill-stocktake](https://github.com/shimo4228/skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy

@@ -22,15 +22,9 @@ Language: [English](README.md) | 日本語
 
 5 本のラインは sibling であり、依存関係ではない。AKC は mechanism、Contemplative Agent は disposition と running case、AAP は accountability practice、Authorship Strategy は diffusion methodology、Attention, Not Self は cognitive-philosophical inquiry だ。
 
-## ここから始める
+## 機械読解
 
-- エージェント framework を見るなら [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle)。
-- 実装を見るなら [Contemplative Agent](https://github.com/shimo4228/contemplative-agent)。
-- governance と責任配分を見るなら [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice)。
-- LLM 仲介時代の研究流通を見るなら [Authorship Strategy](https://github.com/shimo4228/authorship-strategy)。
-- 仏教現象学と計算論的認知を見るなら [Attention, Not Self](https://github.com/shimo4228/attention-not-self)。
-- 機械読解なら [`graph.jsonld`](graph.jsonld)、次に [`llms.txt`](llms.txt)、最後に [`llms-full.txt`](llms-full.txt)。
-- 引用する場合、line content には各 line の concept DOI を使う。この hub 自体を aggregate index / graph / dataset surface として参照する場合だけ [`CITATION.cff`](CITATION.cff) を使う。
+機械読解なら [`graph.jsonld`](graph.jsonld)、次に [`llms.txt`](llms.txt)、最後に [`llms-full.txt`](llms-full.txt)。
 
 ## Agent Knowledge Cycle (AKC)
 
@@ -86,6 +80,7 @@ AKC cycle skills:
 
 | Repo | 役割 |
 |---|---|
+| [akc-cycle](https://github.com/shimo4228/akc-cycle) | All phases: 6 フェーズ cycle 全体を、6 つの独立 skill を入れずに 1 つの behavioral rules file として導入する。 |
 | [search-first](https://github.com/shimo4228/search-first) | Research phase: 実装前に既存ソリューションを調べる。 |
 | [learn-eval](https://github.com/shimo4228/learn-eval) | Extract phase: session を quality gate 付きで reusable pattern に変換する。 |
 | [skill-stocktake](https://github.com/shimo4228/skill-stocktake) | Curate phase: skill の陳腐化、競合、冗長性を監査する。 |

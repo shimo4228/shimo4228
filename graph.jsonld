@@ -383,6 +383,15 @@
     },
 
     {
+      "@id": "https://github.com/shimo4228/akc-cycle",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "akc-cycle",
+      "description": "AKC as a single behavioral rules file: install all six phases without the six standalone skills.",
+      "url": "https://github.com/shimo4228/akc-cycle",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
       "@id": "https://github.com/shimo4228/search-first",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "search-first",

@@ -22,15 +22,9 @@ I like making things under constraint — beats, meditation, public service, AI 
 
 The five lines are siblings, not dependencies. AKC is the mechanism, Contemplative Agent is the disposition and running case, AAP is the accountability practice, Authorship Strategy is the diffusion methodology, and Attention, Not Self is the cognitive-philosophical inquiry.
 
-## Start Here
+## Machine reading
 
-- For the agent framework, start with [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle).
-- For a running implementation, start with [Contemplative Agent](https://github.com/shimo4228/contemplative-agent).
-- For governance and responsibility judgments, start with [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice).
-- For research dissemination under LLM-mediated discovery, start with [Authorship Strategy](https://github.com/shimo4228/authorship-strategy).
-- For Buddhist phenomenology and computational cognition, start with [Attention, Not Self](https://github.com/shimo4228/attention-not-self).
-- For machine reading, start with [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.txt), then [`llms-full.txt`](llms-full.txt).
-- For citation, cite the relevant line concept DOI when using line content. Use [`CITATION.cff`](CITATION.cff) only when referencing this hub as an aggregated index, graph, or dataset surface.
+For machine reading, start with [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.txt), then [`llms-full.txt`](llms-full.txt).
 
 ## Agent Knowledge Cycle (AKC)
 
@@ -86,6 +80,7 @@ AKC cycle skills:
 
 | Repo | Role |
 |---|---|
+| [akc-cycle](https://github.com/shimo4228/akc-cycle) | All phases: the full six-phase cycle as a single behavioral rules file, without the six standalone skills. |
 | [search-first](https://github.com/shimo4228/search-first) | Research phase: search for existing solutions before building. |
 | [learn-eval](https://github.com/shimo4228/learn-eval) | Extract phase: turn sessions into reusable patterns with quality gates. |
 | [skill-stocktake](https://github.com/shimo4228/skill-stocktake) | Curate phase: audit skills for staleness, conflict, and redundancy. |
