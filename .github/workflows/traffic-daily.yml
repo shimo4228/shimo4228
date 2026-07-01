@@ -124,13 +124,22 @@ jobs:
               core.info(`${repo}: added ${added}, updated ${updated}`);
             }
 
+      - name: Regenerate graph.jsonld served-page mirror
+        run: |
+          # graph.jsonld is the source of truth; the served-page mirror in
+          # traffic/dashboard/index.html must stay in sync so a hand-edit that
+          # forgot to run the script cannot silently drift. Idempotent — writes
+          # nothing on a normal day (only when graph.jsonld changed), so it does
+          # not create spurious commits. Stdlib-only, no deps to install.
+          python3 scripts/sync_graph_jsonld_mirror.py
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add traffic/data/
+          git add traffic/data/ traffic/dashboard/index.html
           if git diff --cached --quiet; then
-            echo "No new traffic data to commit"
+            echo "No new traffic data or mirror change to commit"
           else
             git commit -m "chore(traffic): snapshot $(date -u +%Y-%m-%d)"
             git push
