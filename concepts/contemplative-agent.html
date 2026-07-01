@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Contemplative Agent — Locally-run CLI agent grounded in contemplative axioms | shimo4228 research program</title>
+<meta name="description" content="A CLI agent that runs a six-phase knowledge cycle (the Agent Knowledge Cycle) over its own logs, with every promotion from logs to patterns, skills, and…">
+<link rel="canonical" href="https://shimo4228.github.io/shimo4228/concepts/contemplative-agent.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Contemplative Agent — Locally-run CLI agent grounded in contemplative axioms">
+<meta property="og:description" content="A CLI agent that runs a six-phase knowledge cycle (the Agent Knowledge Cycle) over its own logs, with every promotion from logs to patterns, skills, and…">
+<meta property="og:url" content="https://shimo4228.github.io/shimo4228/concepts/contemplative-agent.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/contemplative-agent.html",
+   "name": "Contemplative Agent — Locally-run CLI agent grounded in contemplative axioms",
+   "inLanguage": [
+    "en",
+    "ja"
+   ],
+   "mainEntity": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/contemplative-agent.html#term"
+   },
+   "author": {
+    "@id": "https://orcid.org/0009-0002-6168-4162",
+    "@type": "Person",
+    "name": "Tatsuya Shimomoto",
+    "alternateName": "shimo4228",
+    "sameAs": [
+     "https://github.com/shimo4228",
+     "https://orcid.org/0009-0002-6168-4162",
+     "https://www.wikidata.org/wiki/Q140090100"
+    ]
+   },
+   "isPartOf": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/"
+   }
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/contemplative-agent.html#term",
+   "name": "Contemplative Agent",
+   "description": "A CLI agent that runs a six-phase knowledge cycle (the Agent Knowledge Cycle) over its own logs, with every promotion from logs to patterns, skills, and rules passing through a human approval gate. It runs entirely on a single Apple Silicon Mac with a local model — no cloud, no API keys in transit, no shell execution. The four contemplative axioms from Laukkonen et al. (2025) ship as an optional behavioral preset, asking whether an agent's alignment can come from what it is rather than what it is told.",
+   "inDefinedTermSet": "https://shimo4228.github.io/shimo4228/concepts/",
+   "url": "https://shimo4228.github.io/shimo4228/concepts/contemplative-agent.html",
+   "subjectOf": {
+    "@id": "https://doi.org/10.5281/zenodo.19212118"
+   },
+   "alternateName": [
+    "CA",
+    {
+     "@value": "観想的エージェント",
+     "@language": "ja"
+    }
+   ],
+   "sameAs": [
+    "https://www.wikidata.org/wiki/Q140090187"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/contemplative-agent.html#faq",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is Contemplative Agent?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A CLI agent that runs a six-phase knowledge cycle over its own logs, fully local on a single Apple Silicon Mac, with a human approval gate on every behavior-shaping promotion and an optional preset of the four contemplative axioms from Laukkonen et al. (2025)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Who coined the name Contemplative Agent?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tatsuya Shimomoto (shimo4228), as the project's name; the underlying contemplative axioms are cited verbatim from Laukkonen et al. (2025)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where is the canonical source?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The contemplative-agent repository (https://github.com/shimo4228/contemplative-agent), archived under concept DOI 10.5281/zenodo.19212118."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  body { font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 44em; margin: 3em auto; padding: 0 1em; color: #333; }
+  h1 { font-size: 1.45em; margin-bottom: .2em; } h2 { font-size: 1.05em; margin-top: 2em; }
+  .meta { color: #666; font-size: .9em; margin-top: 0; }
+  .sources { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: .8em 1.2em; }
+  .sources ul { margin: .4em 0; padding-left: 1.2em; } .sources li { margin: .3em 0; }
+  ul.terms { padding-left: 1.2em; } ul.terms li { margin: .45em 0; }
+  .ja { border-top: 1px solid #ddd; margin-top: 2em; padding-top: .5em; }
+  footer { margin-top: 3em; font-size: .85em; color: #666; border-top: 1px solid #ddd; padding-top: 1em; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f1115; color: #e5e7eb; } a { color: #818cf8; }
+    .meta, footer { color: #9ca3af; } footer, .ja { border-color: #333; }
+    .sources { background: #161a22; border-color: #2d333b; }
+  }
+</style>
+</head>
+<body>
+<h1>Contemplative Agent (観想的エージェント)</h1>
+<p class="meta">Research-line name · Contemplative Agent · also known as CA</p>
+<p>A CLI agent that runs a six-phase knowledge cycle (the Agent Knowledge Cycle) over its own logs, with every promotion from logs to patterns, skills, and rules passing through a human approval gate. It runs entirely on a single Apple Silicon Mac with a local model — no cloud, no API keys in transit, no shell execution. The four contemplative axioms from Laukkonen et al. (2025) ship as an optional behavioral preset, asking whether an agent&#x27;s alignment can come from what it is rather than what it is told.</p>
+<p>Coined by Tatsuya Shimomoto (shimo4228) as the name of the Contemplative Agent research line; the four axioms it presets are adopted from Laukkonen et al. (2025), not coined by this program.</p>
+
+<h2>Canonical sources</h2>
+<div class="sources"><ul>
+<li>Repository: <a href="https://github.com/shimo4228/contemplative-agent">github.com/shimo4228/contemplative-agent</a></li>
+<li>Concept DOI: <a href="https://doi.org/10.5281/zenodo.19212118">10.5281/zenodo.19212118</a></li>
+<li>Glossary entry: <a href="https://github.com/shimo4228/contemplative-agent/blob/main/docs/glossary.md#project-name-vs-adapter-name">canonical definition</a></li>
+</ul></div>
+
+<h2>FAQ</h2><h3>What is Contemplative Agent?</h3><p>A CLI agent that runs a six-phase knowledge cycle over its own logs, fully local on a single Apple Silicon Mac, with a human approval gate on every behavior-shaping promotion and an optional preset of the four contemplative axioms from Laukkonen et al. (2025).</p><h3>Who coined the name Contemplative Agent?</h3><p>Tatsuya Shimomoto (shimo4228), as the project&#x27;s name; the underlying contemplative axioms are cited verbatim from Laukkonen et al. (2025).</p><h3>Where is the canonical source?</h3><p>The contemplative-agent repository (https://github.com/shimo4228/contemplative-agent), archived under concept DOI 10.5281/zenodo.19212118.</p>
+<h2>Related terms</h2><ul class="terms"><li><a href="agent-knowledge-cycle.html">Agent Knowledge Cycle</a> — Six-phase human-gated knowledge cycle for AI agents</li><li><a href="four-contemplative-axioms.html">Four contemplative axioms</a> — Emptiness, Non-Duality, Mindfulness, Boundless Care — from Laukkonen et al.</li><li><a href="security-by-absence.html">Security by absence</a> — Capabilities never implemented cannot be exploited</li><li><a href="attention-not-self.html">Attention, Not Self</a> — Buddhist Abhidharma meets computational phenomenology</li></ul>
+<div class="ja" lang="ja"><h2>観想的エージェント（日本語）</h2><p>自分自身のログの上で 6 phase の知識サイクル (Agent Knowledge Cycle) を回す CLI エージェント。ログ → パターン → スキル → ルールへのすべての昇格は人間の承認ゲートを通る。単一の Apple Silicon Mac 上でローカルモデルにより完全ローカルで動作する — クラウドなし、API キー送信なし、シェル実行なし。Laukkonen et al. (2025) の 4 つの contemplative axioms を optional な behavioral preset として同梱し、エージェントの alignment が「何を指示されたか」ではなく「何であるか」から来うるかを問う。</p></div>
+<footer><p><a href="index.html">Concept index</a> · <a href="https://shimo4228.github.io/shimo4228/">Research program hub</a> · <a href="https://github.com/shimo4228">GitHub</a> · <a href="https://orcid.org/0009-0002-6168-4162">ORCID</a></p><p>Part of the shimo4228 research program. Definitions are faithful adaptations of each line’s canonical glossary; the line repository is always the source of truth.</p></footer>
+</body>
+</html>

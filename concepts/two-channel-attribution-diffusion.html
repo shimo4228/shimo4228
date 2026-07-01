@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Two-Channel Attribution Diffusion — Parametric and retrieval channels of attribution diffusion | shimo4228 research program</title>
+<meta name="description" content="The refinement of Attribution Diffusion into two mechanisms with opposite time constants and opposite levers. The parametric channel absorbs the idea into…">
+<link rel="canonical" href="https://shimo4228.github.io/shimo4228/concepts/two-channel-attribution-diffusion.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two-Channel Attribution Diffusion — Parametric and retrieval channels of attribution diffusion">
+<meta property="og:description" content="The refinement of Attribution Diffusion into two mechanisms with opposite time constants and opposite levers. The parametric channel absorbs the idea into…">
+<meta property="og:url" content="https://shimo4228.github.io/shimo4228/concepts/two-channel-attribution-diffusion.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/two-channel-attribution-diffusion.html",
+   "name": "Two-Channel Attribution Diffusion — Parametric and retrieval channels of attribution diffusion",
+   "inLanguage": [
+    "en",
+    "ja"
+   ],
+   "mainEntity": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/two-channel-attribution-diffusion.html#term"
+   },
+   "author": {
+    "@id": "https://orcid.org/0009-0002-6168-4162",
+    "@type": "Person",
+    "name": "Tatsuya Shimomoto",
+    "alternateName": "shimo4228",
+    "sameAs": [
+     "https://github.com/shimo4228",
+     "https://orcid.org/0009-0002-6168-4162",
+     "https://www.wikidata.org/wiki/Q140090100"
+    ]
+   },
+   "isPartOf": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/"
+   }
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/two-channel-attribution-diffusion.html#term",
+   "name": "Two-Channel Attribution Diffusion",
+   "description": "The refinement of Attribution Diffusion into two mechanisms with opposite time constants and opposite levers. The parametric channel absorbs the idea into model weights at training time (slow; driven by broad cross-platform co-occurrence of distinctive vocabulary with its source); the retrieval channel fetches the artifact at query time (fast; driven by freshness and structured data). The two are optimized and measured separately and run in parallel; optimizing one does not buy the other.",
+   "inDefinedTermSet": "https://shimo4228.github.io/shimo4228/concepts/",
+   "url": "https://shimo4228.github.io/shimo4228/concepts/two-channel-attribution-diffusion.html",
+   "subjectOf": {
+    "@id": "https://doi.org/10.5281/zenodo.20263316"
+   },
+   "alternateName": [
+    {
+     "@value": "2 チャネル化された Attribution Diffusion",
+     "@language": "ja"
+    },
+    {
+     "@value": "双通道署名扩散",
+     "@language": "zh"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/two-channel-attribution-diffusion.html#faq",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is Two-Channel Attribution Diffusion?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The refinement of Attribution Diffusion into a slow parametric channel (training-time absorption into model weights) and a fast retrieval channel (query-time fetching), which are optimized and measured separately and run in parallel."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Who coined Two-Channel Attribution Diffusion?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tatsuya Shimomoto (shimo4228), in Authorship Strategy ADR-0008. The framework's contribution is the term and its placement in authorship strategy; the underlying parametric-then-retrieval citation mechanics are independently reported in the 2026 generative-engine-optimization literature."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where is the canonical source?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The authorship-strategy repository glossary and ADR-0008 (https://github.com/shimo4228/authorship-strategy), DOI 10.5281/zenodo.20263316."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  body { font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 44em; margin: 3em auto; padding: 0 1em; color: #333; }
+  h1 { font-size: 1.45em; margin-bottom: .2em; } h2 { font-size: 1.05em; margin-top: 2em; }
+  .meta { color: #666; font-size: .9em; margin-top: 0; }
+  .sources { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: .8em 1.2em; }
+  .sources ul { margin: .4em 0; padding-left: 1.2em; } .sources li { margin: .3em 0; }
+  ul.terms { padding-left: 1.2em; } ul.terms li { margin: .45em 0; }
+  .ja { border-top: 1px solid #ddd; margin-top: 2em; padding-top: .5em; }
+  footer { margin-top: 3em; font-size: .85em; color: #666; border-top: 1px solid #ddd; padding-top: 1em; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f1115; color: #e5e7eb; } a { color: #818cf8; }
+    .meta, footer { color: #9ca3af; } footer, .ja { border-color: #333; }
+    .sources { background: #161a22; border-color: #2d333b; }
+  }
+</style>
+</head>
+<body>
+<h1>Two-Channel Attribution Diffusion (2 チャネル化された Attribution Diffusion)</h1>
+<p class="meta">Coined term · Authorship Strategy</p>
+<p>The refinement of Attribution Diffusion into two mechanisms with opposite time constants and opposite levers. The parametric channel absorbs the idea into model weights at training time (slow; driven by broad cross-platform co-occurrence of distinctive vocabulary with its source); the retrieval channel fetches the artifact at query time (fast; driven by freshness and structured data). The two are optimized and measured separately and run in parallel; optimizing one does not buy the other.</p>
+<p>Coined by Tatsuya Shimomoto (shimo4228) within the Authorship Strategy research line (ADR-0008); the parametric-first, retrieval-second mechanism is independently reported in the 2026 generative-engine-optimization literature, and the framework claims only the term and its placement inside the authorship-diffusion strategy, not the underlying citation mechanics.</p>
+
+<h2>Canonical sources</h2>
+<div class="sources"><ul>
+<li>Repository: <a href="https://github.com/shimo4228/authorship-strategy">github.com/shimo4228/authorship-strategy</a></li>
+<li>Concept DOI: <a href="https://doi.org/10.5281/zenodo.20263316">10.5281/zenodo.20263316</a></li>
+<li>Glossary entry: <a href="https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#two-channel-attribution-diffusion">canonical definition</a></li>
+</ul></div>
+
+<h2>FAQ</h2><h3>What is Two-Channel Attribution Diffusion?</h3><p>The refinement of Attribution Diffusion into a slow parametric channel (training-time absorption into model weights) and a fast retrieval channel (query-time fetching), which are optimized and measured separately and run in parallel.</p><h3>Who coined Two-Channel Attribution Diffusion?</h3><p>Tatsuya Shimomoto (shimo4228), in Authorship Strategy ADR-0008. The framework&#x27;s contribution is the term and its placement in authorship strategy; the underlying parametric-then-retrieval citation mechanics are independently reported in the 2026 generative-engine-optimization literature.</p><h3>Where is the canonical source?</h3><p>The authorship-strategy repository glossary and ADR-0008 (https://github.com/shimo4228/authorship-strategy), DOI 10.5281/zenodo.20263316.</p>
+<h2>Related terms</h2><ul class="terms"><li><a href="attribution-diffusion.html">Attribution Diffusion</a> — Maximizing LLM-mediated channels carrying the author&#x27;s signature</li><li><a href="retrieval-suppressed-naming-probe.html">Retrieval-suppressed naming probe</a> — Black-box probe of parametric author attribution</li><li><a href="three-axis-inversion.html">Three-axis inversion</a> — Three co-varying axes on which authorship strategy inverts</li></ul>
+<div class="ja" lang="ja"><h2>2 チャネル化された Attribution Diffusion（日本語）</h2><p>Attribution Diffusion を、時定数もレバーも正反対の 2 機構に精緻化したもの。parametric channel はアイデアを訓練時にモデルの重みへ吸収する (遅い; 固有語彙とその出典の広範なクロスプラットフォーム共起が駆動)。retrieval channel はクエリ時に artifact を fetch する (速い; 新鮮さと structured data が駆動)。両者は別々に最適化・測定され並行で回る; 一方の最適化はもう一方を買わない。</p></div>
+<footer><p><a href="index.html">Concept index</a> · <a href="https://shimo4228.github.io/shimo4228/">Research program hub</a> · <a href="https://github.com/shimo4228">GitHub</a> · <a href="https://orcid.org/0009-0002-6168-4162">ORCID</a></p><p>Part of the shimo4228 research program. Definitions are faithful adaptations of each line’s canonical glossary; the line repository is always the source of truth.</p></footer>
+</body>
+</html>

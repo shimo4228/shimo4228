@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Existence Proof Format — Document format for credential-free institution-grade proofs | shimo4228 research program</title>
+<meta name="description" content="A document format for recording cases of institution-grade production by people without credentials, supplied — on the model of Nygard&#x27;s ADRs — as a spec…">
+<link rel="canonical" href="https://shimo4228.github.io/shimo4228/concepts/existence-proof-format.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Existence Proof Format — Document format for credential-free institution-grade proofs">
+<meta property="og:description" content="A document format for recording cases of institution-grade production by people without credentials, supplied — on the model of Nygard&#x27;s ADRs — as a spec…">
+<meta property="og:url" content="https://shimo4228.github.io/shimo4228/concepts/existence-proof-format.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/existence-proof-format.html",
+   "name": "Existence Proof Format — Document format for credential-free institution-grade proofs",
+   "inLanguage": [
+    "en",
+    "ja"
+   ],
+   "mainEntity": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/existence-proof-format.html#term"
+   },
+   "author": {
+    "@id": "https://orcid.org/0009-0002-6168-4162",
+    "@type": "Person",
+    "name": "Tatsuya Shimomoto",
+    "alternateName": "shimo4228",
+    "sameAs": [
+     "https://github.com/shimo4228",
+     "https://orcid.org/0009-0002-6168-4162",
+     "https://www.wikidata.org/wiki/Q140090100"
+    ]
+   },
+   "isPartOf": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/"
+   }
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/existence-proof-format.html#term",
+   "name": "Existence Proof Format",
+   "description": "A document format for recording cases of institution-grade production by people without credentials, supplied — on the model of Nygard's ADRs — as a spec plus template plus worked example, and deliberately carrying no central registry, no instance aggregation, no membership concept, and no self-designation requirement. Its core rule is the claim-anchor chain: every capability claim terminates in an anchor a third party can verify without the writer's cooperation (a resolving DOI, a live URL, a trace on the recipient's side), and a claim whose anchor no longer resolves expires and must be deleted — the proof is structurally falsifiable.",
+   "inDefinedTermSet": "https://shimo4228.github.io/shimo4228/concepts/",
+   "url": "https://shimo4228.github.io/shimo4228/concepts/existence-proof-format.html",
+   "subjectOf": {
+    "@id": "https://doi.org/10.5281/zenodo.20558800"
+   },
+   "alternateName": [
+    "EPF",
+    {
+     "@value": "存在証明フォーマット",
+     "@language": "ja"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/existence-proof-format.html#faq",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is the Existence Proof Format?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A document format — spec, template, and worked example, modeled on Nygard's ADRs — for recording institution-grade production by people without credentials, with no central registry or membership concept, where every claim must terminate in a third-party-verifiable anchor (the claim-anchor chain)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Who coined the Existence Proof Format?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tatsuya Shimomoto (shimo4228), in the existence-proof repository (Japanese canonical); the name was fixed on 2026-06-05 with a recorded collision check. The abbreviation EPF is used only from the second mention onward within a document."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where is the canonical source?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The existence-proof repository (https://github.com/shimo4228/existence-proof), archived under concept DOI 10.5281/zenodo.20558800."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  body { font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 44em; margin: 3em auto; padding: 0 1em; color: #333; }
+  h1 { font-size: 1.45em; margin-bottom: .2em; } h2 { font-size: 1.05em; margin-top: 2em; }
+  .meta { color: #666; font-size: .9em; margin-top: 0; }
+  .sources { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: .8em 1.2em; }
+  .sources ul { margin: .4em 0; padding-left: 1.2em; } .sources li { margin: .3em 0; }
+  ul.terms { padding-left: 1.2em; } ul.terms li { margin: .45em 0; }
+  .ja { border-top: 1px solid #ddd; margin-top: 2em; padding-top: .5em; }
+  footer { margin-top: 3em; font-size: .85em; color: #666; border-top: 1px solid #ddd; padding-top: 1em; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f1115; color: #e5e7eb; } a { color: #818cf8; }
+    .meta, footer { color: #9ca3af; } footer, .ja { border-color: #333; }
+    .sources { background: #161a22; border-color: #2d333b; }
+  }
+</style>
+</head>
+<body>
+<h1>Existence Proof Format (存在証明フォーマット)</h1>
+<p class="meta">Coined term · Existence Proof (pre-line) · also known as EPF</p>
+<p>A document format for recording cases of institution-grade production by people without credentials, supplied — on the model of Nygard&#x27;s ADRs — as a spec plus template plus worked example, and deliberately carrying no central registry, no instance aggregation, no membership concept, and no self-designation requirement. Its core rule is the claim-anchor chain: every capability claim terminates in an anchor a third party can verify without the writer&#x27;s cooperation (a resolving DOI, a live URL, a trace on the recipient&#x27;s side), and a claim whose anchor no longer resolves expires and must be deleted — the proof is structurally falsifiable.</p>
+<p>Coined by Tatsuya Shimomoto (shimo4228) within the Existence Proof pre-line; the name was fixed by the author on 2026-06-05 after a recorded collision check.</p>
+
+<h2>Canonical sources</h2>
+<div class="sources"><ul>
+<li>Repository: <a href="https://github.com/shimo4228/existence-proof">github.com/shimo4228/existence-proof</a></li>
+<li>Concept DOI: <a href="https://doi.org/10.5281/zenodo.20558800">10.5281/zenodo.20558800</a></li>
+<li>Glossary entry: <a href="https://github.com/shimo4228/existence-proof/blob/main/docs/glossary.md#存在証明フォーマットexistence-proof-format">canonical definition</a></li>
+</ul></div>
+
+<h2>FAQ</h2><h3>What is the Existence Proof Format?</h3><p>A document format — spec, template, and worked example, modeled on Nygard&#x27;s ADRs — for recording institution-grade production by people without credentials, with no central registry or membership concept, where every claim must terminate in a third-party-verifiable anchor (the claim-anchor chain).</p><h3>Who coined the Existence Proof Format?</h3><p>Tatsuya Shimomoto (shimo4228), in the existence-proof repository (Japanese canonical); the name was fixed on 2026-06-05 with a recorded collision check. The abbreviation EPF is used only from the second mention onward within a document.</p><h3>Where is the canonical source?</h3><p>The existence-proof repository (https://github.com/shimo4228/existence-proof), archived under concept DOI 10.5281/zenodo.20558800.</p>
+<h2>Related terms</h2><ul class="terms"><li><a href="gatekeeper-inversion.html">Gatekeeper inversion</a> — Hypothesis: gatekeeping migrates into LLM priors</li><li><a href="oracle-debiasing.html">Oracle debiasing</a> — Supplying verifiable proofs to LLM feasibility answers</li></ul>
+<div class="ja" lang="ja"><h2>存在証明フォーマット（日本語）</h2><p>credential なき者による制度級産出の事例を記録する document format。Nygard の ADR をモデルに spec + template + worked example で供給され、中央 registry・instance 集約・参加概念・自称要求を持たない。核規則は主張→アンカー連鎖: すべての能力主張は、第三者が書き手の協力なしに検証できるアンカー (解決する DOI / live URL / 納品先側の痕跡) で終端し、アンカーが解決しなくなった主張は失効して削除義務を負う — 証明は構造的に falsifiable である。</p></div>
+<footer><p><a href="index.html">Concept index</a> · <a href="https://shimo4228.github.io/shimo4228/">Research program hub</a> · <a href="https://github.com/shimo4228">GitHub</a> · <a href="https://orcid.org/0009-0002-6168-4162">ORCID</a></p><p>Part of the shimo4228 research program. Definitions are faithful adaptations of each line’s canonical glossary; the line repository is always the source of truth.</p></footer>
+</body>
+</html>

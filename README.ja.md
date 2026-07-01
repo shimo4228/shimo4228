@@ -126,6 +126,7 @@ Adjacent tooling and writing skills:
 | Surface | 用途 |
 |---|---|
 | [Traffic dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) と [raw data](traffic/) | public research repositories の daily GitHub Traffic snapshots。CC0。 |
+| [Concept index](https://shimo4228.github.io/shimo4228/concepts/) | 造語 1 語につき 1 定義ページ。正本 repository・glossary entry・DOI へ発リンク。 |
 | [LLM probes](probes/) | parametric / retrieval channels を分離して記録する attribution-diffusion probe log。 |
 | [Software Heritage archive](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) | public source repositories の content-addressed archival layer。 |
 | [zenn-content](https://github.com/shimo4228/zenn-content) | long-form articles の source of truth。browser mirror は [Zenn](https://zenn.dev/shimo4228)、[Dev.to](https://dev.to/shimo4228)、[Substack](https://substack.com/@shimo4228)。 |

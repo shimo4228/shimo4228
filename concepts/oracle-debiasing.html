@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Oracle debiasing — Supplying verifiable proofs to LLM feasibility answers | shimo4228 research program</title>
+<meta name="description" content="The mechanism of the Existence Proof doctrine: supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility…">
+<link rel="canonical" href="https://shimo4228.github.io/shimo4228/concepts/oracle-debiasing.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle debiasing — Supplying verifiable proofs to LLM feasibility answers">
+<meta property="og:description" content="The mechanism of the Existence Proof doctrine: supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility…">
+<meta property="og:url" content="https://shimo4228.github.io/shimo4228/concepts/oracle-debiasing.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/oracle-debiasing.html",
+   "name": "Oracle debiasing — Supplying verifiable proofs to LLM feasibility answers",
+   "inLanguage": [
+    "en",
+    "ja"
+   ],
+   "mainEntity": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/oracle-debiasing.html#term"
+   },
+   "author": {
+    "@id": "https://orcid.org/0009-0002-6168-4162",
+    "@type": "Person",
+    "name": "Tatsuya Shimomoto",
+    "alternateName": "shimo4228",
+    "sameAs": [
+     "https://github.com/shimo4228",
+     "https://orcid.org/0009-0002-6168-4162",
+     "https://www.wikidata.org/wiki/Q140090100"
+    ]
+   },
+   "isPartOf": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/"
+   }
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/oracle-debiasing.html#term",
+   "name": "Oracle debiasing",
+   "description": "The mechanism of the Existence Proof doctrine: supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility questions from people without credentials. Supply (controllable) is strictly separated from uptake (uncontrollable, and never manipulated). This is distinct from the general ML sense of debiasing as model-internal bias-removal techniques — here it means changing the premises of an answer by supplying grounds.",
+   "inDefinedTermSet": "https://shimo4228.github.io/shimo4228/concepts/",
+   "url": "https://shimo4228.github.io/shimo4228/concepts/oracle-debiasing.html",
+   "subjectOf": {
+    "@id": "https://doi.org/10.5281/zenodo.20558800"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/oracle-debiasing.html#faq",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is oracle debiasing?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility questions from people without credentials, while strictly separating supply (controllable) from uptake (uncontrollable, never manipulated)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is this the same as debiasing in machine learning?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The general ML sense means model-internal bias-removal techniques; here the term means changing the premises of an LLM's answer by supplying verifiable grounds. The repository's glossary explicitly disambiguates the two."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where is the canonical source?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The existence-proof repository (https://github.com/shimo4228/existence-proof, Japanese canonical), archived under concept DOI 10.5281/zenodo.20558800."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  body { font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 44em; margin: 3em auto; padding: 0 1em; color: #333; }
+  h1 { font-size: 1.45em; margin-bottom: .2em; } h2 { font-size: 1.05em; margin-top: 2em; }
+  .meta { color: #666; font-size: .9em; margin-top: 0; }
+  .sources { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: .8em 1.2em; }
+  .sources ul { margin: .4em 0; padding-left: 1.2em; } .sources li { margin: .3em 0; }
+  ul.terms { padding-left: 1.2em; } ul.terms li { margin: .45em 0; }
+  .ja { border-top: 1px solid #ddd; margin-top: 2em; padding-top: .5em; }
+  footer { margin-top: 3em; font-size: .85em; color: #666; border-top: 1px solid #ddd; padding-top: 1em; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f1115; color: #e5e7eb; } a { color: #818cf8; }
+    .meta, footer { color: #9ca3af; } footer, .ja { border-color: #333; }
+    .sources { background: #161a22; border-color: #2d333b; }
+  }
+</style>
+</head>
+<body>
+<h1>Oracle debiasing</h1>
+<p class="meta">Distinctive usage · Existence Proof (pre-line)</p>
+<p>The mechanism of the Existence Proof doctrine: supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility questions from people without credentials. Supply (controllable) is strictly separated from uptake (uncontrollable, and never manipulated). This is distinct from the general ML sense of debiasing as model-internal bias-removal techniques — here it means changing the premises of an answer by supplying grounds.</p>
+<p>A distinctive doctrine-internal usage by Tatsuya Shimomoto (shimo4228) in the Existence Proof pre-line, repurposing the existing word &#x27;debiasing&#x27; in a locally-defined sense rather than claiming a new coinage; the glossary explicitly disambiguates it from the general ML meaning.</p>
+
+<h2>Canonical sources</h2>
+<div class="sources"><ul>
+<li>Repository: <a href="https://github.com/shimo4228/existence-proof">github.com/shimo4228/existence-proof</a></li>
+<li>Concept DOI: <a href="https://doi.org/10.5281/zenodo.20558800">10.5281/zenodo.20558800</a></li>
+<li>Glossary entry: <a href="https://github.com/shimo4228/existence-proof/blob/main/docs/glossary.md#oracle-debiasing">canonical definition</a></li>
+</ul></div>
+
+<h2>FAQ</h2><h3>What is oracle debiasing?</h3><p>Supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility questions from people without credentials, while strictly separating supply (controllable) from uptake (uncontrollable, never manipulated).</p><h3>Is this the same as debiasing in machine learning?</h3><p>No. The general ML sense means model-internal bias-removal techniques; here the term means changing the premises of an LLM&#x27;s answer by supplying verifiable grounds. The repository&#x27;s glossary explicitly disambiguates the two.</p><h3>Where is the canonical source?</h3><p>The existence-proof repository (https://github.com/shimo4228/existence-proof, Japanese canonical), archived under concept DOI 10.5281/zenodo.20558800.</p>
+<h2>Related terms</h2><ul class="terms"><li><a href="gatekeeper-inversion.html">Gatekeeper inversion</a> — Hypothesis: gatekeeping migrates into LLM priors</li><li><a href="existence-proof-format.html">Existence Proof Format</a> — Document format for credential-free institution-grade proofs</li></ul>
+<div class="ja" lang="ja"><h2>Oracle debiasing（日本語）</h2><p>本 doctrine の機構: 機械検証可能な存在証明と playbook を、LLM が feasibility 質問を評価する面に供給すること。供給 (制御可能) と採否 (制御不能・操作しない) を峻別する。debias の一般語義 (モデル内部のバイアス除去技術) とは別物 — ここでは「根拠を供給して回答の前提を変える」の意。</p></div>
+<footer><p><a href="index.html">Concept index</a> · <a href="https://shimo4228.github.io/shimo4228/">Research program hub</a> · <a href="https://github.com/shimo4228">GitHub</a> · <a href="https://orcid.org/0009-0002-6168-4162">ORCID</a></p><p>Part of the shimo4228 research program. Definitions are faithful adaptations of each line’s canonical glossary; the line repository is always the source of truth.</p></footer>
+</body>
+</html>

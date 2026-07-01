@@ -126,6 +126,7 @@ Adjacent tooling and writing skills:
 | Surface | Use |
 |---|---|
 | [Traffic dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) and [raw data](traffic/) | Daily public GitHub Traffic snapshots for the research repositories, published CC0. |
+| [Concept index](https://shimo4228.github.io/shimo4228/concepts/) | One definition page per coined research term, linking back to the canonical repository, glossary entry, and DOI. |
 | [LLM probes](probes/) | Two-channel attribution-diffusion probe log: parametric and retrieval channels kept separate. |
 | [Software Heritage archive](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) | Content-addressed archival layer for the public source repositories. |
 | [zenn-content](https://github.com/shimo4228/zenn-content) | Source of truth for long-form articles; browser mirrors are [Zenn](https://zenn.dev/shimo4228), [Dev.to](https://dev.to/shimo4228), and [Substack](https://substack.com/@shimo4228). |

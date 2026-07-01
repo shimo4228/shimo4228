@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Harness alignment — Keeping an agent&#x27;s harness aligned with operator intent | shimo4228 research program</title>
+<meta name="description" content="The continuous, human-gated activity of keeping an agent&#x27;s harness (skills, rules, prompts, documentation) aligned with the operator&#x27;s evolving intent. Three…">
+<link rel="canonical" href="https://shimo4228.github.io/shimo4228/concepts/harness-alignment.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harness alignment — Keeping an agent&#x27;s harness aligned with operator intent">
+<meta property="og:description" content="The continuous, human-gated activity of keeping an agent&#x27;s harness (skills, rules, prompts, documentation) aligned with the operator&#x27;s evolving intent. Three…">
+<meta property="og:url" content="https://shimo4228.github.io/shimo4228/concepts/harness-alignment.html">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/harness-alignment.html",
+   "name": "Harness alignment — Keeping an agent's harness aligned with operator intent",
+   "inLanguage": [
+    "en",
+    "ja"
+   ],
+   "mainEntity": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/harness-alignment.html#term"
+   },
+   "author": {
+    "@id": "https://orcid.org/0009-0002-6168-4162",
+    "@type": "Person",
+    "name": "Tatsuya Shimomoto",
+    "alternateName": "shimo4228",
+    "sameAs": [
+     "https://github.com/shimo4228",
+     "https://orcid.org/0009-0002-6168-4162",
+     "https://www.wikidata.org/wiki/Q140090100"
+    ]
+   },
+   "isPartOf": {
+    "@id": "https://shimo4228.github.io/shimo4228/concepts/"
+   }
+  },
+  {
+   "@type": "DefinedTerm",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/harness-alignment.html#term",
+   "name": "Harness alignment",
+   "description": "The continuous, human-gated activity of keeping an agent's harness (skills, rules, prompts, documentation) aligned with the operator's evolving intent. Three properties hold simultaneously: the target is operator intent, itself evolving (bidirectional — the loop's own running moves the target); the loop is human-gated; and the alignment is continuous, sustained through a recurring cycle rather than configured once. Its failure mode is harness drift: the gradual uncoupling of the harness from operator intent when the cycle does not run, named in lineage with architectural drift (Perry & Wolf 1992), practical drift (Snook 2000), and agent drift (Rath 2026). It extends intent alignment (Christiano 2018) from behavior to the artifacts that shape behavior, and across time.",
+   "inDefinedTermSet": "https://shimo4228.github.io/shimo4228/concepts/",
+   "url": "https://shimo4228.github.io/shimo4228/concepts/harness-alignment.html",
+   "subjectOf": {
+    "@id": "https://doi.org/10.5281/zenodo.19200726"
+   },
+   "alternateName": [
+    "harness drift"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://shimo4228.github.io/shimo4228/concepts/harness-alignment.html#faq",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is harness alignment?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The continuous, human-gated activity of keeping an agent's harness (skills, rules, prompts, documentation) aligned with the operator's evolving intent — bidirectional, human-gated, and continuous."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is harness drift?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Harness alignment's failure mode: the gradual uncoupling of the harness from operator intent when the cycle does not run. It is the artifact-side layer of failure; its human-side twin is the failure twin (gate complacency, deskilling, delegation-feedback divergence)."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Who coined harness alignment?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Tatsuya Shimomoto (shimo4228), in AKC ADR-0017 and the companion position paper (doi:10.5281/zenodo.20578272), with an explicit lineage audit against prior drift coinages."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  body { font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 44em; margin: 3em auto; padding: 0 1em; color: #333; }
+  h1 { font-size: 1.45em; margin-bottom: .2em; } h2 { font-size: 1.05em; margin-top: 2em; }
+  .meta { color: #666; font-size: .9em; margin-top: 0; }
+  .sources { background: #f6f8fa; border: 1px solid #e1e4e8; border-radius: 6px; padding: .8em 1.2em; }
+  .sources ul { margin: .4em 0; padding-left: 1.2em; } .sources li { margin: .3em 0; }
+  ul.terms { padding-left: 1.2em; } ul.terms li { margin: .45em 0; }
+  .ja { border-top: 1px solid #ddd; margin-top: 2em; padding-top: .5em; }
+  footer { margin-top: 3em; font-size: .85em; color: #666; border-top: 1px solid #ddd; padding-top: 1em; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f1115; color: #e5e7eb; } a { color: #818cf8; }
+    .meta, footer { color: #9ca3af; } footer, .ja { border-color: #333; }
+    .sources { background: #161a22; border-color: #2d333b; }
+  }
+</style>
+</head>
+<body>
+<h1>Harness alignment</h1>
+<p class="meta">Coined term · Agent Knowledge Cycle · also known as harness drift</p>
+<p>The continuous, human-gated activity of keeping an agent&#x27;s harness (skills, rules, prompts, documentation) aligned with the operator&#x27;s evolving intent. Three properties hold simultaneously: the target is operator intent, itself evolving (bidirectional — the loop&#x27;s own running moves the target); the loop is human-gated; and the alignment is continuous, sustained through a recurring cycle rather than configured once. Its failure mode is harness drift: the gradual uncoupling of the harness from operator intent when the cycle does not run, named in lineage with architectural drift (Perry &amp; Wolf 1992), practical drift (Snook 2000), and agent drift (Rath 2026). It extends intent alignment (Christiano 2018) from behavior to the artifacts that shape behavior, and across time.</p>
+<p>Coined by Tatsuya Shimomoto (shimo4228) within the Agent Knowledge Cycle research line (ADR-0017 and the companion position paper), which records the term&#x27;s lineage against prior drift coinages and notes one unrelated prior use of the phrase &#x27;harness drift&#x27; in a different, benchmark-comparability sense.</p>
+
+<h2>Canonical sources</h2>
+<div class="sources"><ul>
+<li>Repository: <a href="https://github.com/shimo4228/agent-knowledge-cycle">github.com/shimo4228/agent-knowledge-cycle</a></li>
+<li>Concept DOI: <a href="https://doi.org/10.5281/zenodo.19200726">10.5281/zenodo.19200726</a></li>
+<li>Glossary entry: <a href="https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/glossary.md#harness-alignment">canonical definition</a></li>
+</ul></div>
+
+<h2>FAQ</h2><h3>What is harness alignment?</h3><p>The continuous, human-gated activity of keeping an agent&#x27;s harness (skills, rules, prompts, documentation) aligned with the operator&#x27;s evolving intent — bidirectional, human-gated, and continuous.</p><h3>What is harness drift?</h3><p>Harness alignment&#x27;s failure mode: the gradual uncoupling of the harness from operator intent when the cycle does not run. It is the artifact-side layer of failure; its human-side twin is the failure twin (gate complacency, deskilling, delegation-feedback divergence).</p><h3>Who coined harness alignment?</h3><p>Tatsuya Shimomoto (shimo4228), in AKC ADR-0017 and the companion position paper (doi:10.5281/zenodo.20578272), with an explicit lineage audit against prior drift coinages.</p>
+<h2>Related terms</h2><ul class="terms"><li><a href="agent-knowledge-cycle.html">Agent Knowledge Cycle</a> — Six-phase human-gated knowledge cycle for AI agents</li><li><a href="attention-ceiling.html">Attention ceiling</a> — Human attention as the binding budget of agent loops</li><li><a href="scaffold-dissolution.html">Scaffold dissolution</a> — Skills as scaffolding meant to dissolve</li></ul>
+<div class="ja" lang="ja"><h2>Harness alignment（日本語）</h2><p>エージェントの harness (skills, rules, prompts, documentation) を、operator の進化し続ける intent に整合させ続ける、継続的で human-gated な活動。3 つの性質が同時に成り立つ: 対象は operator intent であり、それ自体が進化する (bidirectional — ループが回ること自体が target を動かす); ループは human-gated である; 整合は継続的で、一度の設定ではなく繰り返されるサイクルで維持される。その失敗モードが harness drift: サイクルが回らないときに harness が operator intent から徐々に uncouple していくこと。architectural drift (Perry &amp; Wolf 1992)、practical drift (Snook 2000)、agent drift (Rath 2026) の系譜に置いて命名された。intent alignment (Christiano 2018) を、行動から行動を形づくる artifact へ、そして時間軸へ拡張する。</p></div>
+<footer><p><a href="index.html">Concept index</a> · <a href="https://shimo4228.github.io/shimo4228/">Research program hub</a> · <a href="https://github.com/shimo4228">GitHub</a> · <a href="https://orcid.org/0009-0002-6168-4162">ORCID</a></p><p>Part of the shimo4228 research program. Definitions are faithful adaptations of each line’s canonical glossary; the line repository is always the source of truth.</p></footer>
+</body>
+</html>

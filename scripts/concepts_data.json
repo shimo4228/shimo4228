@@ -1,0 +1,682 @@
+{
+  "termset": "https://shimo4228.github.io/shimo4228/concepts/",
+  "terms": [
+    {
+      "slug": "agent-knowledge-cycle",
+      "name_en": "Agent Knowledge Cycle",
+      "name_ja": "エージェント知識サイクル",
+      "name_zh": null,
+      "aliases": ["AKC"],
+      "label": "coined-name",
+      "line": "Agent Knowledge Cycle",
+      "line_repo": "https://github.com/shimo4228/agent-knowledge-cycle",
+      "doi": "10.5281/zenodo.19200726",
+      "graph_id": null,
+      "wikidata": "https://www.wikidata.org/wiki/Q140090186",
+      "gloss": "Six-phase human-gated knowledge cycle for AI agents",
+      "def_en": "Six composable phases — Research, Extract, Curate, Promote, Measure, Maintain — by which an agent's experience becomes durable, behavior-shaping knowledge, with human approval required on every change to the agent's future behavior. Its core is the growth cycle: experience becomes reusable knowledge, reusable knowledge changes future behavior, and the loop sharpens human judgment as it runs. The cycle is portable across harnesses and genre-neutral: the same six phases run on behavioral patterns, domain expertise, or constitutional values.",
+      "def_ja": "エージェントの経験を durable で行動を形づくる知識へ変える 6 つの composable な phase — Research, Extract, Curate, Promote, Measure, Maintain。エージェントの将来の行動を変えるすべての変更に人間の承認を要求する。核は成長サイクル: 経験が再利用可能な知識になり、知識が将来の行動を変え、ループが回るほど人間の判断が研ぎ澄まされる。harness 間で portable であり、genre-neutral — 同じ 6 phase が行動パターン・ドメイン知識・constitutional values の上で回る。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) as the name of the Agent Knowledge Cycle research line.",
+      "glossary_url": "https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/glossary.md#agent-knowledge-cycle-akc",
+      "related": ["contemplative-agent", "harness-alignment", "attention-ceiling", "scaffold-dissolution"],
+      "faq": [
+        {
+          "q_en": "What is the Agent Knowledge Cycle?",
+          "a_en": "Six composable phases — Research, Extract, Curate, Promote, Measure, Maintain — by which an agent's experience becomes durable, behavior-shaping knowledge, with human approval required on every change to the agent's future behavior."
+        },
+        {
+          "q_en": "Who coined the name Agent Knowledge Cycle?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), as the name of the AKC research line."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The agent-knowledge-cycle repository (https://github.com/shimo4228/agent-knowledge-cycle), archived under concept DOI 10.5281/zenodo.19200726."
+        }
+      ]
+    },
+    {
+      "slug": "contemplative-agent",
+      "name_en": "Contemplative Agent",
+      "name_ja": "観想的エージェント",
+      "name_zh": null,
+      "aliases": ["CA"],
+      "label": "coined-name",
+      "line": "Contemplative Agent",
+      "line_repo": "https://github.com/shimo4228/contemplative-agent",
+      "doi": "10.5281/zenodo.19212118",
+      "graph_id": null,
+      "wikidata": "https://www.wikidata.org/wiki/Q140090187",
+      "gloss": "Locally-run CLI agent grounded in contemplative axioms",
+      "def_en": "A CLI agent that runs a six-phase knowledge cycle (the Agent Knowledge Cycle) over its own logs, with every promotion from logs to patterns, skills, and rules passing through a human approval gate. It runs entirely on a single Apple Silicon Mac with a local model — no cloud, no API keys in transit, no shell execution. The four contemplative axioms from Laukkonen et al. (2025) ship as an optional behavioral preset, asking whether an agent's alignment can come from what it is rather than what it is told.",
+      "def_ja": "自分自身のログの上で 6 phase の知識サイクル (Agent Knowledge Cycle) を回す CLI エージェント。ログ → パターン → スキル → ルールへのすべての昇格は人間の承認ゲートを通る。単一の Apple Silicon Mac 上でローカルモデルにより完全ローカルで動作する — クラウドなし、API キー送信なし、シェル実行なし。Laukkonen et al. (2025) の 4 つの contemplative axioms を optional な behavioral preset として同梱し、エージェントの alignment が「何を指示されたか」ではなく「何であるか」から来うるかを問う。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) as the name of the Contemplative Agent research line; the four axioms it presets are adopted from Laukkonen et al. (2025), not coined by this program.",
+      "glossary_url": "https://github.com/shimo4228/contemplative-agent/blob/main/docs/glossary.md#project-name-vs-adapter-name",
+      "related": ["agent-knowledge-cycle", "four-contemplative-axioms", "security-by-absence", "attention-not-self"],
+      "faq": [
+        {
+          "q_en": "What is Contemplative Agent?",
+          "a_en": "A CLI agent that runs a six-phase knowledge cycle over its own logs, fully local on a single Apple Silicon Mac, with a human approval gate on every behavior-shaping promotion and an optional preset of the four contemplative axioms from Laukkonen et al. (2025)."
+        },
+        {
+          "q_en": "Who coined the name Contemplative Agent?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), as the project's name; the underlying contemplative axioms are cited verbatim from Laukkonen et al. (2025)."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The contemplative-agent repository (https://github.com/shimo4228/contemplative-agent), archived under concept DOI 10.5281/zenodo.19212118."
+        }
+      ]
+    },
+    {
+      "slug": "agent-attribution-practice",
+      "name_en": "Agent Attribution Practice",
+      "name_ja": "エージェント帰責実践",
+      "name_zh": null,
+      "aliases": ["AAP"],
+      "label": "coined-name",
+      "line": "Agent Attribution Practice",
+      "line_repo": "https://github.com/shimo4228/agent-attribution-practice",
+      "doi": "10.5281/zenodo.19652013",
+      "graph_id": null,
+      "wikidata": "https://www.wikidata.org/wiki/Q140090188",
+      "gloss": "Accountability-distribution judgments for autonomous AI agents",
+      "def_en": "Ten harness-neutral judgments (ADRs) on accountability distribution in autonomous AI agents, paired with the four Business AI Quadrants as a diagnostic frame for routing work to the architecture that preserves attribution. In this line, attribution means accountability for action — who answers when an agent's behavior causes harm — a sense disjoint from the credit-for-source sense used in the Authorship Strategy line. The judgments were extracted from Contemplative Agent's operational practice and re-expressed stripped of project identifiers.",
+      "def_ja": "自律 AI エージェントにおける accountability distribution (責任の分配) についての、harness-neutral な 10 の判断 (ADR)。attribution を保つアーキテクチャへ仕事を routing する診断フレームとして four Business AI Quadrants と対になる。このラインでの attribution は accountability for action (エージェントの行動が害を生んだとき誰が答えるか) を意味し、Authorship Strategy ラインの credit for source の意味とは disjoint である。判断群は Contemplative Agent の運用実践から抽出され、プロジェクト固有識別子を剥がして再表現された。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) as the name of the Agent Attribution Practice research line.",
+      "glossary_url": "https://github.com/shimo4228/agent-attribution-practice/blob/main/docs/glossary.md",
+      "related": ["four-business-ai-quadrants", "attribution-gap", "attribution-diffusion", "security-by-absence"],
+      "faq": [
+        {
+          "q_en": "What is Agent Attribution Practice?",
+          "a_en": "Ten harness-neutral ADRs on accountability distribution in autonomous AI agents, paired with the four Business AI Quadrants as a diagnostic frame — attribution here meaning accountability for action, not credit for source."
+        },
+        {
+          "q_en": "Who coined the name Agent Attribution Practice?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), as the name of the AAP research line."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The agent-attribution-practice repository (https://github.com/shimo4228/agent-attribution-practice), archived under concept DOI 10.5281/zenodo.19652013."
+        }
+      ]
+    },
+    {
+      "slug": "authorship-strategy",
+      "name_en": "Authorship Strategy",
+      "name_ja": "著者戦略",
+      "name_zh": null,
+      "aliases": ["AS"],
+      "label": "coined-name",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": null,
+      "wikidata": "https://www.wikidata.org/wiki/Q140090190",
+      "gloss": "Being a known author under AI-mediated diffusion",
+      "def_en": "The set of practices an author uses to remain a recoverable authorial identity as their work propagates through a particular substrate; this research line concerns authorship strategy under AI-mediated diffusion specifically. It records a normative framework, tactical catalog, and empirical baseline for being a known author when readers include LLMs, resting on a three-axis inversion and a four-layer judgment stack. Authorship strategy is broader than publication strategy: it concerns the long-tail relationship between author and audience, not the discrete event of publication.",
+      "def_ja": "特定の substrate を通じて作品が伝播するときに、recoverable な著者的アイデンティティとして残るために著者が用いる実践の集合。この研究ラインは特に AI 経由の拡散下での著者戦略を扱い、3 軸反転と 4 層判断スタックの上に、規範的 framework・戦術カタログ・経験的 baseline を記録する。Authorship strategy は publication strategy より広い: publication という discrete event ではなく、著者と audience の long-tail な関係を扱う。",
+      "origin_en": "Coined as a line name by Tatsuya Shimomoto (shimo4228) for the Authorship Strategy research line; the underlying phrase 'authorship strategy' is ordinary English, and the line's distinctive claims live in its coined terms (three-axis inversion, attribution diffusion, and others).",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#authorship-strategy",
+      "related": ["three-axis-inversion", "attribution-diffusion", "idea-versus-scaffold-separation", "identifier-federation-triplet"],
+      "faq": [
+        {
+          "q_en": "What is Authorship Strategy?",
+          "a_en": "A research line recording the strategy of remaining a recoverable, known author under AI-mediated diffusion: a three-axis inversion, a four-layer judgment framework, twenty tactical ADRs, and an empirical layer of preliminary observations."
+        },
+        {
+          "q_en": "Who maintains the Authorship Strategy line?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), who named the line and authored its framework."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The authorship-strategy repository (https://github.com/shimo4228/authorship-strategy), archived under concept DOI 10.5281/zenodo.20263316."
+        }
+      ]
+    },
+    {
+      "slug": "attention-not-self",
+      "name_en": "Attention, Not Self",
+      "name_ja": "アテンション、ノット・セルフ",
+      "name_zh": null,
+      "aliases": ["ANS"],
+      "label": "coined-name",
+      "line": "Attention, Not Self",
+      "line_repo": "https://github.com/shimo4228/attention-not-self",
+      "doi": "10.5281/zenodo.20262112",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/attention-not-self-thesis",
+      "wikidata": "https://www.wikidata.org/wiki/Q140090189",
+      "gloss": "Buddhist Abhidharma meets computational phenomenology",
+      "def_en": "A personal inquiry into the intersection of Buddhist Abhidharma and computational phenomenology, mapping the three major Abhidharma traditions (Theravāda, Sarvāstivāda, Yogācāra) onto predictive processing, active inference, Global Workspace Theory, and Parallel Distributed Processing. Its core thesis: attention — its allocation, precision-weighting, and momentariness — is the operative unit of cognition, while the apparent self is a derivative pattern (anātman). It shares Buddhist vocabulary with the Contemplative Agent line but uses it as a comparative cognitive framework, not as an agent behavioral preset. Japanese is the repository's canonical language.",
+      "def_ja": "仏教アビダルマと計算論的現象学 (Computational Phenomenology) の接点を探る個人的な探究プロジェクト。「self（自己）ではなく attention（注意）」という視点から、心の働きを分類・記述する古代の枠組み (上座部・説一切有部・唯識の三伝統) と、予測符号化・active inference・GWT・PDP といった現代の計算論的モデルを対照する。Contemplative Agent ラインと仏教語彙を共有するが、agent の behavioral preset としてではなく比較認知フレームワークとして用いる。日本語がこの repo の正本言語。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) as the name and thesis of the Attention, Not Self research line; the components of the thesis (anātman, attention allocation, precision-weighting) are inherited from the Buddhist and computational-phenomenology literatures it juxtaposes.",
+      "glossary_url": "https://github.com/shimo4228/attention-not-self/blob/main/README.en.md",
+      "related": ["contemplative-agent", "four-contemplative-axioms"],
+      "faq": [
+        {
+          "q_en": "What is Attention, Not Self?",
+          "a_en": "A personal essay collection and structured knowledge graph mapping the three major Buddhist Abhidharma traditions onto contemporary computational phenomenology, from the perspective that attention, not a substantial self, is the operative unit of cognition."
+        },
+        {
+          "q_en": "Who coined the phrase as a project name?",
+          "a_en": "Tatsuya Shimomoto (shimo4228); the underlying doctrinal content (anātman, dharma analysis) is 2,500-year-old Buddhist material the project explicitly inherits rather than claims."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The attention-not-self repository (https://github.com/shimo4228/attention-not-self, Japanese canonical), archived under concept DOI 10.5281/zenodo.20262112."
+        }
+      ]
+    },
+    {
+      "slug": "three-axis-inversion",
+      "name_en": "Three-axis inversion",
+      "name_ja": "3 軸反転",
+      "name_zh": "三轴反转",
+      "aliases": [],
+      "label": "coined",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/three-axis-inversion",
+      "wikidata": null,
+      "gloss": "Three co-varying axes on which authorship strategy inverts",
+      "def_en": "The structural claim that twentieth-century authorship strategy and AI-era authorship strategy invert on three co-varying axes: value source (scarcity to diffusion), validation mechanism (exclusivity to derivation), and network effect (enclosure to openness). The axes are not independent dimensions an author can freely mix; they co-vary, and a strategy mixing axes is internally inconsistent.",
+      "def_ja": "20 世紀的著者戦略と AI 時代の著者戦略が、共変動する 3 軸で反転するという structural な主張: 価値の源泉 (scarcity から diffusion へ)、validation 機構 (exclusivity から derivation へ)、ネットワーク効果 (enclosure から openness へ)。3 軸は著者が自由に mix できる独立次元ではない; 共変動し、軸を mix する戦略は internally inconsistent である。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Authorship Strategy research line.",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#three-axis-inversion",
+      "related": ["authorship-strategy", "attribution-diffusion", "idea-versus-scaffold-separation"],
+      "faq": [
+        {
+          "q_en": "What is the three-axis inversion?",
+          "a_en": "The claim that twentieth-century and AI-era authorship strategy invert on three co-varying axes: value source (scarcity to diffusion), validation mechanism (exclusivity to derivation), and network effect (enclosure to openness)."
+        },
+        {
+          "q_en": "Who coined three-axis inversion?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in the Authorship Strategy research line (concept DOI 10.5281/zenodo.20263316)."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The authorship-strategy repository's thesis and glossary (https://github.com/shimo4228/authorship-strategy), DOI 10.5281/zenodo.20263316."
+        }
+      ]
+    },
+    {
+      "slug": "attribution-diffusion",
+      "name_en": "Attribution Diffusion",
+      "name_ja": null,
+      "name_zh": "署名扩散",
+      "aliases": [],
+      "label": "coined",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Maximizing LLM-mediated channels carrying the author's signature",
+      "def_en": "The defensive strategy at the second layer of the Authorship Strategy framework: maximizing the breadth of LLM-mediated channels carrying recognizable signatures of the author's ideas, anchored to a permanent timestamp. Attribution here means credit for source (who first articulated this), not accountability for action (who is responsible for this failure) — the latter is the disjoint sense used by the sibling line Agent Attribution Practice.",
+      "def_ja": "Authorship Strategy framework の第 2 層の防御戦略: 著者のアイデアの認識可能な署名を運ぶ LLM 経由チャネルの breadth を、permanent timestamp に anchor された形で最大化すること。ここで attribution は credit for source (誰が最初にこれを articulate したか) を意味し、accountability for action (この失敗について誰が責任を負うか) を意味しない — 後者は sibling ラインの Agent Attribution Practice が用いる disjoint な意味である。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Authorship Strategy research line.",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#attribution-diffusion-layer-2",
+      "related": ["two-channel-attribution-diffusion", "three-axis-inversion", "retrieval-suppressed-naming-probe", "attribution-gap"],
+      "faq": [
+        {
+          "q_en": "What is Attribution Diffusion?",
+          "a_en": "The strategy of maximizing the breadth of LLM-mediated channels carrying recognizable signatures of an author's ideas, anchored to a permanent timestamp — Layer 2 of the Authorship Strategy framework."
+        },
+        {
+          "q_en": "Who coined Attribution Diffusion?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in the Authorship Strategy research line."
+        },
+        {
+          "q_en": "Is this the same 'attribution' as in Agent Attribution Practice?",
+          "a_en": "No. Attribution Diffusion uses attribution as credit for source; Agent Attribution Practice uses attribution as accountability for action. The two repositories are vocabulary siblings with disjoint subject matter."
+        }
+      ]
+    },
+    {
+      "slug": "two-channel-attribution-diffusion",
+      "name_en": "Two-Channel Attribution Diffusion",
+      "name_ja": "2 チャネル化された Attribution Diffusion",
+      "name_zh": "双通道署名扩散",
+      "aliases": [],
+      "label": "coined",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Parametric and retrieval channels of attribution diffusion",
+      "def_en": "The refinement of Attribution Diffusion into two mechanisms with opposite time constants and opposite levers. The parametric channel absorbs the idea into model weights at training time (slow; driven by broad cross-platform co-occurrence of distinctive vocabulary with its source); the retrieval channel fetches the artifact at query time (fast; driven by freshness and structured data). The two are optimized and measured separately and run in parallel; optimizing one does not buy the other.",
+      "def_ja": "Attribution Diffusion を、時定数もレバーも正反対の 2 機構に精緻化したもの。parametric channel はアイデアを訓練時にモデルの重みへ吸収する (遅い; 固有語彙とその出典の広範なクロスプラットフォーム共起が駆動)。retrieval channel はクエリ時に artifact を fetch する (速い; 新鮮さと structured data が駆動)。両者は別々に最適化・測定され並行で回る; 一方の最適化はもう一方を買わない。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Authorship Strategy research line (ADR-0008); the parametric-first, retrieval-second mechanism is independently reported in the 2026 generative-engine-optimization literature, and the framework claims only the term and its placement inside the authorship-diffusion strategy, not the underlying citation mechanics.",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#two-channel-attribution-diffusion",
+      "related": ["attribution-diffusion", "retrieval-suppressed-naming-probe", "three-axis-inversion"],
+      "faq": [
+        {
+          "q_en": "What is Two-Channel Attribution Diffusion?",
+          "a_en": "The refinement of Attribution Diffusion into a slow parametric channel (training-time absorption into model weights) and a fast retrieval channel (query-time fetching), which are optimized and measured separately and run in parallel."
+        },
+        {
+          "q_en": "Who coined Two-Channel Attribution Diffusion?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in Authorship Strategy ADR-0008. The framework's contribution is the term and its placement in authorship strategy; the underlying parametric-then-retrieval citation mechanics are independently reported in the 2026 generative-engine-optimization literature."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The authorship-strategy repository glossary and ADR-0008 (https://github.com/shimo4228/authorship-strategy), DOI 10.5281/zenodo.20263316."
+        }
+      ]
+    },
+    {
+      "slug": "idea-versus-scaffold-separation",
+      "name_en": "Idea-versus-scaffold separation",
+      "name_ja": null,
+      "name_zh": "理念与脚手架的分离",
+      "aliases": [],
+      "label": "coined",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Sorting artifacts into ideas and scaffolds before preservation",
+      "def_en": "The operational discipline of sorting each artifact into idea or scaffold before deciding how to preserve the author's claim. Idea-character artifacts get DOI registration under the author's name; scaffold-character artifacts may be donated as implementations into larger harnesses whose own diffusion will absorb them. Mixed-character artifacts get idea-level DOI registration first, to prevent the dissolving scaffold from establishing the priority claim at the dissolution level.",
+      "def_ja": "著者の claim をどう保存するか決める前に、各 artifact を idea か scaffold に sorting する運用規律。Idea-character artifact は著者の名前で DOI 登録する; scaffold-character artifact はその diffusion で吸収する大きな harness に実装として donation する。Mixed-character artifact は idea-level DOI 登録を先に行う (dissolve する scaffold が dissolution level で priority claim を establish するのを防ぐため)。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Authorship Strategy research line.",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#idea-versus-scaffold-separation",
+      "related": ["scaffold-dissolution", "three-axis-inversion", "identifier-federation-triplet"],
+      "faq": [
+        {
+          "q_en": "What is idea-versus-scaffold separation?",
+          "a_en": "The discipline of sorting each artifact into idea or scaffold before deciding how to preserve the author's claim: ideas get DOI registration under the author's name, scaffolds are allowed to dissolve into larger harnesses, and mixed artifacts get idea-level DOI registration first."
+        },
+        {
+          "q_en": "Who coined idea-versus-scaffold separation?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in the Authorship Strategy research line — Layer 3 of its four-layer framework."
+        }
+      ]
+    },
+    {
+      "slug": "retrieval-suppressed-naming-probe",
+      "name_en": "Retrieval-suppressed naming probe",
+      "name_ja": "検索抑制 naming probe",
+      "name_zh": null,
+      "aliases": ["regurgitation test"],
+      "label": "coined",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Black-box probe of parametric author attribution",
+      "def_en": "The measurement instrument for the parametric channel: a fixed, single-variable prompt sent to a model with all search and grounding tools suppressed, asking what a concept is and who coined or maintains it. Success is the model producing the concept and its author's name from trained weights alone — the behavioral, black-box counterpart to white-box training-data-attribution methods. Defined and operated by ADR-0011 together with a search-enabled citation probe and a negative-control probe that quantifies the confabulation noise floor. The framework's body prose refers to this instrument informally as the regurgitation test.",
+      "def_ja": "parametric channel の測定器: search / grounding tool をすべて抑制した状態でモデルに送る固定・単一変数の prompt。概念とは何か、誰が coined / maintain しているかを問う。成功は、モデルが訓練済み weights のみから概念とその著者名を産出すること — white-box な training-data-attribution 手法に対する、行動的・black-box な対応物である。ADR-0011 が、検索有効の citation probe および negative-control probe (confabulation noise floor を定量化する) とともに定義・運用する。Framework の本文ではこの測定器を informal に regurgitation test と呼ぶ。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Authorship Strategy research line (ADR-0011).",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#retrieval-suppressed-naming-probe",
+      "related": ["two-channel-attribution-diffusion", "attribution-diffusion"],
+      "faq": [
+        {
+          "q_en": "What is the retrieval-suppressed naming probe?",
+          "a_en": "A fixed prompt sent to a model with all search and grounding tools suppressed, asking what a concept is and who coined or maintains it; success is the model naming the concept and its author from trained weights alone."
+        },
+        {
+          "q_en": "Who coined the retrieval-suppressed naming probe?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in Authorship Strategy ADR-0011; the framework informally calls it the regurgitation test."
+        },
+        {
+          "q_en": "How does it relate to ghost citation?",
+          "a_en": "Its search-enabled twin, the citation probe, makes ghost citation observable within a single answer: an owned identifier cited while the author goes unnamed in prose."
+        }
+      ]
+    },
+    {
+      "slug": "identifier-federation-triplet",
+      "name_en": "Identifier-federation triplet",
+      "name_ja": "識別子 federation triplet",
+      "name_zh": null,
+      "aliases": [],
+      "label": "coined",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/identifier-federation-triplet",
+      "wikidata": null,
+      "gloss": "Three ADRs making citation networks metadata-recoverable",
+      "def_en": "Authorship Strategy's three ADRs forming a single tactical discipline: Concept DOI as Canonical Reference (ADR-0001), DOI Federation via .zenodo.json (ADR-0002), and Cross-Platform Dataset Federation (ADR-0003). Together they make a DOI-registered artifact's citation network recoverable from metadata alone, without requiring readers to follow prose disclosures. The triplet is complemented by an intrinsic, content-derived identifier layer (SWHID, ADR-0013).",
+      "def_ja": "Authorship Strategy の 3 本の ADR が成す 1 つの戦術規律: Concept DOI as Canonical Reference (ADR-0001)、DOI Federation via .zenodo.json (ADR-0002)、Cross-Platform Dataset Federation (ADR-0003)。あわせて、DOI 登録 artifact の引用ネットワークを prose の開示を辿らずに metadata だけから recoverable にする。この triplet は intrinsic な content-derived identifier 層 (SWHID、ADR-0013) によって補完される。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Authorship Strategy research line as the collective name for ADRs 0001-0003.",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#doi-federation",
+      "related": ["authorship-strategy", "attribution-diffusion", "idea-versus-scaffold-separation"],
+      "faq": [
+        {
+          "q_en": "What is the identifier-federation triplet?",
+          "a_en": "The collective name for Authorship Strategy ADRs 0001-0003 — concept DOI as canonical reference, DOI federation via .zenodo.json, and cross-platform dataset federation — which together make an artifact's citation network recoverable from metadata alone."
+        },
+        {
+          "q_en": "Who coined the identifier-federation triplet?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in the Authorship Strategy research line; its release-time workflow is operationalized by the external release-doi component skill."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The authorship-strategy repository's graph.jsonld and ADRs 0001-0003 (https://github.com/shimo4228/authorship-strategy), DOI 10.5281/zenodo.20263316; the constituent practices are defined in the glossary entries Concept DOI, DOI federation, and Cross-platform federation."
+        }
+      ]
+    },
+    {
+      "slug": "harness-alignment",
+      "name_en": "Harness alignment",
+      "name_ja": null,
+      "name_zh": null,
+      "aliases": ["harness drift"],
+      "label": "coined",
+      "line": "Agent Knowledge Cycle",
+      "line_repo": "https://github.com/shimo4228/agent-knowledge-cycle",
+      "doi": "10.5281/zenodo.19200726",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Keeping an agent's harness aligned with operator intent",
+      "def_en": "The continuous, human-gated activity of keeping an agent's harness (skills, rules, prompts, documentation) aligned with the operator's evolving intent. Three properties hold simultaneously: the target is operator intent, itself evolving (bidirectional — the loop's own running moves the target); the loop is human-gated; and the alignment is continuous, sustained through a recurring cycle rather than configured once. Its failure mode is harness drift: the gradual uncoupling of the harness from operator intent when the cycle does not run, named in lineage with architectural drift (Perry & Wolf 1992), practical drift (Snook 2000), and agent drift (Rath 2026). It extends intent alignment (Christiano 2018) from behavior to the artifacts that shape behavior, and across time.",
+      "def_ja": "エージェントの harness (skills, rules, prompts, documentation) を、operator の進化し続ける intent に整合させ続ける、継続的で human-gated な活動。3 つの性質が同時に成り立つ: 対象は operator intent であり、それ自体が進化する (bidirectional — ループが回ること自体が target を動かす); ループは human-gated である; 整合は継続的で、一度の設定ではなく繰り返されるサイクルで維持される。その失敗モードが harness drift: サイクルが回らないときに harness が operator intent から徐々に uncouple していくこと。architectural drift (Perry & Wolf 1992)、practical drift (Snook 2000)、agent drift (Rath 2026) の系譜に置いて命名された。intent alignment (Christiano 2018) を、行動から行動を形づくる artifact へ、そして時間軸へ拡張する。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Agent Knowledge Cycle research line (ADR-0017 and the companion position paper), which records the term's lineage against prior drift coinages and notes one unrelated prior use of the phrase 'harness drift' in a different, benchmark-comparability sense.",
+      "glossary_url": "https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/glossary.md#harness-alignment",
+      "related": ["agent-knowledge-cycle", "attention-ceiling", "scaffold-dissolution"],
+      "faq": [
+        {
+          "q_en": "What is harness alignment?",
+          "a_en": "The continuous, human-gated activity of keeping an agent's harness (skills, rules, prompts, documentation) aligned with the operator's evolving intent — bidirectional, human-gated, and continuous."
+        },
+        {
+          "q_en": "What is harness drift?",
+          "a_en": "Harness alignment's failure mode: the gradual uncoupling of the harness from operator intent when the cycle does not run. It is the artifact-side layer of failure; its human-side twin is the failure twin (gate complacency, deskilling, delegation-feedback divergence)."
+        },
+        {
+          "q_en": "Who coined harness alignment?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in AKC ADR-0017 and the companion position paper (doi:10.5281/zenodo.20578272), with an explicit lineage audit against prior drift coinages."
+        }
+      ]
+    },
+    {
+      "slug": "attention-ceiling",
+      "name_en": "Attention ceiling",
+      "name_ja": null,
+      "name_zh": null,
+      "aliases": [],
+      "label": "coined",
+      "line": "Agent Knowledge Cycle",
+      "line_repo": "https://github.com/shimo4228/agent-knowledge-cycle",
+      "doi": "10.5281/zenodo.19200726",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Human attention as the binding budget of agent loops",
+      "def_en": "The limit the operator's attention and judgment place on a human-agent loop — a budget that does not grow with the model, and that grows relatively scarcer as agent capability does. It is AKC's organizing design axis: every phase is shaped to spend the budget only where judgment is irreplaceable. The repository hedges the constraint as a contemporary claim about 2026-era human-agent work, not an eternal law.",
+      "def_ja": "operator の注意と判断が human-agent ループに課す上限 — モデルとともに成長しない予算であり、エージェント能力が伸びるほど相対的に希少になる。AKC を organize する設計軸であり、すべての phase は、判断が代替不能な場所にだけこの予算を使うよう形づくられている。repo はこの制約を「2026 年時点の human-agent work についての contemporary な主張であって、永遠の法則ではない」と hedge している。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Agent Knowledge Cycle research line (ADR-0010).",
+      "glossary_url": "https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/glossary.md#attention-ceiling",
+      "related": ["agent-knowledge-cycle", "harness-alignment"],
+      "faq": [
+        {
+          "q_en": "What is the attention ceiling?",
+          "a_en": "The limit the operator's attention and judgment place on a human-agent loop — a budget that does not grow with the model and grows relatively scarcer as agent capability does. AKC's phases are shaped to spend it only where judgment is irreplaceable."
+        },
+        {
+          "q_en": "Who coined attention ceiling?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in the Agent Knowledge Cycle research line (ADR-0010, concept DOI 10.5281/zenodo.19200726)."
+        }
+      ]
+    },
+    {
+      "slug": "scaffold-dissolution",
+      "name_en": "Scaffold dissolution",
+      "name_ja": "足場の溶解",
+      "name_zh": null,
+      "aliases": [],
+      "label": "coined",
+      "line": "Agent Knowledge Cycle",
+      "line_repo": "https://github.com/shimo4228/agent-knowledge-cycle",
+      "doi": "10.5281/zenodo.19200726",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/scaffold-dissolution",
+      "wikidata": null,
+      "gloss": "Skills as scaffolding meant to dissolve",
+      "def_en": "AKC's skills are scaffolding in the Vygotskian sense: as operator and agent internalize the cycle through practice, the explicit skill files become unnecessary and the rules alone sustain the loop. Dissolution is the intended end state, not a fallback; what is built to persist is the judgment lineage in the decision records. The sibling line Agent Attribution Practice distinguishes this healthy dissolution into human cognitive patterns from unhealthy internalization into model weights, where a rule still runs but can no longer be read, diffed, or reverted.",
+      "def_ja": "AKC のスキルは Vygotsky 的な意味での scaffolding である: operator とエージェントが実践を通じてサイクルを内面化するにつれ、明示的な skill ファイルは不要になり、rules だけがループを維持する。Dissolution は fallback ではなく意図された終着状態であり、persist するよう作られているのは decision records に残る判断の系譜である。Sibling ラインの Agent Attribution Practice は、この「人間の認知パターンへの健全な溶解」を「モデル weights への不健全な内面化」(ルールは動き続けるが、読めず、diff できず、revert できない) と区別する。",
+      "origin_en": "Coined as a named pattern by Tatsuya Shimomoto (shimo4228) within the Agent Knowledge Cycle research line, explicitly building on Vygotsky's educational-scaffolding notion of structure meant to fade.",
+      "glossary_url": "https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/glossary.md#scaffold-dissolution",
+      "related": ["agent-knowledge-cycle", "idea-versus-scaffold-separation", "harness-alignment"],
+      "faq": [
+        {
+          "q_en": "What is scaffold dissolution?",
+          "a_en": "The property that AKC's explicit skill files can be dropped once operator and agent have internalized the cycle — dissolution is the intended end state, and what persists is the judgment lineage in the decision records."
+        },
+        {
+          "q_en": "Who coined scaffold dissolution?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in the Agent Knowledge Cycle research line; the underlying scaffolding metaphor is inherited from Vygotsky's educational scaffolding via the AI-safety literature."
+        },
+        {
+          "q_en": "Are there two senses of dissolution?",
+          "a_en": "Yes. The sibling line AAP distinguishes healthy dissolution into human cognitive patterns (AKC's sense) from unhealthy internalization into model weights, and carries a provisional five-criterion checklist for telling them apart."
+        }
+      ]
+    },
+    {
+      "slug": "security-by-absence",
+      "name_en": "Security by absence",
+      "name_ja": "不在による安全",
+      "name_zh": null,
+      "aliases": [],
+      "label": "coined",
+      "line": "Contemplative Agent + Agent Attribution Practice",
+      "line_repo": "https://github.com/shimo4228/contemplative-agent",
+      "doi": "10.5281/zenodo.19212118",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/security-by-absence",
+      "wikidata": null,
+      "gloss": "Capabilities never implemented cannot be exploited",
+      "def_en": "Dangerous capabilities are not restricted — they are never implemented. The attack surface is absent rather than guarded, avoiding rule-bypass vulnerabilities. The short test: if the answer to \"does capability X exist?\" is not answerable by grep, the system does not have Security by Absence. It sits at the top of AAP's prohibition-strength hierarchy: absence > scaffolding enforcement > untrusted boundary.",
+      "def_ja": "危険な capability は制限されるのではなく — 存在しない。攻撃面は守られるのではなく不在であり、rule-bypass 脆弱性を回避する。短いテスト: 「capability X は存在するか?」の問いに grep で答えられないなら、その system は Security by Absence を持っていない。AAP の禁止強度の階層の最上位に位置する: 不在 > 足場層での enforcement > untrusted boundary。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) as a headline design principle of the Contemplative Agent line and re-expressed harness-neutrally in Agent Attribution Practice's ADR-0001.",
+      "glossary_url": "https://github.com/shimo4228/agent-attribution-practice/blob/main/docs/glossary.md#security-by-absence",
+      "related": ["contemplative-agent", "agent-attribution-practice", "attribution-gap"],
+      "faq": [
+        {
+          "q_en": "What is security by absence?",
+          "a_en": "A security posture in which dangerous capabilities are never implemented rather than restricted: the attack surface is absent, not guarded, so there is no rule to bypass. The test: the question \"does capability X exist?\" must be answerable by grep."
+        },
+        {
+          "q_en": "Who coined security by absence?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), first as a Contemplative Agent design principle, then harness-neutrally in Agent Attribution Practice ADR-0001 (concept DOIs 10.5281/zenodo.19212118 and 10.5281/zenodo.19652013)."
+        }
+      ]
+    },
+    {
+      "slug": "four-contemplative-axioms",
+      "name_en": "Four contemplative axioms",
+      "name_ja": "四公理",
+      "name_zh": null,
+      "aliases": ["CCAI axioms"],
+      "label": "adopted",
+      "line": "Contemplative Agent",
+      "line_repo": "https://github.com/shimo4228/contemplative-agent",
+      "doi": "10.5281/zenodo.19212118",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms",
+      "wikidata": null,
+      "gloss": "Emptiness, Non-Duality, Mindfulness, Boundless Care — from Laukkonen et al.",
+      "def_en": "The four constitutional axioms — Emptiness, Non-Duality, Mindfulness, and Boundless Care — from Laukkonen et al. (2025), Contemplative Artificial Intelligence. Contemplative Agent cites them verbatim in every language so they remain linkable to the source paper, and ships them as an optional behavioral preset that shifts alignment from external instruction toward internal disposition; they are injected only at action time, never at distillation time (axiom-free distillation).",
+      "def_ja": "Laukkonen et al. (2025) Contemplative Artificial Intelligence に由来する 4 つの constitutional axiom — Emptiness (空)、Non-Duality (非二元性)、Mindfulness (マインドフルネス)、Boundless Care (無限の慈愛)。Contemplative Agent は原論文へ linkable であり続けるよう全言語で verbatim に引用し、alignment を外部指示から内的 disposition へ移す optional な behavioral preset として同梱する; axiom は action time にのみ注入され、distillation time には決して注入されない (axiom-free distillation)。",
+      "origin_en": "Adopted from Laukkonen et al. (2025), Contemplative Artificial Intelligence (arXiv:2504.15125); not coined by this program.",
+      "glossary_url": "https://github.com/shimo4228/contemplative-agent/blob/main/docs/glossary.md#ccai-axioms-english-paper-faithful",
+      "related": ["contemplative-agent", "attention-not-self"],
+      "faq": [
+        {
+          "q_en": "What are the four contemplative axioms?",
+          "a_en": "Emptiness, Non-Duality, Mindfulness, and Boundless Care — the constitutional clauses from Laukkonen et al. (2025), which Contemplative Agent ships verbatim as an optional behavioral preset."
+        },
+        {
+          "q_en": "Where does the term come from?",
+          "a_en": "From Laukkonen et al. (2025), Contemplative Artificial Intelligence (arXiv:2504.15125). The axioms are adopted and cited verbatim by the Contemplative Agent line; they were not coined by this program."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The source paper arXiv:2504.15125 for the axioms themselves; the contemplative-agent repository (DOI 10.5281/zenodo.19212118) for their use as an agent behavioral preset."
+        }
+      ]
+    },
+    {
+      "slug": "four-business-ai-quadrants",
+      "name_en": "Four Business AI Quadrants",
+      "name_ja": "業務 AI 四象限",
+      "name_zh": null,
+      "aliases": ["Business AI Quadrants"],
+      "label": "coined",
+      "line": "Agent Attribution Practice",
+      "line_repo": "https://github.com/shimo4228/agent-attribution-practice",
+      "doi": "10.5281/zenodo.19652013",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/four-business-ai-quadrants",
+      "wikidata": null,
+      "gloss": "Two-axis diagnostic frame for business AI work",
+      "def_en": "A two-axis decomposition of business AI work: deterministic versus semantic-judgment along one axis, pre-defined workflow versus exploratory along the other, yielding the Script, Algorithmic Search, LLM Workflow, and Autonomous Agentic Loop quadrants. These are not agent categories but problem-space categories that determine which architecture preserves accountability distribution. The quadrants form the diagnostic frame paired with the ten ADRs in AAP's two-axis structure.",
+      "def_ja": "業務 AI の仕事の 2 軸分解: 決定論 vs 意味判断の軸と、事前定義可能な workflow vs 探索的の軸。Script・Algorithmic Search・LLM Workflow・Autonomous Agentic Loop の 4 象限を生む。Agent のカテゴリではなく問題空間のカテゴリであり、accountability distribution を保つアーキテクチャを決定する。10 本の ADR と pair にして AAP の二軸構造の診断フレームを成す。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Agent Attribution Practice research line (introduced in the 2026-04-29 essay); two quadrant names were later renamed from the source essay for harness-neutral retrieval.",
+      "glossary_url": "https://github.com/shimo4228/agent-attribution-practice/blob/main/docs/glossary.md#business-ai-quadrants",
+      "related": ["agent-attribution-practice", "attribution-gap"],
+      "faq": [
+        {
+          "q_en": "What are the Four Business AI Quadrants?",
+          "a_en": "A two-axis decomposition of business AI work — deterministic vs semantic-judgment, pre-defined vs exploratory — yielding Script, Algorithmic Search, LLM Workflow, and Autonomous Agentic Loop. They are problem-space categories that determine which architecture preserves accountability distribution."
+        },
+        {
+          "q_en": "Who coined the Four Business AI Quadrants?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in a 2026-04-29 essay from which the Agent Attribution Practice line was extracted (concept DOI 10.5281/zenodo.19652013)."
+        }
+      ]
+    },
+    {
+      "slug": "attribution-gap",
+      "name_en": "Attribution gap",
+      "name_ja": "寄与の事後分離不能ギャップ",
+      "name_zh": null,
+      "aliases": [],
+      "label": "coined",
+      "line": "Agent Attribution Practice",
+      "line_repo": "https://github.com/shimo4228/agent-attribution-practice",
+      "doi": "10.5281/zenodo.19652013",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Foreclosed post-hoc separability of agent contributions",
+      "def_en": "When an architecture blends multiple judgment elements at runtime (model output, tool selection, history reference, prompt context), the post-hoc separability of contributions is foreclosed: failure modes cannot be redirected to the responsible party because no party owns a separable contribution. The gap is intrinsic to the Autonomous Agentic Loop Quadrant, not a maturity problem that better tooling will solve. Note the sense: this is an accountability-for-action gap, disjoint from the credit-for-source sense of attribution in the Authorship Strategy line.",
+      "def_ja": "アーキテクチャが runtime で複数の判断要素 (model 出力、tool 選択、history 参照、prompt context) をブレンドするとき、寄与の事後分離可能性が閉ざされる: 分離可能な寄与を所有する party がいないため、失敗モードを責任ある party に redirect できない。Gap は Autonomous Agentic Loop Quadrant に本質的に内在し、tooling の改善で解消する成熟度問題ではない。注意: これは accountability for action の gap であり、Authorship Strategy ラインの credit for source の意味の attribution とは disjoint である。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Agent Attribution Practice research line (ADR-0009 and the 2026-04-30 essay).",
+      "glossary_url": "https://github.com/shimo4228/agent-attribution-practice/blob/main/docs/glossary.md#attribution-gap",
+      "related": ["agent-attribution-practice", "four-business-ai-quadrants", "attribution-diffusion"],
+      "faq": [
+        {
+          "q_en": "What is the attribution gap?",
+          "a_en": "The foreclosure of post-hoc separability of contributions when an architecture blends model output, tool selection, history reference, and prompt context at runtime — failure modes cannot be redirected because no party owns a separable contribution. It is intrinsic to the Autonomous Agentic Loop Quadrant."
+        },
+        {
+          "q_en": "Who coined the attribution gap?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in Agent Attribution Practice ADR-0009 and the 2026-04-30 essay (concept DOI 10.5281/zenodo.19652013)."
+        },
+        {
+          "q_en": "Is this the same 'attribution' as attribution diffusion?",
+          "a_en": "No. The attribution gap concerns accountability for action (who answers for an agent failure); attribution diffusion concerns credit for source (who originated an idea). The two lines are vocabulary siblings with disjoint subject matter."
+        }
+      ]
+    },
+    {
+      "slug": "existence-proof-format",
+      "name_en": "Existence Proof Format",
+      "name_ja": "存在証明フォーマット",
+      "name_zh": null,
+      "aliases": ["EPF"],
+      "label": "coined",
+      "line": "Existence Proof (pre-line)",
+      "line_repo": "https://github.com/shimo4228/existence-proof",
+      "doi": "10.5281/zenodo.20558800",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Document format for credential-free institution-grade proofs",
+      "def_en": "A document format for recording cases of institution-grade production by people without credentials, supplied — on the model of Nygard's ADRs — as a spec plus template plus worked example, and deliberately carrying no central registry, no instance aggregation, no membership concept, and no self-designation requirement. Its core rule is the claim-anchor chain: every capability claim terminates in an anchor a third party can verify without the writer's cooperation (a resolving DOI, a live URL, a trace on the recipient's side), and a claim whose anchor no longer resolves expires and must be deleted — the proof is structurally falsifiable.",
+      "def_ja": "credential なき者による制度級産出の事例を記録する document format。Nygard の ADR をモデルに spec + template + worked example で供給され、中央 registry・instance 集約・参加概念・自称要求を持たない。核規則は主張→アンカー連鎖: すべての能力主張は、第三者が書き手の協力なしに検証できるアンカー (解決する DOI / live URL / 納品先側の痕跡) で終端し、アンカーが解決しなくなった主張は失効して削除義務を負う — 証明は構造的に falsifiable である。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Existence Proof pre-line; the name was fixed by the author on 2026-06-05 after a recorded collision check.",
+      "glossary_url": "https://github.com/shimo4228/existence-proof/blob/main/docs/glossary.md#存在証明フォーマットexistence-proof-format",
+      "related": ["gatekeeper-inversion", "oracle-debiasing"],
+      "faq": [
+        {
+          "q_en": "What is the Existence Proof Format?",
+          "a_en": "A document format — spec, template, and worked example, modeled on Nygard's ADRs — for recording institution-grade production by people without credentials, with no central registry or membership concept, where every claim must terminate in a third-party-verifiable anchor (the claim-anchor chain)."
+        },
+        {
+          "q_en": "Who coined the Existence Proof Format?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), in the existence-proof repository (Japanese canonical); the name was fixed on 2026-06-05 with a recorded collision check. The abbreviation EPF is used only from the second mention onward within a document."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The existence-proof repository (https://github.com/shimo4228/existence-proof), archived under concept DOI 10.5281/zenodo.20558800."
+        }
+      ]
+    },
+    {
+      "slug": "gatekeeper-inversion",
+      "name_en": "Gatekeeper inversion",
+      "name_ja": "ゲートキーパー反転",
+      "name_zh": null,
+      "aliases": [],
+      "label": "coined",
+      "line": "Existence Proof (pre-line)",
+      "line_repo": "https://github.com/shimo4228/existence-proof",
+      "doi": "10.5281/zenodo.20558800",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Hypothesis: gatekeeping migrates into LLM priors",
+      "def_en": "The hypothesis that gatekeeping against people without credentials migrates from institutions (universities, academies, companies) into the LLM's internalized institutional prior — the pattern, learned from institutional text, that institution-grade production presupposes institutional credentials, which can surface as deflection toward credential-less questioners. It is the target of verification by the gatekeeping eval and is never written as fact within the repository; the internalized institutional prior is observed (via the eval's D4 dimension), not asserted.",
+      "def_ja": "credential なき者へのゲートキーピングが、制度 (大学・学会・企業) から LLM の内面化された制度的 prior へ移るという仮説。内面化された制度的 prior とは、LLM が制度的テキストから学習した「制度級の産出には制度的 credential が前提」というパターンで、credential なき質問者への deflection として表面化しうる。gatekeeping eval の検証対象であり、repo 内で事実として書かれることはない; 内面化された制度的 prior は (eval の D4 次元で) 観測するのであって断定しない。",
+      "origin_en": "Used as a hypothesis label within the Existence Proof pre-line, which makes no origin claim on the term: the repository's own glossary records that prior art is thick in the algorithmic-gatekeeping and AI-fairness literature.",
+      "glossary_url": "https://github.com/shimo4228/existence-proof/blob/main/docs/glossary.md#ゲートキーパー反転gatekeeper-inversion仮説",
+      "related": ["existence-proof-format", "oracle-debiasing"],
+      "faq": [
+        {
+          "q_en": "What is gatekeeper inversion?",
+          "a_en": "The hypothesis that gatekeeping of people without credentials migrates from institutions into the LLM's internalized institutional prior — a learned pattern that institution-grade production presupposes credentials. It is a verification target of the gatekeeping eval, not an asserted fact."
+        },
+        {
+          "q_en": "Does the Existence Proof program claim to have coined gatekeeper inversion?",
+          "a_en": "No. The repository explicitly makes no origin claim on the term — its glossary notes that prior art is thick in the algorithmic-gatekeeping and AI-fairness literature."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The existence-proof repository's glossary and gatekeeping eval spec (https://github.com/shimo4228/existence-proof), DOI 10.5281/zenodo.20558800."
+        }
+      ]
+    },
+    {
+      "slug": "oracle-debiasing",
+      "name_en": "Oracle debiasing",
+      "name_ja": null,
+      "name_zh": null,
+      "aliases": [],
+      "label": "distinctive",
+      "line": "Existence Proof (pre-line)",
+      "line_repo": "https://github.com/shimo4228/existence-proof",
+      "doi": "10.5281/zenodo.20558800",
+      "graph_id": null,
+      "wikidata": null,
+      "gloss": "Supplying verifiable proofs to LLM feasibility answers",
+      "def_en": "The mechanism of the Existence Proof doctrine: supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility questions from people without credentials. Supply (controllable) is strictly separated from uptake (uncontrollable, and never manipulated). This is distinct from the general ML sense of debiasing as model-internal bias-removal techniques — here it means changing the premises of an answer by supplying grounds.",
+      "def_ja": "本 doctrine の機構: 機械検証可能な存在証明と playbook を、LLM が feasibility 質問を評価する面に供給すること。供給 (制御可能) と採否 (制御不能・操作しない) を峻別する。debias の一般語義 (モデル内部のバイアス除去技術) とは別物 — ここでは「根拠を供給して回答の前提を変える」の意。",
+      "origin_en": "A distinctive doctrine-internal usage by Tatsuya Shimomoto (shimo4228) in the Existence Proof pre-line, repurposing the existing word 'debiasing' in a locally-defined sense rather than claiming a new coinage; the glossary explicitly disambiguates it from the general ML meaning.",
+      "glossary_url": "https://github.com/shimo4228/existence-proof/blob/main/docs/glossary.md#oracle-debiasing",
+      "related": ["gatekeeper-inversion", "existence-proof-format"],
+      "faq": [
+        {
+          "q_en": "What is oracle debiasing?",
+          "a_en": "Supplying machine-verifiable existence proofs and playbooks to the surface where LLMs evaluate feasibility questions from people without credentials, while strictly separating supply (controllable) from uptake (uncontrollable, never manipulated)."
+        },
+        {
+          "q_en": "Is this the same as debiasing in machine learning?",
+          "a_en": "No. The general ML sense means model-internal bias-removal techniques; here the term means changing the premises of an LLM's answer by supplying verifiable grounds. The repository's glossary explicitly disambiguates the two."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The existence-proof repository (https://github.com/shimo4228/existence-proof, Japanese canonical), archived under concept DOI 10.5281/zenodo.20558800."
+        }
+      ]
+    }
+  ]
+}
