@@ -428,6 +428,15 @@
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
+      "@id": "https://github.com/shimo4228/rules-stocktake",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "rules-stocktake",
+      "description": "AKC Curate phase skill: audit always-loaded rules for residency cost, staleness, and substrate absorption.",
+      "url": "https://github.com/shimo4228/rules-stocktake",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
       "@id": "https://github.com/shimo4228/rules-distill",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "rules-distill",

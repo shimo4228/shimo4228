@@ -31,6 +31,7 @@
 - [learn-eval](https://github.com/shimo4228/learn-eval): Extract phase — extract reusable patterns with quality gates
 - [skill-stocktake](https://github.com/shimo4228/skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
 - [skill-health](https://github.com/shimo4228/skill-health): Curate phase — scan skill libraries for structural debt, including missing scripts, agents, and sibling-skill references
+- [rules-stocktake](https://github.com/shimo4228/rules-stocktake): Curate phase — audit always-loaded rules for residency cost, staleness, and substrate absorption
 - [rules-distill](https://github.com/shimo4228/rules-distill): Promote phase — distill cross-cutting principles into rules
 - [skill-comply](https://github.com/shimo4228/skill-comply): Measure phase — test whether agents follow their skills and rules
 - [context-sync](https://github.com/shimo4228/context-sync): Maintain phase — audit docs for role overlaps and stale content

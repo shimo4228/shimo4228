@@ -85,6 +85,7 @@ AKC cycle skills:
 | [learn-eval](https://github.com/shimo4228/learn-eval) | Extract phase: turn sessions into reusable patterns with quality gates. |
 | [skill-stocktake](https://github.com/shimo4228/skill-stocktake) | Curate phase: audit skills for staleness, conflict, and redundancy. |
 | [skill-health](https://github.com/shimo4228/skill-health) | Curate phase: scan skill libraries for structural debt such as missing scripts, agents, and sibling-skill references. |
+| [rules-stocktake](https://github.com/shimo4228/rules-stocktake) | Curate phase: audit always-loaded rules for residency cost, staleness, and substrate absorption. |
 | [rules-distill](https://github.com/shimo4228/rules-distill) | Promote phase: distill cross-cutting principles into rules. |
 | [skill-comply](https://github.com/shimo4228/skill-comply) | Measure phase: test whether agents follow skills and rules. |
 | [context-sync](https://github.com/shimo4228/context-sync) | Maintain phase: keep documentation roles and context surfaces coherent. |
