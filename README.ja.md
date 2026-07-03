@@ -4,11 +4,11 @@ Language: [English](README.md) | 日本語
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> 下本竜也による 5 本の独立引用可能な研究ラインの hub repository。主題は AI エージェント設計、AI 仲介時代の著者性、計算論的現象学。
+> 下本竜也による 5 本の独立引用可能な研究ラインの hub repository。主題は AI エージェント設計、AI 仲介時代の著者性、計算論的現象学。全体を貫くのは **value-layer harness engineering（価値層ハーネス工学）** — tool や permission で止まらず、規範・憲法・価値の層まで工学の対象とし、全層を一つの human-gated サイクルで統治するエージェントハーネス。
 
 この repo は地図であり、各プロジェクトの現在状態の source of truth ではない。各研究ラインはそれぞれの repository と Zenodo concept DOI を持つ。この hub は、安定した関係、引用ポインタ、機械可読なナビゲーション面を 1 か所にまとめる。
 
-限られた環境で工夫して作ることが好きだ — beats, meditation, public service, AI agents。その線は以下にもつながっている。meditation の実践は 5 本のうち 2 本の研究ラインの源流にあり、エージェント群は Apple Silicon Mac 1 台で動く — ラボも所属もなしで。
+私の実践は value-layer harness engineering だ。作っているハーネスは tool・permission・eval で止まらず、規範・憲法・価値という最上流層まで届き、その層も下位層と同じ human-gated サイクルで運用される。限られた環境で工夫して作ることが好きだ — beats, meditation, public service, AI agents。その線は以下にもつながっている。meditation の実践はその価値層の中身を供給し、5 本のうち 2 本の研究ラインの源流にあり、エージェント群は Apple Silicon Mac 1 台で動く — ラボも所属もなしで。
 
 ## 早見表
 
@@ -21,6 +21,8 @@ Language: [English](README.md) | 日本語
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 認知と仏教の inquiry | Abhidharma の cognitive-process model と computational phenomenology の比較。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
 5 本のラインは sibling であり、依存関係ではない。AKC は mechanism、Contemplative Agent は disposition と running case、AAP は accountability practice、Authorship Strategy は diffusion methodology、Attention, Not Self は cognitive-philosophical inquiry だ。
+
+3 本の agent-design line を縦に貫く主張が一つある: **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** だ。ハーネスは tool・permission・eval で止まらず、規範・憲法・価値まで届く。そしてその最上流層は、下位層と同じ human-gated サイクルの統治下にある — AKC の Promote / Measure phase が rules 層に何を入れるかを決め、それが行動を変えたかを検査する。Contemplative Agent は identity と Constitution へのすべての昇格に人間の承認ゲートを置き、公理の行動効果を測定する。AAP の prohibition-strength hierarchy は、規範をどの層に置くべきかを決める。この stack は公開されているだけでなく self-hosted でもある: 著者自身の日常ハーネスが contemplative axioms・AKC cycle・authorship-strategy の判断スタックを常時ロードの rules として積んでおり、[claude-harness](https://github.com/shimo4228/claude-harness) がその公開 snapshot だ。Attention, Not Self はその価値層の観想的な中身を供給し、Authorship Strategy はプログラム全体を公開・引用させる方法論である。
 
 ## 機械読解
 

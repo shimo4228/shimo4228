@@ -110,8 +110,9 @@ def term_jsonld(term: dict) -> dict:
         "description": term["def_en"],
         "inDefinedTermSet": f"{BASE}/concepts/",
         "url": url,
-        "subjectOf": {"@id": f"https://doi.org/{term['doi']}"},
     }
+    if term.get("doi"):
+        defined_term["subjectOf"] = {"@id": f"https://doi.org/{term['doi']}"}
     if alternate:
         defined_term["alternateName"] = alternate
     if same_as:
@@ -204,7 +205,7 @@ def render_term(term: dict, by_slug: dict) -> str:
 <h2>Canonical sources</h2>
 <div class="sources"><ul>
 <li>Repository: <a href="{esc(term['line_repo'])}">{esc(term['line_repo'].removeprefix('https://'))}</a></li>
-<li>Concept DOI: <a href="https://doi.org/{esc(term['doi'])}">{esc(term['doi'])}</a></li>
+{f'<li>Concept DOI: <a href="https://doi.org/{esc(term["doi"])}">{esc(term["doi"])}</a></li>' if term.get('doi') else ''}
 <li>Glossary entry: <a href="{esc(term['glossary_url'])}">canonical definition</a></li>
 </ul></div>
 

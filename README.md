@@ -4,11 +4,11 @@ Language: English | [日本語](README.ja.md)
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> Hub repository for five independently citable research lines by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology.
+> Hub repository for five independently citable research lines by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology. The through-line is **value-layer harness engineering** — agent harnesses engineered past tools and permissions, up to norms, constitutions, and values, with every layer governed by one human-gated cycle.
 
 This repo is a map, not the source of truth for live project state. Each research line lives in its own repository and Zenodo concept DOI; this hub keeps the stable relationships, citation pointers, and machine-readable navigation surfaces in one place.
 
-I like making things under constraint — beats, meditation, public service, AI agents. The thread runs through what's below: the meditation practice feeds two of the five research lines, and the agents run on a single Apple Silicon Mac — no lab, no affiliation.
+I practice value-layer harness engineering: the harnesses I build do not stop at tools, permissions, and evals — they reach the topmost layers, norms, constitutions, and values, and those layers run through the same human-gated cycle as everything below. I like making things under constraint — beats, meditation, public service, AI agents. The thread runs through what's below: the meditation practice supplies the content of that value layer and feeds two of the five research lines, and the agents run on a single Apple Silicon Mac — no lab, no affiliation.
 
 ## At a Glance
 
@@ -21,6 +21,8 @@ I like making things under constraint — beats, meditation, public service, AI 
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | Cognitive and Buddhist inquiry | A comparison of Abhidharma cognitive-process models with computational phenomenology. | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
 The five lines are siblings, not dependencies. AKC is the mechanism, Contemplative Agent is the disposition and running case, AAP is the accountability practice, Authorship Strategy is the diffusion methodology, and Attention, Not Self is the cognitive-philosophical inquiry.
+
+One claim runs vertically through the three agent-design lines: **[value-layer harness engineering](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)**. The harness does not stop at tools, permissions, and evals; it extends to norms, constitutions, and values, and those top layers are governed by the same human-gated cycle as everything below — AKC's Promote and Measure phases decide what enters the rules layer and check whether it changes behavior, Contemplative Agent gates every promotion into identity and Constitution behind human approval and measures the axioms' behavioral effect, and AAP's prohibition-strength hierarchy decides which layer a norm should live in. The stack is self-hosted, not only published: the author's daily working harness loads the contemplative axioms, the AKC cycle, and the authorship-strategy judgment stack as always-on rules, and [claude-harness](https://github.com/shimo4228/claude-harness) is the public snapshot. Attention, Not Self supplies the contemplative content of that value layer; Authorship Strategy is the methodology by which the whole program is published and cited.
 
 ## Machine reading
 

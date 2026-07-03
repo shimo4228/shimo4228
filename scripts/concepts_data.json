@@ -377,7 +377,7 @@
       "def_ja": "エージェントの harness (skills, rules, prompts, documentation) を、operator の進化し続ける intent に整合させ続ける、継続的で human-gated な活動。3 つの性質が同時に成り立つ: 対象は operator intent であり、それ自体が進化する (bidirectional — ループが回ること自体が target を動かす); ループは human-gated である; 整合は継続的で、一度の設定ではなく繰り返されるサイクルで維持される。その失敗モードが harness drift: サイクルが回らないときに harness が operator intent から徐々に uncouple していくこと。architectural drift (Perry & Wolf 1992)、practical drift (Snook 2000)、agent drift (Rath 2026) の系譜に置いて命名された。intent alignment (Christiano 2018) を、行動から行動を形づくる artifact へ、そして時間軸へ拡張する。",
       "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) within the Agent Knowledge Cycle research line (ADR-0017 and the companion position paper), which records the term's lineage against prior drift coinages and notes one unrelated prior use of the phrase 'harness drift' in a different, benchmark-comparability sense.",
       "glossary_url": "https://github.com/shimo4228/agent-knowledge-cycle/blob/main/docs/glossary.md#harness-alignment",
-      "related": ["agent-knowledge-cycle", "attention-ceiling", "scaffold-dissolution"],
+      "related": ["agent-knowledge-cycle", "attention-ceiling", "scaffold-dissolution", "value-layer-harness-engineering"],
       "faq": [
         {
           "q_en": "What is harness alignment?",
@@ -675,6 +675,43 @@
         {
           "q_en": "Where is the canonical source?",
           "a_en": "The existence-proof repository (https://github.com/shimo4228/existence-proof, Japanese canonical), archived under concept DOI 10.5281/zenodo.20558800."
+        }
+      ]
+    },
+    {
+      "slug": "value-layer-harness-engineering",
+      "name_en": "Value-layer harness engineering",
+      "name_ja": "価値層ハーネス工学",
+      "name_zh": null,
+      "aliases": [],
+      "label": "coined",
+      "line": "Research program hub (spans AKC, Contemplative Agent, AAP)",
+      "line_repo": "https://github.com/shimo4228/shimo4228",
+      "doi": null,
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/value-layer-harness-engineering",
+      "wikidata": null,
+      "gloss": "Engineering the harness up to norms, constitutions, and values",
+      "def_en": "Extending the engineered agent harness beyond tools, permissions, and evals up to its topmost layers — norms, constitutions, and values — and governing those layers with the same human-gated cycle as every layer below: value-layer material is promoted through explicit approval gates, measured for behavioral effect, and designed for eventual scaffold dissolution. The claim is operational, not merely architectural: a constitution that is only declared is configuration; a constitution that is promoted, measured, and audited is engineered. In this program the term is the through-line of the three agent-design lines — AKC supplies the cycle (Promote and Measure phases), Contemplative Agent supplies the running case (a human approval gate on every promotion into identity and Constitution, with the axioms' behavioral effect measured), and AAP supplies the placement judgment (the prohibition-strength hierarchy decides which layer a norm should live in). The stack is self-hosted in the author's daily working harness, with claude-harness as the public snapshot.",
+      "def_ja": "エージェントハーネスの工学対象を tool・permission・eval で止めず、規範・憲法・価値という最上流層まで拡張し、その層を下位層と同じ human-gated サイクルで統治すること。価値層の素材は明示的な承認ゲートを通って昇格し、行動効果を測定され、最終的な scaffold dissolution まで設計される。主張は構造ではなく運用にある: 宣言されるだけの憲法は設定であり、昇格・測定・監査される憲法が工学の対象である。本プログラムでは 3 本の agent-design line を貫く縦糸 — AKC がサイクル (Promote / Measure phase) を、Contemplative Agent が running case (identity・Constitution への全昇格に人間承認ゲート、公理の行動効果測定) を、AAP が配置判断 (prohibition-strength hierarchy が規範をどの層に置くかを決める) を供給する。この stack は著者自身の日常ハーネスに self-hosted されており、claude-harness がその公開 snapshot である。",
+      "origin_en": "Coined by Tatsuya Shimomoto (shimo4228) at the hub level of the research program (introduced July 2026) as the through-line of the three agent-design lines; it builds on the established generic term 'harness engineering' by naming the layer that discourse leaves out, and anchors to the program's own coined terms harness alignment, scaffold dissolution, and prohibition-strength hierarchy and to the four contemplative axioms of Laukkonen et al. (2025).",
+      "glossary_url": "https://shimo4228.github.io/shimo4228/vocab#concept/value-layer-harness-engineering",
+      "related": ["harness-alignment", "scaffold-dissolution", "four-contemplative-axioms", "agent-knowledge-cycle", "contemplative-agent", "agent-attribution-practice"],
+      "faq": [
+        {
+          "q_en": "What is value-layer harness engineering?",
+          "a_en": "Extending the engineered agent harness beyond tools, permissions, and evals up to norms, constitutions, and values, and governing those top layers with the same human-gated cycle as every layer below — promotion gates, behavioral measurement, and designed scaffold dissolution."
+        },
+        {
+          "q_en": "How does it differ from harness engineering in general?",
+          "a_en": "The generic harness-engineering discourse covers tools, permissions, memory, evals, and observability. Value-layer harness engineering names the layer that discourse leaves out: the norms, constitutions, and values of the agent, treated as engineered, cycle-governed artifacts rather than static configuration."
+        },
+        {
+          "q_en": "Who coined value-layer harness engineering?",
+          "a_en": "Tatsuya Shimomoto (shimo4228), at the hub level of his research program (July 2026), as the through-line of the Agent Knowledge Cycle, Contemplative Agent, and Agent Attribution Practice lines."
+        },
+        {
+          "q_en": "Where is the canonical source?",
+          "a_en": "The shimo4228 hub repository (https://github.com/shimo4228/shimo4228) — the hub knowledge graph and vocabulary page hold definitional authority; the three agent-design line repositories supply the cycle, the running case, and the placement judgment."
         }
       ]
     }
