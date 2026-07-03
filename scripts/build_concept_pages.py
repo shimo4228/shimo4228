@@ -240,7 +240,8 @@ def render_index(terms: list) -> str:
         "description": (
             "Index of coined and distinctively used research terms of the "
             "shimo4228 research program, one definition page per term, each "
-            "linking back to its canonical repository, glossary entry, and DOI."
+            "linking back to its canonical repository and glossary entry, "
+            "plus the concept DOI for terms belonging to a DOI-registered line."
         ),
         "creator": PERSON,
         "hasDefinedTerm": [
@@ -265,7 +266,7 @@ def render_index(terms: list) -> str:
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Concept index — shimo4228 research program">
-<meta property="og:description" content="One definition page per coined research term, each linking back to its canonical repository, glossary entry, and DOI.">
+<meta property="og:description" content="One definition page per coined research term, each linking back to its canonical repository and glossary entry, plus the concept DOI where the term belongs to a DOI-registered line.">
 <meta property="og:url" content="{url}">
 {jsonld_block(termset)}
 <style>{CSS}</style>
@@ -275,9 +276,10 @@ def render_index(terms: list) -> str:
 <p>One page per coined or distinctively used term of the
 <a href="{BASE}/">shimo4228 research program</a>. Each page carries the
 definition (English and Japanese), origin, and links to the canonical
-repository, glossary entry, and concept DOI. The line repositories remain the
-source of truth; these pages exist so that a term heard elsewhere can be
-traced back to its origin.</p>
+repository and glossary entry — plus the concept DOI where the term belongs
+to a DOI-registered line (hub-level terms link to the hub instead). The line
+repositories remain the source of truth; these pages exist so that a term
+heard elsewhere can be traced back to its origin.</p>
 {sections}
 {FOOTER}
 </body>
