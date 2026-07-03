@@ -22,9 +22,9 @@ Language: [English](README.md) | 日本語
 
 5 本のラインは sibling であり、依存関係ではない。AKC は mechanism、Contemplative Agent は disposition と running case、AAP は accountability practice、Authorship Strategy は diffusion methodology、Attention, Not Self は cognitive-philosophical inquiry だ。
 
-3 本の agent-design line（AKC / Contemplative Agent / AAP）を縦に貫く主張が一つある: **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** だ。ハーネスは tool・permission・eval で止まらず、規範・憲法・価値まで届く。そしてその最上流層は、下位層と同じ human-gated サイクルの統治下にある — AKC の Promote / Measure phase が rules 層に何を入れるかを決め、それが行動を変えたかを検査する。Contemplative Agent は identity と Constitution へのすべての昇格に人間の承認ゲートを置き、公理の行動効果を測定する。AAP の prohibition-strength hierarchy は、規範をどの層に置くべきかを決める。
+3 本の agent-design line（AKC / Contemplative Agent / AAP）を縦に貫く主張が一つある: **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** だ。エージェントハーネス — Claude Code の rules や CLAUDE.md のような層 — に普通置かれるのは、コーディング規約・セキュリティ方針・執筆スタイルといったタスクの規則だ。このプログラムは同じ場所に価値規範を書く: contemplative axioms と authorship-strategy の判断スタックが、著者の日常ハーネスに常時ロードの rules として載っている（[claude-harness](https://github.com/shimo4228/claude-harness) がその公開 snapshot）。狙いは、目の前のタスクの最適化に留まらず、長期的な価値判断まで AI を伴走者として設計することにある。
 
-この stack は公開されているだけでなく self-hosted でもある: 著者自身の日常ハーネスが contemplative axioms・AKC cycle・authorship-strategy の判断スタックを常時ロードの rules として積んでおり、[claude-harness](https://github.com/shimo4228/claude-harness) がその公開 snapshot だ。残る 2 本の cross-cutting line がこの図を完成させる: Attention, Not Self は価値層を満たすものを名指し、Authorship Strategy はプログラム全体が公開され、引用されるための方法論だ。
+その価値層も、下位層と同じ human-gated サイクルの統治下にある。AKC のサイクルは設計からして genre-neutral だ: セッションのパターンをコーディング規則へ蒸留するのと同じ機構（Extract = learn-eval、Promote = rules-distill）が価値規範を rules 層へ運び、Measure がそれが行動を変えたかを検査する。AAP の prohibition-strength hierarchy は、規範をどの層に置くべきかを決める。そして Contemplative Agent はこの層を **Identity と Constitution** として明示的に設計し — そこへのすべての昇格に人間の承認ゲートを置き — エージェント自身の SNS 活動（Moltbook adapter）の中でそれがどう変化するかを観察している。残る 2 本の cross-cutting line がこの図を完成させる: Attention, Not Self は価値層を満たすものを名指し、Authorship Strategy はプログラム全体が公開され、引用されるための方法論だ。
 
 ## 機械読解
 
