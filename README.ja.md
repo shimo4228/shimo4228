@@ -6,7 +6,7 @@ Language: [English](README.md) | 日本語
 
 > 下本竜也による 5 本の独立引用可能な研究ラインの hub repository。主題は AI エージェント設計、AI 仲介時代の著者性、計算論的現象学。全体を貫くのは **value-layer harness engineering（価値層ハーネス工学）** — ハーネス工学を tool・permission・eval で止めず、規範・憲法・価値の層まで広げ、一つの human-gated サイクルで統治する。
 
-下本竜也。AI エージェントを独立して作っている — 一人で、Apple Silicon Mac 1 台、ラボも所属もなしで。実践全体を小さく検証可能な制約の下に置いている: 公開リポジトリ、DOI レコード、人間の承認ゲート。この repo は地図であり、各プロジェクトの現在状態の source of truth ではない — 各研究ラインはそれぞれの repository と Zenodo concept DOI を持ち、この hub は安定した関係と引用ポインタを 1 か所にまとめる。
+下本竜也。AI エージェントを一人で作っている — Apple Silicon Mac 1 台、ラボも所属もなしで。やっているのは、AI 時代の「良いやり方」を実地で探ることだ。論文や DOI はその探究の道具であって、肩書きではない — 仕事を引用可能で永続的、追跡可能に保つためのものだ。この repo は地図であり、各プロジェクトの現在状態の source of truth ではない — 各研究ラインはそれぞれの repository と Zenodo concept DOI を持ち、この hub は安定した関係と引用ポインタを 1 か所にまとめる。
 
 ## 早見表
 

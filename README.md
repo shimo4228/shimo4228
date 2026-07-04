@@ -6,7 +6,7 @@ Language: English | [日本語](README.ja.md)
 
 > Hub repository for five independently citable research lines by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology. The through-line is **value-layer harness engineering**: extending the agent harness past tools, permissions, and evals, up to norms, constitutions, and values, under one human-gated cycle.
 
-I'm Tatsuya Shimomoto — an independent researcher-builder working solo, on one Apple Silicon Mac, with no lab and no affiliation. I keep the whole practice under small, inspectable constraints: public repositories, DOI records, and human approval gates. This repo is a map, not the source of truth for live state — each research line has its own repository and Zenodo concept DOI, and the hub keeps their stable relationships and citation pointers in one place.
+I'm Tatsuya Shimomoto — I build AI agents solo, on one Apple Silicon Mac, with no lab and no affiliation, working out what good practice looks like in the AI age. The papers and DOIs are tools in that, not a title — how I keep the work citable, durable, and traceable. This repo is a map, not the source of truth for live state — each research line has its own repository and Zenodo concept DOI, and the hub keeps their stable relationships and citation pointers in one place.
 
 ## At a Glance
 
