@@ -4,7 +4,7 @@ Language: English | [日本語](README.ja.md)
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> Hub repository for five independently citable research lines by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology. The through-line is **value-layer harness engineering**: extending the agent harness past tools, permissions, and evals, up to norms, constitutions, and values, under one human-gated cycle.
+> Hub repository for five independently citable research lines by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology. The three agent-design lines share one claim — see [Through-line](#through-line).
 
 I'm Tatsuya Shimomoto — I build AI agents solo, on one Apple Silicon Mac, with no lab and no affiliation, working out what good practice looks like in the AI age. The papers and DOIs are tools in that, not a title — how I keep the work citable, durable, and traceable. This repo is a map, not the source of truth for live state — each research line has its own repository and Zenodo concept DOI, and the hub keeps their stable relationships and citation pointers in one place.
 
