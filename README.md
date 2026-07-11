@@ -12,8 +12,8 @@ I'm Tatsuya Shimomoto — I build AI agents solo, on one Apple Silicon Mac, with
 
 | Line | Role | Stable concept | Canonical record |
 |---|---|---|---|
+| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | Agent disposition and implementation | A local agent that holds its value layer as an explicit harness artifact — a Constitution the agent amends from its own experience, under human-gated review. | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
 | [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle) | Agent-design mechanism | A six-phase loop for sustaining agent-operator intent alignment as both behavior and judgment evolve. | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
-| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | Agent disposition and implementation | A local agent using four contemplative axioms as an optional behavioral preset, not an architectural dependency. | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
 | [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice) | Accountability practice | Harness-neutral ADRs for deciding what to prohibit, where controls live, and who answers when an agent fails. | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
 | [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI-era authorship methodology | A framework for being a known author when LLMs mediate how readers discover and cite artifacts. | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | Cognitive and Buddhist inquiry | A comparison of Abhidharma cognitive-process models with computational phenomenology. | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
@@ -22,7 +22,7 @@ The five lines are siblings, not dependencies — any one can be adopted alone.
 
 ## Through-line
 
-One claim runs through the three agent-design lines (AKC, Contemplative Agent, AAP): **[value-layer harness engineering](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)**. An agent harness normally holds task regulation — coding conventions, security policy, writing style; this program writes value norms (the contemplative axioms, an authorship-strategy judgment stack) into the same layer and governs them with the same human-gated cycle as everything below ([claude-harness](https://github.com/shimo4228/claude-harness) is the public snapshot). The contemplative content of that value layer comes from the author's meditation practice, which also sources two of the five lines; Authorship Strategy is how the whole program is published and cited.
+One claim runs through the three agent-design lines (Contemplative Agent, AKC, AAP): **[value-layer harness engineering](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)**. An agent harness normally holds task regulation — coding conventions, security policy, writing style; this program writes value norms (the contemplative axioms, an authorship-strategy judgment stack) into the same layer and governs them with the same human-gated cycle as everything below ([claude-harness](https://github.com/shimo4228/claude-harness) is the public snapshot). The contemplative content of that value layer comes from the author's meditation practice, which also sources two of the five lines; Authorship Strategy is how the whole program is published and cited.
 
 ## Papers
 

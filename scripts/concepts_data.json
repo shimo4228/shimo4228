@@ -685,7 +685,7 @@
       "name_zh": null,
       "aliases": [],
       "label": "coined",
-      "line": "Research program hub (spans AKC, Contemplative Agent, AAP)",
+      "line": "Research program hub (spans Contemplative Agent, AKC, AAP)",
       "line_repo": "https://github.com/shimo4228/shimo4228",
       "doi": null,
       "graph_id": "https://shimo4228.github.io/shimo4228/vocab#concept/value-layer-harness-engineering",
@@ -707,7 +707,7 @@
         },
         {
           "q_en": "Who coined value-layer harness engineering?",
-          "a_en": "Tatsuya Shimomoto (shimo4228), at the hub level of his research program (July 2026), as the through-line of the Agent Knowledge Cycle, Contemplative Agent, and Agent Attribution Practice lines."
+          "a_en": "Tatsuya Shimomoto (shimo4228), at the hub level of his research program (July 2026), as the through-line of the Contemplative Agent, Agent Knowledge Cycle, and Agent Attribution Practice lines."
         },
         {
           "q_en": "Where is the canonical source?",

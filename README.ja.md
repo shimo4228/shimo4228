@@ -12,8 +12,8 @@ Language: [English](README.md) | 日本語
 
 | Line | 役割 | 安定した概念 | 正準 record |
 |---|---|---|---|
+| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | エージェントの disposition と実装 | 価値層を Constitution という明示的なハーネス artifact として持つ local agent — agent は自らの経験からこの Constitution を改訂していき、その改訂は human-gated review を通る。 | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
 | [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle) | エージェント設計の mechanism | エージェントと操作者の意図 alignment を、振る舞いと判断の変化に合わせて保つ 6 フェーズ loop。 | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
-| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | エージェントの disposition と実装 | 4 つの contemplative axioms を、アーキテクチャ依存ではなく任意の行動 preset として使う local agent。 | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
 | [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice) | accountability practice | 何を禁止するか、制御をどこに置くか、agent が壊れたとき誰が答えるかを扱う harness-neutral な ADR 群。 | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
 | [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性 methodology | LLM が発見と引用を仲介する時代に、known author であるための framework。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 認知と仏教の inquiry | Abhidharma の cognitive-process model と computational phenomenology の比較。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
@@ -22,7 +22,7 @@ Language: [English](README.md) | 日本語
 
 ## Through-line
 
-3 本の agent-design line（AKC / Contemplative Agent / AAP）を貫く主張が一つある: **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** だ。エージェントハーネスに普通置かれるのはタスクの規則 — コーディング規約・セキュリティ方針・執筆スタイルだ。このプログラムは同じ層に価値規範（contemplative axioms、authorship-strategy の判断スタック）を書き、下位層と同じ human-gated サイクルで統治する（[claude-harness](https://github.com/shimo4228/claude-harness) がその公開 snapshot）。その価値層の contemplative な中身は著者の meditation 実践に由来し、5 本のうち 2 本のラインの源流でもある。Authorship Strategy はプログラム全体が公開され引用されるための方法論だ。
+3 本の agent-design line（Contemplative Agent / AKC / AAP）を貫く主張が一つある: **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** だ。エージェントハーネスに普通置かれるのはタスクの規則 — コーディング規約・セキュリティ方針・執筆スタイルだ。このプログラムは同じ層に価値規範（contemplative axioms、authorship-strategy の判断スタック）を書き、下位層と同じ human-gated サイクルで統治する（[claude-harness](https://github.com/shimo4228/claude-harness) がその公開 snapshot）。その価値層の contemplative な中身は著者の meditation 実践に由来し、5 本のうち 2 本のラインの源流でもある。Authorship Strategy はプログラム全体が公開され引用されるための方法論だ。
 
 ## Papers
 
