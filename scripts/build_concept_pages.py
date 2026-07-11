@@ -65,10 +65,10 @@ CSS = """
 
 FOOTER = (
     '<footer><p><a href="index.html">Concept index</a> · '
-    f'<a href="{BASE}/">Research program hub</a> · '
+    f'<a href="{BASE}/">Program hub</a> · '
     '<a href="https://github.com/shimo4228">GitHub</a> · '
     f'<a href="{ORCID}">ORCID</a></p>'
-    "<p>Part of the shimo4228 research program. Definitions are faithful "
+    "<p>Part of the shimo4228 program. Definitions are faithful "
     "adaptations of each line’s canonical glossary; the line repository "
     "is always the source of truth.</p></footer>"
 )
@@ -148,7 +148,7 @@ def term_jsonld(term: dict) -> dict:
 def render_term(term: dict, by_slug: dict) -> str:
     url = f"{BASE}/concepts/{term['slug']}.html"
     name = esc(term["name_en"])
-    title = f"{name} — {esc(term['gloss'])} | shimo4228 research program"
+    title = f"{name} — {esc(term['gloss'])} | shimo4228 program"
     desc = esc(meta_description(term))
     label = LABEL_TEXT.get(term["label"], term["label"])
     alias_note = ""
@@ -236,10 +236,10 @@ def render_index(terms: list) -> str:
         "@context": "https://schema.org",
         "@type": "DefinedTermSet",
         "@id": url,
-        "name": "shimo4228 research program — concept index",
+        "name": "shimo4228 program — concept index",
         "description": (
             "Index of coined and distinctively used research terms of the "
-            "shimo4228 research program, one definition page per term, each "
+            "shimo4228 program, one definition page per term, each "
             "linking back to its canonical repository and glossary entry, "
             "plus the concept DOI for terms belonging to a DOI-registered line."
         ),
@@ -261,12 +261,12 @@ def render_index(terms: list) -> str:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Concept index — coined research terms | shimo4228 research program</title>
-<meta name="description" content="One definition page per coined research term of the shimo4228 research program: Agent Knowledge Cycle, three-axis inversion, attribution diffusion, and more.">
+<title>Concept index — coined terms | shimo4228 program</title>
+<meta name="description" content="One definition page per coined term of the shimo4228 program: Agent Knowledge Cycle, three-axis inversion, attribution diffusion, and more.">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Concept index — shimo4228 research program">
-<meta property="og:description" content="One definition page per coined research term, each linking back to its canonical repository and glossary entry, plus the concept DOI where the term belongs to a DOI-registered line.">
+<meta property="og:title" content="Concept index — shimo4228 program">
+<meta property="og:description" content="One definition page per coined term, each linking back to its canonical repository and glossary entry, plus the concept DOI where the term belongs to a DOI-registered line.">
 <meta property="og:url" content="{url}">
 {jsonld_block(termset)}
 <style>{CSS}</style>
@@ -274,7 +274,7 @@ def render_index(terms: list) -> str:
 <body>
 <h1>Concept index</h1>
 <p>One page per coined or distinctively used term of the
-<a href="{BASE}/">shimo4228 research program</a>. Each page carries the
+<a href="{BASE}/">shimo4228 program</a>. Each page carries the
 definition (English and Japanese), origin, and links to the canonical
 repository and glossary entry — plus the concept DOI where the term belongs
 to a DOI-registered line (hub-level terms link to the hub instead). The line

@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 message: >-
   This repository is a hub, not a research output. To cite material from the
-  research ecosystem, cite the individual research line via its Zenodo concept
+  ecosystem, cite the individual practice line via its Zenodo concept
   DOI: AKC 10.5281/zenodo.19200726, Contemplative Agent 10.5281/zenodo.19212118,
   AAP 10.5281/zenodo.19652013, Authorship Strategy 10.5281/zenodo.20263316,
   Attention Not Self 10.5281/zenodo.20262112. To reference the hub itself
   (aggregated index, knowledge graph, traffic dataset), use the metadata below.
-title: "shimo4228 research program hub"
+title: "shimo4228 program hub"
 type: software
 authors:
   - family-names: Shimomoto

@@ -1,6 +1,6 @@
 # shimo4228 (hub repo)
 
-This repo is a **hub**, not a source of truth. Its README aggregates the five independently-evolving research lines — three agent-design lines (AKC / Contemplative Agent / AAP) and two cross-cutting lines (Authorship Strategy / Attention Not Self) — and their papers; the AI-facing surfaces (`llms.txt` / `llms-full.txt` / `graph.jsonld`) additionally carry the full supporting-ecosystem inventory.
+This repo is a **hub**, not a source of truth. Its README aggregates the five independently-evolving practice lines — three agent-design lines (AKC / Contemplative Agent / AAP) and two cross-cutting lines (Authorship Strategy / Attention Not Self) — and their papers; the AI-facing surfaces (`llms.txt` / `llms-full.txt` / `graph.jsonld`) additionally carry the full supporting-ecosystem inventory.
 
 ## Design rules for hub content
 
@@ -21,7 +21,7 @@ This repo is a **hub**, not a source of truth. Its README aggregates the five in
 
 - A **new structural concept** appears in a line (e.g. AAP added `Four Business AI Quadrants` — that earned a 1-句 mention).
 - An **ecosystem repo** is added or retired — update `llms.txt`, `llms-full.txt`, and the `graph.jsonld` `EcosystemRepo` nodes (not a README row; the README only points to them).
-- A **new research line** starts.
+- A **new practice line** starts.
 - A **paper is deposited** from a line as a standalone Zenodo record — add a membership row to the Papers section (all four surfaces) and a `Paper` node in `graph.jsonld`. Concept DOI only; rows are never edited afterwards (paper records are immutable once deposited).
 - The 3 concept DOIs themselves move (rare; only if a record is restructured on Zenodo).
 

@@ -4,9 +4,9 @@ Language: English | [日本語](README.ja.md)
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> Hub repository for five independently citable research lines by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology. The three agent-design lines share one claim — see [Through-line](#through-line).
+> Hub repository for five independently citable practice lines by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology. The three agent-design lines share one claim — see [Through-line](#through-line).
 
-I'm Tatsuya Shimomoto — I build AI agents solo, on one Apple Silicon Mac, with no lab and no affiliation, working out what good practice looks like in the AI age. The papers and DOIs are tools in that, not a title — how I keep the work citable, durable, and traceable. This repo is a map, not the source of truth for live state — each research line has its own repository and Zenodo concept DOI, and the hub keeps their stable relationships and citation pointers in one place.
+I'm Tatsuya Shimomoto — I build AI agents solo, on one Apple Silicon Mac, with no lab and no affiliation, working out what good practice looks like in the AI age. The papers and DOIs are tools in that, not a title — how I keep the work citable, durable, and traceable. This repo is a map, not the source of truth for live state — each practice line has its own repository and Zenodo concept DOI, and the hub keeps their stable relationships and citation pointers in one place.
 
 ## At a Glance
 
@@ -46,4 +46,4 @@ For machines, start with [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.
 
 Author: Tatsuya Shimomoto — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
-This hub is CC0-licensed. Cite individual research lines by their concept DOI; cite the hub itself only when referring to the aggregate index, knowledge graph, traffic snapshots, or probe dataset.
+This hub is CC0-licensed. Cite individual practice lines by their concept DOI; cite the hub itself only when referring to the aggregate index, knowledge graph, traffic snapshots, or probe dataset.

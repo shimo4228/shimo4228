@@ -4,9 +4,9 @@ Language: [English](README.md) | 日本語
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> 下本竜也による 5 本の独立引用可能な研究ラインの hub repository。主題は AI エージェント設計、AI 仲介時代の著者性、計算論的現象学。3 本の agent-design line はひとつの主張を共有する — [Through-line](#through-line) 参照。
+> 下本竜也による 5 本の独立引用可能な実践ラインの hub repository。主題は AI エージェント設計、AI 仲介時代の著者性、計算論的現象学。3 本の agent-design line はひとつの主張を共有する — [Through-line](#through-line) 参照。
 
-下本竜也。AI エージェントを一人で作っている — Apple Silicon Mac 1 台、ラボも所属もなしで。やっているのは、AI 時代の「良いやり方」を実地で探ることだ。論文や DOI はその探究の道具であって、肩書きではない — 仕事を引用可能で永続的、追跡可能に保つためのものだ。この repo は地図であり、各プロジェクトの現在状態の source of truth ではない — 各研究ラインはそれぞれの repository と Zenodo concept DOI を持ち、この hub は安定した関係と引用ポインタを 1 か所にまとめる。
+下本竜也。AI エージェントを一人で作っている — Apple Silicon Mac 1 台、ラボも所属もなしで。やっているのは、AI 時代の「良いやり方」を実地で探ることだ。論文や DOI はその探究の道具であって、肩書きではない — 仕事を引用可能で永続的、追跡可能に保つためのものだ。この repo は地図であり、各プロジェクトの現在状態の source of truth ではない — 各実践ラインはそれぞれの repository と Zenodo concept DOI を持ち、この hub は安定した関係と引用ポインタを 1 か所にまとめる。
 
 ## 早見表
 
@@ -26,7 +26,7 @@ Language: [English](README.md) | 日本語
 
 ## Papers
 
-各研究ラインから独立した Zenodo record として deposit した position paper。正準は concept DOI で、SSRN mirror は維持している行に併記する。
+各実践ラインから独立した Zenodo record として deposit した position paper。正準は concept DOI で、SSRN mirror は維持している行に併記する。
 
 | Paper | Line | Links |
 |---|---|---|
@@ -46,4 +46,4 @@ Language: [English](README.md) | 日本語
 
 著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
-この hub は CC0 licensed。研究ラインの内容を使う場合は、個別 line の concept DOI を引用する。この hub 自体は、aggregate index、knowledge graph、traffic snapshots、probe dataset を参照する場合だけ引用する。
+この hub は CC0 licensed。実践ラインの内容を使う場合は、個別 line の concept DOI を引用する。この hub 自体は、aggregate index、knowledge graph、traffic snapshots、probe dataset を参照する場合だけ引用する。
