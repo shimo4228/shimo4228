@@ -58,11 +58,21 @@ version: v6
 # each provider's actually-served default tier (a product-side fact the API
 # cannot report — requires a human web check). --currency-check flags a
 # STALE event when this date ages past staleness_days.
-# 2026-07-12: panel reviewed at the sonnet-5 adoption decision. anthropic
-# consumer default = sonnet-5 since 2026-07-01 (web check). Other columns
-# unchanged: no pinned-alias swaps (API ping) and no default-tier change
-# found for gpt-5.5 / gemini-3.5-flash / grok-4.3 / qwen3.7-plus, though
-# gpt-5.6-{luna,sol,terra} and grok-4.5 are in catalog awaiting tier swap.
+# 2026-07-12: full panel web check at the sonnet-5 adoption decision.
+# anthropic: consumer default = sonnet-5 since 2026-07-01 → adopted (v6).
+# openai: free-chat default = gpt-5.5 Instant (unchanged since 2026-05-05);
+#   gpt-5.6-sol powers PAID tiers since 2026-07-09 and gpt-5.6-terra runs
+#   the agent surfaces — a PARTIAL swap. Pin stays gpt-5.5 (free-chat
+#   default); adopt when 5.6 reaches the free chat tier. WATCH.
+# xai: grok-4.5 (released 2026-07-08) is a coding/agentic flagship, not
+#   the consumer chat default; grok-4.3 pin stays.
+# gemini/qwen: omni-flash-preview is a preview tier, not a default; no
+#   new qwen chat ids. Pins stay.
+# Policy (author decision 2026-07-12): panel follows the served consumer
+# default tier; catalog NEW MODEL events alone never move the pin. The
+# monthly currency check must be paired with a human default-tier web
+# check — the `served=` ping only detects silent alias swaps on the
+# pinned id and says nothing about the product-side default.
 verified_current: 2026-07-12
 staleness_days: 90
 
