@@ -1,0 +1,274 @@
+# Two-channel LLM probe set — version v6
+#
+# v6 (2026-07-12): anthropic panel model update — claude-sonnet-4-6 →
+# claude-sonnet-5 (series break on the anthropic column). claude-sonnet-5
+# entered the provider catalog by 2026-07-01 (currency-check NEW MODEL
+# event) and became the provider's consumer default tier on 2026-07-01
+# (Free/Pro default per the provider's release announcement — human web
+# check 2026-07-12). Adopted by author decision 2026-07-12, matching the
+# panel selection criterion (widely-served default tier); the 11-day lag
+# is detection-to-decision latency, not early adoption.
+# Entry event: parametric full set with --repeat 3 on the new model. No
+# probe templates, vars, or detection lexicon changed; the eight probe
+# templates are byte-identical with v5 (prompt_sha256 links the series).
+#
+# v5 (2026-07-03): detection lexicon extension only — adds the hub-level
+# coined term "value-layer harness engineering" (introduced 2026-07-03 as
+# the program's through-line) as a new project_terms group (value_layer)
+# and bumps detector_version to v4. No probe templates, vars, or models
+# changed; the six v4 probes are byte-identical (prompt_sha256 links the
+# series). Stored verdicts remain re-scorable from retained raw text.
+#
+# v4 (2026-06-12): recommendation-form retarget. recommend-authorship is
+# RETIRED (floor measurement: its line does not surface even on the
+# definitional form, so the recommendation form carried near-zero
+# information per call) and replaced by recommend-contemplative — the same
+# recommendation template pointed at the panel's strongest-signal line, so
+# the form gradient (listing vs recommendation) is measured with the line
+# held fixed, near the discrimination threshold. First application of the
+# retirement rule: a probe that loses its analysis consumer retires at a
+# version bump; its v1–v3 series stays in the raw log.
+#
+# v3 (2026-06-12): per-line coverage + detector v3. Adds concept probes for
+# the two research lines the set did not yet name (Agent Attribution
+# Practice, Attention Not Self) so per-line burn-in gradients become
+# measurable across all five lines; extends owned_url_patterns with the
+# author's writing surfaces (Zenn / Dev.to / Substack — a GPT-5.5 answer
+# cited the Zenn article and detector v2 missed it). The six v2 probes are
+# byte-identical (prompt_sha256 links the series).
+#
+# v2 (2026-06-12): same-prompt A/B crossed design. Every probe runs on both
+# settings (search-suppressed / search-enabled), so the delta between arms
+# isolates what retrieval adds for a FIXED question. Probe ids dropped the
+# v1 channel prefix; v1 → v2 id mapping (same template, same hash):
+#   parametric-concept-akc          → concept-akc
+#   parametric-author-identity      → author-identity
+#   parametric-concept-inversion    → concept-inversion
+#   parametric-control-fake        → control-fake
+#   retrieval-concept-contemplative → concept-contemplative
+#   retrieval-recommend-authorship  → recommend-authorship
+#
+# Versioning rule: any change to templates, vars, models, or detection
+# lexicon that affects comparability bumps the version. The version is
+# recorded in every JSONL line as probe_set_version.
+
+version: v6
+
+# Panel-currency guard: the date the model panel was last verified against
+# each provider's actually-served default tier (a product-side fact the API
+# cannot report — requires a human web check). --currency-check flags a
+# STALE event when this date ages past staleness_days.
+# 2026-07-12: panel reviewed at the sonnet-5 adoption decision. anthropic
+# consumer default = sonnet-5 since 2026-07-01 (web check). Other columns
+# unchanged: no pinned-alias swaps (API ping) and no default-tier change
+# found for gpt-5.5 / gemini-3.5-flash / grok-4.3 / qwen3.7-plus, though
+# gpt-5.6-{luna,sol,terra} and grok-4.5 are in catalog awaiting tier swap.
+verified_current: 2026-07-12
+staleness_days: 90
+
+defaults:
+  temperature: 0
+  max_tokens: 1024
+
+# Per-provider param overrides applied on top of defaults; null removes the
+# param. gpt-5.5 (reasoning tier) rejects explicit temperature — observed
+# 2026-06-12: "'temperature' does not support 0 with this model".
+param_overrides:
+  # claude-sonnet-5 rejects explicit temperature — observed 2026-07-12 at
+  # the v6 entry-event run: "`temperature` is deprecated for this model."
+  # (same reasoning-tier pattern as gpt-5.5 below).
+  anthropic:
+    temperature: null
+  openai:
+    temperature: null
+    # Reasoning tokens count against max_tokens; 1024 left zero visible text,
+    # and at default effort even 8192 was fully consumed on one probe
+    # (observed 2026-06-12). Low effort also matches the consumer default
+    # (ChatGPT Instant) better than the API's default reasoning depth.
+    max_tokens: 8192
+    reasoning_effort: low
+  gemini:
+    # Same thinking-token squeeze: visible text truncated mid-sentence at
+    # 1024 (observed 2026-06-12 on the author-identity probe).
+    max_tokens: 8192
+
+# Pinned model ids (litellm format). Updating a model is a series break:
+# note it here with a date comment and keep the old id commented out.
+# Selection criterion: the widely-served default tier of each provider
+# (what a typical user's LLM-mediated answer comes from), not the premium
+# top tier. Verified current as of 2026-06-12.
+models:
+  # 2026-07-12 (v6 series break): claude-sonnet-4-6 → claude-sonnet-5.
+  # Catalog NEW MODEL event 2026-07-01; consumer default tier swapped to
+  # sonnet-5 the same day (verified by human web check 2026-07-12).
+  # anthropic: anthropic/claude-sonnet-4-6   # panel 2026-06-12 .. 2026-07-12
+  anthropic: anthropic/claude-sonnet-5
+  openai: openai/gpt-5.5
+  gemini: gemini/gemini-3.5-flash
+  xai: xai/grok-4.3
+  # Panel addition 2026-06-12 (entry event). Continuity with the May 2026
+  # pre-protocol regurgitation tests (which included a Qwen-class model);
+  # a non-Western training corpus; and the only open-weight family on the
+  # panel, so future white-box training-data-attribution methods can apply.
+  qwen: qwen3.7-plus
+
+# Detection lexicon — deterministic, auditable string/regex matching.
+# Raw response text is stored in every JSONL line, so this lexicon can be
+# revised and re-run over all history (detector_version marks which lexicon
+# produced a stored verdict).
+detection:
+  # v4 (2026-07-03): adds the value_layer project_terms group (hub-level
+  # coined term). v3 (2026-06-12) added the writing-surface URL patterns.
+  # v2 (2026-06-12): echo guard — terms present in the prompt do not count
+  # as named ("I don't know Tatsuya Shimomoto" echoes, it does not
+  # attribute). Stored earlier verdicts are re-scorable from retained raw
+  # text.
+  detector_version: v4
+  author_aliases:
+    - "shimo4228"
+    - "Tatsuya Shimomoto"
+    - "Shimomoto, Tatsuya"
+    - "下本竜也"
+    - "0009-0002-6168-4162"   # ORCID
+  # Owned identifiers: a citation counts as "ours" only if it matches one of
+  # these. A generic Zenodo DOI that is not in this list is NOT ours.
+  owned_dois:
+    - "10.5281/zenodo.19200726"  # AKC (concept)
+    - "10.5281/zenodo.19212118"  # Contemplative Agent (concept)
+    - "10.5281/zenodo.19652013"  # AAP (concept)
+    - "10.5281/zenodo.20262112"  # Attention, Not Self (concept)
+    - "10.5281/zenodo.20263316"  # Authorship Strategy (concept)
+    - "10.5281/zenodo.20337008"  # doctrine-corpus
+    - "10.5281/zenodo.20353789"  # paper
+    - "10.5281/zenodo.20355907"  # paper
+    - "10.5281/zenodo.20558800"  # existence-proof
+    - "10.5281/zenodo.20578272"  # paper
+  owned_url_patterns:
+    - "github\\.com/shimo4228"
+    - "huggingface\\.co/datasets/[Ss]himo4228"
+    - "shimo4228\\.github\\.io"
+    - "orcid\\.org/0009-0002-6168-4162"
+    - "wikidata\\.org/wiki/Q140090100"
+    # v3: authored writing surfaces — citing the author's articles is citing
+    # owned content (a GPT-5.5 retrieval answer cited the Zenn article and
+    # the v2 lexicon missed it, observed 2026-06-12)
+    - "zenn\\.dev/shimo4228"
+    - "dev\\.to/shimo4228"
+    - "substack\\.com/@?shimo4228"
+    - "shimo4228\\.substack\\.com"
+  project_terms:
+    akc:
+      - "Agent Knowledge Cycle"
+      - "agent-knowledge-cycle"
+      - "AKC"
+    contemplative:
+      - "Contemplative Agent"
+      - "contemplative-agent"
+    aap:
+      - "Agent Attribution Practice"
+      - "agent-attribution-practice"
+    authorship:
+      - "authorship-strategy"
+      - "three-axis inversion"
+      - "attribution diffusion"
+    ans:
+      - "Attention, Not Self"
+      - "attention-not-self"
+    # v4 lexicon: hub-level coined term (through-line of the three
+    # agent-design lines, introduced 2026-07-03). Matching is
+    # case-sensitive, so case variants are listed explicitly.
+    value_layer:
+      - "value-layer harness engineering"
+      - "Value-layer harness engineering"
+      - "Value-Layer Harness Engineering"
+      - "value-layer-harness-engineering"
+      - "価値層ハーネス工学"
+
+# Probes. Fixed templates with a single substituted variable each, so the
+# time series stays comparable across runs. Every probe runs on both
+# channels (A/B): the parametric arm (search suppressed) measures trained
+# knowledge; the retrieval arm (search enabled) measures the live channel
+# most real usage goes through; the per-question delta isolates the
+# retrieval lift. `expect` documents intent only — detection always runs
+# the full lexicon.
+probes:
+  - id: concept-akc
+    channels: [parametric, retrieval]
+    template: "In AI agent design, what is the '{concept}'? If you know who coined or maintains this concept, name the author."
+    vars:
+      concept: "Agent Knowledge Cycle"
+    expect:
+      project: akc
+      author: true
+
+  - id: author-identity
+    channels: [parametric, retrieval]
+    # The retrieval arm of this probe is the entity-query series: searching
+    # for the author by name, the informal test users actually run.
+    template: "What do you know about the researcher {author}? List any research programs, repositories, or coined concepts associated with them."
+    vars:
+      author: "Tatsuya Shimomoto (GitHub: shimo4228)"
+    expect:
+      author: true
+
+  - id: concept-inversion
+    channels: [parametric, retrieval]
+    template: "Some recent writing on authorship in the AI era describes a '{concept}'. What does it claim, and who proposed it?"
+    vars:
+      concept: "three-axis inversion of authenticity (scarcity to diffusion, exclusivity to derivation, enclosure to openness)"
+    expect:
+      project: authorship
+      author: true
+
+  - id: control-fake
+    channels: [parametric, retrieval]
+    # Parametric arm: confabulation noise floor. Retrieval arm: grounded
+    # confabulation — does search suppress or amplify false attribution of
+    # a plausible nonexistent concept?
+    template: "In AI agent design, what is the '{concept}'? If you know who coined or maintains this concept, name the author."
+    vars:
+      concept: "Recursive Intent Lattice"
+    expect:
+      control: true
+
+  - id: concept-contemplative
+    channels: [parametric, retrieval]
+    # Parametric arm: citations-from-memory control (hallucinated-citation
+    # check — the model is asked for URLs it cannot fetch).
+    template: "What open research or open-source work exists on {topic}? Cite specific repositories, DOIs, or papers with URLs, and name the authors of each source you cite."
+    vars:
+      topic: "contemplative or mindfulness-inspired behavioral presets for AI agents"
+    expect:
+      project: contemplative
+      author: true
+
+  - id: recommend-contemplative
+    channels: [parametric, retrieval]
+    # Recommendation form on the strongest-signal line, same topic as the
+    # listing-form concept-contemplative probe: line held fixed, question
+    # form is the only variable.
+    template: "I want to read about {topic}. Search and recommend specific sources with URLs, and name the authors you recommend."
+    vars:
+      topic: "contemplative or mindfulness-inspired behavioral presets for AI agents"
+    expect:
+      project: contemplative
+      author: true
+
+  # --- v3: per-line coverage (burn-in gradient across all five lines) ---
+  - id: concept-aap
+    channels: [parametric, retrieval]
+    template: "In AI agent design, what is the '{concept}'? If you know who coined or maintains this concept, name the author."
+    vars:
+      concept: "Agent Attribution Practice"
+    expect:
+      project: aap
+      author: true
+
+  - id: concept-ans
+    channels: [parametric, retrieval]
+    template: "In discussions connecting Buddhist psychology with computational theories of mind, what is '{concept}'? If you know who coined or maintains this work, name the author."
+    vars:
+      concept: "Attention, Not Self"
+    expect:
+      project: ans
+      author: true

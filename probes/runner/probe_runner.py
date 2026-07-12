@@ -58,7 +58,7 @@ from providers import (
 
 RUNNER_VERSION = "0.4.0"  # 0.4.0: --run-id latest (scheduled gap-fill); 0.3.0: per-provider call throttle (anthropic input-TPM); 0.2.0: responses-API retrieval (openai/xai), redirect resolution, qwen thinking off
 HERE = Path(__file__).resolve().parent
-DEFAULT_CONFIG = HERE.parent / "config" / "probes-v5.yaml"
+DEFAULT_CONFIG = HERE.parent / "config" / "probes-v6.yaml"
 DEFAULT_DATA_DIR = HERE.parent / "data"
 
 # Minimum seconds between successive calls to the same provider, measured
@@ -83,7 +83,9 @@ def throttle(provider: str) -> None:
     if interval and last is not None:
         wait = interval - (time.monotonic() - last)
         if wait > 0:
-            print(f"  throttle: {provider} sleeping {wait:.0f}s (input-TPM)", flush=True)
+            print(
+                f"  throttle: {provider} sleeping {wait:.0f}s (input-TPM)", flush=True
+            )
             time.sleep(wait)
     _last_call_start[provider] = time.monotonic()
 
@@ -126,7 +128,9 @@ def existing_triples(data_file: Path) -> set[tuple[str, str, str]]:
                 continue  # tolerate a truncated trailing write (crash mid-run)
             # Pre-guard records could be error-free yet empty (degenerate);
             # treat those as not-done so a retry can fill them.
-            if rec.get("error") is None and (rec.get("response_text") or rec.get("cited_urls")):
+            if rec.get("error") is None and (
+                rec.get("response_text") or rec.get("cited_urls")
+            ):
                 triples.add((rec["run_id"], rec["provider"], rec["probe_id"]))
     return triples
 
@@ -208,7 +212,9 @@ def token_cost(
         return None
 
 
-def run_one(provider: str, probe: dict, channel: str, config: dict, run_id: str) -> dict:
+def run_one(
+    provider: str, probe: dict, channel: str, config: dict, run_id: str
+) -> dict:
     """One API call → one JSONL record (dict)."""
     from importlib.metadata import version as pkg_version
 
@@ -263,9 +269,9 @@ def run_one(provider: str, probe: dict, channel: str, config: dict, run_id: str)
                 provider,
                 model,
                 prompt,
-                (config.get("param_overrides") or {}).get(provider, {}).get(
-                    "max_tokens"
-                )
+                (config.get("param_overrides") or {})
+                .get(provider, {})
+                .get("max_tokens")
                 or defaults.get("max_tokens", 1024),
                 os.environ.get(ENV_KEYS[provider], ""),
             )
@@ -354,7 +360,9 @@ def run_currency_check(config: dict, data_dir: Path, strict: bool) -> int:
             "provider": provider,
             "pinned_model": config["models"][provider],
             "model_returned": None,
-            "previous_model_returned": (prev_currency.get(provider) or {}).get("model_returned"),
+            "previous_model_returned": (prev_currency.get(provider) or {}).get(
+                "model_returned"
+            ),
             "swap_detected": False,
             "catalog_new_ids": [],
             "catalog_removed_ids": [],
@@ -397,7 +405,10 @@ def run_currency_check(config: dict, data_dir: Path, strict: bool) -> int:
             try:
                 ids = fetch_model_ids(provider, api_key)
                 with catalog_path.open("a") as f:
-                    f.write(json.dumps({"ts": ts, "provider": provider, "models": ids}) + "\n")
+                    f.write(
+                        json.dumps({"ts": ts, "provider": provider, "models": ids})
+                        + "\n"
+                    )
                 prev_ids = (prev_catalog.get(provider) or {}).get("models")
                 if prev_ids is None:
                     print(f"{provider}: catalog baseline established ({len(ids)} ids)")
@@ -413,7 +424,9 @@ def run_currency_check(config: dict, data_dir: Path, strict: bool) -> int:
                         )
             except Exception as exc:
                 err = f"catalog: {type(exc).__name__}: {exc}"
-                record["error"] = f"{record['error']}; {err}" if record["error"] else err
+                record["error"] = (
+                    f"{record['error']}; {err}" if record["error"] else err
+                )
         if record["error"]:
             events.append(f"ERROR {provider}: {record['error']}")
         with currency_path.open("a") as f:
@@ -435,31 +448,60 @@ def run_currency_check(config: dict, data_dir: Path, strict: bool) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--channel", choices=["parametric", "retrieval"], default=None,
-                        help="run only this channel (default: both)")
-    parser.add_argument("--provider", action="append", choices=PROVIDERS, default=None,
-                        help="repeatable; default: all four providers")
+    parser.add_argument(
+        "--channel",
+        choices=["parametric", "retrieval"],
+        default=None,
+        help="run only this channel (default: both)",
+    )
+    parser.add_argument(
+        "--provider",
+        action="append",
+        choices=PROVIDERS,
+        default=None,
+        help="repeatable; default: all four providers",
+    )
     parser.add_argument("--probe", default=None, help="run only this probe id")
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--data-dir", type=Path, default=DEFAULT_DATA_DIR)
-    parser.add_argument("--run-id", default=None,
-                        help="default: <UTC timestamp>-<channel|all>; "
-                             "'latest' resolves the most recent run in the "
-                             "channel log to gap-fill its unfilled cells")
-    parser.add_argument("--cost-budget", type=float, default=10.0,
-                        help="soft budget (USD): warn once if cumulative cost "
-                             "exceeds this, but do not abort (the run is a bounded "
-                             "probe×provider×repeat loop, so cost cannot run away)")
-    parser.add_argument("--repeat", type=int, default=1,
-                        help="repetitions per (probe × provider), for within-model "
-                             "variance at model-entry events (run_id gets -rN suffix)")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="render prompts, validate config, write nothing, call nothing")
-    parser.add_argument("--currency-check", action="store_true",
-                        help="detect model-change events (silent swaps, new catalog ids, "
-                             "stale verification) instead of probing")
-    parser.add_argument("--strict", action="store_true",
-                        help="with --currency-check: exit 3 when change events are found")
+    parser.add_argument(
+        "--run-id",
+        default=None,
+        help="default: <UTC timestamp>-<channel|all>; "
+        "'latest' resolves the most recent run in the "
+        "channel log to gap-fill its unfilled cells",
+    )
+    parser.add_argument(
+        "--cost-budget",
+        type=float,
+        default=10.0,
+        help="soft budget (USD): warn once if cumulative cost "
+        "exceeds this, but do not abort (the run is a bounded "
+        "probe×provider×repeat loop, so cost cannot run away)",
+    )
+    parser.add_argument(
+        "--repeat",
+        type=int,
+        default=1,
+        help="repetitions per (probe × provider), for within-model "
+        "variance at model-entry events (run_id gets -rN suffix)",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="render prompts, validate config, write nothing, call nothing",
+    )
+    parser.add_argument(
+        "--currency-check",
+        action="store_true",
+        help="detect model-change events (silent swaps, new catalog ids, "
+        "stale verification) instead of probing",
+    )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="with --currency-check: exit 3 when change events are found",
+    )
     args = parser.parse_args(argv)
 
     load_dotenv(HERE.parent / ".env")
@@ -500,17 +542,22 @@ def main(argv: list[str] | None = None) -> int:
     else:
         run_id = args.run_id or (
             datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-            + "-" + (args.channel or "all")
+            + "-"
+            + (args.channel or "all")
         )
 
     if args.dry_run:
         print(f"# dry-run — config {args.config.name} (probe set {config['version']})")
         print(f"# run_id would be: {run_id}")
         print(f"# providers: {', '.join(providers)}")
-        print(f"# calls that would be made: {len(arms) * len(providers) * max(args.repeat, 1)}")
+        print(
+            f"# calls that would be made: {len(arms) * len(providers) * max(args.repeat, 1)}"
+        )
         for probe, channel in arms:
             prompt = render_prompt(probe)
-            print(f"\n## {probe['id']} [{channel}] sha256={prompt_sha256(prompt)[:16]}…")
+            print(
+                f"\n## {probe['id']} [{channel}] sha256={prompt_sha256(prompt)[:16]}…"
+            )
             print(prompt)
         return 0
 
@@ -531,7 +578,9 @@ def main(argv: list[str] | None = None) -> int:
             for provider in providers:
                 key = (rep_run_id, provider, probe["id"])
                 if key in triples:
-                    print(f"skip duplicate: {provider} × {probe['id']} (run {rep_run_id})")
+                    print(
+                        f"skip duplicate: {provider} × {probe['id']} (run {rep_run_id})"
+                    )
                     skipped += 1
                     continue
                 print(
