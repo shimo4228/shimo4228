@@ -106,7 +106,13 @@ param_overrides:
 # note it here with a date comment and keep the old id commented out.
 # Selection criterion: the widely-served default tier of each provider
 # (what a typical user's LLM-mediated answer comes from), not the premium
-# top tier. Verified current as of 2026-06-12.
+# top tier. Operative test (sharpened 2026-07-12): the model served BY
+# DEFAULT to a FREE-tier user in the provider's consumer chat product.
+# A swap confined to paid tiers or agent surfaces is a PARTIAL swap →
+# WATCH, not adoption; adopt when the free chat default moves. Worked
+# examples (2026-07-12): sonnet-5 = free default since 07-01 → adopted;
+# gpt-5.6-sol = paid tiers only → WATCH; grok-4.5 = coding flagship, not
+# a consumer default → no action.
 models:
   # 2026-07-12 (v6 series break): claude-sonnet-4-6 → claude-sonnet-5.
   # Catalog NEW MODEL event 2026-07-01; consumer default tier swapped to
