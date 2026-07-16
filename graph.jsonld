@@ -616,14 +616,6 @@
       "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
-      "@id": "https://github.com/shimo4228/wikidata-federation",
-      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
-      "name": "wikidata-federation",
-      "description": "Component skill of the Authorship Strategy line, retired as a tactic in 2026-07. Extended the identifier-federation triplet to Wikidata by self-created QIDs for researchers, papers, and DOI-registered repos; the host's governance revoked the account and mass-deleted the entries, and self-created authority-record federation is retired ecosystem-wide (authorship-strategy ADR-0021). Listed for historical traceability.",
-      "url": "https://github.com/shimo4228/wikidata-federation",
-      "extends": "https://doi.org/10.5281/zenodo.20263316"
-    },
-    {
       "@id": "https://github.com/shimo4228/claude-skill-paper-ecosystem",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "paper-ecosystem",
