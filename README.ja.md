@@ -44,6 +44,6 @@ Language: [English](README.md) | 日本語
 
 ## 引用と識別子
 
-著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Wikidata Q140090100](https://www.wikidata.org/wiki/Q140090100) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
+著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
 この hub は CC0 licensed。実践ラインの内容を使う場合は、個別 line の concept DOI を引用する。この hub 自体は、aggregate index、knowledge graph、traffic snapshots、probe dataset を参照する場合だけ引用する。

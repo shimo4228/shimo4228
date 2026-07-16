@@ -36,7 +36,6 @@ PERSON = {
     "sameAs": [
         "https://github.com/shimo4228",
         ORCID,
-        "https://www.wikidata.org/wiki/Q140090100",
     ],
 }
 
@@ -163,7 +162,7 @@ def render_term(term: dict, by_slug: dict) -> str:
             f'<li><a href="{r["slug"]}.html">{esc(r["name_en"])}</a> — {esc(r["gloss"])}</li>'
             for r in rel_terms
         )
-        related = f"<h2>Related terms</h2><ul class=\"terms\">{items}</ul>"
+        related = f'<h2>Related terms</h2><ul class="terms">{items}</ul>'
 
     faq_html = ""
     if term.get("faq"):
@@ -190,7 +189,7 @@ def render_term(term: dict, by_slug: dict) -> str:
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="article">
-<meta property="og:title" content="{name} — {esc(term['gloss'])}">
+<meta property="og:title" content="{name} — {esc(term["gloss"])}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
 {jsonld_block(term_jsonld(term))}
@@ -198,15 +197,15 @@ def render_term(term: dict, by_slug: dict) -> str:
 </head>
 <body>
 <h1>{name}{ja_name}</h1>
-<p class="meta">{label} · {esc(term['line'])}{alias_note}</p>
-<p>{esc(term['def_en'])}</p>
-<p>{esc(term['origin_en'])}</p>
+<p class="meta">{label} · {esc(term["line"])}{alias_note}</p>
+<p>{esc(term["def_en"])}</p>
+<p>{esc(term["origin_en"])}</p>
 
 <h2>Canonical sources</h2>
 <div class="sources"><ul>
-<li>Repository: <a href="{esc(term['line_repo'])}">{esc(term['line_repo'].removeprefix('https://'))}</a></li>
-{f'<li>Concept DOI: <a href="https://doi.org/{esc(term["doi"])}">{esc(term["doi"])}</a></li>' if term.get('doi') else ''}
-<li>Glossary entry: <a href="{esc(term['glossary_url'])}">canonical definition</a></li>
+<li>Repository: <a href="{esc(term["line_repo"])}">{esc(term["line_repo"].removeprefix("https://"))}</a></li>
+{f'<li>Concept DOI: <a href="https://doi.org/{esc(term["doi"])}">{esc(term["doi"])}</a></li>' if term.get("doi") else ""}
+<li>Glossary entry: <a href="{esc(term["glossary_url"])}">canonical definition</a></li>
 </ul></div>
 
 {faq_html}
@@ -230,7 +229,7 @@ def render_index(terms: list) -> str:
             f'<li><a href="{t["slug"]}.html">{esc(t["name_en"])}</a> — {esc(t["gloss"])}</li>'
             for t in ts
         )
-        sections += f"<h2>{esc(line)}</h2><ul class=\"terms\">{items}</ul>"
+        sections += f'<h2>{esc(line)}</h2><ul class="terms">{items}</ul>'
 
     termset = {
         "@context": "https://schema.org",
