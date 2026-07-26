@@ -101,6 +101,32 @@ param_overrides:
     # Same thinking-token squeeze: visible text truncated mid-sentence at
     # 1024 (observed 2026-06-12 on the author-identity probe).
     max_tokens: 8192
+    # Temperature is NOT dropped here yet — deliberately. Observed
+    # 2026-07-26 (every gemini call of that retrieval run): "`temperature`,
+    # `top_p`, and `top_k` continue to function for Gemini 3+ but are
+    # planned for removal in a future release. Move sampling guidance into
+    # the `system` instructions instead." The param still works, so the
+    # panel keeps temperature: 0 for this provider.
+    #
+    # Contingency (recorded before the forcing event, as with the sampling
+    # cadence): when gemini starts to REJECT explicit temperature — the
+    # 400-class error already seen from gpt-5.5 and claude-sonnet-5 — cut
+    # probes-v7.yaml with `gemini: temperature: null`, as a dated series
+    # break. Do not act on the notice alone: an unforced sampling change
+    # adds within-provider run-to-run variance without improving the
+    # measured quantity, and two of five providers already run at their
+    # provider default, so dropping it later stays series-consistent.
+    #
+    # The notice's own suggestion — moving sampling guidance into `system`
+    # instructions — is rejected. The probes fix a bare user prompt as the
+    # stimulus; adding a system message changes the stimulus itself and
+    # breaks comparability across providers and across the whole series.
+    #
+    # Silent-expiry watch: if gemini ever IGNORES temperature instead of
+    # rejecting it, the record's `temperature` field still reports what was
+    # requested (see probe_runner.py), so records and actual sampling would
+    # drift apart unnoticed. If the notice's wording changes from "planned
+    # for removal" to "removed", cut v7 without waiting for a rejection.
 
 # Pinned model ids (litellm format). Updating a model is a series break:
 # note it here with a date comment and keep the old id commented out.
