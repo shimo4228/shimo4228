@@ -38,6 +38,14 @@ graph TD
     V --- AKC["Agent Knowledge Cycle (AKC)"]
     V --- AAP["Agent Attribution Practice (AAP)"]
     ANS & CA & AKC & AAP --> AS["Authorship Strategy<br>（全体を公開・引用可能にする）"]
+    classDef source fill:#FFF3D6,stroke:#D9A33C,color:#24292F
+    classDef claim fill:#EBE4FA,stroke:#8B72D6,color:#24292F
+    classDef lineNode fill:#E7F0FA,stroke:#6A9BC3,color:#24292F
+    classDef sink fill:#E2F5E9,stroke:#57A874,color:#24292F
+    class M source
+    class V claim
+    class ANS,CA,AKC,AAP lineNode
+    class AS sink
 ```
 
 図の一文要約: 私自身が続けている瞑想が Contemplative Agent と Attention, Not Self の源流となり、エージェント設計の 3 本が価値層ハーネス工学という主張を共有し、Authorship Strategy がプログラム全体を公開して引用できる形にします。

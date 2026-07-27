@@ -38,6 +38,14 @@ graph TD
     V --- AKC["Agent Knowledge Cycle (AKC)"]
     V --- AAP["Agent Attribution Practice (AAP)"]
     ANS & CA & AKC & AAP --> AS["Authorship Strategy<br>(publishes the whole program)"]
+    classDef source fill:#FFF3D6,stroke:#D9A33C,color:#24292F
+    classDef claim fill:#EBE4FA,stroke:#8B72D6,color:#24292F
+    classDef lineNode fill:#E7F0FA,stroke:#6A9BC3,color:#24292F
+    classDef sink fill:#E2F5E9,stroke:#57A874,color:#24292F
+    class M source
+    class V claim
+    class ANS,CA,AKC,AAP lineNode
+    class AS sink
 ```
 
 The diagram in one sentence: my own meditation practice sources Contemplative Agent and Attention, Not Self; the three agent-design lines share the value-layer claim; and Authorship Strategy is how the whole program is published and cited.
