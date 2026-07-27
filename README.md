@@ -32,12 +32,12 @@ An agent harness — the standing rules and tools an agent runs inside — norma
 
 ```mermaid
 graph TD
-    M["My meditation practice"] --> CA["Contemplative Agent"]
-    M --> ANS["Attention, Not Self"]
+    M["My meditation practice"] --> ANS["Attention, Not Self"]
+    M --> CA["Contemplative Agent"]
     V["value-layer harness engineering<br>(the shared claim)"] --- CA
     V --- AKC["Agent Knowledge Cycle (AKC)"]
     V --- AAP["Agent Attribution Practice (AAP)"]
-    CA & AKC & AAP & ANS --> AS["Authorship Strategy<br>(publishes the whole program)"]
+    ANS & CA & AKC & AAP --> AS["Authorship Strategy<br>(publishes the whole program)"]
 ```
 
 The diagram in one sentence: my own meditation practice sources Contemplative Agent and Attention, Not Self; the three agent-design lines share the value-layer claim; and Authorship Strategy is how the whole program is published and cited.
