@@ -1,5 +1,7 @@
 Language: English | [日本語](README.ja.md)
 
+![Cover art: five colored threads unfurl from a single ink brushstroke and flow into an ensō circle](assets/readme-cover.jpg)
+
 # Tatsuya Shimomoto (@shimo4228)
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
