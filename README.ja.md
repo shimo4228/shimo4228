@@ -22,7 +22,19 @@ Language: [English](README.md) | 日本語
 
 ## Through-line
 
-エージェント設計の 3 本（Contemplative Agent / AKC / AAP）に共通する主張は **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** です。ハーネスに普通書かれるのはコーディング規約のような作業上の規則ですが、このプログラムでは同じ場所に価値規範 — 瞑想に由来する行動原則（contemplative axioms）や著者性の判断基準 — も書き込み、人間のレビューを通して育てています（公開スナップショットは [claude-harness](https://github.com/shimo4228/claude-harness)）。その価値層は私自身の瞑想実践から来ていて、Contemplative Agent と Attention, Not Self の源流でもあります。Authorship Strategy は、このプログラム全体を公開して引用できる形にするための方法論です。
+エージェント設計の 3 本（Contemplative Agent / AKC / AAP）に共通する主張は **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** です。ハーネスに普通書かれるのはコーディング規約のような作業上の規則ですが、このプログラムでは同じ場所に価値規範 — 瞑想に由来する行動原則（contemplative axioms）や著者性の判断基準 — も書き込み、人間のレビューを通して育てています（公開スナップショットは [claude-harness](https://github.com/shimo4228/claude-harness)）。
+
+```mermaid
+graph TD
+    M["瞑想実践"] --> CA["Contemplative Agent"]
+    M --> ANS["Attention, Not Self"]
+    V["value-layer harness engineering<br>（3 本共通の主張）"] --- CA
+    V --- AKC["Agent Knowledge Cycle (AKC)"]
+    V --- AAP["Agent Attribution Practice (AAP)"]
+    AS["Authorship Strategy<br>（全体を公開・引用可能にする）"] --> CA & AKC & AAP & ANS
+```
+
+図の一文要約: 私自身の瞑想実践が Contemplative Agent と Attention, Not Self の源流となり、エージェント設計の 3 本が価値層ハーネス工学という主張を共有し、Authorship Strategy がプログラム全体を公開して引用できる形にします。
 
 ## Papers
 
