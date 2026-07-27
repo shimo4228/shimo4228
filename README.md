@@ -24,15 +24,7 @@ This repo is a map, not the source of truth for live state. Each practice line h
 | [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI-era authorship methodology | A framework for being a known author when LLMs mediate how readers discover and cite artifacts. | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | How the mind works (Buddhism × cognitive science) | Classical Buddhist analysis of mind (Abhidharma), read against computational phenomenology, the computational modeling of experience. | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
-The five lines are siblings, not dependencies. Any one can be adopted alone. The DOIs in the table are Zenodo concept DOIs, parent links that always resolve to the latest version.
-
-Open whichever line sits closest to your interest.
-
-- To see a working agent implementation → [Contemplative Agent](https://github.com/shimo4228/contemplative-agent)
-- To see the mechanism that keeps an agent aligned with operator intent → [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle)
-- To see accountability design for autonomous agents → [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice)
-- For authorship in the AI age, and how discovery and citation work → [Authorship Strategy](https://github.com/shimo4228/authorship-strategy)
-- For the theoretical background on Buddhism, attention, self, and computational phenomenology → [Attention, Not Self](https://github.com/shimo4228/attention-not-self)
+The five lines are siblings, not dependencies. Any one can be adopted alone. Open whichever line sits closest to your interest. The DOIs in the table are Zenodo concept DOIs, parent links that always resolve to the latest version.
 
 ## Through-line
 

@@ -22,15 +22,7 @@ Language: [English](README.md) | 日本語
 | [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性の方法論 | 読者との出会いを LLM が仲介する時代に「知られている著者」であり続けるための考え方の枠組み。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 心の仕組みの探究（仏教 × 認知科学） | 古典仏教の心の分析（アビダルマ）を、現代の計算論的現象学（体験の計算モデル化）と突き合わせる研究。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
-5 本は兄弟プロジェクトで、互いに依存していません。どれか 1 本だけでも単独で使えます。表の DOI は Zenodo の concept DOI（常に最新版へつながる代表 DOI）です。
-
-関心に近いところから開いてください。
-
-- 動いているエージェントの実装を見たい → [Contemplative Agent](https://github.com/shimo4228/contemplative-agent)
-- エージェントを操作者の意図に沿わせ続ける仕組みを見たい → [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle)
-- 自律エージェントの責任設計を見たい → [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice)
-- AI 時代の著者性や、発見・引用の仕組みに関心がある → [Authorship Strategy](https://github.com/shimo4228/authorship-strategy)
-- 仏教・注意・自己・計算論的現象学の理論的背景を読みたい → [Attention, Not Self](https://github.com/shimo4228/attention-not-self)
+5 本は兄弟プロジェクトで、互いに依存していません。どれか 1 本だけでも単独で使えます。関心に近いところから開いてください。表の DOI は Zenodo の concept DOI（常に最新版へつながる代表 DOI）です。
 
 ## Through-line
 
