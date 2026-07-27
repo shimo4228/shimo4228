@@ -6,7 +6,11 @@ Language: [English](README.md) | 日本語
 
 > 下本竜也が続けている 5 本の実践ライン（それぞれ独立に引用できる長期プロジェクト）をまとめた hub リポジトリです。主題は AI エージェント設計、AI 時代の著者性、計算論的現象学です。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
-こんにちは、下本竜也です。M1 Mac 1 台で、ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。論文や DOI は肩書きのためではなく、その探究を引用できる形で残しておくための道具です。エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。このリポジトリ自体は全体の地図です。各プロジェクトの最新状態はそれぞれのリポジトリが正本で、この hub は安定した関係と引用先を 1 か所にまとめています。
+こんにちは、下本竜也です。M1 Mac 1 台で、ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。論文や DOI は肩書きのためではなく、その探究を引用できる形で残しておくための道具です。
+
+エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。
+
+このリポジトリ自体は全体の地図です。各プロジェクトの最新状態はそれぞれのリポジトリが正本で、この hub は安定した関係と引用先を 1 か所にまとめています。
 
 ## 早見表
 
@@ -16,17 +20,19 @@ Language: [English](README.md) | 日本語
 | [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle) | エージェント設計の仕組み | エージェントと操作者の意図のずれを、振る舞いと判断が変わっていく中でも直し続けるための 6 フェーズのループ。 | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
 | [Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice) | 説明責任の実践 | 「何を禁止するか、制御をどこに置くか、エージェントが壊れたとき誰が責任を持つか」を、特定ツールに依存しない形で記録した設計判断（ADR）集。 | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
 | [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性の方法論 | 読者との出会いを LLM が仲介する時代に「知られている著者」であり続けるための考え方の枠組み。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
-| [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 認知と仏教の探究 | 仏教アビダルマの心の過程モデルと計算論的現象学の比較研究。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
+| [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 心の仕組みの探究（仏教 × 認知科学） | 古典仏教の心の分析（アビダルマ）を、現代の計算論的現象学（体験の計算モデル化）と突き合わせる研究。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
 5 本のラインは兄弟プロジェクトで、互いに依存していません。どれか 1 本だけでも単独で使えます。表の DOI は Zenodo の concept DOI（常に最新版へ解決される代表リンク）です。
 
 ## Through-line
 
-エージェント設計の 3 本（Contemplative Agent / AKC / AAP）に共通する主張は **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** です。ハーネスに普通書かれるのはコーディング規約のような作業上の規則ですが、このプログラムでは同じ場所に価値規範 — 瞑想に由来する行動原則（contemplative axioms）や著者性の判断基準 — も書き込み、人間のレビューを通して育てています（公開スナップショットは [claude-harness](https://github.com/shimo4228/claude-harness)）。
+エージェント設計の 3 本（Contemplative Agent / AKC / AAP）に共通する主張は **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** です。
+
+ハーネスに普通書かれるのはコーディング規約のような作業上の規則ですが、このプログラムでは同じ場所に価値規範 — 瞑想から生まれた行動指針（contemplative axioms）や著者性の判断基準 — も書き込み、人間のレビューを通して育てています（公開スナップショットは [claude-harness](https://github.com/shimo4228/claude-harness)）。
 
 ```mermaid
 graph TD
-    M["瞑想実践"] --> CA["Contemplative Agent"]
+    M["私の瞑想"] --> CA["Contemplative Agent"]
     M --> ANS["Attention, Not Self"]
     V["value-layer harness engineering<br>（3 本共通の主張）"] --- CA
     V --- AKC["Agent Knowledge Cycle (AKC)"]
@@ -34,7 +40,7 @@ graph TD
     CA & AKC & AAP & ANS --> AS["Authorship Strategy<br>（全体を公開・引用可能にする）"]
 ```
 
-図の一文要約: 私自身の瞑想実践が Contemplative Agent と Attention, Not Self の源流となり、エージェント設計の 3 本が価値層ハーネス工学という主張を共有し、Authorship Strategy がプログラム全体を公開して引用できる形にします。
+図の一文要約: 私自身が続けている瞑想が Contemplative Agent と Attention, Not Self の源流となり、エージェント設計の 3 本が価値層ハーネス工学という主張を共有し、Authorship Strategy がプログラム全体を公開して引用できる形にします。
 
 ## Papers
 
