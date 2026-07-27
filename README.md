@@ -26,11 +26,21 @@ This repo is a map, not the source of truth for live state. Each practice line h
 
 The five lines are siblings, not dependencies. Any one can be adopted alone. The DOIs in the table are Zenodo concept DOIs, parent links that always resolve to the latest version.
 
+Open whichever line sits closest to your interest.
+
+- To see a working agent implementation → [Contemplative Agent](https://github.com/shimo4228/contemplative-agent)
+- To see the mechanism that keeps an agent aligned with operator intent → [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle)
+- To see accountability design for autonomous agents → [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice)
+- For authorship in the AI age, and how discovery and citation work → [Authorship Strategy](https://github.com/shimo4228/authorship-strategy)
+- For the theoretical background on Buddhism, attention, self, and computational phenomenology → [Attention, Not Self](https://github.com/shimo4228/attention-not-self)
+
 ## Through-line
 
 One claim runs through the three agent-design lines (Contemplative Agent, AKC, AAP): **[value-layer harness engineering](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)**.
 
-An agent harness normally holds task regulation such as coding conventions. This program writes value norms into the same layer as well: contemplative axioms drawn from meditation practice, and a judgment framework for authorship decisions. Both pass the same human review as every other rule in the harness. The harness itself, value norms included, is published as [claude-harness](https://github.com/shimo4228/claude-harness).
+An agent harness normally holds task regulation such as coding conventions. This program writes value norms into the same layer as well: contemplative axioms drawn from meditation practice, and a judgment framework for authorship decisions. The value norms are not written once and frozen. Like every other rule in the harness, they keep being revised through human review.
+
+The three lines carry this claim from different angles. Contemplative Agent is the implementation, an agent that holds its value layer explicitly. AKC is the mechanism that keeps the agent aligned with operator intent. AAP is the practice that records accountability for its operation. The harness itself, value norms included, is published as [claude-harness](https://github.com/shimo4228/claude-harness).
 
 ```mermaid
 graph TD
