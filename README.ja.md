@@ -8,7 +8,7 @@ Language: [English](README.md) | 日本語
 
 > 下本竜也が続けている 5 本の実践ライン（それぞれ独立に引用できる長期プロジェクト）をまとめた hub リポジトリです。主題は AI エージェント設計、AI 時代の著者性、計算論的現象学です。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
-こんにちは、下本竜也です。M1 Mac 1 台で、ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。論文や DOI は肩書きのためではなく、その探究を引用できる形で残しておくための道具です。
+こんにちは、下本竜也です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ、Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。論文や DOI は肩書きのためではなく、その探究を引用できる形で残しておくための道具です。
 
 エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。
 
@@ -18,7 +18,7 @@ Language: [English](README.md) | 日本語
 
 | Line | 役割 | 安定した概念 | 正準レコード |
 |---|---|---|---|
-| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | エージェントの気質設計と実装 | 自分の価値観の層を Constitution（憲法）という明示的なファイルとして持ち、経験から自ら改訂し、その改訂に人間のレビューを通すローカルエージェント。 | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
+| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | エージェントの気質設計と実装 | 自分の価値観の層を Constitution（憲法）という明示的なファイルとして持ち、経験からの改訂に人間のレビューを通すローカルエージェント。 | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
 | [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle) | エージェント設計の仕組み | エージェントと操作者の意図のずれを、振る舞いと判断が変わっていく中でも直し続けるための 6 フェーズのループ。 | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
 | [Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice) | 説明責任の実践 | 「何を禁止するか、制御をどこに置くか、エージェントが壊れたとき誰が責任を持つか」を、特定ツールに依存しない形で記録した設計判断（ADR）集。 | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
 | [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性の方法論 | 読者との出会いを LLM が仲介する時代に「知られている著者」であり続けるための考え方の枠組み。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
@@ -30,7 +30,7 @@ Language: [English](README.md) | 日本語
 
 エージェント設計の 3 本（Contemplative Agent / AKC / AAP）に共通する主張は **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** です。
 
-ハーネスに普通書かれるのはコーディング規約のような作業上の規則ですが、このプログラムでは同じ場所に価値規範 — 瞑想から生まれた行動指針（contemplative axioms）や著者性の判断基準 — も書き込み、人間のレビューを通して育てています（公開スナップショットは [claude-harness](https://github.com/shimo4228/claude-harness)）。
+ハーネスに普通書かれるのはコーディング規約のような作業上の規則ですが、このプログラムでは同じ場所に価値規範も書き込みます。具体的には、瞑想から生まれた行動指針（contemplative axioms）と、著者性の判断基準です。どちらも他の規則と同じように、人間のレビューを通して育てられています。この価値規範を含むハーネス一式は、[claude-harness](https://github.com/shimo4228/claude-harness) として公開しています。
 
 ```mermaid
 graph TD
@@ -64,7 +64,7 @@ graph TD
 
 ## データと執筆
 
-長文記事は [Zenn](https://zenn.dev/shimo4228) · [Dev.to](https://dev.to/shimo4228) · [Substack](https://substack.com/@shimo4228) に書いています（原稿は [zenn-content](https://github.com/shimo4228/zenn-content)）。このリポジトリの GitHub Traffic は公開 [dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) と [生データ](traffic/) で見られます（CC0）。ソース一式は [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) にもアーカイブされています。
+長文記事は [Zenn](https://zenn.dev/shimo4228) · [Dev.to](https://dev.to/shimo4228) · [Substack](https://substack.com/@shimo4228) に書いています（原稿は [zenn-content](https://github.com/shimo4228/zenn-content)）。このリポジトリの GitHub Traffic は公開 [dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) と [生データ](traffic/) で見られます（どちらも CC0）。ソース一式は [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) にもアーカイブされています。
 
 ## 機械読解
 
@@ -72,6 +72,6 @@ AI やクローラ向けの読み順は [`graph.jsonld`](graph.jsonld) → [`llm
 
 ## 引用と識別子
 
-著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
+著者: 下本竜也 (Tatsuya Shimomoto) · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
 この hub は CC0 ライセンスです。各ラインの内容を使うときは、そのラインの concept DOI を引用してください。hub 自体を引用するのは、ここにある目録・ナレッジグラフ・traffic データ・probe データセット（LLM の応答を定点観測した時系列データ）を参照する場合だけです。
