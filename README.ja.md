@@ -4,29 +4,29 @@ Language: [English](README.md) | 日本語
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> 下本竜也による 5 本の独立引用可能な実践ラインの hub repository。主題は AI エージェント設計、AI 仲介時代の著者性、計算論的現象学。3 本の agent-design line はひとつの主張を共有する — [Through-line](#through-line) 参照。
+> 下本竜也が続けている 5 本の実践ライン（それぞれ独立に引用できる長期プロジェクト）をまとめた hub リポジトリです。主題は AI エージェント設計、AI 時代の著者性、計算論的現象学です。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
-下本竜也。AI エージェントを一人で作っている — M1 Mac 1 台、ラボも所属もなしで。やっているのは、AI 時代の「良いやり方」を実地で探ることだ。論文や DOI はその探究の道具であって、肩書きではない — 仕事を引用可能で永続的、追跡可能に保つためのものだ。この repo は地図であり、各プロジェクトの現在状態の source of truth ではない — 各実践ラインはそれぞれの repository と Zenodo concept DOI を持ち、この hub は安定した関係と引用ポインタを 1 か所にまとめる。
+こんにちは、下本竜也です。M1 Mac 1 台で、ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。論文や DOI は肩書きのためではなく、その探究を引用できる形で残しておくための道具です。エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。このリポジトリ自体は全体の地図です。各プロジェクトの最新状態はそれぞれのリポジトリが正本で、この hub は安定した関係と引用先を 1 か所にまとめています。
 
 ## 早見表
 
-| Line | 役割 | 安定した概念 | 正準 record |
+| Line | 役割 | 安定した概念 | 正準レコード |
 |---|---|---|---|
-| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | エージェントの disposition と実装 | 価値層を Constitution という明示的なハーネス artifact として持つ local agent — agent は自らの経験からこの Constitution を改訂していき、その改訂は human-gated review を通る。 | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
-| [Agent Knowledge Cycle](https://github.com/shimo4228/agent-knowledge-cycle) | エージェント設計の mechanism | エージェントと操作者の意図 alignment を、振る舞いと判断の変化に合わせて保つ 6 フェーズ loop。 | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
-| [Agent Attribution Practice](https://github.com/shimo4228/agent-attribution-practice) | accountability practice | 何を禁止するか、制御をどこに置くか、agent が壊れたとき誰が答えるかを扱う harness-neutral な ADR 群。 | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
-| [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性 methodology | LLM が発見と引用を仲介する時代に、known author であるための framework。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
-| [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 認知と仏教の inquiry | Abhidharma の cognitive-process model と computational phenomenology の比較。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
+| [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | エージェントの気質設計と実装 | 自分の価値観の層を Constitution（憲法）という明示的なファイルとして持つローカルエージェント。エージェント自身が経験からこの Constitution を改訂し、その改訂は人間のレビューを通ります。 | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
+| [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle) | エージェント設計の仕組み | エージェントと操作者の意図のずれを、振る舞いと判断が変わっていく中でも直し続けるための 6 フェーズのループ。 | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
+| [Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice) | 説明責任の実践 | 「何を禁止するか、制御をどこに置くか、エージェントが壊れたとき誰が責任を持つか」を、特定ツールに依存しない形で記録した設計判断（ADR）集。 | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
+| [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性の方法論 | 読者との出会いを LLM が仲介する時代に「知られている著者」であり続けるための考え方の枠組み。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
+| [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 認知と仏教の探究 | 仏教アビダルマの心の過程モデルと計算論的現象学の比較研究。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
-5 本のラインは sibling であり、依存関係ではない — どれ 1 本でも単独で採用できる。
+5 本のラインは兄弟プロジェクトで、互いに依存していません。どれか 1 本だけでも単独で使えます。表の DOI は Zenodo の concept DOI（常に最新版へ解決される代表リンク）です。
 
 ## Through-line
 
-3 本の agent-design line（Contemplative Agent / AKC / AAP）を貫く主張が一つある: **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** だ。エージェントハーネスに普通置かれるのはタスクの規則 — コーディング規約・セキュリティ方針・執筆スタイルだ。このプログラムは同じ層に価値規範（contemplative axioms、authorship-strategy の判断スタック）を書き、下位層と同じ human-gated サイクルで統治する（[claude-harness](https://github.com/shimo4228/claude-harness) がその公開 snapshot）。その価値層の contemplative な中身は著者の meditation 実践に由来し、5 本のうち 2 本のラインの源流でもある。Authorship Strategy はプログラム全体が公開され引用されるための方法論だ。
+エージェント設計の 3 本（Contemplative Agent / AKC / AAP）には、共通する主張が一つあります: **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** です。エージェントのハーネスに普通書かれるのは、コーディング規約やセキュリティ方針、文章の書き方といった作業上の規則です。このプログラムでは、同じ場所に価値規範 — 瞑想に由来する行動原則（contemplative axioms）や、著者性についての判断基準 — も書き込み、他の規則と同じように人間のレビューを通して育てています（公開スナップショットは [claude-harness](https://github.com/shimo4228/claude-harness)）。その価値層の中身は私自身の瞑想実践から来ていて、Contemplative Agent と Attention, Not Self の 2 本のラインの源流にもなっています。Authorship Strategy は、このプログラム全体を公開して引用できる形にするための方法論です。
 
 ## Papers
 
-各実践ラインから独立した Zenodo record として deposit した position paper。正準は concept DOI で、SSRN mirror は維持している行に併記する。
+各実践ラインから独立した Zenodo レコードとして登録した position paper（立場表明論文）です。引用先は concept DOI が正本で、SSRN ミラーがあるものは併記しています。
 
 | Paper | Line | Links |
 |---|---|---|
@@ -36,14 +36,14 @@ Language: [English](README.md) | 日本語
 
 ## データと執筆
 
-長文記事: [Zenn](https://zenn.dev/shimo4228) · [Dev.to](https://dev.to/shimo4228) · [Substack](https://substack.com/@shimo4228)（source は [zenn-content](https://github.com/shimo4228/zenn-content)）。公開 GitHub Traffic [dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) と [raw data](traffic/)、CC0。source は [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) に content-addressed でアーカイブされている。
+長文記事は [Zenn](https://zenn.dev/shimo4228) · [Dev.to](https://dev.to/shimo4228) · [Substack](https://substack.com/@shimo4228) に書いています（原稿は [zenn-content](https://github.com/shimo4228/zenn-content)）。このリポジトリの GitHub Traffic は公開 [dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) と [生データ](traffic/) で見られます（CC0）。ソース一式は [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) にもアーカイブされています。
 
 ## 機械読解
 
-機械はまず [`graph.jsonld`](graph.jsonld)、次に [`llms.txt`](llms.txt)、最後に [`llms-full.txt`](llms-full.txt)。網羅的な ecosystem inventory — supporting repositories・datasets・probe surfaces — はこれらと [concept index](https://shimo4228.github.io/shimo4228/concepts/) にあり、この README には置かない。
+AI やクローラ向けの読み順は [`graph.jsonld`](graph.jsonld) → [`llms.txt`](llms.txt) → [`llms-full.txt`](llms-full.txt) です。関連リポジトリ・データセットなどの全体目録も、これらのファイルと [concept index](https://shimo4228.github.io/shimo4228/concepts/) 側にあります（この README は入口だけを担当します）。
 
 ## 引用と識別子
 
 著者: 下本竜也 (Tatsuya Shimomoto) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
-この hub は CC0 licensed。実践ラインの内容を使う場合は、個別 line の concept DOI を引用する。この hub 自体は、aggregate index、knowledge graph、traffic snapshots、probe dataset を参照する場合だけ引用する。
+この hub は CC0 ライセンスです。各ラインの内容を使うときは、そのラインの concept DOI を引用してください。hub 自体を引用するのは、ここにある目録・ナレッジグラフ・traffic データ・probe データセット（LLM の応答を定点観測した時系列データ）を参照する場合だけです。
