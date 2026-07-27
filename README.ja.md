@@ -31,7 +31,7 @@ graph TD
     V["value-layer harness engineering<br>（3 本共通の主張）"] --- CA
     V --- AKC["Agent Knowledge Cycle (AKC)"]
     V --- AAP["Agent Attribution Practice (AAP)"]
-    AS["Authorship Strategy<br>（全体を公開・引用可能にする）"] --> CA & AKC & AAP & ANS
+    CA & AKC & AAP & ANS --> AS["Authorship Strategy<br>（全体を公開・引用可能にする）"]
 ```
 
 図の一文要約: 私自身の瞑想実践が Contemplative Agent と Attention, Not Self の源流となり、エージェント設計の 3 本が価値層ハーネス工学という主張を共有し、Authorship Strategy がプログラム全体を公開して引用できる形にします。

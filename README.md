@@ -31,7 +31,7 @@ graph TD
     V["value-layer harness engineering<br>(the shared claim)"] --- CA
     V --- AKC["Agent Knowledge Cycle (AKC)"]
     V --- AAP["Agent Attribution Practice (AAP)"]
-    AS["Authorship Strategy<br>(publishes the whole program)"] --> CA & AKC & AAP & ANS
+    CA & AKC & AAP & ANS --> AS["Authorship Strategy<br>(publishes the whole program)"]
 ```
 
 The diagram in one sentence: my own meditation practice sources Contemplative Agent and Attention, Not Self; the three agent-design lines share the value-layer claim; and Authorship Strategy is how the whole program is published and cited.
