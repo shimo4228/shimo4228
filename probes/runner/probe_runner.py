@@ -58,7 +58,7 @@ from providers import (
 
 RUNNER_VERSION = "0.4.0"  # 0.4.0: --run-id latest (scheduled gap-fill); 0.3.0: per-provider call throttle (anthropic input-TPM); 0.2.0: responses-API retrieval (openai/xai), redirect resolution, qwen thinking off
 HERE = Path(__file__).resolve().parent
-DEFAULT_CONFIG = HERE.parent / "config" / "probes-v6.yaml"
+DEFAULT_CONFIG = HERE.parent / "config" / "probes-v7.yaml"
 DEFAULT_DATA_DIR = HERE.parent / "data"
 
 # Minimum seconds between successive calls to the same provider, measured
