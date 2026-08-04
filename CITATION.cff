@@ -9,8 +9,8 @@ message: >-
 title: "shimo4228 program hub"
 type: software
 authors:
-  - family-names: Shimomoto
-    given-names: Tatsuya
+  - family-names: shimo4228
+    alias: shimo4228
     orcid: "https://orcid.org/0009-0002-6168-4162"
 repository-code: "https://github.com/shimo4228/shimo4228"
 url: "https://github.com/shimo4228/shimo4228"

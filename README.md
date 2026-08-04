@@ -2,13 +2,13 @@ Language: English | [日本語](README.ja.md)
 
 ![Cover art: five colored threads unfurl from a single ink brushstroke and flow into a hand-drawn Zen circle (ensō)](assets/readme-cover.jpg)
 
-# Tatsuya Shimomoto (@shimo4228)
+# shimo4228
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> Hub repository for five practice lines (long-running, independently citable projects) by Tatsuya Shimomoto: AI agent design, AI-mediated authorship, and computational phenomenology. The three agent-design lines share one claim (see [Through-line](#through-line)).
+> Hub repository for five practice lines (long-running, independently citable projects) by shimo4228: AI agent design, AI-mediated authorship, and computational phenomenology. The three agent-design lines share one claim (see [Through-line](#through-line)).
 
-I'm Tatsuya Shimomoto. I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. The papers and DOIs are tools, not a title. They keep the work citable, durable, and traceable.
+I'm shimo4228. I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. The papers and DOIs are tools, not a title. They keep the work citable, durable, and traceable.
 
 If you build agent harnesses (the standing rules and tools an agent runs inside), think about accountability for autonomous agents, or care about authorship in the AI age, one of the five lines below is probably for you.
 
@@ -74,6 +74,6 @@ For machines, start with [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.
 
 ## Citation and Identity
 
-Author: Tatsuya Shimomoto · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
+Author: shimo4228 · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
 This hub is CC0-licensed. Cite individual practice lines by their concept DOI; cite the hub itself only when referring to the aggregate index, knowledge graph, traffic snapshots, or probe dataset (a time series of LLM-response observations).

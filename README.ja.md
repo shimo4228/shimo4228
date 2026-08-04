@@ -2,13 +2,13 @@ Language: [English](README.md) | 日本語
 
 ![カバーアート: 一筆の墨から五色の糸がほどけ、円相へ流れ込む](assets/readme-cover.jpg)
 
-# Tatsuya Shimomoto (@shimo4228)
+# shimo4228
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
 
-> 下本竜也が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。主題は AI エージェント設計、AI 時代の著者性、計算論的現象学（体験を計算のモデルで捉える研究）。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
+> shimo4228 が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。主題は AI エージェント設計、AI 時代の著者性、計算論的現象学（体験を計算のモデルで捉える研究）。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
-こんにちは、下本竜也です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。論文や DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
+こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。論文や DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
 
 エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。このリポジトリ自体は全体の地図で、各プロジェクトの最新情報はそれぞれのリポジトリにあります。ここにまとめているのは、プロジェクト同士の変わらない関係と引用先だけです。
 
@@ -72,6 +72,6 @@ AI やクローラ向けの読み順は [`graph.jsonld`](graph.jsonld) → [`llm
 
 ## 引用と識別子
 
-著者: 下本竜也 (Tatsuya Shimomoto) · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
+著者: shimo4228 · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
 この hub は CC0 ライセンスです。各プロジェクトの内容を引用するときは、そのプロジェクトの concept DOI を使ってください。hub 自体を引用するのは、ここにある目録・ナレッジグラフ・traffic データ・probe データセット（LLM の応答を定点観測した時系列データ）を参照する場合だけです。

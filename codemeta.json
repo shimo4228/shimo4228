@@ -5,8 +5,7 @@
     {
       "@id": "https://orcid.org/0009-0002-6168-4162",
       "@type": "Person",
-      "familyName": "Shimomoto",
-      "givenName": "Tatsuya"
+      "name": "shimo4228"
     }
   ],
   "codeRepository": "https://github.com/shimo4228/shimo4228",
