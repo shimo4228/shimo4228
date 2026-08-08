@@ -32,6 +32,7 @@ jobs:
               'attention-not-self',
               'contemplative-agent-data',
               'zenn-content',
+              'claude-harness',
               'shimo4228',
             ];
             const dataDir = 'traffic/data';
