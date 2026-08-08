@@ -10,7 +10,7 @@ Language: [English](README.md) | 日本語
 
 こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。論文や DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
 
-エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。このリポジトリ自体は全体の地図で、各プロジェクトの最新情報はそれぞれのリポジトリにあります。ここにまとめているのは、プロジェクト同士の変わらない関係と引用先だけです。
+エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。私が毎日使っているハーネスそのものも [claude-harness](https://github.com/shimo4228/claude-harness) として公開しています。このリポジトリ自体は全体の地図で、各プロジェクトの最新情報はそれぞれのリポジトリにあります。ここにまとめているのは、プロジェクト同士の変わらない関係と引用先だけです。
 
 ## 早見表
 
@@ -30,7 +30,9 @@ Language: [English](README.md) | 日本語
 
 ハーネスに普通書かれるのは、コーディング規約のような作業上の規則です。この取り組みでは、同じ場所に価値の規範も書き込みます。具体的には、瞑想から生まれた行動指針（contemplative axioms）と、著者性をめぐる判断基準です。価値規範は一度書いて固定するものではなく、コードや他の規則と同じように、人間のレビューを通して改訂され続けます。
 
-3 本はこの主張をそれぞれ別の角度から担っています。Contemplative Agent は価値の層を持つエージェントの実装、AKC はエージェントを操作者の意図に沿わせ続ける仕組み、AAP はその運用の責任を記録する実践です。価値規範を含むハーネス一式は [claude-harness](https://github.com/shimo4228/claude-harness) として公開しています。
+3 本はこの主張をそれぞれ別の角度から担っています。Contemplative Agent は価値の層を持つエージェントの実装、AKC はエージェントを操作者の意図に沿わせ続ける仕組み、AAP はその運用の責任を記録する実践です。
+
+この主張は文書の上だけのものではなく、実際に動いています。[**claude-harness**](https://github.com/shimo4228/claude-harness) は、このページの全プロジェクトを支えている実働ハーネスの公開版です。価値規範を含む skills / agents / rules（ハーネスの構成部品）一式の中で私のエージェントたちが日々動き、その一式は各プロジェクトの述べるのと同じ人間レビューのサイクルで改訂され続けています。価値層ハーネス工学を書かれた主張としてではなく、生きた実例として見たいなら、ここから開いてください。
 
 ```mermaid
 graph TD
@@ -40,17 +42,20 @@ graph TD
     V --- AKC["Agent Knowledge Cycle (AKC)"]
     V --- AAP["Agent Attribution Practice (AAP)"]
     ANS & CA & AKC & AAP --> AS["Authorship Strategy<br>（全体を公開・引用可能にする）"]
+    V -.- CH["claude-harness<br>（実働ハーネスの公開版）"]
     classDef source fill:#FFF3D6,stroke:#D9A33C,color:#24292F
     classDef claim fill:#EBE4FA,stroke:#8B72D6,color:#24292F
     classDef lineNode fill:#E7F0FA,stroke:#6A9BC3,color:#24292F
     classDef sink fill:#E2F5E9,stroke:#57A874,color:#24292F
+    classDef artifact fill:#F3F4F6,stroke:#6E7781,color:#24292F
     class M source
     class V claim
     class ANS,CA,AKC,AAP lineNode
     class AS sink
+    class CH artifact
 ```
 
-図の要約: 私自身の瞑想が Contemplative Agent と Attention, Not Self の源流にあります。エージェント設計の 3 本は価値層ハーネス工学という主張を共有し、Authorship Strategy がその全体を外に開いて引用できるようにしています。
+図の要約: 私自身の瞑想が Contemplative Agent と Attention, Not Self の源流にあります。エージェント設計の 3 本は価値層ハーネス工学という主張を共有し、その主張の実働形が claude-harness として公開されています。Authorship Strategy がその全体を外に開いて引用できるようにしています。
 
 ## Papers
 
