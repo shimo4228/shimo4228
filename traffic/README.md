@@ -1,8 +1,8 @@
 # Traffic Data
 
-Daily snapshots of the GitHub Traffic API for eight public research repositories by [@shimo4228](https://github.com/shimo4228).
+Daily snapshots of the GitHub Traffic API for nine public repositories by [@shimo4228](https://github.com/shimo4228).
 
-**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — all eight repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
+**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — all nine repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
 
 ## What
 
@@ -15,6 +15,7 @@ Append-only JSONL time series under `data/`, one file per repository:
 - [attention-not-self](https://github.com/shimo4228/attention-not-self)
 - [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data)
 - [zenn-content](https://github.com/shimo4228/zenn-content)
+- [claude-harness](https://github.com/shimo4228/claude-harness) (public Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (this profile repo)
 
 GitHub's Traffic API only retains the last 14 days. Snapshotting daily accumulates a long-term record that is otherwise unrecoverable.
@@ -25,9 +26,9 @@ Openness is one axis of the AI-era authenticity stance behind these projects (sc
 
 ## What's observable here
 
-Placing six repos side-by-side surfaces signals that look like noise on any single repo, but resolve into cross-repo structural patterns:
+Placing the repos side-by-side surfaces signals that look like noise on any single repo, but resolve into cross-repo structural patterns:
 
-- **Bot/crawler dominance**: clones:views ratios exceed 30:1 across all six repos. The profile repo ([shimo4228](https://github.com/shimo4228/shimo4228)) has 80 clones against 0 views — nobody is *reading* it, but something is *cloning* it.
+- **Bot/crawler dominance**: clones:views ratios exceed 30:1 across the research repos. The profile repo ([shimo4228](https://github.com/shimo4228/shimo4228)) has 80 clones against 0 views — nobody is *reading* it, but something is *cloning* it.
 - **Cross-repo crawler waves**: clones spike simultaneously across multiple repos on the same dates. Article publication days appear to trigger walk-throughs of the entire portfolio (not single-repo events).
 - **Visibility scarcity (admin-only)**: GitHub's Traffic clone counts are returned only to users with push access. Other repositories' clone behavior is invisible in both the UI and the public API. Longitudinal public datasets of personal-repo clone behavior are therefore essentially absent in the wild. Unlike stars / forks / watchers, clones cannot be counted from the outside.
 - **Temporal scarcity**: even for one's own repo, the API returns only the last 14 days. The moment snapshotting stops, the past becomes unrecoverable.

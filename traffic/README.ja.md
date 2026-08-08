@@ -1,8 +1,8 @@
 # Traffic Data
 
-[@shimo4228](https://github.com/shimo4228) の公開研究 repo 6 件に対する GitHub Traffic API の daily snapshot。
+[@shimo4228](https://github.com/shimo4228) の公開 repo 9 件に対する GitHub Traffic API の daily snapshot。
 
-**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) で 6 repo を 1 ページに可視化 (合算 timeline / repo 別 small multiples / clones:views 比 / 生データ table)。
+**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) で 9 repo を 1 ページに可視化 (合算 timeline / repo 別 small multiples / clones:views 比 / 生データ table)。
 
 ## 何のデータか
 
@@ -11,8 +11,11 @@
 - [contemplative-agent](https://github.com/shimo4228/contemplative-agent)
 - [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle)
 - [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice)
+- [authorship-strategy](https://github.com/shimo4228/authorship-strategy)
+- [attention-not-self](https://github.com/shimo4228/attention-not-self)
 - [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data)
 - [zenn-content](https://github.com/shimo4228/zenn-content)
+- [claude-harness](https://github.com/shimo4228/claude-harness) (公開 Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (この profile repo)
 
 GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り続けることで、後追い不可能な long-term record を蓄積する。
@@ -23,9 +26,9 @@ GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り
 
 ## 何が観察できるか
 
-6 repo を横並びにすると、単 repo では noise にしか見えない signal が cross-repo の structural pattern として浮かび上がる:
+repo を横並びにすると、単 repo では noise にしか見えない signal が cross-repo の structural pattern として浮かび上がる:
 
-- **Bot/crawler が支配的**: clones:views 比率が 6 repo すべてで 30:1 以上。プロフィール repo ([shimo4228](https://github.com/shimo4228/shimo4228)) は 80 clones に対し 0 views — 誰も *読んで* いないが、何かが *cloning* している。
+- **Bot/crawler が支配的**: clones:views 比率が研究 repo すべてで 30:1 以上。プロフィール repo ([shimo4228](https://github.com/shimo4228/shimo4228)) は 80 clones に対し 0 views — 誰も *読んで* いないが、何かが *cloning* している。
 - **Cross-repo crawler wave**: 同一日に複数 repo の clone が同時にピークを立てる。記事公開日に portfolio 全体を順に走査する pattern が観測できる (単 repo の event ではない)。
 - **可視性の希少性 (admin-only)**: GitHub Traffic API の clone 数は push 権限を持つユーザにしか返らない。他人の repo の clone 行動は UI でも公開 API でも一切見えない。それゆえ個人 repo の clone 行動の longitudinal な公開データセットは事実上 wild にほぼ存在しない。stars / forks / watchers と違い、clone は外から数えられない数字。
 - **時間の希少性**: 自分の repo の数字でさえ、API は直近 14 日しか返さない。蓄積を止めた瞬間に過去は後追い不能になる。
