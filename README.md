@@ -8,7 +8,7 @@ Language: English | [日本語](README.ja.md)
 
 > Hub repository for five practice lines (long-running, independently citable projects) by shimo4228: AI agent design, AI-mediated authorship, and computational phenomenology. The three agent-design lines share one claim (see [Through-line](#through-line)).
 
-I'm shimo4228. I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. The papers and DOIs are tools, not a title. They keep the work citable, durable, and traceable.
+I'm shimo4228. I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. The DOIs are tools, not a title. They keep the work citable, durable, and traceable.
 
 If you build agent harnesses (the standing rules and tools an agent runs inside), think about accountability for autonomous agents, or care about authorship in the AI age, one of the five lines below is probably for you. The harness I run every day is itself public as [claude-harness](https://github.com/shimo4228/claude-harness).
 
@@ -58,16 +58,6 @@ graph TD
 ```
 
 The diagram in one sentence: my own meditation practice sources Contemplative Agent and Attention, Not Self; the three agent-design lines share the value-layer claim, whose running instance is published as claude-harness; and Authorship Strategy is how the whole program is published and cited.
-
-## Papers
-
-Position papers deposited as standalone Zenodo records, each belonging to one line; the concept DOI is canonical, with SSRN mirrors where maintained.
-
-| Paper | Line | Links |
-|---|---|---|
-| *Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation* | AKC | [DOI 10.5281/zenodo.20578272](https://doi.org/10.5281/zenodo.20578272) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6892740) |
-| *Distributing Accountability, Not Capability: Phase Separation and the LLM Workflow Quadrant in Autonomous AI Agent Architectures* | AAP | [DOI 10.5281/zenodo.20353789](https://doi.org/10.5281/zenodo.20353789) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598) |
-| *The Two-Layer Black Box: Operator Visibility, Commercial Secrecy, and a Minimum Disclosure Set for Accountable Autonomous AI Agents* | AAP | [DOI 10.5281/zenodo.20355907](https://doi.org/10.5281/zenodo.20355907) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878) |
 
 ## Writing and data
 
