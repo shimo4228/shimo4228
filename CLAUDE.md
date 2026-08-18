@@ -1,6 +1,6 @@
 # shimo4228 (hub repo)
 
-This repo is a **hub**, not a source of truth. Its README aggregates the five independently-evolving practice lines — three agent-design lines (AKC / Contemplative Agent / AAP) and two cross-cutting lines (Authorship Strategy / Attention Not Self) — and their papers; the AI-facing surfaces (`llms.txt` / `llms-full.txt` / `graph.jsonld`) additionally carry the full supporting-ecosystem inventory.
+This repo is a **hub**, not a source of truth. Its README aggregates the five independently-evolving practice lines — three agent-design lines (AKC / Contemplative Agent / AAP) and two cross-cutting lines (Authorship Strategy / Attention Not Self); the AI-facing surfaces (`llms.txt` / `llms-full.txt` / `graph.jsonld`) additionally carry the paper records and the full supporting-ecosystem inventory.
 
 ## Design rules for hub content
 
@@ -15,14 +15,14 @@ This repo is a **hub**, not a source of truth. Its README aggregates the five in
 
 3. **Describe what something *is*, not what state it's *in***. Stable architectural facts (`three-layer structure`, `six-phase loop`, `local 9B stack on Apple Silicon`, `prohibition-strength hierarchy`, `Four Business AI Quadrants`) are fine. Counts, versions, enumerations of churning sets are not.
 
-4. **Ecosystem membership lives in the machine surfaces, not the README**. The human README carries the five lines, their papers, and one pointer; the canonical supporting-ecosystem inventory (satellite repos, datasets, writing/probe surfaces) is maintained in `llms.txt`, `llms-full.txt`, and `graph.jsonld`. **Deliberate exception (owner decision, 2026-08-08): `claude-harness`.** As the living instance of value-layer harness engineering it gets elevated README treatment — an intro pointer sentence, a dedicated Through-line paragraph, and a mermaid `artifact` node — in both languages. Do not trim these back to a single mention on design-rule grounds; other ecosystem repos still get no README row. Add/remove an ecosystem entry across those three surfaces when a repo is added/retired — the README needs no per-repo row. Keep the README's "Machine reading" pointer truthful (it directs readers to those files for the full inventory).
+4. **Ecosystem membership lives in the machine surfaces, not the README**. The human README carries the five lines and one pointer; the canonical supporting-ecosystem inventory (satellite repos, datasets, writing/probe surfaces) is maintained in `llms.txt`, `llms-full.txt`, and `graph.jsonld`. **Deliberate exception (owner decision, 2026-08-08): `claude-harness`.** As the living instance of value-layer harness engineering it gets elevated README treatment — an intro pointer sentence, a dedicated Through-line paragraph, and a mermaid `artifact` node — in both languages. Do not trim these back to a single mention on design-rule grounds; other ecosystem repos still get no README row. Add/remove an ecosystem entry across those three surfaces when a repo is added/retired — the README needs no per-repo row. Keep the README's "Machine reading" pointer truthful (it directs readers to those files for the full inventory).
 
 ## When *should* this hub be touched
 
 - A **new structural concept** appears in a line (e.g. AAP added `Four Business AI Quadrants` — that earned a 1-句 mention).
 - An **ecosystem repo** is added or retired — update `llms.txt`, `llms-full.txt`, and the `graph.jsonld` `EcosystemRepo` nodes (not a README row; the README only points to them).
 - A **new practice line** starts.
-- A **paper is deposited** from a line as a standalone Zenodo record — add a membership row to the Papers section (all four surfaces) and a `Paper` node in `graph.jsonld`. Concept DOI only; rows are never edited afterwards (paper records are immutable once deposited).
+- A **paper is deposited** from a line as a standalone Zenodo record — add a membership row to the Papers section of `llms.txt` and `llms-full.txt`, and a `Paper` node in `graph.jsonld`. Concept DOI only; rows are never edited afterwards (paper records are immutable once deposited). **The two READMEs deliberately carry no Papers section (owner decision, 2026-08-17: keep the human hub short and avoid researcher framing) — do not re-add one.**
 - The 3 concept DOIs themselves move (rare; only if a record is restructured on Zenodo).
 
 Routine `vX.Y.Z` releases of any line should require **zero edits** here.
@@ -48,7 +48,7 @@ The `graph.jsonld` artifact follows the same triggers: a new `Concept`, `Ecosyst
 
 ## Language pair
 
-`README.md` and `README.ja.md` must stay structurally synchronized — same sections, same number of DOI mentions, same Papers table rows. Quick check:
+`README.md` and `README.ja.md` must stay structurally synchronized — same sections, same number of DOI mentions. Quick check:
 
 ```bash
 diff <(grep -c "doi.org/10.5281" README.md) <(grep -c "doi.org/10.5281" README.ja.md)

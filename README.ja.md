@@ -8,7 +8,7 @@ Language: [English](README.md) | 日本語
 
 > shimo4228 が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。主題は AI エージェント設計、AI 時代の著者性、計算論的現象学（体験を計算のモデルで捉える研究）。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
-こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。論文や DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
+こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
 
 エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。私が毎日使っているハーネスそのものも [claude-harness](https://github.com/shimo4228/claude-harness) として公開しています。このリポジトリ自体は全体の地図で、各プロジェクトの最新情報はそれぞれのリポジトリにあります。ここにまとめているのは、プロジェクト同士の変わらない関係と引用先だけです。
 
@@ -56,16 +56,6 @@ graph TD
 ```
 
 図の要約: 私自身の瞑想が Contemplative Agent と Attention, Not Self の源流にあります。エージェント設計の 3 本は価値層ハーネス工学という主張を共有し、その主張の実働形が claude-harness として公開されています。Authorship Strategy がその全体を外に開いて引用できるようにしています。
-
-## Papers
-
-各プロジェクトから生まれた position paper（立場表明論文）を、独立した Zenodo レコードとして登録しています。引用には concept DOI を使ってください。SSRN にミラーがあるものは併記しています。
-
-| Paper | Line | Links |
-|---|---|---|
-| *Harness Alignment and Harness Drift: Why Intent, Unlike Correctness, Resists Automation* | AKC | [DOI 10.5281/zenodo.20578272](https://doi.org/10.5281/zenodo.20578272) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6892740) |
-| *Distributing Accountability, Not Capability: Phase Separation and the LLM Workflow Quadrant in Autonomous AI Agent Architectures* | AAP | [DOI 10.5281/zenodo.20353789](https://doi.org/10.5281/zenodo.20353789) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6817598) |
-| *The Two-Layer Black Box: Operator Visibility, Commercial Secrecy, and a Minimum Disclosure Set for Accountable Autonomous AI Agents* | AAP | [DOI 10.5281/zenodo.20355907](https://doi.org/10.5281/zenodo.20355907) · [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6823878) |
 
 ## データと執筆
 
