@@ -4,7 +4,7 @@ Language: English | [日本語](README.ja.md)
 
 # shimo4228
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228) [![GitMCP](https://img.shields.io/endpoint?url=https://gitmcp.io/badge/shimo4228/shimo4228)](https://gitmcp.io/shimo4228/shimo4228)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228)
 
 > Hub repository for five practice lines (long-running, independently citable projects) by shimo4228: AI agent design, AI-mediated authorship, and computational phenomenology. The three agent-design lines share one claim (see [Through-line](#through-line)).
 
