@@ -6,11 +6,11 @@ Language: [English](README.md) | 日本語
 
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228)
 
-> shimo4228 が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。主題は AI エージェント設計、AI 時代の著者性、計算論的現象学（体験を計算のモデルで捉える研究）。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
+> shimo4228 が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。中身は、私が AI エージェントをどう作っているか、LLM が読書を仲介する時代にどう「知られている著者」であり続けるか、そして自分の瞑想から心の働きについて何が見えたか、です。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
-こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
+こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。私は瞑想もしていて、5 本のうち 1 本はそこで見えたことをそのまま書き留めたものです。DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
 
-エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。私が毎日使っているハーネスそのものも [claude-harness](https://github.com/shimo4228/claude-harness) として公開しています。このリポジトリ自体は全体の地図で、各プロジェクトの最新情報はそれぞれのリポジトリにあります。ここにまとめているのは、プロジェクト同士の変わらない関係と引用先だけです。
+エージェントのハーネス（エージェントに渡す規則とツール一式）を作っている人、自律エージェントの説明責任を考えている人、AI 時代の著者性に関心がある人に向けています。5 本とは別に、私が毎日使っているハーネスそのものも [claude-harness](https://github.com/shimo4228/claude-harness) として公開しています。このリポジトリ自体は全体の地図で、各プロジェクトの最新情報はそれぞれのリポジトリにあります。ここに置くのは、プロジェクト同士の変わらない関係と引用先、そして執筆物・データ・機械読解への入口です。
 
 ## 早見表
 
@@ -20,17 +20,17 @@ Language: [English](README.md) | 日本語
 | [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle) | エージェント設計の仕組み | エージェントと操作者の意図のずれを、振る舞いと判断が変わっていく中でも直し続けるための 6 フェーズのループ。 | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
 | [Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice) | 説明責任の実践 | 「何を禁止するか、制御をどこに置くか、エージェントが壊れたとき誰が責任を持つか」を、特定ツールに依存しない形で記録した設計判断（ADR）集。 | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
 | [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性の方法論 | 読者との出会いを LLM が仲介する時代に「知られている著者」であり続けるための考え方の枠組み。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
-| [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 心の仕組みの探究（仏教 × 認知科学） | 古典仏教の心の分析（アビダルマ）を、現代の計算論的現象学（体験の計算モデル化）と突き合わせる研究。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
+| [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 瞑想から出てきたエッセイ | 個人のエッセイ集と知識グラフ。瞑想で気づいたことを、古典仏教の心の地図（アビダルマ）で言い表し、現代の体験の計算モデル（計算論的現象学）と並べてみたもの。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
-5 本は兄弟プロジェクトで、互いに依存していません。どれか 1 本だけでも単独で使えます。関心に近いところから開いてください。表の DOI は Zenodo の concept DOI（常に最新版へつながる代表 DOI）です。
+5 本は兄弟プロジェクトで、互いに依存していません。どれかを先に読んだり使ったりする必要はなく、どれか 1 本だけでも単独で使えます。関心に近いところから開いてください。表の DOI は Zenodo の concept DOI（常に最新版へつながる代表 DOI）です。
 
 ## Through-line
 
 エージェント設計の 3 本（Contemplative Agent / AKC / AAP）を貫く主張が **[value-layer harness engineering（価値層ハーネス工学）](https://shimo4228.github.io/shimo4228/concepts/value-layer-harness-engineering.html)** です。
 
-ハーネスに普通書かれるのは、コーディング規約のような作業上の規則です。この取り組みでは、同じ場所に価値の規範も書き込みます。具体的には、瞑想から生まれた行動指針（contemplative axioms）と、著者性をめぐる判断基準です。価値規範は一度書いて固定するものではなく、コードや他の規則と同じように、人間のレビューを通して改訂され続けます。
+ハーネスに普通書かれるのは、コーディング規約のような作業上の規則です。この 3 本では、同じ場所に価値の規範も書き込みます。具体的には、瞑想から生まれた行動指針（contemplative axioms）と、著者性をめぐる判断基準です。価値規範は一度書いて固定するものではなく、コードや他の規則と同じように、人間のレビューを通して改訂され続けます。
 
-3 本はこの主張をそれぞれ別の角度から担っています。Contemplative Agent は価値の層を持つエージェントの実装、AKC はエージェントを操作者の意図に沿わせ続ける仕組み、AAP はその運用の責任を記録する実践です。
+3 本はこの主張に別々の場所で出会います。Contemplative Agent は「そんな層を持ったエージェントが本当に動くのか」を、AKC は「双方が変わり続ける中でその層を操作者の意図に沿わせ続けられるか」を、AAP は「壊れたとき誰が責任を持つのか」を問います。
 
 この主張は文書の上だけのものではなく、実際に動いています。[**claude-harness**](https://github.com/shimo4228/claude-harness) は、このページの全プロジェクトを支えている実働ハーネスの公開版です。価値規範を含む skills / agents / rules（ハーネスの構成部品）一式の中で私のエージェントたちが日々動き、その一式は各プロジェクトの述べるのと同じ人間レビューのサイクルで改訂され続けています。価値層ハーネス工学を書かれた主張としてではなく、生きた実例として見たいなら、ここから開いてください。
 
@@ -41,7 +41,7 @@ graph TD
     V["value-layer harness engineering<br>価値層ハーネス工学（3 本共通の主張）"] --- CA
     V --- AKC["Agent Knowledge Cycle (AKC)"]
     V --- AAP["Agent Attribution Practice (AAP)"]
-    ANS & CA & AKC & AAP --> AS["Authorship Strategy<br>（全体を公開・引用可能にする）"]
+    ANS & CA & AKC & AAP --> AS["Authorship Strategy<br>（他の 4 本をどう公開するか）"]
     V -.- CH["claude-harness<br>（実働ハーネスの公開版）"]
     classDef source fill:#FFF3D6,stroke:#D9A33C,color:#24292F
     classDef claim fill:#EBE4FA,stroke:#8B72D6,color:#24292F
@@ -55,7 +55,7 @@ graph TD
     class CH artifact
 ```
 
-図の要約: 私自身の瞑想が Contemplative Agent と Attention, Not Self の源流にあります。エージェント設計の 3 本は価値層ハーネス工学という主張を共有し、その主張の実働形が claude-harness として公開されています。Authorship Strategy がその全体を外に開いて引用できるようにしています。
+図の要約: 私自身の瞑想が Contemplative Agent と Attention, Not Self の源流にあります。エージェント設計の 3 本は価値層ハーネス工学という主張を共有し、その主張の実働形が claude-harness として公開されています。Authorship Strategy が、他の 4 本と自分自身を外に開いて引用できるようにしています。矢印は考えの流れを示すもので、依存関係ではありません。
 
 ## データと執筆
 
@@ -69,4 +69,4 @@ AI やクローラ向けの読み順は [`graph.jsonld`](graph.jsonld) → [`llm
 
 著者: shimo4228 · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
-この hub は CC0 ライセンスです。各プロジェクトの内容を引用するときは、そのプロジェクトの concept DOI を使ってください。hub 自体を引用するのは、ここにある目録・ナレッジグラフ・traffic データ・probe データセット（LLM の応答を定点観測した時系列データ）を参照する場合だけです。
+この hub は CC0 ライセンスです。各プロジェクトの内容を引用するときは、そのプロジェクトの concept DOI を使ってください。hub 自体を引用するのは、ここにある目録・ナレッジグラフ・traffic データ・probe データセット（LLM の応答を定点観測した時系列データ）を参照する場合だけです。機械可読の引用情報は [`CITATION.cff`](CITATION.cff) にあります。
