@@ -4,8 +4,6 @@ Language: [English](README.md) | 日本語
 
 # shimo4228
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228)
-
 > shimo4228 が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。中身は、私が AI エージェントをどう作っているか、LLM が読書を仲介する時代にどう「知られている著者」であり続けるか、そして自分の瞑想から心の働きについて何が見えたか、です。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
 こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。私は瞑想もしていて、5 本のうち 1 本はそこで見えたことをそのまま書き留めたものです。DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
@@ -63,7 +61,7 @@ graph TD
 
 ## 機械読解
 
-AI やクローラ向けの読み順は [`graph.jsonld`](graph.jsonld) → [`llms.txt`](llms.txt) → [`llms-full.txt`](llms-full.txt) です。関連リポジトリ・データセットなどの全体目録も、これらのファイルと [concept index](https://shimo4228.github.io/shimo4228/concepts/)（用語ごとの解説ページ一覧）側にあります（この README は入口だけを担当します）。
+AI やクローラ向けの読み順は [`graph.jsonld`](graph.jsonld) → [`llms.txt`](llms.txt) → [`llms-full.txt`](llms-full.txt) です。関連リポジトリ・データセットなどの全体目録も、これらのファイルと [concept index](https://shimo4228.github.io/shimo4228/concepts/)（用語ごとの解説ページ一覧）側にあります（この README は入口だけを担当します）。このリポジトリについて対話形式で質問したい場合は [DeepWiki](https://deepwiki.com/shimo4228/shimo4228) が使えます。
 
 ## 引用と識別子
 

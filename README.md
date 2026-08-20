@@ -4,8 +4,6 @@ Language: English | [日本語](README.ja.md)
 
 # shimo4228
 
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/shimo4228/shimo4228)
-
 > Hub repository for five practice lines (long-running, independently citable projects) by shimo4228: how I build AI agents, how I stay a known author when LLMs mediate reading, and what I have noticed about the mind through meditation. The three agent-design lines share one claim (see [Through-line](#through-line)).
 
 I'm shimo4228. I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. I also sit in meditation, and one of the five lines is simply what I found there, written down. The DOIs are tools, not a title. They keep the work citable, durable, and traceable.
@@ -65,7 +63,7 @@ Long-form articles: [Zenn](https://zenn.dev/shimo4228) · [Dev.to](https://dev.t
 
 ## Machine reading
 
-For machines, start with [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.txt), then [`llms-full.txt`](llms-full.txt). The full ecosystem inventory (supporting repositories, datasets, and more) lives in those files and the [concept index](https://shimo4228.github.io/shimo4228/concepts/), not in this README.
+For machines, start with [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.txt), then [`llms-full.txt`](llms-full.txt). The full ecosystem inventory (supporting repositories, datasets, and more) lives in those files and the [concept index](https://shimo4228.github.io/shimo4228/concepts/), not in this README. To ask questions about this repo in chat, use [DeepWiki](https://deepwiki.com/shimo4228/shimo4228).
 
 ## Citation and Identity
 
