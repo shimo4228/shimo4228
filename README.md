@@ -4,7 +4,7 @@ Language: English | [日本語](README.ja.md)
 
 # shimo4228
 
-> Hub repository for five practice lines (long-running, independently citable projects) by shimo4228: how I build AI agents, how I stay a known author when LLMs mediate reading, and what I have noticed about the mind through meditation. The three agent-design lines share one claim (see [Through-line](#through-line)).
+> Hub repository for five practice lines (long-running, independently citable projects) by shimo4228: how I build AI agents, how an author stays findable when readers ask LLMs first, and what I have noticed about the mind through meditation. The three agent-design lines share one claim (see [Through-line](#through-line)).
 
 I'm shimo4228. I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. I also sit in meditation, and one of the five lines is simply what I found there, written down. The DOIs are tools, not a title. They keep the work citable, durable, and traceable.
 
@@ -19,7 +19,7 @@ This repo is a map, not the source of truth for live state. Each practice line h
 | [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | Agent disposition and implementation | A local agent that holds its value layer as an explicit harness artifact (a Constitution it amends from experience; every amendment passes human review). | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
 | [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle) | Agent-design mechanism | A six-phase loop for sustaining agent-operator intent alignment as both behavior and judgment evolve. | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
 | [Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice) | Accountability practice | Harness-neutral design decision records (ADRs) for what to prohibit, where controls live, and who answers when an agent fails. | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
-| [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI-era authorship methodology | A framework for being a known author when LLMs mediate how readers discover and cite artifacts. | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
+| [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | Authorship in the AI age | When readers meet ideas through LLMs, an idea can spread while its author's name drops off. This line records the strategy that follows: open the work instead of enclosing it, so the spread itself carries the origin. | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | Essays from meditation practice | A personal essay collection and knowledge graph: what I notice in meditation, described with the classical Buddhist map of the mind (Abhidharma) and set beside today's computational models of experience (computational phenomenology). | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
 The five lines are siblings, not dependencies: none requires another to be read or used first. Any one can be adopted alone. Open whichever line sits closest to your interest. The DOIs in the table are Zenodo concept DOIs, parent links that always resolve to the latest version.

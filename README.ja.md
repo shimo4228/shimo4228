@@ -4,7 +4,7 @@ Language: [English](README.md) | 日本語
 
 # shimo4228
 
-> shimo4228 が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。中身は、私が AI エージェントをどう作っているか、LLM が読書を仲介する時代にどう「知られている著者」であり続けるか、そして自分の瞑想から心の働きについて何が見えたか、です。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
+> shimo4228 が続けている 5 本の長期プロジェクト（それぞれ単独で引用できます）をまとめた hub リポジトリです。中身は、私が AI エージェントをどう作っているか、読者がまず LLM に尋ねる時代に著者がどう見つかり続けるか、そして自分の瞑想から心の働きについて何が見えたか、です。エージェント設計の 3 本はひとつの主張を共有しています（その中身は [Through-line](#through-line) 節へ）。
 
 こんにちは、shimo4228 です。ラボにも組織にも属さず、AI エージェントを一人で作りながら「AI 時代の良いやり方」を実地で探っています。そのひとつ Contemplative Agent は、クラウドの API ではなく M1 Mac 上のローカル LLM で動いています。私は瞑想もしていて、5 本のうち 1 本はそこで見えたことをそのまま書き留めたものです。DOI は肩書きのためではなく、探究を引用できる形で残しておくための道具です。
 
@@ -17,7 +17,7 @@ Language: [English](README.md) | 日本語
 | [Contemplative Agent](https://github.com/shimo4228/contemplative-agent) | エージェントの気質設計と実装 | 自分の価値観の層を Constitution（憲法）という明示的なファイルとして持ち、経験にもとづく改訂のたびに人間のレビューを通すローカルエージェント。 | [DOI 10.5281/zenodo.19212118](https://doi.org/10.5281/zenodo.19212118) |
 | [Agent Knowledge Cycle (AKC)](https://github.com/shimo4228/agent-knowledge-cycle) | エージェント設計の仕組み | エージェントと操作者の意図のずれを、振る舞いと判断が変わっていく中でも直し続けるための 6 フェーズのループ。 | [DOI 10.5281/zenodo.19200726](https://doi.org/10.5281/zenodo.19200726) |
 | [Agent Attribution Practice (AAP)](https://github.com/shimo4228/agent-attribution-practice) | 説明責任の実践 | 「何を禁止するか、制御をどこに置くか、エージェントが壊れたとき誰が責任を持つか」を、特定ツールに依存しない形で記録した設計判断（ADR）集。 | [DOI 10.5281/zenodo.19652013](https://doi.org/10.5281/zenodo.19652013) |
-| [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性の方法論 | 読者との出会いを LLM が仲介する時代に「知られている著者」であり続けるための考え方の枠組み。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
+| [Authorship Strategy](https://github.com/shimo4228/authorship-strategy) | AI 時代の著者性 | 読者が LLM 越しに考えに出会う時代には、考えだけが広まって著者の名前が落ちることが起きます。そこで取る方針を記録した枠組み: 囲い込むのではなく開くことで、広まること自体に出どころを運ばせる。 | [DOI 10.5281/zenodo.20263316](https://doi.org/10.5281/zenodo.20263316) |
 | [Attention, Not Self](https://github.com/shimo4228/attention-not-self) | 瞑想から出てきたエッセイ | 個人のエッセイ集と知識グラフ。瞑想で気づいたことを、古典仏教の心の地図（アビダルマ）で言い表し、現代の体験の計算モデル（計算論的現象学）と並べてみたもの。 | [DOI 10.5281/zenodo.20262112](https://doi.org/10.5281/zenodo.20262112) |
 
 5 本は兄弟プロジェクトで、互いに依存していません。どれかを先に読んだり使ったりする必要はなく、どれか 1 本だけでも単独で使えます。関心に近いところから開いてください。表の DOI は Zenodo の concept DOI（常に最新版へつながる代表 DOI）です。
