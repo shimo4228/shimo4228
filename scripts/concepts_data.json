@@ -299,7 +299,7 @@
       "line": "Authorship Strategy",
       "line_repo": "https://github.com/shimo4228/authorship-strategy",
       "doi": "10.5281/zenodo.20263316",
-      "graph_id": null,
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#as/concept/retrieval-suppressed-naming-probe",
       "wikidata": null,
       "gloss": "Black-box probe of parametric author attribution",
       "def_en": "The measurement instrument for the parametric channel: a fixed, single-variable prompt sent to a model with all search and grounding tools suppressed, asking what a concept is and who coined or maintains it. Success is the model producing the concept and its author's name from trained weights alone — the behavioral, black-box counterpart to white-box training-data-attribution methods. Defined and operated by ADR-0011 together with a search-enabled citation probe and a negative-control probe that quantifies the confabulation noise floor. The framework's body prose refers to this instrument informally as the regurgitation test.",
@@ -319,6 +319,39 @@
         {
           "q_en": "How does it relate to ghost citation?",
           "a_en": "Its search-enabled twin, the citation probe, makes ghost citation observable within a single answer: an owned identifier cited while the author goes unnamed in prose."
+        }
+      ]
+    },
+    {
+      "slug": "vocabulary-discipline",
+      "name_en": "Vocabulary discipline",
+      "name_ja": "語彙規律",
+      "name_zh": null,
+      "aliases": ["coin sparingly, anchor densely"],
+      "label": "distinctive",
+      "line": "Authorship Strategy",
+      "line_repo": "https://github.com/shimo4228/authorship-strategy",
+      "doi": "10.5281/zenodo.20263316",
+      "graph_id": "https://shimo4228.github.io/shimo4228/vocab#as/concept/vocabulary-discipline",
+      "wikidata": null,
+      "gloss": "When to coin a term and when to use existing vocabulary",
+      "def_en": "The discipline governing when to coin a distinctive term and when to use existing vocabulary instead, introduced as the parametric-channel lever in ADR-0008 and defined in ADR-0010. A term is coined only when three conditions all hold — the concept is genuinely new at a join of existing concepts, a one-sentence definition in existing vocabulary is possible, and the namespace is uncontested — and every retained coinage is anchored densely: a glossary definition in existing vocabulary, upstream citations where prior art exists, knowledge-graph edges to existing concepts and references, and repeated work in the body. Everything else is said in existing vocabulary with the upstream source cited. Rationale: the costs of coinage (isolation, reader trust, maintenance) grow linearly with the number of terms, while the benefit depends on each term's edge density, so few densely-anchored terms dominate many isolated ones. The vocabulary-level enforcement of origin-claim scope discipline.",
+      "def_ja": "いつ distinctive term を造語し、いつ既存語彙を使うかを統べる規律。ADR-0008 で parametric channel のレバーとして導入され、ADR-0010 で定義された。造語するのは 3 条件がすべて成立するときのみ —— 概念が既存概念の結合点に立つ genuine な新規物である、既存語彙だけで一文定義が書ける、namespace が競合していない —— そして採用したすべての造語を密に anchor する: 既存語彙での glossary 定義、prior art が存在する場合の上流 citation、既存概念と外部文献への knowledge-graph edge、本文中での反復使用。それ以外はすべて既存語彙で書き、上流の出典を cite する。Rationale: 造語のコスト (孤立・読者の信頼・維持) は語数に線形に増えるが、利益は各語の edge 密度に依存する。ゆえに密に anchor された少数の語が孤立した多数の語を支配する。Origin-claim scope discipline の語彙レベルでの執行。",
+      "origin_en": "Named and defined by shimo4228 in Authorship Strategy ADR-0010 (introduced as the parametric-channel lever in ADR-0008); the phrase itself is existing vocabulary, so no coinage is claimed.",
+      "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#vocabulary-discipline",
+      "related": ["two-channel-attribution-diffusion", "retrieval-suppressed-naming-probe", "authorship-strategy"],
+      "faq": [
+        {
+          "q_en": "What is vocabulary discipline?",
+          "a_en": "The rule governing coinage in the Authorship Strategy framework: coin a term only when the concept is genuinely new at a join of existing concepts, a one-sentence definition in existing vocabulary is possible, and the namespace is uncontested — then anchor every retained coinage densely with a glossary definition, upstream citations, knowledge-graph edges, and repeated use in the body."
+        },
+        {
+          "q_en": "Why coin sparingly?",
+          "a_en": "The costs of coinage (isolation, reader trust, maintenance) grow linearly with the number of terms, while the benefit depends on each term's edge density — so few densely-anchored terms dominate many isolated ones."
+        },
+        {
+          "q_en": "Where is vocabulary discipline defined?",
+          "a_en": "Authorship Strategy ADR-0010 (Vocabulary Discipline — Coin Sparingly, Anchor Densely), after ADR-0008 named it as the parametric-channel lever; the repository glossary carries the canonical definition."
         }
       ]
     },
