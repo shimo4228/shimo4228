@@ -39,6 +39,36 @@ probe_git_lock() {
     trap 'rmdir "/tmp/probes-git.lock.d" 2>/dev/null || true' EXIT
 }
 
+# One-line Slack heartbeat for an unattended probe run, via the harness's
+# shared notifier (~/.config/wiki-notify/slack-webhook, macOS notification as
+# fallback). Reuses the existing channel rather than adding a second webhook.
+#
+# HEARTBEAT, not failure-only alert: every scheduled Sunday sends exactly one
+# line, healthy runs included, so that SILENCE is itself the alarm. A notifier
+# that only speaks up on errors cannot distinguish "all five providers fine"
+# from "launchd never fired / the Mac slept through the window / the script
+# died before the runner" — and those are the failures that hide longest. The
+# 2026-08-23 anthropic key expiry sat unnoticed for a week precisely because
+# nothing was obliged to report on a schedule.
+#
+# Never fails the caller: delivery problems are logged (the harness notifier
+# already prints its own outcome) and swallowed, since a broken notifier must
+# not abort the measurement it reports on.
+probe_notify() {
+    local title="$1" body="$2"
+    bash "$HOME/.claude/scripts/notify-slack.sh" "$title" "$body" || true
+}
+
+# Render the one-line health summary for a run: "OK|WARN probes <date> ·
+# <provider ok/expected> …". $1 = channel (retrieval|parametric), $2 = run_id
+# or empty for the latest run in that channel log.
+probe_summary() {
+    local channel="$1" run_id="${2:-}"
+    python3 "$SCRIPT_DIR/summarize_run.py" \
+        "$REPO/probes/data/${channel}.jsonl" ${run_id:+"$run_id"} 2>&1 \
+        || echo "probes: summary failed"
+}
+
 # Push HEAD onto origin/main, rebasing first so the traffic-snapshot job's
 # concurrent commits do not reject the push. On any failure the commit stays
 # local (a later pass pushes it) and the repo is left on a clean branch — a

@@ -59,5 +59,19 @@ source "$SCRIPT_DIR/_lib.sh"
     echo "no gap to fill (all cells filled, or all still erroring)"
     probe_push_stranded  # still push a weekly commit whose push failed earlier
   fi
+
+  # Only the LAST pass of the day speaks, and only when cells are still short.
+  # The 14:17 pass stays quiet because a provider 503 burst clearing by 18:17
+  # is routine and needs no human. So a Sunday costs one heartbeat normally,
+  # two when a hole survived every retry — that second line is the one that
+  # means "a key expired / a provider changed its API", i.e. act now.
+  if [ "$(date +%H)" -ge 17 ]; then
+    SUMMARY=$(probe_summary retrieval)
+    echo "$SUMMARY"
+    case "$SUMMARY" in
+      WARN*) probe_notify "probes retrieval — still short after gap-fill" "$SUMMARY
+Retries are exhausted for this run; the hole is permanent unless fixed today (same-day freshness gate)." ;;
+    esac
+  fi
   echo "=== done $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
 } >> "$LOG" 2>&1
