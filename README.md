@@ -2,11 +2,11 @@ Language: English | [日本語](README.ja.md)
 
 ![Cover art: five colored threads unfurl from a single ink brushstroke and flow into a hand-drawn Zen circle (ensō)](assets/readme-cover.jpg)
 
-# shimo4228
+# Tatsuya Shimomoto
 
-> Hub repository for five practice lines (long-running, independently citable projects) by shimo4228: how I build AI agents, how an author stays findable when readers ask LLMs first, and what I have noticed about the mind through meditation. The three agent-design lines share one claim (see [Through-line](#through-line)).
+> Hub repository for five practice lines (long-running, independently citable projects) by Tatsuya Shimomoto (shimo4228): how I build AI agents, how an author stays findable when readers ask LLMs first, and what I have noticed about the mind through meditation. The three agent-design lines share one claim (see [Through-line](#through-line)).
 
-I'm shimo4228. I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. I also sit in meditation, and one of the five lines is simply what I found there, written down. The DOIs are tools, not a title. They keep the work citable, durable, and traceable.
+I'm Tatsuya Shimomoto (shimo4228). I build AI agents solo, with no lab and no affiliation, working out what good practice looks like in the AI age. One of them, Contemplative Agent, runs locally on an M1 Mac using a local LLM, not a cloud API. I also sit in meditation, and one of the five lines is simply what I found there, written down. The DOIs are tools, not a title. They keep the work citable, durable, and traceable.
 
 If you build agent harnesses (the standing rules and tools an agent runs inside), think about accountability for autonomous agents, or care about authorship in the AI age, one of the five lines below is probably for you. Alongside the five lines, the harness I run every day is also public, as [claude-harness](https://github.com/shimo4228/claude-harness).
 
@@ -67,6 +67,6 @@ For machines, start with [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.
 
 ## Citation and Identity
 
-Author: shimo4228 · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
+Author: Tatsuya Shimomoto (shimo4228) · [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228)
 
 This hub is CC0-licensed. Cite individual practice lines by their concept DOI; cite the hub itself only when referring to the aggregate index, knowledge graph, traffic snapshots, or probe dataset (a time series of LLM-response observations). Machine-readable citation metadata is in [`CITATION.cff`](CITATION.cff).

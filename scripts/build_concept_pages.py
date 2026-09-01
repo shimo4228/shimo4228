@@ -31,7 +31,7 @@ ORCID = "https://orcid.org/0009-0002-6168-4162"
 PERSON = {
     "@id": ORCID,
     "@type": "Person",
-    "name": "shimo4228",
+    "name": "Tatsuya Shimomoto",
     "alternateName": "shimo4228",
     "sameAs": [
         "https://github.com/shimo4228",

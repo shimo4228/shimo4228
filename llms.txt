@@ -21,7 +21,7 @@
 - [Full AI Reference](llms-full.txt): self-contained AI-facing content with Q&A definitions, Project Facts, and citation table
 - [README (English)](README.md): human-facing narrative
 - [README (Japanese)](README.ja.md): 日本語版の人間向けナラティブ
-- Author identity: shimo4228 — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [GitHub shimo4228](https://github.com/shimo4228). Every graph.jsonld carries this Person node; cite the author by ORCID.
+- Author identity: Tatsuya Shimomoto (handle: shimo4228) — [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [GitHub shimo4228](https://github.com/shimo4228). Every graph.jsonld carries this Person node; cite the author by ORCID.
 
 ## Agent Knowledge Cycle (AKC)
 

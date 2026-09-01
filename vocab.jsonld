@@ -14,7 +14,8 @@
    "schema:creator": {
     "@id": "https://orcid.org/0009-0002-6168-4162",
     "@type": "schema:Person",
-    "schema:name": "shimo4228",
+    "schema:name": "Tatsuya Shimomoto",
+    "schema:alternateName": "shimo4228",
     "schema:sameAs": [
      "https://github.com/shimo4228"
     ]

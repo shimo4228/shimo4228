@@ -8,7 +8,7 @@ Self-contained AI-facing reference for the five practice lines of shimo4228. Fiv
 
 > Concept DOIs and stable architectural facts only. Volatile state (software versions, test counts, exact ADR counts) is intentionally omitted because each line evolves independently — query the linked repos for current values.
 
-- **Author**: shimo4228, ORCID 0009-0002-6168-4162
+- **Author**: Tatsuya Shimomoto (handle: shimo4228), ORCID 0009-0002-6168-4162
 - **Through-line of the three agent-design lines**: value-layer harness engineering — the agent harness is engineered past tools, permissions, and evals up to norms, constitutions, and values, and those top layers are governed by the same human-gated cycle (promotion gates, behavioral measurement, scaffold dissolution) as every layer below
 - **Vocabulary**: custom `shimo:` classes and properties used by every graph.jsonld — dereferenceable at https://shimo4228.github.io/shimo4228/vocab
 - **Practice lines (5)**: Agent Knowledge Cycle (AKC), Contemplative Agent, Agent Attribution Practice (AAP), Authorship Strategy, Attention Not Self
