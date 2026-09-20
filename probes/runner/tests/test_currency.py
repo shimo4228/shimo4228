@@ -45,6 +45,50 @@ def test_chat_filter_keeps_chat_families():
     ]
 
 
+def test_chat_filter_covers_every_panel_provider():
+    """Regression: qwen joined the panel 2026-06-12 but the family pattern
+    kept only the four founding families until 2026-09-20, so qwen catalog
+    additions raised no NEW MODEL event and the pin went unreviewed."""
+    from providers import PROVIDERS
+
+    one_id_per_provider = {
+        "anthropic": "claude-sonnet-5",
+        "openai": "gpt-6.0",
+        "gemini": "gemini-3.7-flash",
+        "xai": "grok-4.6",
+        "qwen": "qwen3.8-max",
+    }
+    missing = sorted(set(PROVIDERS) - set(one_id_per_provider))
+    assert not missing, f"no sample id for panel provider(s): {missing}"
+    for provider, model_id in one_id_per_provider.items():
+        assert filter_chat_candidates([model_id]) == [model_id], provider
+
+
+def test_chat_filter_on_the_2026_09_01_dashscope_diff():
+    """The real catalog diff that was silently dropped. DashScope also serves
+    third-party models, so the family pattern has to keep those out too."""
+    observed_new_ids = [
+        "ZHIPU/GLM-5.3",
+        "deepseek-v4-flash-0731",
+        "deepseek-v4-pro-0813",
+        "kimi-k3",
+        "kimi/kimi-k3",
+        "qwen-image-3.0",
+        "qwen-image-3.0-pro",
+        "qwen3.7-text-embedding",
+        "qwen3.8-2.4t-a95b",
+        "qwen3.8-27b",
+        "qwen3.8-flash",
+        "qwen3.8-max",
+    ]
+    assert filter_chat_candidates(observed_new_ids) == [
+        "qwen3.8-2.4t-a95b",
+        "qwen3.8-27b",
+        "qwen3.8-flash",
+        "qwen3.8-max",
+    ]
+
+
 def test_is_stale_boundary():
     # 2026-06-12 → 2026-09-10 is exactly 90 days (not stale at the boundary).
     assert is_stale("2026-06-12", date(2026, 9, 10), 90) is False

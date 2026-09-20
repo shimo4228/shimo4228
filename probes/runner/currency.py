@@ -28,7 +28,19 @@ import httpx
 # Coarse filter for "chat-model candidates" in catalog diffs. Report-only:
 # it trims embedding/audio/image/video ids out of the new-model report, it
 # does not decide panel membership.
-_FAMILY = re.compile(r"claude|gpt|gemini|grok", re.IGNORECASE)
+#
+# The pattern needs one alternative per PROVIDERS entry. qwen was absent
+# from its 2026-06-12 panel entry until 2026-09-20 — the pattern still
+# listed only the four founding families — so every qwen catalog addition
+# was filtered out of the report and raised no NEW MODEL event. Observed
+# cost: the 2026-09-01 check recorded qwen3.8-{max,flash,27b,2.4t-a95b}
+# in catalog_new_ids yet reported new_chat_ids=0, so the human
+# default-tier check that the event exists to trigger was never prompted
+# for qwen, and the pin sat on qwen3.7-plus unreviewed.
+#
+# DashScope also serves third-party models (GLM / deepseek / kimi); the
+# family pattern is what keeps those out of the qwen column's report.
+_FAMILY = re.compile(r"claude|gpt|gemini|grok|qwen", re.IGNORECASE)
 _EXCLUDE = re.compile(
     r"embed|tts|audio|whisper|moderation|image|imagen|video|veo|imagine|"
     r"dall-e|realtime|transcribe|guard|rerank|aqa|robotics|live|computer-use",
