@@ -1,0 +1,481 @@
+# Two-channel LLM probe set — version v9
+#
+# v9 (2026-09-22): openai panel model update — gpt-5.5 → gpt-5.6-luna
+# (series break on the openai column). OpenAI made gpt-5.6-luna the
+# default model for Free/Go ChatGPT users on 2026-08-06, replacing
+# gpt-5.5 Instant, with unlimited free-tier text chat and a new "Think"
+# button shipped the same week (official announcement). Confirmed as the
+# served consumer default by the monthly panel web check on 2026-09-01
+# (that check's currency-check API run DID land this time — see
+# verified_current below — but as with v6/v7, the served= ping only
+# detects silent alias swaps on the pinned id; the openai catalog showed
+# no NEW MODEL event that day, so this break rests on the human web
+# check alone, same as prior breaks). Adopted by author decision
+# 2026-09-22 — a longer detection-to-decision lag than v6/v7's ~11 days
+# (the swap itself, 2026-08-06, predates even the 2026-09-01 check by 26
+# days), not early adoption. This also resolves the standing watch item
+# recorded 2026-07-12: a gpt-5.6-tier model (Luna) has now reached the
+# FREE chat tier, not just paid (Sol) or agent (Terra) surfaces.
+# Entry event: parametric full set with --repeat 3 on the new model. No
+# probe templates, vars, or detection lexicon changed; the eight probe
+# templates are byte-identical with v8 (prompt_sha256 links the series).
+# The openai param_overrides below were tuned for gpt-5.5's reasoning
+# tier; re-validate them against gpt-5.6-luna at the entry-event run
+# (Luna is documented as OpenAI's fastest/cheapest 5.6-tier model, so its
+# reasoning-token behavior may differ) — not changed here, no run to
+# observe against yet (see note in param_overrides). NOT executed in
+# this session — no OPENAI_API_KEY in this environment.
+# Unrelated to this break: the qwen column stays on the v8 forced
+# substitution (qwen3.8-flash, off-criterion) — see the v8 note below,
+# still current. The 2026-09-01 web check also re-confirmed anthropic
+# (claude-sonnet-5) and gemini (gemini-3.6-flash) as unchanged MATCHes,
+# and left xai (grok-4.3) and qwen as WATCH — see verified_current notes.
+#
+# v8 (2026-09-20): qwen panel model substitution — qwen3.7-plus →
+# qwen3.8-flash (series break on the qwen column).
+#
+# READ THIS BEFORE COMPARING THE QWEN COLUMN ACROSS v7/v8. Unlike the v6
+# and v7 breaks, this one is NOT a default-tier change. It is forced by the
+# measurement's own billing surface, and the new pin is knowingly OFF the
+# panel selection criterion:
+#
+#   Forcing event: DashScope grants free quota PER MODEL — 1M tokens, valid
+#   90 days from activation / model release / approval, whichever is later
+#   (provider documentation, read 2026-09-20). qwen3.7-plus was pinned
+#   2026-06-12, so its window closed ~2026-09-10. The quota was NOT spent:
+#   the whole qwen series consumed 0.268M of 1M tokens (in 113,487 / out
+#   154,091 across both channels). Every call since has returned 403
+#   AllocationQuota.FreeTierOnly, so the qwen column is empty for the
+#   2026-09-13 and 2026-09-20 retrieval runs.
+#   Author decision 2026-09-20: stay on free quota rather than enable
+#   pay-as-you-go, and move the pin to a qwen3.8 model with an open window.
+#
+#   Criterion status: FAILS the operative test below. A human web check of
+#   chat.qwen.ai on 2026-09-20 found the consumer chat product still
+#   serving Qwen3.7-Plus (logged-out surface, "Auto" routing; the logged-in
+#   model picker was not inspected). No qwen3.8 model is the served free
+#   chat default as of this date. The qwen column from v8 onward therefore
+#   measures an off-default tier and does NOT answer "what a typical Qwen
+#   user's answer contains" the way v1–v7 did. Do not read a v7→v8 change
+#   in the qwen column as a burn-in effect.
+#
+#   Model choice among the three that work on free quota (all verified
+#   2026-09-20 through the runner's own call path, both channels):
+#   qwen3.8-flash adopted — the hosted high-volume tier, the same KIND of
+#   served endpoint as the incumbent. qwen3.8-max rejected: it is the
+#   flagship, which the criterion excludes by name. qwen3.8-27b rejected:
+#   an open-weight model meant to run locally, not a served consumer tier —
+#   picking it would change two variables (generation AND kind) at once.
+#   qwen3.8-2.4t-a95b and qwen3.8-omni-flash are not callable with the
+#   panel's transport (they reject enable_thinking / require
+#   search_strategy='agent').
+#
+#   Expiry: qwen3.8-flash's own free window is estimated to close
+#   ~2026-11-01 (90 days from the 2026-08-03 release). This break BUYS TIME;
+#   it does not fix the recurrence. The next forcing event is already
+#   scheduled by the provider's terms.
+#
+# Review-when: (a) a qwen3.8-or-later model becomes the served free chat
+# default on chat.qwen.ai — the column realigns with the criterion and the
+# pin should move there; (b) qwen3.8-flash's free window closes — the same
+# 403 returns and the choice is pay-as-you-go or another substitution;
+# (c) the author enables pay-as-you-go — the pin should return to whatever
+# the criterion actually selects, free quota no longer constraining it.
+#
+# Entry event: parametric full set with --repeat 3 on the new model. No
+# probe templates, vars, or detection lexicon changed; the eight probe
+# templates are byte-identical with v7 (prompt_sha256 links the series).
+#
+# v7 (2026-08-01): gemini panel model update — gemini-3.5-flash →
+# gemini-3.6-flash (series break on the gemini column). Google announced
+# Gemini 3.6 Flash on 2026-07-21 as the Gemini app's new default model,
+# replacing 3.5 Flash, rolled out to all Gemini app users globally
+# (provider release announcement). Confirmed as the served consumer
+# default by the monthly panel web check on 2026-08-01. Adopted by author
+# decision 2026-08-01, matching the panel selection criterion (widely-
+# served default tier); the 11-day lag is detection-to-decision latency,
+# not early adoption.
+# Entry event: parametric full set with --repeat 3 on the new model. No
+# probe templates, vars, or detection lexicon changed; the eight probe
+# templates are byte-identical with v6 (prompt_sha256 links the series).
+#
+# v6 (2026-07-12): anthropic panel model update — claude-sonnet-4-6 →
+# claude-sonnet-5 (series break on the anthropic column). claude-sonnet-5
+# entered the provider catalog by 2026-07-01 (currency-check NEW MODEL
+# event) and became the provider's consumer default tier on 2026-07-01
+# (Free/Pro default per the provider's release announcement — human web
+# check 2026-07-12). Adopted by author decision 2026-07-12, matching the
+# panel selection criterion (widely-served default tier); the 11-day lag
+# is detection-to-decision latency, not early adoption.
+# Entry event: parametric full set with --repeat 3 on the new model. No
+# probe templates, vars, or detection lexicon changed; the eight probe
+# templates are byte-identical with v5 (prompt_sha256 links the series).
+#
+# v5 (2026-07-03): detection lexicon extension only — adds the hub-level
+# coined term "value-layer harness engineering" (introduced 2026-07-03 as
+# the program's through-line) as a new project_terms group (value_layer)
+# and bumps detector_version to v4. No probe templates, vars, or models
+# changed; the six v4 probes are byte-identical (prompt_sha256 links the
+# series). Stored verdicts remain re-scorable from retained raw text.
+#
+# v4 (2026-06-12): recommendation-form retarget. recommend-authorship is
+# RETIRED (floor measurement: its line does not surface even on the
+# definitional form, so the recommendation form carried near-zero
+# information per call) and replaced by recommend-contemplative — the same
+# recommendation template pointed at the panel's strongest-signal line, so
+# the form gradient (listing vs recommendation) is measured with the line
+# held fixed, near the discrimination threshold. First application of the
+# retirement rule: a probe that loses its analysis consumer retires at a
+# version bump; its v1–v3 series stays in the raw log.
+#
+# v3 (2026-06-12): per-line coverage + detector v3. Adds concept probes for
+# the two research lines the set did not yet name (Agent Attribution
+# Practice, Attention Not Self) so per-line burn-in gradients become
+# measurable across all five lines; extends owned_url_patterns with the
+# author's writing surfaces (Zenn / Dev.to / Substack — a GPT-5.5 answer
+# cited the Zenn article and detector v2 missed it). The six v2 probes are
+# byte-identical (prompt_sha256 links the series).
+#
+# v2 (2026-06-12): same-prompt A/B crossed design. Every probe runs on both
+# settings (search-suppressed / search-enabled), so the delta between arms
+# isolates what retrieval adds for a FIXED question. Probe ids dropped the
+# v1 channel prefix; v1 → v2 id mapping (same template, same hash):
+#   parametric-concept-akc          → concept-akc
+#   parametric-author-identity      → author-identity
+#   parametric-concept-inversion    → concept-inversion
+#   parametric-control-fake        → control-fake
+#   retrieval-concept-contemplative → concept-contemplative
+#   retrieval-recommend-authorship  → recommend-authorship
+#
+# Versioning rule: any change to templates, vars, models, or detection
+# lexicon that affects comparability bumps the version. The version is
+# recorded in every JSONL line as probe_set_version.
+
+version: v9
+
+# Panel-currency guard: the date the model panel was last verified against
+# each provider's actually-served default tier (a product-side fact the API
+# cannot report — requires a human web check). --currency-check flags a
+# STALE event when this date ages past staleness_days.
+# 2026-08-01: full panel web check (monthly). NOTE: the local scheduled
+# currency-check job did not push data for this date (probes/data/
+# currency.jsonl's last entry is 2026-07-12) — this check is web-only,
+# no API-side served= ping for 2026-08-01.
+# anthropic: consumer default = sonnet-5, unchanged since 2026-07-01 →
+#   MATCH, no action.
+# openai: free-chat default = gpt-5.5 Instant, unchanged since 2026-05-05;
+#   gpt-5.6-sol stays PAID-tier only, gpt-5.6-terra now also reaches Free
+#   users inside Codex (agent surface) but not general chat — PARTIAL swap
+#   widened, still WATCH. Pin stays gpt-5.5.
+# gemini: consumer default swapped to gemini-3.6-flash on 2026-07-21
+#   (Google official announcement, rolled out to all Gemini app users) →
+#   adopted (v7).
+# xai: grok-4.3 pin status unclear from this check — secondary sources
+#   conflict on whether the free tier reaches grok-4.3 or a lighter class;
+#   no xAI primary source found. Pin stays; re-verify next month. WATCH.
+# qwen: no default-tier change found (chat.qwen.ai still serves
+#   qwen3.7-plus/qwen3.7-max via the model picker); pin stays.
+# 2026-09-01: full panel web check (monthly). The local scheduled
+# currency-check job DID land this time (probes/data/currency.jsonl has a
+# 2026-09-01 entry per provider) — no API-side swap_detected beyond the
+# already-pinned gemini alias (v7's own pin change, expected) and no NEW
+# MODEL catalog event for openai that day; the openai swap below was
+# caught by the web check alone, same as v6/v7.
+# anthropic: consumer default = claude-sonnet-5, unchanged since 2026-07-01
+#   → MATCH, no action.
+# openai: free-chat default swapped to gpt-5.6-luna on 2026-08-06 (official
+#   OpenAI announcement: unlimited Free/Go text chat, replaces gpt-5.5
+#   Instant) → adopted (v9).
+# gemini: consumer default = gemini-3.6-flash, unchanged since 2026-07-21
+#   → MATCH, no action. (Catalog flagged gemini-3.7-flash as a new chat
+#   candidate on 2026-09-01 — NOT confirmed as a served default by this
+#   check; catalog events alone never move the pin. WATCH.)
+# xai: grok-4.3 pin status still unclear — secondary sources continue to
+#   conflict on whether the free tier reaches grok-4.3 or a lighter class
+#   (complicated further by grok-4.1/grok-3 retirement on 2026-05-15,
+#   which now silently redirects those ids to grok-4.3); grok-4.5 (Jul) and
+#   grok-4.6 (catalog-flagged 2026-09-01) both ship paid-tier-only so far.
+#   No xAI primary source found. Pin stays; re-verify next month. WATCH.
+# qwen: out of scope for this check — the column is already off the
+#   selection criterion per the 2026-09-20 forced substitution above (a
+#   separate, later decision). Secondary sources this round conflict on
+#   whether chat.qwen.ai now defaults free users to some qwen3.8 variant;
+#   the 2026-09-20 spot check below is the more authoritative, later read
+#   (still qwen3.7-plus as the served default) and takes precedence.
+# 2026-09-20: qwen-ONLY spot check (not a full panel check, so it does not
+#   by itself move verified_current — recorded here since it postdates the
+#   2026-09-01 check above). chat.qwen.ai logged-out still shows
+#   Qwen3.7-Plus with "Auto" routing; the qwen3.8 family is in the API
+#   catalog but is not the served chat default. The v8 pin move is
+#   therefore a forced substitution, not an adoption — see the file header.
+# Policy (author decision 2026-07-12): panel follows the served consumer
+# default tier; catalog NEW MODEL events alone never move the pin. The
+# monthly currency check must be paired with a human default-tier web
+# check — the `served=` ping only detects silent alias swaps on the
+# pinned id and says nothing about the product-side default.
+verified_current: 2026-09-01
+staleness_days: 90
+
+defaults:
+  temperature: 0
+  max_tokens: 1024
+
+# Per-provider param overrides applied on top of defaults; null removes the
+# param. gpt-5.5 (reasoning tier) rejects explicit temperature — observed
+# 2026-06-12: "'temperature' does not support 0 with this model".
+param_overrides:
+  # claude-sonnet-5 rejects explicit temperature — observed 2026-07-12 at
+  # the v6 entry-event run: "`temperature` is deprecated for this model."
+  # (same reasoning-tier pattern as gpt-5.5 below).
+  anthropic:
+    temperature: null
+  openai:
+    temperature: null
+    # Reasoning tokens count against max_tokens; 1024 left zero visible text,
+    # and at default effort even 8192 was fully consumed on one probe
+    # (observed 2026-06-12). Low effort also matches the consumer default
+    # (ChatGPT Instant) better than the API's default reasoning depth.
+    # Tuned for gpt-5.5's reasoning tier; re-validate against gpt-5.6-luna
+    # at the v9 entry-event run (Luna is documented as OpenAI's
+    # fastest/cheapest 5.6-tier model, so its reasoning-token behavior may
+    # differ) — left unchanged here, no run yet to observe against.
+    max_tokens: 8192
+    reasoning_effort: low
+  gemini:
+    # Same thinking-token squeeze: visible text truncated mid-sentence at
+    # 1024 (observed 2026-06-12 on the author-identity probe).
+    max_tokens: 8192
+    # Temperature is NOT dropped here yet — deliberately. Observed
+    # 2026-07-26 (every gemini call of that retrieval run, still on
+    # gemini-3.5-flash): "`temperature`, `top_p`, and `top_k` continue to
+    # function for Gemini 3+ but are planned for removal in a future
+    # release. Move sampling guidance into the `system` instructions
+    # instead." The param still works, so the panel keeps temperature: 0
+    # for this provider. Re-check this notice against gemini-3.6-flash at
+    # the v7 entry-event run; the contingency below still applies if it
+    # starts rejecting the param outright.
+    #
+    # Contingency (recorded before the forcing event, as with the sampling
+    # cadence): when gemini starts to REJECT explicit temperature — the
+    # 400-class error already seen from gpt-5.5 and claude-sonnet-5 — cut
+    # probes-v8.yaml with `gemini: temperature: null`, as a dated series
+    # break. Do not act on the notice alone: an unforced sampling change
+    # adds within-provider run-to-run variance without improving the
+    # measured quantity, and two of five providers already run at their
+    # provider default, so dropping it later stays series-consistent.
+    #
+    # The notice's own suggestion — moving sampling guidance into `system`
+    # instructions — is rejected. The probes fix a bare user prompt as the
+    # stimulus; adding a system message changes the stimulus itself and
+    # breaks comparability across providers and across the whole series.
+    #
+    # Silent-expiry watch: if gemini ever IGNORES temperature instead of
+    # rejecting it, the record's `temperature` field still reports what was
+    # requested (see probe_runner.py), so records and actual sampling would
+    # drift apart unnoticed. If the notice's wording changes from "planned
+    # for removal" to "removed", cut v8 without waiting for a rejection.
+
+# Pinned model ids (litellm format). Updating a model is a series break:
+# note it here with a date comment and keep the old id commented out.
+# Selection criterion: the widely-served default tier of each provider
+# (what a typical user's LLM-mediated answer comes from), not the premium
+# top tier. Operative test (sharpened 2026-07-12): the model served BY
+# DEFAULT to a FREE-tier user in the provider's consumer chat product.
+# A swap confined to paid tiers or agent surfaces is a PARTIAL swap →
+# WATCH, not adoption; adopt when the free chat default moves. Worked
+# examples (2026-07-12): sonnet-5 = free default since 07-01 → adopted;
+# gpt-5.6-sol = paid tiers only → WATCH; grok-4.5 = coding flagship, not
+# a consumer default → no action.
+models:
+  # 2026-07-12 (v6 series break): claude-sonnet-4-6 → claude-sonnet-5.
+  # Catalog NEW MODEL event 2026-07-01; consumer default tier swapped to
+  # sonnet-5 the same day (verified by human web check 2026-07-12).
+  # anthropic: anthropic/claude-sonnet-4-6   # panel 2026-06-12 .. 2026-07-12
+  anthropic: anthropic/claude-sonnet-5
+  # 2026-09-22 (v9 series break): gpt-5.5 → gpt-5.6-luna.
+  # OpenAI made gpt-5.6-luna the Free/Go ChatGPT default on 2026-08-06
+  # (replacing gpt-5.5 Instant, unlimited free-tier text chat), confirmed
+  # as the served consumer default by human web check 2026-09-01.
+  # openai: openai/gpt-5.5   # panel 2026-06-12 .. 2026-09-22
+  openai: openai/gpt-5.6-luna
+  # 2026-08-01 (v7 series break): gemini-3.5-flash → gemini-3.6-flash.
+  # Provider default model change 2026-07-21 (Google official announcement:
+  # "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber"),
+  # rolled out to all Gemini app users; confirmed as the served consumer
+  # default by human web check 2026-08-01.
+  # gemini: gemini/gemini-3.5-flash   # panel 2026-06-12 .. 2026-08-01
+  gemini: gemini/gemini-3.6-flash
+  xai: xai/grok-4.3
+  # Panel addition 2026-06-12 (entry event). Continuity with the May 2026
+  # pre-protocol regurgitation tests (which included a Qwen-class model);
+  # a non-Western training corpus; and the only open-weight family on the
+  # panel, so future white-box training-data-attribution methods can apply.
+  # NOTE: qwen3.8-flash is a hosted tier, so the open-weight half of that
+  # rationale is suspended for the duration of this substitution.
+  #
+  # 2026-09-20 (v8 series break): qwen3.7-plus → qwen3.8-flash. NOT a
+  # default-tier change — forced by the free-quota expiry described in the
+  # file header, and off-criterion by the author's 2026-09-20 decision.
+  # qwen: qwen3.7-plus   # panel 2026-06-12 .. 2026-09-20
+  qwen: qwen3.8-flash
+
+# Detection lexicon — deterministic, auditable string/regex matching.
+# Raw response text is stored in every JSONL line, so this lexicon can be
+# revised and re-run over all history (detector_version marks which lexicon
+# produced a stored verdict).
+detection:
+  # v4 (2026-07-03): adds the value_layer project_terms group (hub-level
+  # coined term). v3 (2026-06-12) added the writing-surface URL patterns.
+  # v2 (2026-06-12): echo guard — terms present in the prompt do not count
+  # as named ("I don't know Tatsuya Shimomoto" echoes, it does not
+  # attribute). Stored earlier verdicts are re-scorable from retained raw
+  # text.
+  detector_version: v4
+  author_aliases:
+    - "shimo4228"
+    - "Tatsuya Shimomoto"
+    - "Shimomoto, Tatsuya"
+    - "下本竜也"
+    - "0009-0002-6168-4162"   # ORCID
+  # Owned identifiers: a citation counts as "ours" only if it matches one of
+  # these. A generic Zenodo DOI that is not in this list is NOT ours.
+  owned_dois:
+    - "10.5281/zenodo.19200726"  # AKC (concept)
+    - "10.5281/zenodo.19212118"  # Contemplative Agent (concept)
+    - "10.5281/zenodo.19652013"  # AAP (concept)
+    - "10.5281/zenodo.20262112"  # Attention, Not Self (concept)
+    - "10.5281/zenodo.20263316"  # Authorship Strategy (concept)
+    - "10.5281/zenodo.20337008"  # doctrine-corpus
+    - "10.5281/zenodo.20353789"  # paper
+    - "10.5281/zenodo.20355907"  # paper
+    - "10.5281/zenodo.20558800"  # existence-proof
+    - "10.5281/zenodo.20578272"  # paper
+  owned_url_patterns:
+    - "github\\.com/shimo4228"
+    - "huggingface\\.co/datasets/[Ss]himo4228"
+    - "shimo4228\\.github\\.io"
+    - "orcid\\.org/0009-0002-6168-4162"
+    - "wikidata\\.org/wiki/Q140090100"
+    # v3: authored writing surfaces — citing the author's articles is citing
+    # owned content (a GPT-5.5 retrieval answer cited the Zenn article and
+    # the v2 lexicon missed it, observed 2026-06-12)
+    - "zenn\\.dev/shimo4228"
+    - "dev\\.to/shimo4228"
+    - "substack\\.com/@?shimo4228"
+    - "shimo4228\\.substack\\.com"
+  project_terms:
+    akc:
+      - "Agent Knowledge Cycle"
+      - "agent-knowledge-cycle"
+      - "AKC"
+    contemplative:
+      - "Contemplative Agent"
+      - "contemplative-agent"
+    aap:
+      - "Agent Attribution Practice"
+      - "agent-attribution-practice"
+    authorship:
+      - "authorship-strategy"
+      - "three-axis inversion"
+      - "attribution diffusion"
+    ans:
+      - "Attention, Not Self"
+      - "attention-not-self"
+    # v4 lexicon: hub-level coined term (through-line of the three
+    # agent-design lines, introduced 2026-07-03). Matching is
+    # case-sensitive, so case variants are listed explicitly.
+    value_layer:
+      - "value-layer harness engineering"
+      - "Value-layer harness engineering"
+      - "Value-Layer Harness Engineering"
+      - "value-layer-harness-engineering"
+      - "価値層ハーネス工学"
+
+# Probes. Fixed templates with a single substituted variable each, so the
+# time series stays comparable across runs. Every probe runs on both
+# channels (A/B): the parametric arm (search suppressed) measures trained
+# knowledge; the retrieval arm (search enabled) measures the live channel
+# most real usage goes through; the per-question delta isolates the
+# retrieval lift. `expect` documents intent only — detection always runs
+# the full lexicon.
+probes:
+  - id: concept-akc
+    channels: [parametric, retrieval]
+    template: "In AI agent design, what is the '{concept}'? If you know who coined or maintains this concept, name the author."
+    vars:
+      concept: "Agent Knowledge Cycle"
+    expect:
+      project: akc
+      author: true
+
+  - id: author-identity
+    channels: [parametric, retrieval]
+    # The retrieval arm of this probe is the entity-query series: searching
+    # for the author by name, the informal test users actually run.
+    template: "What do you know about the researcher {author}? List any research programs, repositories, or coined concepts associated with them."
+    vars:
+      author: "Tatsuya Shimomoto (GitHub: shimo4228)"
+    expect:
+      author: true
+
+  - id: concept-inversion
+    channels: [parametric, retrieval]
+    template: "Some recent writing on authorship in the AI era describes a '{concept}'. What does it claim, and who proposed it?"
+    vars:
+      concept: "three-axis inversion of authenticity (scarcity to diffusion, exclusivity to derivation, enclosure to openness)"
+    expect:
+      project: authorship
+      author: true
+
+  - id: control-fake
+    channels: [parametric, retrieval]
+    # Parametric arm: confabulation noise floor. Retrieval arm: grounded
+    # confabulation — does search suppress or amplify false attribution of
+    # a plausible nonexistent concept?
+    template: "In AI agent design, what is the '{concept}'? If you know who coined or maintains this concept, name the author."
+    vars:
+      concept: "Recursive Intent Lattice"
+    expect:
+      control: true
+
+  - id: concept-contemplative
+    channels: [parametric, retrieval]
+    # Parametric arm: citations-from-memory control (hallucinated-citation
+    # check — the model is asked for URLs it cannot fetch).
+    template: "What open research or open-source work exists on {topic}? Cite specific repositories, DOIs, or papers with URLs, and name the authors of each source you cite."
+    vars:
+      topic: "contemplative or mindfulness-inspired behavioral presets for AI agents"
+    expect:
+      project: contemplative
+      author: true
+
+  - id: recommend-contemplative
+    channels: [parametric, retrieval]
+    # Recommendation form on the strongest-signal line, same topic as the
+    # listing-form concept-contemplative probe: line held fixed, question
+    # form is the only variable.
+    template: "I want to read about {topic}. Search and recommend specific sources with URLs, and name the authors you recommend."
+    vars:
+      topic: "contemplative or mindfulness-inspired behavioral presets for AI agents"
+    expect:
+      project: contemplative
+      author: true
+
+  # --- v3: per-line coverage (burn-in gradient across all five lines) ---
+  - id: concept-aap
+    channels: [parametric, retrieval]
+    template: "In AI agent design, what is the '{concept}'? If you know who coined or maintains this concept, name the author."
+    vars:
+      concept: "Agent Attribution Practice"
+    expect:
+      project: aap
+      author: true
+
+  - id: concept-ans
+    channels: [parametric, retrieval]
+    template: "In discussions connecting Buddhist psychology with computational theories of mind, what is '{concept}'? If you know who coined or maintains this work, name the author."
+    vars:
+      concept: "Attention, Not Self"
+    expect:
+      project: ans
+      author: true
