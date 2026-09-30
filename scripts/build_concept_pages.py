@@ -63,7 +63,7 @@ CSS = """
 """
 
 FOOTER = (
-    '<footer><p><a href="index.html">Concept index</a> · '
+    '<footer><p><a href="./">Concept index</a> · '
     f'<a href="{BASE}/">Program hub</a> · '
     '<a href="https://github.com/shimo4228">GitHub</a> · '
     f'<a href="{ORCID}">ORCID</a></p>'
