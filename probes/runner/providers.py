@@ -10,19 +10,12 @@ is unit-testable with canned fixtures and no API budget.
 
 from __future__ import annotations
 
-import os
 
 import httpx
 
 from extract import extract_urls_from_text
 
-PROVIDERS = ("anthropic", "openai", "gemini", "xai", "qwen")
-
-# DashScope international (Singapore) OpenAI-compatible endpoint. The model
-# id gets an openai/ prefix so the unified client treats it as an
-# OpenAI-format endpoint; api_key is passed explicitly so the provider's
-# own key env var is never consulted.
-DASHSCOPE_INTL_BASE = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+PROVIDERS = ("anthropic", "openai", "gemini", "xai")
 
 
 def build_call_kwargs(
@@ -53,15 +46,6 @@ def build_call_kwargs(
             kwargs.pop(key, None)
         else:
             kwargs[key] = value
-    if provider == "qwen":
-        kwargs["model"] = f"openai/{model.split('/', 1)[-1]}"
-        kwargs["api_base"] = DASHSCOPE_INTL_BASE
-        kwargs["api_key"] = os.environ.get("DASHSCOPE_API_KEY", "")
-        # DashScope does not count thinking tokens against max_tokens; one
-        # probe burned 23k thinking tokens and returned no visible text
-        # (observed 2026-06-12). Thinking off also matches the default-tier
-        # consumer profile.
-        kwargs["extra_body"] = {"enable_thinking": False}
     if channel != "retrieval":
         return kwargs
 
@@ -72,10 +56,6 @@ def build_call_kwargs(
         # Separate code path: Google grounding tool. Grounding metadata lands
         # in provider-specific response fields, not normalized annotations.
         kwargs["tools"] = [{"googleSearch": {}}]
-    elif provider == "qwen":
-        # DashScope server-side web search; merged into the transport
-        # extra_body (enable_thinking) set above.
-        kwargs["extra_body"] = {**kwargs.get("extra_body", {}), "enable_search": True}
     elif provider in ("openai", "xai"):
         # Retrieval for these two does NOT go through chat completions:
         # xAI's chat search surface is retired and OpenAI's returns empty

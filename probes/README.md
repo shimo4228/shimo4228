@@ -61,7 +61,8 @@ a cited URL is exactly the ghost-citation scenario and does not count.
   exists, and models confabulate agreeably. The negative-control probe (a
   plausible fake concept) quantifies that noise floor — read true-positive
   rates against it.
-- **N=1**: one author's ecosystem, a handful of probes, five providers.
+- **N=1**: one author's ecosystem, a handful of probes, four providers
+  (five until 2026-10-01).
   Preliminary observations, not evidence.
 
 ## Running
@@ -73,7 +74,7 @@ uv run pytest                 # detectors, zero API calls
 uv run probe_runner.py --dry-run
 cp ../.env.example ../.env    # fill in API keys (git-ignored)
 uv run probe_runner.py --provider anthropic --probe parametric-concept-akc  # smoke
-uv run probe_runner.py --channel retrieval            # weekly retrieval run
+uv run probe_runner.py --channel retrieval            # manual only (schedule ended 2026-10-01)
 uv run probe_runner.py --channel parametric --repeat 3  # model-entry event run
 uv run probe_runner.py --currency-check               # monthly change-event detector
 ```
@@ -86,23 +87,26 @@ the probe×provider×repeat loop is bounded.
 
 ## Scheduling
 
-Scheduled locally via launchd (`scripts/run-weekly-retrieval.sh`, Sundays
-10:17 JST; `scripts/run-gap-fill-retrieval.sh`, Sundays 14:17 & 18:17 JST;
-`scripts/run-monthly-currency.sh`, 1st of the month 10:47 JST —
-a slot missed while the machine sleeps runs at the next wake, and every
-record carries its own timestamp). The two channels are scheduled
-differently:
+**Status (2026-10-01).** Only the parametric channel and the monthly
+currency check still run. Two series ended that day by author decision,
+and both stay in `data/` unchanged:
 
-- **Retrieval — weekly calendar cadence.** The citation pool's entry and
-  decay dynamics move in days, even against frozen models.
-- **Gap-fill — delayed retry passes** (`--run-id latest`). A provider 503
-  burst (observed: `gemini-3.5-flash` "high demand", lasting tens of minutes)
-  can outlast the in-call retry and leave error stubs in the weekly run. Two
-  passes hours later resolve the most recent run and retry only its unfilled
-  cells — idempotent (`existing_triples()` skips filled cells), so it adds at
-  most one stub per still-failing cell and commits nothing when there is no
-  gap. Cross-run fill is sound: the value is grouped under the original
-  `run_id`, and each record keeps its own call timestamp.
+- **Retrieval channel — no longer scheduled.** Archived series
+  2026-06-12 .. 2026-09-27 in `data/retrieval.jsonl`. It ran weekly
+  (biweekly 2026-06-14 .. 2026-08-31) with same-day gap-fill passes that
+  retried only the latest run's error cells. A later fill of an older run
+  was refused, so a documented hole stayed a hole (e.g. anthropic,
+  2026-08-23). The runner keeps `--channel retrieval` for manual runs and
+  re-scoring.
+- **qwen column — removed from the panel.** The DashScope API was too
+  opaque to hold the column on the selection criterion (see
+  `config/probes-v10.yaml`). Records 2026-06-12 .. 2026-09-27 remain; the
+  panel is now four providers (anthropic, openai, gemini, xai).
+
+Scheduled locally via launchd: `scripts/run-monthly-currency.sh`, 1st of
+the month 10:47 JST (a slot missed while the machine sleeps runs at the
+next wake, and every record carries its own timestamp).
+
 - **Parametric — event-driven.** A frozen model's weights cannot change
   between runs, so re-probing the same model only measures response
   variance; the parametric signal lives *across model generations*. The

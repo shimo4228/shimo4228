@@ -241,24 +241,12 @@ def test_response_text_helper():
 
 
 @pytest.mark.parametrize(
-    "provider", ["anthropic", "openai", "gemini", "xai", "qwen"], ids=lambda p: p
+    "provider", ["anthropic", "openai", "gemini", "xai"], ids=lambda p: p
 )
 def test_parametric_kwargs_never_include_search_tools(provider):
     kwargs = build_call_kwargs(provider, "m", "prompt", "parametric", {"temperature": 0})
     assert "web_search_options" not in kwargs
     assert "tools" not in kwargs
-    # transport-level extra_body (e.g. qwen enable_thinking) is allowed;
-    # search enablement is not
-    assert kwargs.get("extra_body", {}).get("enable_search") is not True
-
-
-def test_qwen_routes_to_dashscope_intl():
-    kwargs = build_call_kwargs("qwen", "qwen3.7-plus", "p", "parametric", {})
-    assert kwargs["model"] == "openai/qwen3.7-plus"
-    assert "dashscope-intl" in kwargs["api_base"]
-    assert kwargs["extra_body"] == {"enable_thinking": False}
-    retrieval = build_call_kwargs("qwen", "qwen3.7-plus", "p", "retrieval", {})
-    assert retrieval["extra_body"] == {"enable_thinking": False, "enable_search": True}
 
 
 def test_retrieval_kwargs_per_provider():

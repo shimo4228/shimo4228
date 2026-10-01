@@ -53,7 +53,7 @@ handle が見えるのはまさに ghost citation のシナリオなのでカウ
 - **誘導質問**: 概念認識 prompt は概念の実在を前提とし、モデルは迎合的に
   confabulate する。negative-control probe (もっともらしい架空概念) がその
   noise floor を定量化する。true-positive はそれと対照して読む。
-- **N=1**: 一人の著者・少数 probe・5 provider。preliminary observation であって
+- **N=1**: 一人の著者・少数 probe・4 provider (2026-10-01 までは 5)。preliminary observation であって
   evidence ではない。
 
 ## 実行
@@ -65,7 +65,7 @@ uv run pytest                 # 検出器テスト、API 呼び出しゼロ
 uv run probe_runner.py --dry-run
 cp ../.env.example ../.env    # API キーを記入 (git-ignored)
 uv run probe_runner.py --provider anthropic --probe parametric-concept-akc  # smoke
-uv run probe_runner.py --channel retrieval            # 週次 retrieval run
+uv run probe_runner.py --channel retrieval            # 手動のみ (定期実行は 2026-10-01 で終了)
 uv run probe_runner.py --channel parametric --repeat 3  # モデル参入 event run
 uv run probe_runner.py --currency-check               # 月次の変化検出
 ```
@@ -77,21 +77,25 @@ litellm の price map で算出した実コストが入る (web search tool fee 
 
 ## Scheduling
 
-launchd によるローカル定期実行 (`scripts/run-weekly-retrieval.sh` = 日曜
-10:17 JST / `scripts/run-gap-fill-retrieval.sh` = 日曜 14:17 & 18:17 JST /
-`scripts/run-monthly-currency.sh` = 毎月 1 日 10:47 JST —
-スリープ中に逃した slot は次の wake で実行され、全レコードが自身の
-timestamp を持つ)。2 チャネルの schedule は異なる:
+**現状 (2026-10-01)。** 今も動いているのは parametric channel と月次の
+currency check だけ。同日、著者の判断で 2 つの系列を終えた。どちらのデータも
+`data/` にそのまま残している:
 
-- **Retrieval — 週次 calendar cadence.** citation pool の entry / decay は
-  モデルが凍結されていても日単位で動く。
-- **Gap-fill — 遅延リトライパス** (`--run-id latest`)。provider の 503 burst
-  (観測: `gemini-3.5-flash` の "high demand"、数十分続く) は in-call retry を
-  超えて weekly run に error stub を残しうる。数時間後の 2 パスが最新 run を
-  解決し未充足セルだけ retry する — 冪等 (`existing_triples()` が充足済みを
-  skip) なので、まだ失敗するセルにつき stub を高々 1 本足すだけ、gap が無ければ
-  commit もしない。cross-run fill は健全: 値は元の `run_id` にまとめられ、各
-  レコードは自身の call timestamp を保持する。
+- **Retrieval channel — 定期実行を終了。** 2026-06-12 .. 2026-09-27 の系列を
+  `data/retrieval.jsonl` に保存。実行は週次 (2026-06-14 .. 2026-08-31 は隔週)
+  で、同じ日に gap-fill パスが最新 run のエラーセルだけを再試行していた。古い
+  run を後から埋めることはしないので、記録した欠損は欠損のまま残る (例:
+  anthropic の 2026-08-23)。手動実行と再採点のため、runner には
+  `--channel retrieval` を残している。
+- **qwen 列 — panel から除外。** DashScope API の挙動が見えにくく、選定基準
+  どおりに列を維持できなかった (`config/probes-v10.yaml` を参照)。
+  2026-06-12 .. 2026-09-27 のレコードは残る。panel は 4 provider (anthropic /
+  openai / gemini / xai) になった。
+
+launchd によるローカル定期実行: `scripts/run-monthly-currency.sh` = 毎月 1 日
+10:47 JST (スリープ中に逃した slot は次の wake で実行され、全レコードが自身の
+timestamp を持つ)。
+
 - **Parametric — event 駆動.** 凍結モデルの weights は run 間で変化しないので、
   同一モデルへの再 probe は応答分散しか測らない; parametric の信号は
   **モデル世代間**にしか住まない。full parametric set はモデルの panel 参入時
