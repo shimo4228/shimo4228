@@ -1,6 +1,6 @@
 # Traffic Data
 
-[@shimo4228](https://github.com/shimo4228) の公開 repo 9 件に対する GitHub Traffic API の daily snapshot。
+[@shimo4228](https://github.com/shimo4228) の公開 repo（下の一覧）に対する GitHub Traffic API の daily snapshot。
 
 **Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) で 9 repo を 1 ページに可視化 (合算 timeline / repo 別 small multiples / clones:views 比 / 生データ table)。
 
@@ -17,6 +17,9 @@
 - [zenn-content](https://github.com/shimo4228/zenn-content)
 - [claude-harness](https://github.com/shimo4228/claude-harness) (公開 Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (この profile repo)
+
+snapshot のみ（dashboard には載せない。2026-10-04 から）: claude-harness から export した skill repo と退役台帳 —
+[search-first](https://github.com/shimo4228/search-first)、[skill-stocktake](https://github.com/shimo4228/skill-stocktake)、[codex-review](https://github.com/shimo4228/codex-review)、[readme-writer](https://github.com/shimo4228/readme-writer)、[llms-txt-writer](https://github.com/shimo4228/llms-txt-writer)、[harness-pruning](https://github.com/shimo4228/harness-pruning)。
 
 GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り続けることで、後追い不可能な long-term record を蓄積する。
 

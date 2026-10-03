@@ -1,6 +1,6 @@
 # Traffic Data
 
-Daily snapshots of the GitHub Traffic API for nine public repositories by [@shimo4228](https://github.com/shimo4228).
+Daily snapshots of the GitHub Traffic API for the public repositories listed below by [@shimo4228](https://github.com/shimo4228).
 
 **Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — all nine repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
 
@@ -17,6 +17,9 @@ Append-only JSONL time series under `data/`, one file per repository:
 - [zenn-content](https://github.com/shimo4228/zenn-content)
 - [claude-harness](https://github.com/shimo4228/claude-harness) (public Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (this profile repo)
+
+Snapshot only (not on the dashboard; from 2026-10-04): the skill repositories exported from claude-harness and its retirement ledger —
+[search-first](https://github.com/shimo4228/search-first), [skill-stocktake](https://github.com/shimo4228/skill-stocktake), [codex-review](https://github.com/shimo4228/codex-review), [readme-writer](https://github.com/shimo4228/readme-writer), [llms-txt-writer](https://github.com/shimo4228/llms-txt-writer), [harness-pruning](https://github.com/shimo4228/harness-pruning).
 
 GitHub's Traffic API only retains the last 14 days. Snapshotting daily accumulates a long-term record that is otherwise unrecoverable.
 
