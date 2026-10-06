@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>掲載 repo の traffic 収集</title>
+<link rel="stylesheet" href="htmlplan.css">
+<script src="htmlplan.js" defer></script>
+<body>
+
+<header>
+  <h1>hub の traffic 収集に掲載 repo を足す</h1>
+  <doc-changes new="2" changed="4"></doc-changes>
+  <details class="thread"><summary>Why · 3 件</summary>
+    <doc-quote via="prompt" from="著者" where="personal-branding セッション経由、2026-10-06">hub の収集対象に掲載対象の repo を足す（案 a）</doc-quote>
+    <doc-quote via="doc" from="scorecard" where="personal-branding docs/scorecard.md:47（X1 行）">掲載された repo のユニーク閲覧数。merge 日の前 7 日と後 7 日を比べる（hub `traffic/data`、欠ける分は traffic-snapshots）。ユニーク閲覧数は日次 `views.uniques` の 7 日分の和、merge 日は PR の `merged_at`（issue は close 日）</doc-quote>
+    <doc-quote via="prompt" from="著者" where="2026-10-07、縮小版の承認">じゃあそれでお願い</doc-quote>
+  </details>
+</header>
+
+<main>
+<doc-plan>
+
+<!-- ═════ 1 ═════ -->
+<doc-claim>
+  <p>掲載対象 10 repo の閲覧数が毎日 hub に貯まる。</p>
+  <doc-mock frame="terminal" title="traffic-daily · Fetch traffic and merge JSONL" w="470" caption="初回は API が返す 14 日分を全部入れる。"><template><span class="dim">…</span>
+shimo4228: added 1, updated 0
+search-first: added 14, updated 0
+<span class="dim">…（1f9c492 の 6 repo も初回）</span>
+<span class="g">harness-scope: added 14, updated 0</span>
+<span class="g">jev-skill-router: added 14, updated 0</span>
+<span class="g">jev-research-pipeline: added 14, updated 0</span>
+<span class="dim">… 7 repo 続く</span></template></doc-mock>
+
+  <doc-claim>
+    <p>workflow の配列末尾に 10 repo を足す。</p>
+    <doc-code diff file=".github/workflows/traffic-daily.yml" lang="js">
+<script type="text/plain">
+@@ -41,3 +41,13 @@
+               'llms-txt-writer',
+               'harness-pruning',
++              'harness-scope',
++              'jev-skill-router',
++              'jev-research-pipeline',
++              'akc-cycle',
++              'herdr-toolkit',
++              'claude-skill-paper-ecosystem',
++              'llm-agent-security-principles',
++              'release-doi',
++              'contemplative-agent-otel',
++              'agent-observability-patterns',
+             ];
+</script>
+      <doc-pin line="44" tone="info" title="queue の hold 行は入れない">llm-as-judge と active-inference-viz は解禁時に同じ手順で足す。</doc-pin>
+    </doc-code>
+  </doc-claim>
+
+  <doc-claim>
+    <p>traffic/README は列挙せず workflow の配列を指す。</p>
+    <doc-code diff file="traffic/README.md" lang="md" wrap>
+<script type="text/plain">
+@@ -21,2 +21,4 @@
+-Snapshot only (not on the dashboard; from 2026-10-04): the skill repositories exported from claude-harness and its retirement ledger —
++Snapshot only (not on the dashboard; added 2026-10-06): the skill repositories exported from claude-harness and its retirement ledger —
+ [search-first](https://github.com/shimo4228/search-first), [skill-stocktake](…), [codex-review](…), [readme-writer](…), [llms-txt-writer](…), [harness-pruning](…).
++
++Snapshot only (not on the dashboard; added 2026-10-07): repositories submitted to external lists such as awesome lists. The `repos` array in [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) is the full list of collected repositories.
+</script>
+      <doc-pin line="21" tone="warn" title="「from 2026-10-04」は事実と違う">6 repo はまだ一度も収集されていない。</doc-pin>
+    </doc-code>
+  </doc-claim>
+</doc-claim>
+
+<!-- ═════ 2 ═════ -->
+<doc-claim>
+  <p>push 後に収集を今日始め、skip の有無を見る。</p>
+  <doc-mock frame="terminal" title="hub" w="470" caption="Skip が 0 件なら完了。"><template><span class="dim">></span> gh workflow run traffic-daily.yml -R shimo4228/shimo4228
+<span class="dim">></span> gh run watch &lt;id&gt; -R shimo4228/shimo4228
+<span class="g">✓</span> snapshot
+<span class="dim">></span> gh run view &lt;id&gt; --log | grep -E "Skip|added"</template></doc-mock>
+
+  <doc-claim>
+    <p>Skip が出たら PAT の操作を著者に渡す。</p>
+    <doc-code src=".github/workflows/traffic-daily.yml" lines="80-91" hl="82,89">
+      <doc-pin line="82" tone="warn" title="失敗しても job は green">warning を log から拾う必要がある。</doc-pin>
+    </doc-code>
+  </doc-claim>
+</doc-claim>
+
+<!-- ═════ shared ═════ -->
+<doc-claim aux="shared">
+  <p>共有: 検証と commit の順序。</p>
+  <doc-code title="commit の並び · sketch" lang="text">
+<script type="text/plain">
+1. docs(plan): traffic-listed-repos            plan + research report
+2. chore: ignore html-plan pack outputs         .gitignore
+3. feat(traffic): snapshot the listed repos daily   workflow + traffic/README EN/JA
+4. fix(traffic): stale-window comment matches the value   :47-49（依頼外の軽微修正）
+verify: python3 -m unittest discover -s tests（hub に .claude/verify.sh は無い）
+→ git push → workflow_dispatch 1 回
+</script>
+  </doc-code>
+  <doc-ask id="executor">
+    <p>実行者の決定: 誰が実装するか。</p>
+    <label><input type="radio" name="executor" value="self" checked> このセッションが実装する <small>2 file の追記。著者がこのセッションを実装用に立てた</small></label>
+    <label><input type="radio" name="executor" value="build"> build-tier の subagent に dispatch する</label>
+  </doc-ask>
+</doc-claim>
+
+<!-- ═════ scope ═════ -->
+<doc-claim aux="scope">
+  <p>変えないもの。</p>
+  <ul>
+    <li>比較 CLI の uniques 対応。データが貯まってから X1 の判定日（10-30）までに別作業にする</li>
+    <li>dashboard（<code>traffic/dashboard/index.html</code> の REPOS 9 件）。載せ方は別に決める</li>
+    <li><code>traffic/data/</code> の手編集。personal-branding の snapshot も hub の data に混ぜない</li>
+    <li>personal-branding repo のファイル、hub の README・llms 面・graph.jsonld</li>
+    <li>TRAFFIC_PAT と secret</li>
+  </ul>
+</doc-claim>
+
+</doc-plan>
+</main>
+</body>
+</html>
