@@ -11,7 +11,7 @@ Language: [English](README.md) | 日本語
 ## どこから来たかで選ぶ
 
 - **TypeSafe Jev のプロジェクトから:** [jev-skill-router](https://github.com/shimo4228/jev-skill-router)（prompt ごとに Jev へ「どの skill が合うか」を聞く Claude Code の hook）と [jev-research-pipeline](https://github.com/shimo4228/jev-research-pipeline)（code がループを持ち、Jev が判定し、Qwen が書く、毎日の研究監視）。その次は [claude-harness](https://github.com/shimo4228/claude-harness) の `jev-judgment-design` skill へ。
-- **Claude の plugin directory から:** [harness-scope](https://github.com/shimo4228/harness-scope)（global harness は 1 つのまま、repo ごとに Claude に見せるものを選ぶ）と [akc-cycle](https://github.com/shimo4228/akc-cycle)（Agent Knowledge Cycle を 1 つの rules file と plugin にしたもの）。どちらも Anthropic の Claude plugin directory に掲載されています。その次は、両方の出どころである [claude-harness](https://github.com/shimo4228/claude-harness) へ。
+- **Claude の plugin directory から:** [harness-scope](https://github.com/shimo4228/harness-scope)（global harness は 1 つのまま、repo ごとに Claude に見せるものを選ぶ）と [akc-cycle](https://github.com/shimo4228/akc-cycle)（Agent Knowledge Cycle を 1 つの rules file と plugin にしたもの）。どちらも Anthropic の Claude plugin directory に掲載されています（[harness-scope](https://claude.ai/customize/plugins/id/37e770d1-74d7-4c34-8082-f5bdbba14d6e%40anthropic-plugin-directory)、[akc-cycle](https://claude.ai/customize/plugins/id/830158ca-24eb-4b93-84a3-0069a993d99e%40anthropic-plugin-directory)）。その次は、両方の出どころである [claude-harness](https://github.com/shimo4228/claude-harness) へ。
 - **記事・DOI・用語の検索から:** 下の表へ。
 
 ## 早見表

@@ -11,7 +11,7 @@ I'm Tatsuya Shimomoto (shimo4228). I build AI agents solo, with no lab and no af
 ## Start here
 
 - **From a TypeSafe Jev project:** [jev-skill-router](https://github.com/shimo4228/jev-skill-router), a Claude Code hook that asks Jev which installed skill fits the prompt, and [jev-research-pipeline](https://github.com/shimo4228/jev-research-pipeline), daily research monitoring where code owns the loop, Jev judges, and Qwen writes. Then the `jev-judgment-design` skill in [claude-harness](https://github.com/shimo4228/claude-harness).
-- **From the Claude plugin directory:** [harness-scope](https://github.com/shimo4228/harness-scope), one global harness where each repo picks what Claude sees, and [akc-cycle](https://github.com/shimo4228/akc-cycle), the Agent Knowledge Cycle as a single rules file and a plugin. Both are listed in Anthropic's Claude plugin directory. Then [claude-harness](https://github.com/shimo4228/claude-harness), the harness they come from.
+- **From the Claude plugin directory:** [harness-scope](https://github.com/shimo4228/harness-scope), one global harness where each repo picks what Claude sees, and [akc-cycle](https://github.com/shimo4228/akc-cycle), the Agent Knowledge Cycle as a single rules file and a plugin. Both are listed in Anthropic's Claude plugin directory ([harness-scope](https://claude.ai/customize/plugins/id/37e770d1-74d7-4c34-8082-f5bdbba14d6e%40anthropic-plugin-directory), [akc-cycle](https://claude.ai/customize/plugins/id/830158ca-24eb-4b93-84a3-0069a993d99e%40anthropic-plugin-directory)). Then [claude-harness](https://github.com/shimo4228/claude-harness), the harness they come from.
 - **From an article, a DOI, or a search for one of the ideas:** the table below.
 
 ## At a Glance

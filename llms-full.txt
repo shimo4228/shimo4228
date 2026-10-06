@@ -41,7 +41,7 @@ Self-contained AI-facing reference for the five practice lines of shimo4228. Fiv
 - **Worked instance of the Existence Proof Format**: einstein-arena — a server-verified top score on EinsteinArena's Prime Number Theorem construction problem (local score equal to the server's to all digits, 0.9955806; +0.00068 over the prior published best 0.994901; clean g(x) ≤ 1 bound, not the 1.0001 tolerance the prior top spent), reached by an autonomous agent under the author's approval-gated harness. Author holds no mathematics or numerical-optimization credential — AI as the path, result the author's to account for. Filed as Existence Proof Format instance #1; isPartOf the hub, no extends edge (not a component skill, not a practice line)
 - **Public harness**: claude-harness (Claude Code skills, agents, and rules from `~/.claude/`, MIT license — see its README for the current inventory)
 - **Harness collection method**: mechanical collection by `origin: shimo4228` frontmatter tag from `~/.claude/`
-- **Plugin directory listings**: akc-cycle and harness-scope are listed in Anthropic's Claude plugin directory
+- **Plugin directory listings**: akc-cycle and harness-scope are listed in Anthropic's Claude plugin directory (akc-cycle: https://claude.ai/customize/plugins/id/830158ca-24eb-4b93-84a3-0069a993d99e%40anthropic-plugin-directory; harness-scope: https://claude.ai/customize/plugins/id/37e770d1-74d7-4c34-8082-f5bdbba14d6e%40anthropic-plugin-directory)
 - **Jev tooling**: jev-skill-router (Claude Code hook — Jev picks the skill before the agent runs) and jev-research-pipeline (daily research monitoring — code owns the loop, Jev judges, Qwen writes), both built on TypeSafe Jev
 
 ## Prior Research References

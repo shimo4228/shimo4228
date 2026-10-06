@@ -26,7 +26,7 @@
 ## Agent Knowledge Cycle (AKC)
 
 - [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase bidirectional growth loop for sustaining agent–operator intent alignment over time, in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
-- [akc-cycle](https://github.com/shimo4228/akc-cycle): all six phases as a single behavioral rules file, without the six standalone skills. Also a Claude Code plugin; listed in Anthropic's Claude plugin directory
+- [akc-cycle](https://github.com/shimo4228/akc-cycle): all six phases as a single behavioral rules file, without the six standalone skills. Also a Claude Code plugin; listed in Anthropic's Claude plugin directory (https://claude.ai/customize/plugins/id/830158ca-24eb-4b93-84a3-0069a993d99e%40anthropic-plugin-directory)
 - [search-first](https://github.com/shimo4228/search-first): Research phase — search existing solutions before building
 - [learn-eval](https://github.com/shimo4228/learn-eval): Extract phase — extract reusable patterns with quality gates
 - [skill-stocktake](https://github.com/shimo4228/skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
@@ -76,7 +76,7 @@ Position papers deposited as standalone Zenodo records, each belonging to one pr
 ## Open source harness
 
 - [claude-harness](https://github.com/shimo4228/claude-harness): public artifact of shimo4228's daily-use Claude Code harness — skills, agents, and rules mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. ECC-derived components excluded. See [its README](https://github.com/shimo4228/claude-harness#contents) for the current inventory
-- [harness-scope](https://github.com/shimo4228/harness-scope): Claude Code Mod (a plugin's hooks module) that turns the global skills, agents, instruction files, and tools on or off per repo with named profiles — one global harness, each repo picks what Claude sees. Listed in Anthropic's Claude plugin directory
+- [harness-scope](https://github.com/shimo4228/harness-scope): Claude Code Mod (a plugin's hooks module) that turns the global skills, agents, instruction files, and tools on or off per repo with named profiles — one global harness, each repo picks what Claude sees. Listed in Anthropic's Claude plugin directory (https://claude.ai/customize/plugins/id/37e770d1-74d7-4c34-8082-f5bdbba14d6e%40anthropic-plugin-directory)
 
 ## Jev tooling
 
