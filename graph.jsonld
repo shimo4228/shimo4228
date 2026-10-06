@@ -565,6 +565,30 @@
       "extends": "https://doi.org/10.5281/zenodo.19200726"
     },
     {
+      "@id": "https://github.com/shimo4228/harness-scope",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "harness-scope",
+      "description": "Claude Code Mod that turns the global skills, agents, instruction files, and tools on or off per repository with named profiles: one global harness, each repo picks what Claude sees. Listed in Anthropic's Claude plugin directory.",
+      "url": "https://github.com/shimo4228/harness-scope",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/jev-skill-router",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "jev-skill-router",
+      "description": "Claude Code plugin: a UserPromptSubmit hook that asks TypeSafe Jev which installed skill fits the prompt and logs the recommendation before the agent runs. Shadow mode by default; injection only after measured accuracy.",
+      "url": "https://github.com/shimo4228/jev-skill-router",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/jev-research-pipeline",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "jev-research-pipeline",
+      "description": "Daily monitoring of standing research questions built on TypeSafe Jev: Python code owns the loop, Jev screens sources with typed probabilities, Qwen writes the prose into an Obsidian vault.",
+      "url": "https://github.com/shimo4228/jev-research-pipeline",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
       "@id": "https://github.com/shimo4228/zenn-content",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "zenn-content",
