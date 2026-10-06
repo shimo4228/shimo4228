@@ -18,8 +18,10 @@ Append-only JSONL time series under `data/`, one file per repository:
 - [claude-harness](https://github.com/shimo4228/claude-harness) (public Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (this profile repo)
 
-Snapshot only (not on the dashboard; from 2026-10-04): the skill repositories exported from claude-harness and its retirement ledger —
+Snapshot only (not on the dashboard; added 2026-10-06): the skill repositories exported from claude-harness and its retirement ledger —
 [search-first](https://github.com/shimo4228/search-first), [skill-stocktake](https://github.com/shimo4228/skill-stocktake), [codex-review](https://github.com/shimo4228/codex-review), [readme-writer](https://github.com/shimo4228/readme-writer), [llms-txt-writer](https://github.com/shimo4228/llms-txt-writer), [harness-pruning](https://github.com/shimo4228/harness-pruning).
+
+Snapshot only (not on the dashboard; added 2026-10-07): repositories submitted to external lists such as awesome lists. The `repos` array in [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) is the full list of collected repositories.
 
 GitHub's Traffic API only retains the last 14 days. Snapshotting daily accumulates a long-term record that is otherwise unrecoverable.
 

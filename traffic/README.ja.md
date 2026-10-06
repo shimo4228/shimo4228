@@ -18,8 +18,10 @@
 - [claude-harness](https://github.com/shimo4228/claude-harness) (公開 Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (この profile repo)
 
-snapshot のみ（dashboard には載せない。2026-10-04 から）: claude-harness から export した skill repo と退役台帳 —
+snapshot のみ（dashboard には載せない。2026-10-06 追加）: claude-harness から export した skill repo と退役台帳 —
 [search-first](https://github.com/shimo4228/search-first)、[skill-stocktake](https://github.com/shimo4228/skill-stocktake)、[codex-review](https://github.com/shimo4228/codex-review)、[readme-writer](https://github.com/shimo4228/readme-writer)、[llms-txt-writer](https://github.com/shimo4228/llms-txt-writer)、[harness-pruning](https://github.com/shimo4228/harness-pruning)。
+
+snapshot のみ（dashboard には載せない。2026-10-07 追加）: awesome list などの外部リストに出した repo。収集対象の全体は [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) の `repos` 配列が正本。
 
 GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り続けることで、後追い不可能な long-term record を蓄積する。
 

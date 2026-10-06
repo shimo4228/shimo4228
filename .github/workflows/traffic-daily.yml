@@ -40,6 +40,16 @@ jobs:
               'readme-writer',
               'llms-txt-writer',
               'harness-pruning',
+              'harness-scope',
+              'jev-skill-router',
+              'jev-research-pipeline',
+              'akc-cycle',
+              'herdr-toolkit',
+              'claude-skill-paper-ecosystem',
+              'llm-agent-security-principles',
+              'release-doi',
+              'contemplative-agent-otel',
+              'agent-observability-patterns',
             ];
             const dataDir = 'traffic/data';
             const fetchedAt = new Date().toISOString();
