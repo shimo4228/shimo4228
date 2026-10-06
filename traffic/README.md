@@ -2,7 +2,7 @@
 
 Daily snapshots of the GitHub Traffic API for the public repositories listed below by [@shimo4228](https://github.com/shimo4228).
 
-**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — all nine repos on one page (aggregate timeline, per-repo small multiples, clones:views ratio, raw table).
+**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) — the repos in its `REPOS` list on one page, built for phones: four metrics (unique visitors, views, unique cloners, clones) over 30 days / 90 days / all time, a daily chart, an all-time calendar, a sortable repo list with a per-repo chart, the raw table, and the attribution probes.
 
 ## What
 
@@ -21,7 +21,7 @@ Append-only JSONL time series under `data/`, one file per repository:
 Snapshot only (not on the dashboard; added 2026-10-06): the skill repositories exported from claude-harness and its retirement ledger —
 [search-first](https://github.com/shimo4228/search-first), [skill-stocktake](https://github.com/shimo4228/skill-stocktake), [codex-review](https://github.com/shimo4228/codex-review), [readme-writer](https://github.com/shimo4228/readme-writer), [llms-txt-writer](https://github.com/shimo4228/llms-txt-writer), [harness-pruning](https://github.com/shimo4228/harness-pruning).
 
-Snapshot only (not on the dashboard; added 2026-10-07): repositories submitted to external lists such as awesome lists. The `repos` array in [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) is the full list of collected repositories.
+Added 2026-10-07: repositories submitted to external lists such as awesome lists. Four of them (harness-scope, jev-skill-router, jev-research-pipeline, akc-cycle) are also on the dashboard; the rest are snapshot only. The `repos` array in [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) is the full list of collected repositories.
 
 GitHub's Traffic API only retains the last 14 days. Snapshotting daily accumulates a long-term record that is otherwise unrecoverable.
 

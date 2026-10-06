@@ -775,449 +775,469 @@
   </script>
   <!-- END graph-jsonld-mirror -->
   <style>
+    /* ===== Tokens =====================================================
+       One surface, hairlines, one accent. Colors follow the dataviz reference
+       palette; the probe signal set (blue / magenta / green / amber) passes the
+       validator all-pairs in both themes. Dark is its own step set.
+       Type scale: 12 caption · 13 secondary · 14 body · 17 section · 22 page. */
     :root {
-      --bg: #f5f6fb;
-      --bg-floor: #ffffff;
-      --fg: #1a2030;
-      --muted: #5b6472;
-      --faint: #9aa1b0;
-      --border: rgba(15, 23, 42, 0.09);
-      --border-strong: rgba(15, 23, 42, 0.16);
-      --card: rgba(255, 255, 255, 0.66);
-      --card-solid: #ffffff;
-      --accent: #6366f1;
-      --accent-2: #10b981;
-      --grad: linear-gradient(135deg, #6366f1 0%, #10b981 100%);
-      --gold: #c98a16;
-      --up: #0f9d6b;
-      --down: #d97706;
-      --glow: rgba(99, 102, 241, 0.20);
-      --shadow: 0 10px 34px rgba(79, 70, 229, 0.10);
-      --shadow-hover: 0 14px 44px rgba(79, 70, 229, 0.16);
-      --mesh-a: rgba(99, 102, 241, 0.14);
-      --mesh-b: rgba(139, 92, 246, 0.12);
-      --mesh-c: rgba(16, 185, 129, 0.12);
-      --r-card: 18px;
-      --r-pill: 999px;
+      color-scheme: light;
+      --page: #fbfbfa; --raise: #ffffff;
+      --ink: #0b0b0b; --ink-2: #4a4945; --muted: #6b6a65;
+      --hair: #e7e6e0; --hair-strong: #d3d2cb; --grid: #efeee9; --axis: #c3c2b7;
+      --accent: #2a78d6; --accent-wash: rgba(42, 120, 214, 0.08); --accent-soft: rgba(42, 120, 214, 0.18);
+      --up: #1a7f37; --down: #b42318;
+      --seg-on: #ffffff; --conn-op: .5;
+      --sig-author: #2a78d6; --sig-project: #e87ba4; --sig-doi: #008300; --sig-ghost: #eda100;
+      --h0: #efeee9; --h1: #cde2fb; --h2: #86b6ef; --h3: #3987e5; --h4: #1c5cab;
+      --tip-bg: #0b0b0b; --tip-ink: #ffffff; --tip-ink-2: #b9b8b1;
+      --shadow: 0 1px 2px rgba(11, 11, 11, 0.04), 0 10px 28px rgba(11, 11, 11, 0.10);
+      --sans: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      --r: 12px;
+      --gutter: clamp(16px, 4vw, 40px);
+      --tap: 44px;
     }
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0d12;
-        --bg-floor: #070809;
-        --fg: #e8eaf0;
-        --muted: #9ba3b4;
-        --faint: #6b7280;
-        --border: rgba(255, 255, 255, 0.08);
-        --border-strong: rgba(255, 255, 255, 0.17);
-        --card: rgba(22, 26, 34, 0.55);
-        --card-solid: #161a22;
-        --accent: #818cf8;
-        --accent-2: #34d399;
-        --grad: linear-gradient(135deg, #818cf8 0%, #34d399 100%);
-        --gold: #fcd34d;
-        --up: #34d399;
-        --down: #fbbf24;
-        --glow: rgba(129, 140, 248, 0.40);
-        --shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
-        --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.55);
-        --mesh-a: rgba(99, 102, 241, 0.20);
-        --mesh-b: rgba(139, 92, 246, 0.16);
-        --mesh-c: rgba(45, 212, 191, 0.15);
+      :root:where(:not([data-theme="light"])) {
+        color-scheme: dark;
+        --page: #0f0f0e; --raise: #171716;
+        --ink: #f3f3f0; --ink-2: #c3c2b7; --muted: #8f8e88;
+        --hair: #262624; --hair-strong: #34342f; --grid: #1f1f1d; --axis: #3a3a36;
+        --accent: #3987e5; --accent-wash: rgba(57, 135, 229, 0.11); --accent-soft: rgba(57, 135, 229, 0.24);
+        --up: #3fb950; --down: #f97066;
+        --seg-on: #2a2a28; --conn-op: .75;
+        --sig-author: #3987e5; --sig-project: #d55181; --sig-doi: #008300; --sig-ghost: #c98500;
+        --h0: #1d1d1b; --h1: #123a6b; --h2: #1c5cab; --h3: #3987e5; --h4: #9ec5f4;
+        --tip-bg: #f3f3f0; --tip-ink: #0b0b0b; --tip-ink-2: #4a4945;
+        --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.5);
       }
     }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --page: #0f0f0e; --raise: #171716;
+      --ink: #f3f3f0; --ink-2: #c3c2b7; --muted: #8f8e88;
+      --hair: #262624; --hair-strong: #34342f; --grid: #1f1f1d; --axis: #3a3a36;
+      --accent: #3987e5; --accent-wash: rgba(57, 135, 229, 0.11); --accent-soft: rgba(57, 135, 229, 0.24);
+      --up: #3fb950; --down: #f97066;
+      --seg-on: #2a2a28; --conn-op: .75;
+      --sig-author: #3987e5; --sig-project: #d55181; --sig-doi: #008300; --sig-ghost: #c98500;
+      --h0: #1d1d1b; --h1: #123a6b; --h2: #1c5cab; --h3: #3987e5; --h4: #9ec5f4;
+      --tip-bg: #f3f3f0; --tip-ink: #0b0b0b; --tip-ink-2: #4a4945;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ===== Base ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
-      background: var(--bg-floor);
-      color: var(--fg);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-      line-height: 1.5;
-      font-size: 15px;
-      -webkit-font-smoothing: antialiased;
-      font-variant-numeric: tabular-nums;
-      min-height: 100vh;
+      margin: 0; background: var(--page); color: var(--ink);
+      font: 400 14px/1.6 var(--sans);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     }
-    /* Aurora gradient-mesh backdrop */
-    .aurora {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background:
-        radial-gradient(50% 50% at 12% 8%, var(--mesh-a) 0%, transparent 70%),
-        radial-gradient(46% 46% at 88% 18%, var(--mesh-b) 0%, transparent 70%),
-        radial-gradient(60% 60% at 70% 100%, var(--mesh-c) 0%, transparent 72%),
-        var(--bg);
-      animation: drift 48s ease-in-out infinite alternate;
-    }
-    @keyframes drift {
-      from { transform: translate3d(0, 0, 0) scale(1); }
-      to   { transform: translate3d(0, -1.5%, 0) scale(1.05); }
-    }
+    a { color: inherit; text-decoration-color: var(--hair-strong); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: currentColor; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+    button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+    .num { font-variant-numeric: tabular-nums; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--gutter); }
+    .prose { font-size: 13px; color: var(--ink-2); line-height: 1.75; max-width: 70ch; }
 
-    .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; }
-
-    /* ---- header ---- */
-    header.page { margin-bottom: 22px; }
-    .brandline { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-    h1 {
-      font-size: clamp(1.5rem, 3.4vw, 2rem);
-      margin: 0;
-      letter-spacing: -0.02em;
-      font-weight: 750;
-      background: var(--grad);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    /* ===== Header ===== */
+    .top { padding: clamp(24px, 6vw, 56px) 0 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .top > div { min-width: 0; }
+    .top h1 { margin: 0; font-size: 22px; font-weight: 650; letter-spacing: -0.015em; line-height: 1.25; }
+    .top .meta { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+    .top .meta a { color: var(--ink-2); }
+    .top .meta .sep { margin: 0 7px; color: var(--hair-strong); }
+    .nw { white-space: nowrap; }
+    .icon-btn {
+      width: var(--tap); height: var(--tap); display: inline-grid; place-items: center; flex: none; margin: -6px -6px 0 0;
+      border: 1px solid transparent; border-radius: 12px; background: transparent; color: var(--ink-2); cursor: pointer;
+      transition: border-color .15s, color .15s;
     }
-    .live-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.03em;
-      padding: 4px 11px; border-radius: var(--r-pill);
-      color: var(--up); border: 1px solid var(--border-strong);
-      background: var(--card);
-      backdrop-filter: blur(8px);
-    }
-    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--up); box-shadow: 0 0 0 0 var(--up); animation: ping 2.4s ease-out infinite; }
-    @keyframes ping { 0% { box-shadow: 0 0 0 0 var(--up); } 70%, 100% { box-shadow: 0 0 0 7px transparent; } }
-    .meta { color: var(--muted); font-size: 0.875rem; margin: 8px 0 0; }
-    .meta a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border-strong); }
-    .meta a:hover { color: var(--accent); }
+    .icon-btn:hover { border-color: var(--hair); color: var(--ink); }
+    .icon-btn svg { width: 18px; height: 18px; }
 
-    /* ---- glass card primitive ---- */
-    .glass {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--r-card);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(20px) saturate(140%);
-      -webkit-backdrop-filter: blur(20px) saturate(140%);
+    /* ===== Range bar (sticky inside the traffic block only) ===== */
+    .controls { position: sticky; top: 0; z-index: 20; background: var(--page); border-bottom: 1px solid transparent; transition: border-color .2s; }
+    .controls.stuck { border-bottom-color: var(--hair); }
+    .controls .wrap { display: flex; align-items: center; gap: 12px; padding-top: 8px; padding-bottom: 8px; }
+    .seg { display: inline-flex; padding: 3px; border-radius: 10px; background: var(--grid); }
+    .seg button {
+      min-height: 34px; min-width: 64px; border: 0; background: transparent; padding: 0 14px; border-radius: 7px; cursor: pointer;
+      font-size: 13px; font-weight: 550; color: var(--muted); transition: background-color .15s, color .15s, box-shadow .15s;
     }
+    .seg button:hover { color: var(--ink); }
+    .seg button[aria-pressed="true"] { background: var(--seg-on); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 0 0 .5px var(--hair-strong); }
+    .controls .note { margin-left: auto; font-size: 12px; color: var(--muted); }
 
-    h2 { font-size: 1.05rem; margin: 0 0 4px; letter-spacing: -0.005em; font-weight: 680; }
-    h2 .lead { color: var(--accent); margin-right: 8px; }
-    .hint { color: var(--muted); font-size: 0.84rem; margin: 0 0 12px; max-width: 78ch; }
-    section { margin-bottom: 26px; }
+    /* ===== Sections ===== */
+    section { padding: 32px 0; border-top: 1px solid var(--hair); }
+    section.first { border-top: 0; padding-top: 20px; }
+    .sh { display: flex; align-items: baseline; justify-content: space-between; gap: 4px 12px; flex-wrap: wrap; margin: 0 0 16px; }
+    h2 { margin: 0; font-size: 17px; font-weight: 650; letter-spacing: -0.01em; line-height: 1.35; }
+    .sh .aside { font-size: 13px; color: var(--muted); }
 
-    /* ---- narrative dek ---- */
-    .dek {
-      padding: 18px 22px;
-      margin-bottom: 22px;
-      font-size: clamp(1rem, 2.1vw, 1.22rem);
-      line-height: 1.5;
-      color: var(--muted);
-      letter-spacing: -0.005em;
+    /* ===== Metric tiles (they are the metric switch) ===== */
+    .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--hair); border-radius: var(--r); background: var(--raise); overflow: hidden; }
+    .tile {
+      position: relative; min-width: 0; text-align: left; border: 0; background: transparent; cursor: pointer;
+      padding: 14px 16px 12px; transition: background-color .15s;
     }
-    .dek b { color: var(--fg); font-weight: 700; }
-    .dek .accent { color: var(--accent); font-weight: 700; }
-    .dek .up { color: var(--up); font-weight: 700; }
-    .dek .down { color: var(--down); font-weight: 700; }
+    .tile + .tile { border-left: 1px solid var(--hair); }
+    .tile:hover { background: color-mix(in srgb, var(--ink) 2.5%, transparent); }
+    .tile[aria-pressed="true"] { background: var(--accent-wash); }
+    .tile[aria-pressed="true"]::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--accent); }
+    .tile .lab { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .tile[aria-pressed="true"] .lab > span:first-child { color: var(--ink); font-weight: 550; }
+    .tile .val { display: block; font-size: 26px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; margin: 6px 0 8px; }
+    .tile svg { display: block; width: 100%; height: 24px; }
+    .metric-note { margin: 10px 0 0; font-size: 12px; color: var(--muted); }
 
-    /* ---- hero ---- */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(260px, 0.9fr) 1.3fr;
-      gap: 8px 28px;
-      align-items: center;
-      padding: 24px 26px;
-      margin-bottom: 22px;
-    }
-    .hero-num {
-      font-size: clamp(2.8rem, 8vw, 4.4rem);
-      font-weight: 800;
-      letter-spacing: -0.035em;
-      line-height: 0.98;
-      background: var(--grad);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 30px var(--glow);
-    }
-    .hero-label { font-size: 0.7rem; font-weight: 650; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); margin-bottom: 6px; }
-    .hero-sub { font-size: 0.86rem; color: var(--faint); margin-top: 8px; }
-    .hero-mo { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 600; }
-    .hero-fig { min-width: 0; }
-    .hero-fig svg { filter: drop-shadow(0 4px 14px var(--glow)); }
-
-    /* ---- stat strip ---- */
-    .stat-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
-    .stat { padding: 15px 16px 13px; position: relative; overflow: hidden; }
-    .stat .label { font-size: 0.68rem; font-weight: 650; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
-    .stat .value { font-size: 1.85rem; font-weight: 720; letter-spacing: -0.02em; line-height: 1.05; margin-top: 4px; }
-    .stat .sub { font-size: 0.76rem; color: var(--faint); margin-top: 3px; }
-    .stat .spark { display: block; width: 100%; height: 30px; margin-top: 12px; opacity: 0.9; }
-    .delta { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; }
+    .delta { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
     .delta.up { color: var(--up); }
     .delta.down { color: var(--down); }
-    .delta.flat { color: var(--muted); }
+    .delta.flat, .delta.na { color: var(--muted); font-weight: 500; }
 
-    /* ---- milestones ---- */
-    .badge-shelf { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 7px 13px; border-radius: var(--r-pill);
-      font-size: 0.82rem; font-weight: 600;
-      border: 1px solid var(--border);
-      background: var(--card); backdrop-filter: blur(8px);
+    /* ===== Charts ===== */
+    .chart-block { margin-top: 28px; }
+    .chart-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin-bottom: 10px; }
+    .chart-head .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .readout { text-align: right; flex: none; }
+    .readout .d { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .readout .v { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+    .chart { position: relative; }
+    .chart svg { display: block; overflow: visible; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
+    .chart svg:focus { outline: none; }
+    .chart svg:focus-visible .frame { stroke: var(--accent); }
+    .frame { fill: none; stroke: transparent; }
+    .chart text, .cal text { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+    .gridline { stroke: var(--grid); stroke-width: 1; shape-rendering: crispEdges; }
+    .baseline { stroke: var(--axis); stroke-width: 1; shape-rendering: crispEdges; }
+    .xhair { stroke: var(--ink); stroke-opacity: .3; stroke-width: 1; shape-rendering: crispEdges; pointer-events: none; }
+    .ln { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .ln.thin { stroke-width: 1.5; }
+    .ln.gap { stroke: var(--muted) !important; stroke-width: 1.25; stroke-dasharray: 2 3; opacity: .7; }
+    .c-accent { stroke: var(--accent); } .c-ghost { stroke: var(--ink-2); stroke-opacity: .4; }
+    .wash { fill: var(--accent); fill-opacity: .10; }
+    .dot { stroke: var(--page); stroke-width: 2; }
+    .lbl-strong { font-size: 12px !important; fill: var(--ink) !important; font-weight: 650; }
+    .lbl-soft { font-size: 12px !important; fill: var(--muted) !important; }
+    .keys { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); }
+    .keys span { display: inline-flex; align-items: center; gap: 6px; }
+    .keys i { width: 14px; height: 2px; border-radius: 1px; display: inline-block; }
+
+    /* ===== Tooltip (mouse only; touch uses the readout) ===== */
+    .tip {
+      position: fixed; z-index: 50; pointer-events: none; min-width: 120px; max-width: 280px;
+      background: var(--tip-bg); color: var(--tip-ink); border-radius: 8px; padding: 8px 10px 9px;
+      font-size: 12px; line-height: 1.45; box-shadow: var(--shadow);
+      opacity: 0; transform: translateY(2px); transition: opacity .12s, transform .12s;
     }
-    .badge.unlocked { color: var(--fg); border-color: color-mix(in srgb, var(--gold) 55%, transparent); box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 30%, transparent), 0 6px 18px -6px color-mix(in srgb, var(--gold) 60%, transparent); }
-    .badge.unlocked .gem { color: var(--gold); }
-    .badge.locked { color: var(--faint); opacity: 0.6; }
-    .badge .gem { font-size: 0.7rem; }
-    .badge.recent { animation: glowpulse 2.6s ease-in-out infinite; }
-    @keyframes glowpulse { 0%, 100% { box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 30%, transparent), 0 6px 18px -6px color-mix(in srgb, var(--gold) 60%, transparent); } 50% { box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 55%, transparent), 0 8px 26px -4px color-mix(in srgb, var(--gold) 80%, transparent); } }
+    .tip.on { opacity: 1; transform: none; }
+    .tip .h { color: var(--tip-ink-2); margin-bottom: 4px; }
+    .tip .r { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+    .tip .r .k { display: inline-flex; align-items: center; gap: 6px; color: var(--tip-ink-2); }
+    .tip .r .k i { width: 10px; height: 2px; border-radius: 1px; display: inline-block; }
+    .tip .r .v { font-weight: 650; font-variant-numeric: tabular-nums; }
 
-    .progress-card { padding: 16px 18px; }
-    .progress-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
-    .progress-goal { font-weight: 650; }
-    .progress-togo { font-size: 0.82rem; color: var(--muted); }
-    .progress-togo b { color: var(--accent); }
-    .track { height: 12px; border-radius: var(--r-pill); background: var(--border); overflow: hidden; }
-    .track > span { display: block; height: 100%; border-radius: var(--r-pill); background: var(--grad); width: 0; transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 14px var(--glow); }
+    /* ===== All time ===== */
+    .alltime { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 24px 40px; align-items: end; }
+    .alltime .big { font-size: 28px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; margin: 0 0 4px; }
+    .alltime .what { font-size: 13px; color: var(--ink-2); }
+    .alltime .streak { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .cal { min-width: 0; display: flex; justify-content: flex-end; }
+    .cal-box { max-width: 100%; }
+    .cal svg { display: block; overflow: visible; touch-action: manipulation; }
+    .cal .foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; font-size: 12px; color: var(--muted); min-height: 18px; }
+    .cal .scale { display: inline-flex; align-items: center; gap: 3px; }
+    .cal .scale i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; box-shadow: inset 0 0 0 1px var(--hair); }
+    .cal .scale span { margin: 0 4px; }
 
-    /* ---- streak heatmap ---- */
-    .heat-wrap { padding: 16px 18px; overflow-x: auto; }
-    .heat {
-      display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 13px);
-      gap: 3px; min-width: max-content;
+    /* ===== Repository list ===== */
+    .rl-head, .rl-row {
+      display: grid; align-items: center; column-gap: 16px;
+      grid-template-columns: 24px minmax(0, 1fr) 112px 64px 64px 112px 84px;
+      grid-template-areas: "rank name spark total d7 share ratio";
     }
-    .heat i { width: 13px; height: 13px; border-radius: 3px; background: var(--border); display: block; }
-    .heat i.l1 { background: color-mix(in srgb, var(--accent) 26%, transparent); }
-    .heat i.l2 { background: color-mix(in srgb, var(--accent) 48%, transparent); }
-    .heat i.l3 { background: color-mix(in srgb, var(--accent) 72%, transparent); }
-    .heat i.l4 { background: var(--accent); box-shadow: 0 0 7px var(--glow); }
-    .heat-legend { display: flex; align-items: center; gap: 6px; justify-content: flex-end; margin-top: 10px; font-size: 0.74rem; color: var(--faint); }
-    .heat-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+    .rl-head { min-height: var(--tap); padding: 0 12px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--hair); }
+    .rl-head > * { white-space: nowrap; }
+    .rl-head .rank { grid-area: rank; } .rl-head .c-name { grid-area: name; justify-self: start; }
+    .rl-head .c-spark { grid-area: spark; } .rl-head .c-total { grid-area: total; } .rl-head .c-d7 { grid-area: d7; }
+    .rl-head .c-share { grid-area: share; } .rl-head .c-ratio { grid-area: ratio; }
+    .rl-head .c-total, .rl-head .c-d7, .rl-head .c-share, .rl-head .c-ratio { justify-self: end; }
+    .rl-head .sorts { display: none; }
+    .sort {
+      min-height: var(--tap); border: 0; background: none; padding: 0; color: inherit; font: inherit; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .sort:hover, .sort[aria-pressed="true"] { color: var(--ink); }
+    .sort .arw { font-size: 8.5px; opacity: 0; }
+    .sort[aria-pressed="true"] .arw { opacity: 1; }
+    .sort.r .arw { order: -1; }
+    .rl-row {
+      position: relative; min-height: 52px; padding: 6px 12px; border-bottom: 1px solid var(--hair);
+      cursor: pointer; transition: background-color .12s; -webkit-tap-highlight-color: transparent;
+    }
+    .rl-row:hover { background: color-mix(in srgb, var(--ink) 2.5%, transparent); }
+    .rl-row.sel { background: var(--accent-wash); border-bottom-color: transparent; }
+    .rl-row.sel::before { content: ""; position: absolute; left: 0; top: 12px; bottom: 12px; width: 2px; border-radius: 1px; background: var(--accent); }
+    .rl-row:focus-visible { outline-offset: -2px; }
+    .rl-row .rank { grid-area: rank; color: var(--muted); font-size: 12px; }
+    .rl-row .name { grid-area: name; min-width: 0; font-weight: 550; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .rl-row .since { margin-left: 8px; font-weight: 400; font-size: 12px; color: var(--muted); }
+    .rl-row .meta { display: none; }
+    .rl-row .spark { grid-area: spark; display: flex; }
+    .rl-row .spark svg { display: block; width: 100%; height: 22px; }
+    .rl-row .total { grid-area: total; justify-self: end; font-weight: 600; }
+    .rl-row .d7 { grid-area: d7; justify-self: end; font-size: 13px; }
+    .rl-row .share { grid-area: share; justify-self: end; display: flex; align-items: center; gap: 8px; color: var(--ink-2); }
+    .rl-row .ratio { grid-area: ratio; justify-self: end; color: var(--ink-2); }
+    .sbar { width: 56px; height: 4px; border-radius: 2px; background: var(--grid); overflow: hidden; flex: none; }
+    .sbar > span { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+    .rl-row .share .p { min-width: 3.1em; text-align: right; }
 
-    /* ---- grids / charts ---- */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
-    .card { padding: 13px 15px; transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; }
-    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--border-strong); }
-    .card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
-    .rank { flex: none; font-size: 0.72rem; font-weight: 750; padding: 2px 8px; border-radius: var(--r-pill); background: var(--border); color: var(--muted); font-variant-numeric: tabular-nums; }
-    .rank.gold { background: color-mix(in srgb, var(--gold) 24%, transparent); color: var(--gold); }
-    .card-head a { font-weight: 650; color: var(--fg); text-decoration: none; font-size: 0.92rem; word-break: break-all; flex: 1; min-width: 0; }
-    .card-head a:hover { color: var(--accent); }
-    .card-stats { color: var(--muted); font-size: 0.78rem; margin: 1px 0 6px; }
-    .card-stats .delta { font-size: 0.74rem; }
+    .detail { background: var(--accent-wash); border-bottom: 1px solid var(--hair); padding: 4px 12px 16px 52px; }
+    .detail .stats { display: grid; grid-template-columns: repeat(5, minmax(0, max-content)); gap: 10px 32px; margin: 4px 0 14px; }
+    .detail .k { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .detail .v { font-size: 14px; font-weight: 600; }
+    .detail .co { font-size: 13px; color: var(--ink-2); margin-top: 10px; }
+    .detail .co b { font-weight: 600; color: var(--ink); }
+    .detail .chart-head { align-items: baseline; }
+    .detail .readout { font-size: 13px; }
+    .detail .readout .d { font-size: 13px; }
+    .detail .readout b { font-weight: 650; }
+    .detail .foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .link-btn { min-height: var(--tap); display: inline-flex; align-items: center; font-size: 13px; color: var(--ink-2); }
 
-    figure { margin: 0; }
-    svg { max-width: 100%; height: auto; display: block; }
-    figure svg { color: var(--muted); }
+    .more { margin-top: 16px; display: flex; justify-content: center; }
+    .btn {
+      min-height: 40px; display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--hair); background: var(--raise); border-radius: 10px; padding: 0 16px;
+      font-size: 13px; color: var(--ink-2); cursor: pointer; transition: border-color .15s, color .15s; text-decoration: none;
+    }
+    .btn:hover { border-color: var(--hair-strong); color: var(--ink); }
 
-    .chart-card { padding: 16px 18px; }
+    details.disclose { margin-top: 20px; }
+    details.disclose > summary {
+      min-height: var(--tap); cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 10px;
+      font-size: 13px; color: var(--ink-2);
+    }
+    details.disclose > summary::-webkit-details-marker { display: none; }
+    details.disclose > summary::before { content: ""; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); transition: transform .15s; margin: 0 2px; }
+    details.disclose[open] > summary::before { transform: rotate(45deg); }
+    .raw-box { margin-top: 8px; max-height: 460px; overflow: auto; border: 1px solid var(--hair); border-radius: var(--r); background: var(--raise); }
+    .raw-box table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .raw-box th, .raw-box td { padding: 8px 12px; border-bottom: 1px solid var(--hair); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .raw-box th { position: sticky; top: 0; background: var(--raise); font-weight: 500; color: var(--muted); cursor: pointer; }
+    .raw-box th:nth-child(-n+2), .raw-box td:nth-child(-n+2) { text-align: left; }
+    .raw-box tr:last-child td { border-bottom: 0; }
 
-    /* ---- table ---- */
-    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
-    th, td { padding: 7px 12px; border-bottom: 1px solid var(--border); text-align: left; }
-    th { cursor: pointer; user-select: none; font-weight: 650; background: var(--card-solid); position: sticky; top: 0; z-index: 1; }
-    th[aria-sort="ascending"]::after { content: " ▲"; color: var(--accent); }
-    th[aria-sort="descending"]::after { content: " ▼"; color: var(--accent); }
-    .num { text-align: right; }
-    .table-scroll { max-height: 480px; overflow: auto; border: 1px solid var(--border); border-radius: var(--r-card); }
-    tbody tr { transition: background 0.1s ease; }
-    tbody tr:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+    /* ===== Probes ===== */
+    .probe-lede { margin: 0 0 6px; }
+    .caveat-line { margin: 0 0 20px; font-size: 12px; color: var(--muted); }
+    .db { border: 1px solid var(--hair); border-radius: var(--r); background: var(--raise); padding: 14px 16px 10px; }
+    .db-keys { display: flex; gap: 6px 18px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); margin-bottom: 6px; }
+    .db-keys span { display: inline-flex; align-items: center; gap: 7px; }
+    .db-keys .ring { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink-2); display: inline-block; }
+    .db-keys .fill { width: 10px; height: 10px; border-radius: 50%; background: var(--ink-2); display: inline-block; }
+    .db-row { display: grid; grid-template-columns: 220px minmax(0, 1fr) 132px; align-items: center; gap: 16px; padding: 10px 0; border-top: 1px solid var(--hair); }
+    .db-keys + .db-row { border-top: 0; }
+    .db-row .l { font-size: 13px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+    .db-row .l .sig-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+    .db-row .l .bad { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .db-row .t { position: relative; height: 22px; }
+    .db-row .conn { stroke-opacity: var(--conn-op); }
+    .db-row svg { display: block; width: 100%; height: 22px; overflow: visible; }
+    .db-row .v { text-align: right; font-size: 13px; color: var(--ink-2); white-space: nowrap; }
+    .db-row .v b { color: var(--ink); font-weight: 650; margin-left: 8px; display: inline-block; min-width: 4.4em; }
+    .db-row.is-bad .v b { color: var(--ink-2); font-weight: 500; }
+    .db-axis { display: grid; grid-template-columns: 220px minmax(0, 1fr) 132px; gap: 16px; font-size: 12px; color: var(--muted); padding-top: 2px; }
+    .db-axis .ticks { display: flex; justify-content: space-between; }
+    .probe-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; margin-top: 16px; }
+    .probe-actions details.disclose { margin-top: 0; }
+    .pd { margin-top: 12px; }
+    .pd .block { padding: 20px 0; border-top: 1px solid var(--hair); }
+    .pd .block:first-child { border-top: 0; padding-top: 4px; }
+    .pd h3 { margin: 0 0 12px; font-size: 14px; font-weight: 650; }
+    .mx-wrap { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; }
+    .mx { width: calc(100% + 6px); margin-left: -3px; border-collapse: separate; border-spacing: 3px; font-size: 12px; table-layout: fixed; }
+    .mx caption { text-align: left; font-size: 13px; font-weight: 600; padding: 0 3px 6px; }
+    .mx th { font-weight: 500; color: var(--muted); padding: 0 4px 2px; text-align: center; }
+    .mx th.p { text-align: left; width: 78px; color: var(--ink-2); padding-left: 3px; }
+    .mx td { height: 32px; border-radius: 5px; text-align: center; font-variant-numeric: tabular-nums; color: var(--ink); background: var(--grid); }
+    .mx td.na { background: transparent; color: var(--muted); }
+    .trends { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; }
+    .obs { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+    .obs li { position: relative; padding-left: 16px; }
+    .obs li::before { content: ""; position: absolute; left: 2px; top: .85em; width: 6px; height: 1px; background: var(--muted); }
+    .obs li b { color: var(--ink); font-weight: 600; }
 
-    footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    .footer-tag { color: var(--faint); font-style: italic; margin-top: 4px; }
+    .status { margin: 0 0 16px; padding: 10px 14px; border: 1px solid var(--hair-strong); border-radius: 10px; font-size: 13px; color: var(--ink-2); }
+    .status:empty { display: none; }
+    footer { border-top: 1px solid var(--hair); padding: 24px 0 48px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; line-height: 1.8; }
+    footer a { color: var(--ink-2); }
 
-    .status-error { padding: 12px 16px; border: 1px solid #ef4444; border-radius: var(--r-card); color: #ef4444; background: rgba(239, 68, 68, 0.06); }
-
-    /* ---- attribution diffusion probes ---- */
-    .probe-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
-    .probe-head h2 { margin: 0; }
-    .caveat { color: var(--faint); font-size: 0.78rem; line-height: 1.55; margin: 14px 0 0; }
-    .probe-caveat { padding: 13px 16px; margin-bottom: 18px; border-left: 3px solid var(--accent-2); font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-    .probe-caveat b { color: var(--fg); font-weight: 650; }
-
-    .probe-channels { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    @media (max-width: 640px) { .probe-channels { grid-template-columns: 1fr; } }
-    .channel-card { padding: 16px 18px; }
-    .channel-card .ch-name { font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; }
-    .channel-card.parametric .ch-name { color: var(--accent); }
-    .channel-card.retrieval .ch-name { color: var(--accent-2); }
-    .channel-card .ch-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .channel-card .ch-sub { font-size: 0.78rem; color: var(--faint); margin: 6px 0 14px; line-height: 1.5; }
-    .sigbar { margin-bottom: 11px; }
-    .sigbar .sig-top { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px; }
-    .sigbar .sig-label { color: var(--muted); }
-    .sigbar .sig-val { font-weight: 700; font-variant-numeric: tabular-nums; }
-    .sigbar .track { height: 8px; }
-    .channel-card.parametric .track > span { background: var(--accent); }
-    .channel-card.retrieval .track > span { background: var(--accent-2); }
-    .sigbar.ghost .track > span { background: var(--down) !important; }
-    .sigbar.ghost .sig-val { color: var(--down); }
-    .ch-ghost-chip { margin-top: 6px; font-size: 0.76rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--r-pill); border: 1px solid var(--border); }
-    .ch-ghost-chip.good { color: var(--up); }
-    .ch-ghost-chip.warn { color: var(--down); border-color: color-mix(in srgb, var(--down) 45%, transparent); }
-
-    .delta-strip { padding: 13px 16px; margin-bottom: 16px; }
-    .delta-strip .ds-head { font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-bottom: 9px; }
-    .delta-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
-    .delta-chip { display: flex; flex-direction: column; gap: 1px; padding: 7px 11px; border-radius: 10px; background: var(--border); }
-    .delta-chip .dc-label { font-size: 0.72rem; color: var(--muted); }
-    .delta-chip .dc-val { font-weight: 750; font-variant-numeric: tabular-nums; }
-    .delta-chip .dc-val.up { color: var(--up); }
-    .delta-chip .dc-val.down { color: var(--down); }
-    .delta-chip .dc-val.flat { color: var(--muted); }
-
-    .ghost-callout { padding: 16px 18px; margin-bottom: 18px; border-left: 3px solid var(--accent-2); display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-    .ghost-callout .gc-num { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--down); font-variant-numeric: tabular-nums; line-height: 1; }
-    .ghost-callout .gc-body { flex: 1; min-width: 220px; }
-    .ghost-callout .gc-lead { font-weight: 650; }
-    .ghost-callout .gc-sub { font-size: 0.78rem; color: var(--faint); margin-top: 4px; }
-
-    .watchlist { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; }
-    .watchlist .obs-chip { padding: 9px 14px; border-radius: 12px; font-size: 0.83rem; color: var(--muted); border: 1px solid var(--border); background: var(--card); backdrop-filter: blur(8px); }
-    .watchlist .obs-chip.meta { color: var(--faint); font-style: italic; }
-    .watchlist .obs-chip b { color: var(--fg); font-weight: 650; }
-
-    /* entrance */
-    .reveal { opacity: 0; transform: translateY(10px); }
-    .reveal.in { opacity: 1; transform: none; transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-
-    @media (max-width: 720px) {
-      .hero { grid-template-columns: 1fr; }
+    /* ===== Tablet ===== */
+    @media (max-width: 860px) {
+      .alltime { grid-template-columns: 1fr; }
+      .cal { justify-content: flex-start; }
+      .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tile:nth-child(3) { border-left: 0; }
+      .tile:nth-child(n+3) { border-top: 1px solid var(--hair); }
+      .mx-wrap, .trends { grid-template-columns: 1fr; }
+      .rl-head, .rl-row { grid-template-columns: 24px minmax(0, 1fr) 96px 60px 60px; grid-template-areas: "rank name spark total d7"; }
+      .rl-row .share, .rl-row .ratio, .rl-head .c-share, .rl-head .c-ratio { display: none; }
+      .detail .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    /* ===== Phone ===== */
+    @media (max-width: 640px) {
+      .controls .wrap { padding-top: 6px; padding-bottom: 6px; }
+      .controls .seg { display: flex; flex: 1; }
+      .controls .seg button { flex: 1; min-height: 38px; }
+      .controls .note { display: none; }
+      .tile { padding: 12px 14px 10px; }
+      .tile .val { font-size: 24px; }
+      .prose { font-size: 14px; }
+      .rl-head { padding: 0 2px 0 10px; display: flex; justify-content: space-between; }
+      .rl-head .rank, .rl-head .c-spark, .rl-head .c-total, .rl-head .c-d7 { display: none; }
+      .rl-head .sorts { display: inline-flex; align-items: center; gap: 6px; }
+      .rl-head .sorts .dotsep { color: var(--hair-strong); }
+      .rl-row {
+        grid-template-columns: 20px minmax(0, 1fr) auto; column-gap: 10px; row-gap: 4px;
+        grid-template-areas: "rank name total" ". meta d7"; padding: 10px 2px 10px 10px; min-height: 60px;
+      }
+      .rl-row .spark, .rl-row .since { display: none; }
+      .rl-row .name { white-space: normal; overflow-wrap: anywhere; line-height: 1.35; }
+      .rl-row .meta { grid-area: meta; display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 12px; color: var(--muted); }
+      .rl-row .meta .sbar { width: 72px; height: 3px; }
+      .rl-row .total { font-size: 15px; }
+      .rl-row .d7 { font-size: 12px; }
+      .rl-row.sel::before { top: 14px; bottom: 14px; }
+      .detail { padding: 4px 2px 14px 40px; }
+      .detail .dchart, .detail .chart-head { margin-left: -30px; }
+      .detail .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 12px; }
+      .db-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l v" "t t"; gap: 6px 12px; }
+      .db-row .l { grid-area: l; } .db-row .v { grid-area: v; } .db-row .t { grid-area: t; }
+      .db-axis { grid-template-columns: 1fr; }
+      .db-axis > span:first-child, .db-axis > span:last-child { display: none; }
+      .btn { min-height: var(--tap); }
+      .db-row .l { flex-wrap: wrap; row-gap: 0; }
+      .db-row .l .bad { flex-basis: 100%; padding-left: 16px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .aurora { animation: none; }
-      .live-dot { animation: none; }
-      .badge.recent { animation: none; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .track > span { transition: none; }
-      * { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
-  <div class="aurora" aria-hidden="true"></div>
+  <script>
+    // Apply a saved theme before first paint so there is no flash.
+    try { const t = localStorage.getItem("traffic-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+    try { const q = new URLSearchParams(location.search).get("theme"); if (q === "light" || q === "dark") document.documentElement.dataset.theme = q; } catch (e) {}
+  </script>
+
   <div class="wrap">
-    <header class="page">
-      <div class="brandline">
-        <h1>Traffic Dashboard</h1>
-        <span class="live-pill"><span class="live-dot"></span><span id="momentum-pill">growing</span></span>
-      </div>
-      <p class="meta">
-        <a href="https://github.com/shimo4228" target="_blank" rel="noopener noreferrer">@shimo4228</a>
-        · <span id="repo-count">—</span> public repos · <span id="last-updated">loading…</span>
-      </p>
-    </header>
-
-    <div id="status"></div>
-
-    <!-- auto-written narrative -->
-    <p id="dek" class="dek glass reveal">読み込み中…</p>
-
-    <!-- hero -->
-    <section class="hero glass reveal" aria-label="cumulative reach">
+    <header class="top">
       <div>
-        <div class="hero-label">Cumulative reach</div>
-        <div id="hero-reach" class="hero-num">—</div>
-        <div class="hero-sub">unique cloners、全 repo・全期間の日次合算</div>
-        <div id="hero-mo" class="hero-mo"></div>
-      </div>
-      <figure id="hero-fig" class="hero-fig"></figure>
-    </section>
-
-    <!-- stat strip -->
-    <section class="stat-strip" id="stat-strip" aria-label="key stats"></section>
-
-    <!-- milestones -->
-    <section class="reveal">
-      <h2><span class="lead">◆</span>Milestones</h2>
-      <p class="hint">累積リーチ (unique cloners) のしきい値で解放。次の目標までの距離は常に到達可能な一歩として示す。</p>
-      <div id="badge-shelf" class="badge-shelf"></div>
-      <div id="progress" class="progress-card glass"></div>
-    </section>
-
-    <!-- streak heatmap -->
-    <section class="reveal">
-      <h2><span class="lead">▦</span>Reach streak</h2>
-      <p class="hint">日次の集計 unique cloners をマス目化 (GitHub contributions 風)。色が濃い日ほど多くの人があなたの研究を手元に引いた。</p>
-      <div class="heat-wrap glass">
-        <div id="heatmap" class="heat" aria-hidden="true"></div>
-        <div class="heat-legend"><span>less</span><i class="hl0" aria-hidden="true"></i><i class="hl1" aria-hidden="true"></i><i class="hl2" aria-hidden="true"></i><i class="hl3" aria-hidden="true"></i><i class="hl4" aria-hidden="true"></i><span>more</span></div>
-      </div>
-    </section>
-
-    <main>
-      <section class="reveal">
-        <h2><span class="lead">↗</span>Aggregate timeline</h2>
-        <p class="hint">全 repo の日次合算。クローラ wave は同日に複数 repo に出るため、ここで山が立つ。最高記録日を注釈表示。</p>
-        <figure id="aggregate-chart" class="chart-card glass"></figure>
-      </section>
-
-      <section class="reveal">
-        <h2><span class="lead">🏆</span>Per-repo leaderboard</h2>
-        <p class="hint">累積 unique cloners 順。各 repo の clones (青) と views (緑) を全期間、スケールは repo ごとに独立。直近 7 日 vs 前 7 日の勢いを矢印で。</p>
-        <div id="small-multiples" class="grid"></div>
-      </section>
-
-      <section class="reveal">
-        <h2><span class="lead">⚖</span>Clones : Views ratio</h2>
-        <p class="hint">ratio = sum(clones) ÷ max(sum(views), 1)。値が大きいほど人間 view が薄く、bot/crawler/CI clone が支配的 — つまりこのダッシュボードが clone 駆動である理由。</p>
-        <figure id="ratio-chart" class="chart-card glass"></figure>
-      </section>
-
-      <section class="reveal">
-        <h2><span class="lead">▤</span>Co-traffic correlation</h2>
-        <p class="hint">repo ペア間の日次 unique cloners の Spearman 順位相関 (全期間、欠損日は 0 埋め)。Spearman は単日 spike に引きずられず、uniques は CI/refetch ノイズを除いた "実 entity 数" 寄りなので、関連トピック / リリース連動が見えやすい。対角は自明に 1.0。</p>
-        <figure id="correlation-chart" class="chart-card glass"></figure>
-      </section>
-
-      <section class="reveal">
-        <h2><span class="lead">▦</span>Data table</h2>
-        <p class="hint">列ヘッダクリックでソート。初期表示は日付降順。</p>
-        <div id="table-container" class="table-scroll"></div>
-      </section>
-
-      <section class="reveal" aria-label="attribution diffusion probes">
-        <div class="probe-head">
-          <h2><span class="lead">◑</span>Attribution diffusion probes</h2>
-          <span class="live-pill"><span class="live-dot"></span>retrieval: discoverable now ・ parametric: watch it climb</span>
-        </div>
-        <p class="hint">定期 probe が frontier LLM に研究概念を尋ね、回答が著者・プロジェクト名・DOI を名指しするかを<b>決定論的 regex</b> (LLM judge ではない) で判定する。重みに染みた知識 (parametric) と検索あり (retrieval) を<b>別々に</b>追い、絶対に混ぜない — その差分こそが信号。N はまだ予備的で trend の証拠ではない。</p>
-
-        <p class="hint" style="margin-top:-8px">
-          <a href="../../probes/dashboard/" style="display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:var(--r-pill);border:1px solid var(--border-strong);font-weight:650;text-decoration:none;color:var(--accent)">◑ 各 probe の質問文と LLM の生回答を読む →</a>
+        <h1>Traffic</h1>
+        <p class="meta">
+          <a href="https://github.com/shimo4228" target="_blank" rel="noopener noreferrer">@shimo4228</a><span class="sep">/</span><span id="repo-count" class="nw">—</span><span class="sep">/</span><span id="updated" class="nw">loading</span>
         </p>
+      </div>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="8" cy="8" r="5.8"/><path d="M8 2.2a5.8 5.8 0 0 1 0 11.6z" fill="currentColor" stroke="none"/></svg>
+      </button>
+    </header>
+  </div>
 
-        <div id="probe-status"></div>
+  <div id="traffic">
+    <div class="controls" id="controls">
+      <div class="wrap">
+        <div class="seg" role="group" aria-label="Range" id="seg-range">
+          <button type="button" data-v="30">30D</button>
+          <button type="button" data-v="90">90D</button>
+          <button type="button" data-v="all">All</button>
+        </div>
+        <span class="note">Dates in UTC</span>
+      </div>
+    </div>
 
-        <div id="probe-caveat" class="probe-caveat glass"></div>
+    <main class="wrap">
+      <div id="status" class="status" role="status"></div>
 
-        <div id="probe-channels" class="probe-channels"></div>
+      <section class="first" aria-labelledby="ov-title">
+        <div class="tiles" id="tiles" role="group" aria-label="Metric"></div>
+        <p class="metric-note"><span>Unique は日ごとの unique 数の合計。同じ人が別の日に来ると重ねて数える。</span><span id="cmp-note"></span></p>
+        <div class="chart-block">
+          <div class="chart-head">
+            <div><h2 id="ov-title">—</h2><div class="sub" id="ov-sub">—</div></div>
+            <div class="readout" id="ov-readout" aria-live="polite"></div>
+          </div>
+          <div class="chart" id="ov-chart" style="min-height: 240px"></div>
+        </div>
+      </section>
 
-        <div id="probe-delta" class="delta-strip glass"></div>
+      <section aria-labelledby="at-h">
+        <div class="sh"><h2 id="at-h">All time</h2><span class="aside">期間の切り替えに関係しない</span></div>
+        <div class="alltime">
+          <div>
+            <div class="big num" id="at-num">—</div>
+            <div class="what" id="at-what">—</div>
+            <div class="streak" id="at-streak"></div>
+          </div>
+          <div class="cal" id="cal"></div>
+        </div>
+      </section>
 
-        <div id="ghost-callout" class="ghost-callout glass"></div>
-
-        <figure id="probe-signal-chart" class="chart-card glass"></figure>
-
-        <figure id="probe-matrix-chart" class="chart-card glass"></figure>
-
-        <figure id="probe-trend-chart"></figure>
-
-        <ul id="probe-watchlist" class="watchlist"></ul>
-
-        <p id="probe-foot" class="caveat"></p>
+      <section aria-labelledby="repos-h">
+        <div class="sh"><h2 id="repos-h">Repositories</h2><span class="aside" id="repos-aside">—</span></div>
+        <div class="rl" id="repo-list" role="list" aria-label="Repositories"></div>
+        <div class="more" id="repo-more"></div>
+        <details class="disclose" id="raw">
+          <summary>Raw data</summary>
+          <div class="raw-box" id="raw-box"></div>
+        </details>
       </section>
     </main>
+  </div>
+
+  <div class="wrap">
+    <section aria-labelledby="probes-h" id="probes">
+      <div class="sh"><h2 id="probes-h">Attribution probes</h2></div>
+      <p class="prose probe-lede">定期 probe が frontier LLM に研究概念を尋ね、回答が著者・プロジェクト・DOI を名指すかを決定論的 regex で判定する。検索なし（parametric）と検索あり（retrieval）は別々に数え、合算しない。</p>
+      <p class="caveat-line" id="probe-caveat-line"></p>
+      <div id="probe-status" class="status" role="status"></div>
+      <div class="db" id="probe-db"></div>
+      <div class="probe-actions">
+        <details class="disclose" id="probe-more">
+          <summary>Details · by provider, weekly, notes</summary>
+        </details>
+        <a class="link-btn" href="../../probes/dashboard/">Questions and raw answers ↗</a>
+      </div>
+      <div class="pd" id="probe-details" hidden></div>
+    </section>
 
     <footer>
       <div>
-        Source: <a href="https://github.com/shimo4228/shimo4228/tree/main/traffic">traffic/</a> ·
+        Data: GitHub Traffic API, saved daily (the API keeps 14 days) ·
+        <a href="https://github.com/shimo4228/shimo4228/tree/main/traffic">traffic/</a> ·
         <a href="https://github.com/shimo4228/shimo4228/blob/main/.github/workflows/traffic-daily.yml">workflow</a> ·
-        License: <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>
+        <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>
       </div>
-      <div class="footer-tag">consistency compounds — 公開研究は積み上がる。</div>
+      <div id="probe-foot"></div>
     </footer>
   </div>
 
-  <script type="module">
-    import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/+esm";
+  <div class="tip" id="tip" role="tooltip" aria-hidden="true"></div>
 
+  <script type="module">
+    // ====================================================================
+    //  Configuration
+    // ====================================================================
+    // Repos drawn on this page. Collection is wider (the workflow's `repos`
+    // array); add a repo here once its traffic is worth reading.
     const REPOS = [
       "contemplative-agent",
       "agent-knowledge-cycle",
@@ -1228,829 +1248,866 @@
       "zenn-content",
       "claude-harness",
       "shimo4228",
+      "jev-skill-router",
+      "jev-research-pipeline",
+      "harness-scope",
+      "akc-cycle",
     ];
+    // Order = tile order. `unique` metrics are sums of daily uniques.
+    const METRICS = {
+      visitors: { key: "viewsUniques", label: "Unique visitors", noun: "unique visitors" },
+      views: { key: "views", label: "Views", noun: "views" },
+      cloners: { key: "clonesUniques", label: "Unique cloners", noun: "unique cloners" },
+      clones: { key: "clones", label: "Clones", noun: "clones" },
+    };
+    const TOP_N = 10;
+    const SMALL_BASE = 10;   // below this, a change is shown as a count, not a percentage
     const DAY = 86400000;
-    const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const REACH_MILESTONES = [100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000];
+    const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const SVGNS = "http://www.w3.org/2000/svg";
 
-    function num(v) { const n = Number(v); return Number.isFinite(n) ? n : 0; }
-    function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
-    function setText(id, v) { const el = document.getElementById(id); if (el) el.textContent = v; }
-    function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+    // ====================================================================
+    //  Utilities
+    // ====================================================================
+    const $ = (id) => document.getElementById(id);
+    const fmt = (n) => Math.round(n).toLocaleString("en-US");
+    const compact = (n) => n >= 10000 ? (n / 1000).toFixed(n >= 100000 ? 0 : 1).replace(/\.0$/, "") + "K" : fmt(n);
+    const isoAdd = (iso, n) => new Date(Date.parse(iso + "T00:00:00Z") + n * DAY).toISOString().slice(0, 10);
+    const dayDiff = (a, b) => Math.round((Date.parse(b + "T00:00:00Z") - Date.parse(a + "T00:00:00Z")) / DAY);
+    const md = (iso) => `${MONTHS[+iso.slice(5, 7) - 1]} ${+iso.slice(8, 10)}`;
+    const longDate = (iso) => `${WEEKDAYS[new Date(iso + "T00:00:00Z").getUTCDay()]}, ${md(iso)}`;
+    const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const store = {
+      get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    };
+    function el(tag, attrs = {}, ...kids) {
+      const n = document.createElement(tag);
+      for (const [k, v] of Object.entries(attrs)) {
+        if (v == null || v === false) continue;
+        if (k === "class") n.className = v; else if (k === "text") n.textContent = v; else n.setAttribute(k, v);
+      }
+      for (const c of kids) if (c != null) n.append(typeof c === "string" ? document.createTextNode(c) : c);
+      return n;
+    }
+    function sv(tag, attrs = {}) {
+      const n = document.createElementNS(SVGNS, tag);
+      for (const [k, v] of Object.entries(attrs)) if (v != null) n.setAttribute(k, v);
+      return n;
+    }
+    function niceStep(range, count) {
+      const raw = range / Math.max(count, 1);
+      const p = Math.pow(10, Math.floor(Math.log10(raw || 1)));
+      const f = raw / p;
+      return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+    }
+    function niceTicks(max, count = 4) {
+      if (max <= 0) return [0, 1];
+      const step = Math.max(1, niceStep(max, count));
+      const top = Math.ceil(max / step - 1e-9) * step;
+      const out = [];
+      for (let v = 0; v <= top + 1e-9; v += step) out.push(+v.toFixed(6));
+      return out;
+    }
+    const textW = (s, size = 12) => s.length * size * 0.58;
 
+    // Change vs a previous value. Small bases show a count, not a percentage.
+    function delta(cur, prev) {
+      if (prev == null) return el("span", { class: "delta na", text: "—" });
+      if (prev < SMALL_BASE) {
+        const d = cur - prev;
+        if (prev === 0 && cur > 0) return el("span", { class: "delta up", text: "new", title: "前の期間は 0" });
+        return el("span", { class: "delta " + (d > 0 ? "up" : d < 0 ? "down" : "flat"), text: d === 0 ? "±0" : (d > 0 ? "+" : "−") + fmt(Math.abs(d)), title: `前の期間 ${fmt(prev)} → ${fmt(cur)}` });
+      }
+      const r = Math.round((cur - prev) / prev * 100);
+      if (r === 0) return el("span", { class: "delta flat", text: "±0%", title: `前の期間 ${fmt(prev)} → ${fmt(cur)}` });
+      return el("span", { class: "delta " + (r > 0 ? "up" : "down"), text: (r > 0 ? "+" : "−") + Math.abs(r) + "%", title: `前の期間 ${fmt(prev)} → ${fmt(cur)}` });
+    }
+
+    // Signed count change; the percentage lives in the title.
+    function countDelta(cur, prev) {
+      const d = cur - prev;
+      const title = `前 7 日 ${fmt(prev)} → 直近 7 日 ${fmt(cur)}` + (prev > 0 ? `（${d >= 0 ? "+" : "−"}${Math.abs(Math.round(d / prev * 100))}%）` : "");
+      if (prev === 0 && cur > 0) return el("span", { class: "delta up", text: "new", title });
+      return el("span", { class: "delta " + (d > 0 ? "up" : d < 0 ? "down" : "flat"), text: d === 0 ? "±0" : (d > 0 ? "+" : "−") + fmt(Math.abs(d)), title });
+    }
+
+    // ====================================================================
+    //  Tooltip (single shared node; text via textContent only)
+    // ====================================================================
+    const tip = {
+      node: $("tip"),
+      show(x, y, head, rows) {
+        const n = this.node;
+        n.replaceChildren();
+        if (head) n.append(el("div", { class: "h", text: head }));
+        for (const r of rows) {
+          const key = el("span", { class: "k" });
+          if (r.color) { const i = el("i"); i.style.background = r.color; key.append(i); }
+          key.append(r.label);
+          n.append(el("div", { class: "r" }, key, el("span", { class: "v", text: r.value })));
+        }
+        n.classList.add("on"); n.setAttribute("aria-hidden", "false");
+        const w = n.offsetWidth, h = n.offsetHeight, pad = 12;
+        let left = x + 14, top = y - h - 12;
+        if (left + w > innerWidth - pad) left = x - w - 14;
+        if (left < pad) left = pad;
+        if (top < pad) top = y + 18;
+        n.style.left = left + "px"; n.style.top = top + "px";
+      },
+      hide() { this.node.classList.remove("on"); this.node.setAttribute("aria-hidden", "true"); },
+    };
+    addEventListener("scroll", () => tip.hide(), { passive: true });
+
+    // ====================================================================
+    //  Line chart
+    //  Hairline grid, 2px lines, a crosshair that snaps to the nearest x.
+    //  Mouse: floating tooltip. Touch: horizontal drag scrubs and reports to
+    //  o.onScrub (a readout in the chart header); vertical drag still scrolls.
+    //  Keyboard: focus the chart, then ← → Home End.
+    // ====================================================================
+    function lineChart(host, o) {
+      host.replaceChildren();
+      const W = Math.max(260, host.clientWidth);
+      const H = o.height;
+      const vals = o.lines.flatMap((l) => l.values.filter((v) => v != null));
+      const ticks = o.yTicks || niceTicks(Math.max(...vals, 0), H < 180 ? 3 : 4);
+      const yTop = ticks[ticks.length - 1] || 1;
+      const yFmt = o.yFmt || compact;
+      const mL = Math.ceil(Math.max(...ticks.map((t) => textW(yFmt(t))))) + 10;
+      const mR = o.mR ?? 12, mT = o.mT ?? 22, mB = 26;
+      const iw = W - mL - mR, ih = H - mT - mB;
+      const X = (i) => mL + (o.n <= 1 ? iw / 2 : (i / (o.n - 1)) * iw);
+      const Y = (v) => mT + ih - (v / yTop) * ih;
+      const cad = o.cadence ?? 0;
+
+      const svg = sv("svg", { width: W, height: H, viewBox: `0 0 ${W} ${H}`, tabindex: 0, role: "img", "aria-label": o.ariaLabel || "" });
+      svg.append(sv("rect", { class: "frame", x: 0.5, y: 0.5, width: W - 1, height: H - 1, rx: 8 }));
+      const ax = sv("g");
+      for (const t of ticks) {
+        const y = Math.round(Y(t)) + 0.5;
+        ax.append(sv("line", { class: t === 0 ? "baseline" : "gridline", x1: mL, x2: W - mR, y1: y, y2: y }));
+        const tx = sv("text", { x: mL - 8, y: y + 4, "text-anchor": "end" }); tx.textContent = yFmt(t); ax.append(tx);
+      }
+      for (const t of o.xTicks || []) {
+        const x = X(t.i);
+        const anchor = x < mL + 24 ? "start" : x > W - mR - 24 ? "end" : "middle";
+        const tx = sv("text", { x, y: H - 6, "text-anchor": anchor }); tx.textContent = t.label; ax.append(tx);
+      }
+      svg.append(ax);
+
+      // solid runs; a gap of up to `cadence` missing points is the sampling interval
+      const pathOf = (vals) => {
+        let d = "", prev = -1;
+        vals.forEach((v, i) => {
+          if (v == null) return;
+          d += (prev >= 0 && i - prev - 1 <= cad ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1);
+          prev = i;
+        });
+        return d;
+      };
+      const gapOf = (vals) => {
+        let d = "", prev = -1;
+        vals.forEach((v, i) => {
+          if (v == null) return;
+          if (prev >= 0 && i - prev - 1 > cad) d += `M${X(prev).toFixed(1)} ${Y(vals[prev]).toFixed(1)}L${X(i).toFixed(1)} ${Y(v).toFixed(1)}`;
+          prev = i;
+        });
+        return d;
+      };
+      const areaOf = (vals) => {
+        let d = "", run = [];
+        const flush = () => {
+          if (run.length > 1) d += "M" + run.map(([i, v]) => X(i).toFixed(1) + " " + Y(v).toFixed(1)).join("L") +
+            `L${X(run[run.length - 1][0]).toFixed(1)} ${Y(0)}L${X(run[0][0]).toFixed(1)} ${Y(0)}Z`;
+          run = [];
+        };
+        vals.forEach((v, i) => { if (v == null) flush(); else run.push([i, v]); });
+        flush();
+        return d;
+      };
+      const g = sv("g");
+      for (const l of o.lines) if (l.area) g.append(sv("path", { class: "wash", d: areaOf(l.values) }));
+      if (o.gaps) for (const l of o.lines) g.append(sv("path", { class: "ln gap", d: gapOf(l.values) }));
+      if (!o.lineless) for (const l of o.lines) g.append(sv("path", { class: "ln " + (l.cls || ""), d: pathOf(l.values), style: l.cls ? null : `stroke:${l.color}` }));
+      if (o.dots) for (const l of o.lines) l.values.forEach((v, i) => { if (v != null) g.append(sv("circle", { class: "dot", cx: X(i), cy: Y(v), r: 3.5, style: `fill:${l.color}` })); });
+      svg.append(g);
+
+      // annotations: latest value (strong); peak (soft) unless it is the latest or too close
+      if (o.annotate) {
+        const l = o.lines[0];
+        let li = l.values.length - 1; while (li >= 0 && l.values[li] == null) li--;
+        let pi = -1, pv = -Infinity;
+        l.values.forEach((v, i) => { if (v != null && v > pv) { pv = v; pi = i; } });
+        const label = (i, text, cls, dy) => {
+          const x = X(i), w = textW(text), y = Y(l.values[i]);
+          if (x - mL < 0.15 * iw) {   // near the y axis: put it beside the dot
+            const t = sv("text", { class: cls, x: x + 8, y: y + 4, "text-anchor": "start" }); t.textContent = text; svg.append(t); return;
+          }
+          const anchor = x + w / 2 > W - mR ? "end" : "middle";
+          const t = sv("text", { class: cls, x: x + (anchor === "end" ? 2 : 0), y: y + dy, "text-anchor": anchor });
+          t.textContent = text; svg.append(t);
+        };
+        if (li >= 0) {
+          svg.append(sv("circle", { class: "dot", cx: X(li), cy: Y(l.values[li]), r: 4, style: `fill:${l.color}` }));
+        }
+        if (pi >= 0 && pi !== li && Math.abs(X(pi) - X(li)) > 24 && pv > 0) label(pi, `Peak ${fmt(pv)} · ${o.peakDate(pi)}`, "lbl-soft", -10);
+      }
+
+      const hair = sv("line", { class: "xhair", y1: mT - 6, y2: mT + ih, visibility: "hidden" });
+      const dots = o.lines.map((l) => sv("circle", { class: "dot", r: 4, visibility: "hidden", style: `fill:${l.color}` }));
+      svg.append(hair, ...dots);
+      const hit = sv("rect", { x: mL - 8, y: 0, width: Math.max(iw + 16, 1), height: H, fill: "transparent" });
+      svg.append(hit);
+      let cur = -1, timer = 0;
+      const at = (i, ev) => {
+        cur = i; clearTimeout(timer);
+        const x = X(i);
+        hair.setAttribute("x1", x); hair.setAttribute("x2", x); hair.setAttribute("visibility", "visible");
+        o.lines.forEach((l, k) => {
+          const v = l.values[i];
+          if (v == null) { dots[k].setAttribute("visibility", "hidden"); return; }
+          dots[k].setAttribute("cx", x); dots[k].setAttribute("cy", Y(v)); dots[k].setAttribute("visibility", "visible");
+        });
+        o.onScrub?.(i);
+        if (ev && ev.pointerType === "mouse" && o.tip) { const t = o.tip(i); tip.show(ev.clientX, ev.clientY, t.head, t.rows); }
+      };
+      const off = () => { cur = -1; hair.setAttribute("visibility", "hidden"); dots.forEach((d) => d.setAttribute("visibility", "hidden")); tip.hide(); o.onScrub?.(null); };
+      const nearest = (clientX) => {
+        const r = svg.getBoundingClientRect();
+        const x = (clientX - r.left) * (W / r.width);
+        return Math.max(0, Math.min(o.n - 1, Math.round(((x - mL) / Math.max(iw, 1)) * (o.n - 1))));
+      };
+      hit.addEventListener("pointerdown", (e) => at(nearest(e.clientX), e));
+      hit.addEventListener("pointermove", (e) => at(nearest(e.clientX), e));
+      hit.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") off(); });
+      hit.addEventListener("pointercancel", off);
+      hit.addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") timer = setTimeout(off, 1800); });
+      svg.addEventListener("keydown", (e) => {
+        const step = { ArrowLeft: -1, ArrowRight: 1 }[e.key];
+        if (step) { e.preventDefault(); at(Math.max(0, Math.min(o.n - 1, (cur < 0 ? o.n - 1 : cur + step)))); }
+        else if (e.key === "Home") { e.preventDefault(); at(0); }
+        else if (e.key === "End") { e.preventDefault(); at(o.n - 1); }
+        else if (e.key === "Escape") off();
+      });
+      svg.addEventListener("blur", off);
+      host.append(svg);
+    }
+
+    function sparkline(values, { w = 96, h = 24, cls = "c-accent" } = {}) {
+      const s = sv("svg", { width: w, height: h, viewBox: `0 0 ${w} ${h}`, "aria-hidden": "true", preserveAspectRatio: "none" });
+      const max = Math.max(1, ...values.filter((v) => v != null));
+      const n = values.length;
+      const X = (i) => 1 + (n <= 1 ? 0 : (i / (n - 1)) * (w - 2));
+      const Y = (v) => h - 2 - (v / max) * (h - 4);
+      let d = "", pen = false;
+      values.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1); pen = true; });
+      s.append(sv("path", { d, class: "ln thin " + cls, "vector-effect": "non-scaling-stroke" }));
+      return s;
+    }
+
+    function xTicksFor(days, narrow) {
+      const n = days.length, out = [];
+      if (n > 75) days.forEach((d, i) => { if (d.slice(8) === "01") out.push({ i, label: MONTHS[+d.slice(5, 7) - 1] }); });
+      else {
+        const stepD = n > 40 ? (narrow ? 21 : 14) : (narrow ? 10 : 7);
+        for (let i = n - 1; i >= 0; i -= stepD) out.unshift({ i, label: md(days[i]) });
+      }
+      return out;
+    }
+
+    // ====================================================================
+    //  Data
+    // ====================================================================
     async function loadRepo(repo) {
       const res = await fetch(`../data/${repo}.jsonl`, { cache: "no-cache" });
-      if (!res.ok) throw new Error(`Failed to load ${repo}: HTTP ${res.status}`);
-      const text = await res.text();
-      const rows = [];
-      for (const line of text.split("\n")) {
-        const trimmed = line.trim();
-        if (!trimmed) continue;
-        const j = JSON.parse(trimmed);
+      if (!res.ok) throw new Error(`${repo}: HTTP ${res.status}`);
+      const out = new Map();
+      for (const line of (await res.text()).split("\n")) {
+        const t = line.trim();
+        if (!t) continue;
+        let j; try { j = JSON.parse(t); } catch (e) { continue; }
         const date = String(j.date ?? "");
-        rows.push({
-          repo,
-          date,
-          dateObj: new Date(date + "T00:00:00Z"),
-          clones: num(j.clones?.count),
-          clonesUniques: num(j.clones?.uniques),
-          views: num(j.views?.count),
-          viewsUniques: num(j.views?.uniques),
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
+        out.set(date, {
+          clones: +j.clones?.count || 0, clonesUniques: +j.clones?.uniques || 0,
+          views: +j.views?.count || 0, viewsUniques: +j.views?.uniques || 0,
           fetchedAt: String(j.fetched_at ?? ""),
         });
       }
-      return rows;
+      return out;
     }
 
-    function animateCount(el, target, dur = 1100) {
-      if (REDUCED || target <= 0) { el.textContent = fmt(target); return; }
-      const t0 = performance.now();
-      const ease = (t) => 1 - Math.pow(1 - t, 4);
-      function step(now) {
-        const p = Math.min(1, (now - t0) / dur);
-        el.textContent = fmt(target * ease(p));
-        if (p < 1) requestAnimationFrame(step);
-        else el.textContent = fmt(target);
+    const state = {
+      metric: METRICS[store.get("traffic-metric2")] ? store.get("traffic-metric2") : "visitors",
+      range: ["30", "90", "all"].includes(store.get("traffic-range")) ? store.get("traffic-range") : "90",
+      selected: null, sortKey: "total", sortDir: -1, showAll: false,
+    };
+    let D = null;
+    const narrow = () => matchMedia("(max-width: 640px)").matches;
+
+    function buildDataset(byRepo) {
+      const repos = [...byRepo.keys()];
+      let lo = null, hi = null, updated = "";
+      const first = {};
+      for (const r of repos) {
+        const ds = [...byRepo.get(r).keys()].sort();
+        first[r] = ds[0];
+        if (!lo || ds[0] < lo) lo = ds[0];
+        if (!hi || ds[ds.length - 1] > hi) hi = ds[ds.length - 1];
+        for (const row of byRepo.get(r).values()) if (row.fetchedAt > updated) updated = row.fetchedAt;
       }
-      requestAnimationFrame(step);
+      const days = [];
+      for (let d = lo; d <= hi; d = isoAdd(d, 1)) days.push(d);
+      return { repos, byRepo, days, first, updated };
+    }
+    const val = (repo, day, key) => { const row = D.byRepo.get(repo).get(day); return row ? row[key] : null; };
+    const total = (day, key, repos = D.repos) => repos.reduce((s, r) => s + (val(r, day, key) ?? 0), 0);
+    const sumOver = (repo, days, key) => days.reduce((s, d) => s + (val(repo, d, key) ?? 0), 0);
+    const windowDays = () => state.range === "all" ? D.days : D.days.slice(-Number(state.range));
+    function prevWindowDays() {
+      if (state.range === "all") return null;
+      const n = Number(state.range), end = D.days.length - n;
+      return end - n < 0 ? null : D.days.slice(end - n, end);
+    }
+    // like-for-like: only repos tracked through the whole previous window
+    function likeForLike(key, cur, prev) {
+      if (!prev) return null;
+      const eligible = D.repos.filter((r) => D.first[r] <= prev[0]);
+      const sum = (days) => days.reduce((s, d) => s + total(d, key, eligible), 0);
+      return { cur: sum(cur), prev: sum(prev), excluded: D.repos.length - eligible.length };
+    }
+    const rangeLabel = () => state.range === "all" ? `since ${md(D.days[0])}` : `last ${state.range} days`;
+
+    // ====================================================================
+    //  Tiles (= metric switch) + daily chart
+    // ====================================================================
+    function renderTiles() {
+      const cur = windowDays(), prev = prevWindowDays();
+      const host = $("tiles");
+      host.replaceChildren();
+      const note = $("cmp-note");
+      if (!prev) note.textContent = state.range === "all" ? "" : `${state.range}D は比較できる前の期間がないため、変化は出さない。`;
+      else {
+        const late = D.repos.filter((r) => D.first[r] > prev[0]);
+        note.textContent = `変化は前の ${state.range} 日との比較。` + (late.length ? `${md(prev[0])} より後に収集を始めた ${late.length} repo は比較から除く。` : "");
+      }
+      for (const [id, m] of Object.entries(METRICS)) {
+        const on = id === state.metric;
+        const s = cur.reduce((a, d) => a + total(d, m.key), 0);
+        const lf = likeForLike(m.key, cur, prev);
+        const lab = el("span", { class: "lab" }, el("span", { text: m.label }));
+        if (lf) lab.append(delta(lf.cur, lf.prev));
+        const b = el("button", { class: "tile", type: "button", "aria-pressed": String(on), "aria-label": `${m.label}: ${fmt(s)}, ${rangeLabel()}` },
+          lab, el("span", { class: "val num", text: fmt(s) }));
+        b.append(sparkline(cur.map((d) => total(d, m.key)), { w: 200, h: 24, cls: on ? "c-accent" : "c-ghost" }));
+        b.addEventListener("click", () => { if (state.metric === id) return; state.metric = id; store.set("traffic-metric2", id); renderAll(); });
+        host.append(b);
+      }
     }
 
-    // tiny inline sparkline
-    function sparkline(values, color, w = 88, h = 26) {
-      const ns = "http://www.w3.org/2000/svg";
-      const svg = document.createElementNS(ns, "svg");
-      svg.setAttribute("width", w); svg.setAttribute("height", h); svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
-      svg.setAttribute("preserveAspectRatio", "none"); // stretch to the card's full width
-      svg.setAttribute("aria-hidden", "true");
-      const n = values.length;
-      if (n < 2) return svg;
-      const max = Math.max(1, ...values);
-      const pts = values.map((v, i) => [(i / (n - 1)) * (w - 2) + 1, h - 2 - (v / max) * (h - 4)]);
-      const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
-      const area = document.createElementNS(ns, "path");
-      area.setAttribute("d", `${d} L ${pts[n - 1][0].toFixed(1)} ${h} L ${pts[0][0].toFixed(1)} ${h} Z`);
-      area.setAttribute("fill", color); area.setAttribute("fill-opacity", "0.14");
-      const line = document.createElementNS(ns, "path");
-      line.setAttribute("d", d); line.setAttribute("fill", "none");
-      line.setAttribute("stroke", color); line.setAttribute("stroke-width", "1.6");
-      line.setAttribute("vector-effect", "non-scaling-stroke");
-      line.setAttribute("stroke-linejoin", "round"); line.setAttribute("stroke-linecap", "round");
-      svg.append(area, line);
-      return svg;
+    function setReadout(host, head, value) {
+      host.replaceChildren(el("div", { class: "d", text: head }), el("div", { class: "v num", text: value }));
     }
 
-    function deltaEl(curr, prev, { positiveOnly = false } = {}) {
-      const span = document.createElement("span");
-      span.className = "delta ";
-      if (prev === 0 && curr === 0) { span.className += "flat"; span.textContent = "→ —"; return span; }
-      const diff = curr - prev;
-      if (diff > 0) { span.className += "up"; span.textContent = `▲ +${fmt(diff)}`; }
-      else if (diff < 0 && !positiveOnly) { span.className += "down"; span.textContent = `▽ ${fmt(Math.abs(diff))}`; }
-      else if (diff < 0) { span.className += "flat"; span.textContent = `→ steady`; }
-      else { span.className += "flat"; span.textContent = "→ ±0"; }
-      return span;
-    }
-
-    function setupReveal() {
-      const els = [...document.querySelectorAll(".reveal")];
-      if (REDUCED || !("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("in")); return; }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-      }, { threshold: 0.08 });
-      els.forEach((e, i) => { e.style.transitionDelay = `${Math.min(i, 6) * 50}ms`; io.observe(e); });
-    }
-
-    async function render() {
-      // Resilient load: render the repos that succeed, warn (non-fatally) about
-      // any that 404 — a newly-tracked repo may not have its first snapshot yet.
-      const settled = await Promise.allSettled(REPOS.map(loadRepo));
-      const failed = [];
-      let allData = [];
-      settled.forEach((s, i) => {
-        if (s.status === "fulfilled") allData.push(...s.value);
-        else { failed.push(REPOS[i]); console.error(s.reason); }
+    function renderOverview() {
+      const M = METRICS[state.metric];
+      const days = windowDays();
+      const totals = days.map((d) => total(d, M.key));
+      $("ov-title").textContent = `Daily ${M.noun}`;
+      $("ov-sub").textContent = `${D.repos.length} repositories · ${rangeLabel()}`;
+      const ro = $("ov-readout");
+      const latest = () => setReadout(ro, `Latest · ${md(days[days.length - 1])}`, fmt(totals[totals.length - 1]));
+      latest();
+      lineChart($("ov-chart"), {
+        n: days.length, height: narrow() ? 240 : 280,
+        lines: [{ values: totals, cls: "c-accent", area: true, label: "All repos", color: css("--accent") }],
+        xTicks: xTicksFor(days, narrow()),
+        annotate: true, peakDate: (i) => md(days[i]),
+        onScrub: (i) => i == null ? latest() : setReadout(ro, longDate(days[i]), fmt(totals[i])),
+        ariaLabel: `Daily ${M.noun}, ${rangeLabel()}. Latest ${fmt(totals[totals.length - 1])}.`,
       });
-      if (allData.length === 0) {
-        const div = document.createElement("div");
-        div.className = "status-error";
-        div.textContent = `データ読み込みに失敗しました: ${failed.join(", ")}`;
-        document.getElementById("status").append(div);
-        return;
-      }
-      if (failed.length) {
-        const div = document.createElement("div");
-        div.className = "status-error";
-        div.style.cssText = "border-color: var(--down); color: var(--down); margin-bottom: 16px;";
-        div.textContent = `スナップショット未取得の repo を除外しました: ${failed.join(", ")}`;
-        document.getElementById("status").append(div);
-      }
+    }
 
-      const C = {
-        clones: cssVar("--accent") || "#6366f1",
-        views: cssVar("--accent-2") || "#10b981",
-        fg: cssVar("--fg") || "#111827",
-        bg: cssVar("--bg-floor") || "#ffffff",
+    // ====================================================================
+    //  All time (cumulative + calendar; the range control does not apply)
+    // ====================================================================
+    function renderAllTime() {
+      const M = METRICS[state.metric];
+      const values = new Map(D.days.map((d) => [d, total(d, M.key)]));
+      const all = [...values.values()].reduce((a, b) => a + b, 0);
+      $("at-num").textContent = fmt(all);
+      $("at-what").textContent = `${M.noun} since ${md(D.days[0])}, ${D.days[0].slice(0, 4)}`;
+      let curStreak = 0, longest = 0, run = 0;
+      for (const d of D.days) { if (values.get(d) > 0) { run++; longest = Math.max(longest, run); } else run = 0; }
+      for (let i = D.days.length - 1; i >= 0 && values.get(D.days[i]) > 0; i--) curStreak++;
+      $("at-streak").textContent = curStreak === 0 ? `Longest streak: ${longest} days` : curStreak === longest ? `${curStreak}-day streak, the longest so far` : `${curStreak}-day streak · longest ${longest}`;
+      renderCalendar(values, M);
+    }
+
+    function renderCalendar(values, M) {
+      const host = $("cal");
+      host.replaceChildren();
+      const width = Math.max(260, host.clientWidth);
+      const last = D.days[D.days.length - 1];
+      const spanWeeks = Math.ceil((dayDiff(D.days[0], last) + new Date(D.days[0] + "T00:00:00Z").getUTCDay() + 1) / 7);
+      const gap = 3, labW = 30, top = 18;
+      const fit = Math.floor((width - labW + gap) / Math.min(spanWeeks, 53)) - gap;
+      let cell, weeks;
+      if (fit >= 9) { weeks = Math.min(spanWeeks, 53); cell = Math.min(15, fit); }
+      else { cell = 9; weeks = Math.floor((width - labW + gap) / (cell + gap)); }
+      const step = cell + gap;
+      const truncated = weeks < spanWeeks;
+      const lastDow = new Date(last + "T00:00:00Z").getUTCDay();
+      const gridEnd = isoAdd(last, 6 - lastDow);
+      const gridStart = isoAdd(gridEnd, -(weeks * 7 - 1));
+      const nz = [...values.values()].filter((v) => v > 0).sort((a, b) => a - b);
+      const q = (p) => nz.length ? nz[Math.min(nz.length - 1, Math.floor(p * nz.length))] : 1;
+      const cuts = [q(0.25), q(0.5), q(0.75)];
+      const level = (v) => v <= 0 ? 0 : v < cuts[0] ? 1 : v < cuts[1] ? 2 : v < cuts[2] ? 3 : 4;
+
+      const W = labW + weeks * step - gap, H = top + 7 * step - gap;
+      const box = el("div", { class: "cal-box" });
+      const svg = sv("svg", { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": `Daily ${M.noun} by weekday, last ${weeks} weeks` });
+      [["Mon", 1], ["Wed", 3], ["Fri", 5]].forEach(([t, r]) => { const tx = sv("text", { x: 0, y: top + r * step + cell - 2 }); tx.textContent = t; svg.append(tx); });
+      let lastLabelX = -100;
+      for (let w = 0; w < weeks; w++) {
+        const sun = isoAdd(gridStart, w * 7);
+        const x = labW + w * step;
+        const firstInWeek = [...Array(7)].map((_, k) => isoAdd(sun, k)).find((d) => d.slice(8) === "01");
+        if ((w === 0 || firstInWeek) && x - lastLabelX > 32) {
+          const tx = sv("text", { x, y: 11 }); tx.textContent = MONTHS[+(firstInWeek || sun).slice(5, 7) - 1]; svg.append(tx); lastLabelX = x;
+        }
+        for (let r = 0; r < 7; r++) {
+          const d = isoAdd(sun, r);
+          if (d > last) continue;
+          const v = values.has(d) ? values.get(d) : null;
+          const lv = v == null ? 0 : level(v);
+          const rect = sv("rect", { x, y: top + r * step, width: cell, height: cell, rx: 2.5, style: `fill:var(--h${lv})` + (v == null ? ";opacity:.4" : "") });
+          rect.dataset.d = d;
+          svg.append(rect);
+        }
+      }
+      const foot = el("div", { class: "foot" });
+      const info = el("span", { class: "num" });
+      const scale = el("span", { class: "scale", "aria-hidden": "true" }, el("span", { text: "Less" }));
+      for (let k = 0; k <= 4; k++) { const i = el("i"); i.style.background = `var(--h${k})`; scale.append(i); }
+      scale.append(el("span", { text: "More" }));
+      foot.append(info, scale);
+      const idle = truncated ? `Last ${weeks} weeks` : "";
+      const show = (d) => { const v = d ? values.get(d) : null; info.textContent = d ? `${longDate(d)} · ${v == null ? "not tracked" : fmt(v)}` : idle; };
+      show(null);
+      svg.addEventListener("pointermove", (e) => {
+        const d = e.target?.dataset?.d;
+        if (!d) return;
+        show(d);
+        if (e.pointerType === "mouse") { const v = values.get(d); tip.show(e.clientX, e.clientY, longDate(d), [{ label: M.label, value: v == null ? "not tracked" : fmt(v) }]); }
+      });
+      svg.addEventListener("pointerdown", (e) => { const d = e.target?.dataset?.d; if (d) show(d); });
+      svg.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") { tip.hide(); show(null); } });
+      box.append(svg, foot);
+      host.append(box);
+    }
+
+    // ====================================================================
+    //  Repository list — one row per repo; sortable; top 10 + "show all"
+    // ====================================================================
+    function spearman(xs, ys) {
+      const rank = (a) => {
+        const idx = a.map((v, i) => [v, i]).sort((p, q) => p[0] - q[0]);
+        const r = new Array(a.length); let i = 0;
+        while (i < idx.length) { let j = i; while (j < idx.length && idx[j][0] === idx[i][0]) j++; for (let k = i; k < j; k++) r[idx[k][1]] = (i + j - 1) / 2; i = j; }
+        return r;
       };
+      const a = rank(xs), b = rank(ys), n = a.length;
+      const ma = a.reduce((s, v) => s + v, 0) / n, mb = b.reduce((s, v) => s + v, 0) / n;
+      let nu = 0, da = 0, db = 0;
+      for (let i = 0; i < n; i++) { nu += (a[i] - ma) * (b[i] - mb); da += (a[i] - ma) ** 2; db += (b[i] - mb) ** 2; }
+      return da && db ? nu / Math.sqrt(da * db) : 0;
+    }
 
-      setText("repo-count", REPOS.length);
-      const lastUpdated = allData.reduce((m, r) => (r.fetchedAt > m ? r.fetchedAt : m), "");
-      setText("last-updated", lastUpdated ? `snapshot ${lastUpdated.slice(0, 10)} UTC` : "no data");
+    function repoRows() {
+      const M = METRICS[state.metric];
+      const days = windowDays();
+      const grand = days.reduce((s, d) => s + total(d, M.key), 0) || 1;
+      const last7 = D.days.slice(-7), prev7 = D.days.slice(-14, -7);
+      return D.repos.map((repo) => {
+        const tot = sumOver(repo, days, M.key);
+        const c = sumOver(repo, days, "clones"), v = sumOver(repo, days, "views");
+        return {
+          repo, series: days.map((d) => val(repo, d, M.key)), total: tot, share: tot / grand,
+          w7: sumOver(repo, last7, M.key), p7: D.first[repo] <= prev7[0] ? sumOver(repo, prev7, M.key) : null,
+          ratio: v > 0 ? c / v : null,
+          since: D.first[repo] > D.days[0] ? D.first[repo] : null,
+        };
+      });
+    }
+    const ratioText = (r) => r == null ? "—" : r >= 10 ? Math.round(r) + "×" : r.toFixed(1) + "×";
+    const shareText = (s) => (s * 100 >= 10 ? Math.round(s * 100) : (s * 100).toFixed(1)) + "%";
 
-      const maxDateMs = allData.reduce((m, r) => (r.dateObj > m ? r.dateObj.getTime() : m), 0);
-      const win = (days, offset = 0) => {
-        const hi = maxDateMs - offset * DAY;
-        const lo = hi - (days - 1) * DAY;
-        return allData.filter((r) => { const t = r.dateObj.getTime(); return t >= lo && t <= hi; });
-      };
-      const sum = (rows, k) => rows.reduce((s, r) => s + r[k], 0);
+    function renderRepos() {
+      const M = METRICS[state.metric];
+      const rows = repoRows();
+      const key = state.sortKey, dir = state.sortDir;
+      const growth = (r) => r.p7 == null ? -Infinity : r.w7 - r.p7;
+      const get = (r) => key === "repo" ? r.repo : key === "w7" ? growth(r) : key === "ratio" ? (r.ratio ?? -1) : r[key];
+      rows.sort((a, b) => { const x = get(a), y = get(b); const c = typeof x === "string" ? x.localeCompare(y) : (x === y ? 0 : x - y); return c * dir || b.total - a.total; });
+      const rankOf = new Map([...rows].sort((a, b) => b.total - a.total).map((r, i) => [r.repo, i + 1]));
+      const maxTotal = Math.max(1, ...rows.map((r) => r.total));
 
-      // ---- totals & motivation primitives (all clone-driven) ----
-      const cumReach = sum(allData, "clonesUniques");
-      const totalClones = sum(allData, "clones");
-      const totalViews = sum(allData, "views");
-
-      const last14 = sum(win(14, 0), "clonesUniques");
-      const prev14 = sum(win(14, 14), "clonesUniques");
-
-      // aggregate by date
-      const byDate = new Map();
-      for (const r of allData) {
-        const e = byDate.get(r.date) ?? { date: r.date, dateObj: r.dateObj, clones: 0, clonesUniques: 0, views: 0 };
-        e.clones += r.clones; e.clonesUniques += r.clonesUniques; e.views += r.views;
-        byDate.set(r.date, e);
-      }
-      const dailyAgg = [...byDate.values()].sort((a, b) => a.dateObj - b.dateObj);
-
-      // peak day (by clones)
-      const peak = dailyAgg.reduce((m, d) => (d.clones > m.clones ? d : m), dailyAgg[0] ?? { clones: 0, date: "—" });
-
-      // streak: consecutive days (ending at last data day) with >=1 unique
-      // cloner — same metric the heatmap renders, so the two never disagree.
-      let curStreak = 0, longest = 0, run = 0, prevDay = null;
-      for (const d of dailyAgg) {
-        if (prevDay !== null && d.dateObj.getTime() - prevDay > DAY) run = 0; // gap in records
-        if (d.clonesUniques > 0) { run += 1; longest = Math.max(longest, run); } else run = 0;
-        prevDay = d.dateObj.getTime();
-      }
-      // current streak = trailing run; break on a zero day OR a calendar gap
-      for (let i = dailyAgg.length - 1; i >= 0; i--) {
-        if (dailyAgg[i].clonesUniques <= 0) break;
-        if (i < dailyAgg.length - 1 && dailyAgg[i + 1].dateObj.getTime() - dailyAgg[i].dateObj.getTime() > DAY) break;
-        curStreak++;
-      }
-
-      // ---- hero ----
-      animateCount(document.getElementById("hero-reach"), cumReach);
-      const heroMo = document.getElementById("hero-mo");
-      heroMo.append(document.createTextNode("直近 14 日 "));
-      heroMo.append(deltaEl(last14, prev14));
-      heroMo.append(document.createTextNode(` (前 14 日 ${fmt(prev14)})`));
-
-      // momentum pill text
-      setText("momentum-pill", last14 >= prev14 ? "momentum building" : "steady reach");
-
-      // cumulative growth line (monotonic — always climbs)
-      let acc = 0;
-      const cumSeries = dailyAgg.map((d) => { acc += d.clonesUniques; return { date: d.dateObj, value: acc }; });
-      document.getElementById("hero-fig").append(
-        Plot.plot({
-          height: 200, marginLeft: 46, marginTop: 12, marginRight: 14,
-          style: { background: "transparent", color: C.fg },
-          x: { label: null, type: "utc", ticks: 4, tickFormat: "%m/%d" },
-          y: { label: null, grid: true, nice: true },
-          marks: [
-            Plot.areaY(cumSeries, { x: "date", y: "value", fill: C.clones, fillOpacity: 0.12, curve: "monotone-x" }),
-            Plot.line(cumSeries, { x: "date", y: "value", stroke: C.clones, strokeWidth: 2.4, curve: "monotone-x" }),
-            Plot.dot([cumSeries[cumSeries.length - 1]], { x: "date", y: "value", fill: C.clones, r: 4, stroke: C.bg, strokeWidth: 2 }),
-          ],
-        })
-      );
-
-      // ---- narrative dek ----
-      {
-        const repoTotals = REPOS.map((repo) => ({
-          repo,
-          all: sum(allData.filter((r) => r.repo === repo), "clonesUniques"),
-          l14: sum(win(14, 0).filter((r) => r.repo === repo), "clonesUniques"),
-          p14: sum(win(14, 14).filter((r) => r.repo === repo), "clonesUniques"),
-        }));
-        const leader = [...repoTotals].sort((a, b) => b.all - a.all)[0];
-        const riser = [...repoTotals]
-          .filter((r) => r.l14 > 0)
-          .sort((a, b) => (b.l14 / Math.max(b.p14, 1)) - (a.l14 / Math.max(a.p14, 1)))[0] || leader;
-        const pct = prev14 > 0 ? Math.round(((last14 - prev14) / prev14) * 100) : null;
-        let momentum;
-        if (pct === null) momentum = `直近 14 日で <span class="up">${fmt(last14)}</span> 人が新たに pull。`;
-        else if (pct >= 0) momentum = `直近 14 日のリーチは <span class="up">↑${pct}%</span>。`;
-        else momentum = `直近 14 日は少し静かな <span class="down">${pct}%</span> — それでも <b>${fmt(last14)}</b> 人が手元に引いた。`;
-        document.getElementById("dek").innerHTML =
-          `累積リーチが <b>${fmt(cumReach)}</b> unique cloners を突破。${momentum} ` +
-          `<span class="accent">${leader.repo}</span> が牽引 (累積 ${fmt(leader.all)})、` +
-          `最速の伸びは <span class="accent">${riser.repo}</span>。` +
-          `${curStreak} 日連続でリーチが途切れていない。`;
-      }
-
-      // ---- stat strip ----
-      {
-        const strip = document.getElementById("stat-strip");
-        const last30 = dailyAgg.slice(-30);
-        const last30Clones = last30.map((d) => d.clones);
-        const last30Reach = last30.map((d) => d.clonesUniques);
-        const last30Views = last30.map((d) => d.views);
-
-        // every card carries a 30-day sparkline so the row reads as one set
-        const cards = [
-          { label: "Total clones", value: fmt(totalClones), sub: `全 ${REPOS.length} repo・全期間`, spark: sparkline(last30Clones, C.clones) },
-          { label: "Unique cloners", value: fmt(cumReach), sub: "= cumulative reach", spark: sparkline(last30Reach, C.clones), accent: true },
-          { label: "Peak day", value: fmt(peak.clones), sub: `${peak.date} の最高記録`, spark: sparkline(last30Clones, C.clones), record: true },
-          { label: "Reach streak", value: `${curStreak}d`, sub: `最長 ${longest} 日連続`, spark: sparkline(last30Reach, C.clones) },
-          { label: "Total views", value: fmt(totalViews), sub: "human pageviews", spark: sparkline(last30Views, C.views) },
-        ];
-        for (const c of cards) {
-          const el = document.createElement("article");
-          el.className = "stat glass";
-          el.innerHTML = `<div class="label">${c.label}</div>` +
-            `<div class="value${c.muted ? " muted" : ""}">${c.value}</div>` +
-            `<div class="sub">${c.sub}</div>`;
-          if (c.spark) el.querySelector(".sub").after(c.spark), c.spark.classList.add("spark");
-          strip.append(el);
-        }
-      }
-
-      // ---- milestones ----
-      {
-        const shelf = document.getElementById("badge-shelf");
-        const unlocked = REACH_MILESTONES.filter((t) => cumReach >= t);
-        const highestUnlocked = unlocked[unlocked.length - 1];
-        for (const t of REACH_MILESTONES) {
-          const on = cumReach >= t;
-          const b = document.createElement("span");
-          b.className = "badge " + (on ? "unlocked" : "locked") + (t === highestUnlocked ? " recent" : "");
-          b.innerHTML = `<span class="gem">${on ? "◆" : "🔒"}</span>${fmt(t)} reach`;
-          shelf.append(b);
-        }
-        // extra non-threshold badges
-        const extra = [];
-        if (longest >= 30) extra.push("30-day streak");
-        if (longest >= 60) extra.push("60-day streak");
-        if (REPOS.length >= 8) extra.push(`${REPOS.length} repos live`);
-        if (peak.clones >= 100) extra.push(`Peak day ${fmt(peak.clones)}`);
-        for (const label of extra) {
-          const b = document.createElement("span");
-          b.className = "badge unlocked";
-          b.innerHTML = `<span class="gem">★</span>${label}`;
-          shelf.append(b);
-        }
-
-        const next = REACH_MILESTONES.find((t) => t > cumReach);
-        const prog = document.getElementById("progress");
-        if (next) {
-          const base = unlocked[unlocked.length - 1] || 0;
-          const pctFill = Math.max(2, Math.min(100, ((cumReach - base) / (next - base)) * 100));
-          prog.innerHTML =
-            `<div class="progress-top"><span class="progress-goal">Next milestone — ${fmt(next)} reach</span>` +
-            `<span class="progress-togo">あと <b>${fmt(next - cumReach)}</b> unique cloners</span></div>` +
-            `<div class="track"><span></span></div>`;
-          requestAnimationFrame(() => { prog.querySelector(".track > span").style.width = pctFill + "%"; });
-        } else {
-          prog.innerHTML = `<div class="progress-goal">全マイルストーン達成 — 圧巻。</div>`;
-        }
-      }
-
-      // ---- streak heatmap ----
-      {
-        const heat = document.getElementById("heatmap");
-        const dmap = new Map(dailyAgg.map((d) => [d.date, d.clonesUniques]));
-        const maxU = Math.max(1, ...dailyAgg.map((d) => d.clonesUniques));
-        const WEEKS = 11;
-        const end = new Date(maxDateMs);
-        // align end to its week's Saturday so columns are whole weeks
-        const start = new Date(end.getTime() - (WEEKS * 7 - 1) * DAY);
-        // pad start back to Sunday
-        const startDow = start.getUTCDay();
-        const gridStart = new Date(start.getTime() - startDow * DAY);
-        const totalCells = Math.ceil((end.getTime() - gridStart.getTime()) / DAY) + 1;
-        const level = (v) => v <= 0 ? 0 : v >= maxU * 0.75 ? 4 : v >= maxU * 0.5 ? 3 : v >= maxU * 0.25 ? 2 : 1;
-        for (let i = 0; i < totalCells; i++) {
-          const d = new Date(gridStart.getTime() + i * DAY);
-          const iso = d.toISOString().slice(0, 10);
-          const v = dmap.has(iso) ? dmap.get(iso) : (d.getTime() <= maxDateMs && d.getTime() >= (dailyAgg[0]?.dateObj.getTime() ?? Infinity) ? 0 : -1);
-          const cell = document.createElement("i");
-          if (v >= 0) { const lv = level(v); if (lv) cell.className = "l" + lv; cell.title = `${iso} · ${v} unique cloners`; }
-          else { cell.style.visibility = "hidden"; }
-          heat.append(cell);
-        }
-        // legend swatches
-        const lg = document.querySelectorAll(".heat-legend i");
-        const swatch = ["var(--border)", "color-mix(in srgb, var(--accent) 26%, transparent)", "color-mix(in srgb, var(--accent) 48%, transparent)", "color-mix(in srgb, var(--accent) 72%, transparent)", "var(--accent)"];
-        lg.forEach((i, k) => i.style.background = swatch[k]);
-      }
-
-      // ---- aggregate timeline (with peak callout) ----
-      {
-        const aggLong = dailyAgg.flatMap((d) => [
-          { date: d.dateObj, metric: "clones", value: d.clones },
-          { date: d.dateObj, metric: "views", value: d.views },
-        ]);
-        document.getElementById("aggregate-chart").append(
-          Plot.plot({
-            height: 280, marginLeft: 50,
-            style: { background: "transparent", color: C.fg },
-            x: { label: null, type: "utc" },
-            y: { label: "↑ count", grid: true },
-            color: { legend: true, domain: ["clones", "views"], range: [C.clones, C.views] },
-            marks: [
-              Plot.line(aggLong, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 2 }),
-              Plot.dot(aggLong, { x: "date", y: "value", stroke: "metric", fill: C.bg, r: 2.5 }),
-              Plot.dot([peak], { x: "dateObj", y: "clones", r: 5, fill: C.clones, stroke: C.bg, strokeWidth: 2 }),
-              Plot.text([peak], { x: "dateObj", y: "clones", text: () => `peak ${fmt(peak.clones)} · ${peak.date.slice(5)}`, dy: -12, fill: "currentColor", fontWeight: 600, fontSize: 11 }),
-              Plot.tip(aggLong, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
-            ],
-          })
-        );
-      }
-
-      // ---- per-repo leaderboard (small multiples, ranked) ----
-      {
-        const smContainer = document.getElementById("small-multiples");
-        const ranked = REPOS.map((repo) => {
-          const rows = allData.filter((r) => r.repo === repo).sort((a, b) => a.dateObj - b.dateObj);
-          return {
-            repo, rows,
-            all: sum(rows, "clonesUniques"),
-            l7: sum(win(7, 0).filter((r) => r.repo === repo), "clonesUniques"),
-            p7: sum(win(7, 7).filter((r) => r.repo === repo), "clonesUniques"),
-          };
-        }).sort((a, b) => b.all - a.all);
-
-        ranked.forEach((entry, idx) => {
-          const { repo, rows } = entry;
-          const card = document.createElement("article");
-          card.className = "card glass";
-
-          const head = document.createElement("div");
-          head.className = "card-head";
-          const rank = document.createElement("span");
-          rank.className = "rank" + (idx === 0 ? " gold" : "");
-          rank.textContent = "#" + (idx + 1);
-          const link = document.createElement("a");
-          link.href = `https://github.com/shimo4228/${repo}`;
-          link.target = "_blank"; link.rel = "noopener noreferrer";
-          link.textContent = repo;
-          head.append(rank, link);
-          card.append(head);
-
-          const stats = document.createElement("p");
-          stats.className = "card-stats";
-          stats.append(document.createTextNode(`reach ${fmt(entry.all)} · clones ${fmt(sum(rows, "clones"))} · 7d `));
-          stats.append(deltaEl(entry.l7, entry.p7));
-          card.append(stats);
-
-          const long = rows.flatMap((d) => [
-            { date: d.dateObj, metric: "clones", value: d.clones },
-            { date: d.dateObj, metric: "views", value: d.views },
-          ]);
-          const fig = document.createElement("figure");
-          fig.append(
-            Plot.plot({
-              height: 132, marginLeft: 30, marginBottom: 20, marginRight: 8, marginTop: 6,
-              style: { background: "transparent", color: C.fg },
-              x: { label: null, type: "utc", ticks: 3, tickFormat: "%m/%d" },
-              y: { label: null, grid: true, nice: true },
-              color: { domain: ["clones", "views"], range: [C.clones, C.views] },
-              marks: [
-                Plot.areaY(long.filter((d) => d.metric === "clones"), { x: "date", y: "value", fill: C.clones, fillOpacity: 0.14, curve: "monotone-x" }),
-                Plot.line(long, { x: "date", y: "value", stroke: "metric", curve: "monotone-x", strokeWidth: 1.6 }),
-                Plot.tip(long, Plot.pointer({ x: "date", y: "value", stroke: "metric" })),
-              ],
-            })
-          );
-          card.append(fig);
-          smContainer.append(card);
+      $("repos-aside").textContent = `${M.label} · ${rangeLabel()}`;
+      const host = $("repo-list");
+      host.replaceChildren();
+      const sortBtn = (k, label, cls) => {
+        const on = state.sortKey === k;
+        const b = el("button", { class: "sort " + cls, type: "button", "aria-pressed": String(on), title: `Sort by ${label}` },
+          label, el("span", { class: "arw", "aria-hidden": "true", text: on && dir > 0 ? "▲" : "▼" }));
+        b.addEventListener("click", () => {
+          if (state.sortKey === k) state.sortDir = -state.sortDir; else { state.sortKey = k; state.sortDir = k === "repo" ? 1 : -1; }
+          renderRepos();
         });
-      }
+        return b;
+      };
+      host.append(el("div", { class: "rl-head", role: "presentation" },
+        el("span", { class: "rank", text: "#" }),
+        sortBtn("repo", "Repository", "c-name"),
+        el("span", { class: "c-spark", text: "Trend" }),
+        sortBtn("total", "Total", "r c-total"),
+        sortBtn("w7", "Δ 7d", "r c-d7"),
+        sortBtn("share", "Share", "r c-share"),
+        sortBtn("ratio", "Clones / view", "r c-ratio"),
+        el("span", { class: "sorts" }, sortBtn("total", "Total", "r"), el("span", { class: "dotsep", text: "·" }), sortBtn("w7", "Δ 7d", "r")),
+      ));
 
-      // ---- clones:views ratio ----
-      {
-        const ratios = REPOS.map((repo) => {
-          const rows = allData.filter((r) => r.repo === repo);
-          const c = sum(rows, "clones"), v = sum(rows, "views");
-          const ratio = c / Math.max(v, 1);
-          // plotX: a log scale can't place 0 (a zero-clone repo) — clamp so its
-          // bar still renders at the axis floor instead of dropping/throwing.
-          return { repo, ratio, plotX: Math.max(ratio, 0.1), label: v === 0 ? `${fmt(c)} : 0` : `${ratio.toFixed(1)} : 1` };
-        }).sort((a, b) => b.ratio - a.ratio);
-        document.getElementById("ratio-chart").append(
-          Plot.plot({
-            height: 60 + ratios.length * 36, marginLeft: 200, marginRight: 80,
-            style: { background: "transparent", color: C.fg },
-            x: { label: "clones / views (log scale) →", type: "log", grid: true, nice: true },
-            y: { label: null, domain: ratios.map((r) => r.repo) },
-            marks: [
-              Plot.barX(ratios, { x: "plotX", y: "repo", fill: C.clones, fillOpacity: 0.85 }),
-              Plot.text(ratios, { x: "plotX", y: "repo", text: "label", dx: 6, textAnchor: "start", fill: "currentColor" }),
-              Plot.ruleX([1], { stroke: "currentColor", strokeOpacity: 0.3, strokeDasharray: "3,3" }),
-            ],
-          })
+      const visible = state.showAll ? rows : rows.slice(0, TOP_N);
+      if (state.selected && !visible.some((r) => r.repo === state.selected)) visible.push(rows.find((r) => r.repo === state.selected));
+      for (const r of visible) {
+        const isSel = r.repo === state.selected;
+        const row = el("div", { class: "rl-row" + (isSel ? " sel" : ""), role: "listitem", tabindex: 0, "aria-expanded": String(isSel), "aria-label": `${r.repo}, ${fmt(r.total)} ${M.noun}` });
+        const name = el("span", { class: "name", title: r.repo }, r.repo);
+        if (r.since) name.append(el("span", { class: "since", text: `since ${md(r.since)}`, title: `${r.since} から収集` }));
+        const sizeBar = el("span", { class: "sbar" }, el("span")); sizeBar.firstChild.style.width = (r.total / maxTotal * 100).toFixed(1) + "%";
+        const shareBar = el("span", { class: "sbar" }, el("span")); shareBar.firstChild.style.width = (r.share * 100).toFixed(1) + "%";
+        const meta = el("span", { class: "meta" }, sizeBar, r.since ? el("span", { text: `since ${md(r.since)}` }) : null);
+        row.append(
+          el("span", { class: "rank num", text: String(rankOf.get(r.repo)) }),
+          name, meta,
+          el("span", { class: "spark" }, sparkline(r.series, { w: 112, h: 22, cls: isSel ? "c-accent" : "c-ghost" })),
+          el("span", { class: "total num", text: fmt(r.total) }),
+          el("span", { class: "d7 num" }, r.p7 == null ? el("span", { class: "delta na", text: "new", title: "前 7 日の記録がない" }) : countDelta(r.w7, r.p7)),
+          el("span", { class: "share num" }, shareBar, el("span", { class: "p", text: shareText(r.share) })),
+          el("span", { class: "ratio num", text: ratioText(r.ratio) }),
         );
+        const toggle = () => select(isSel ? null : r.repo);
+        row.addEventListener("click", toggle);
+        row.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+        host.append(row);
+        if (isSel) { const det = detailRow(r); host.append(det); requestAnimationFrame(() => drawDetailChart(det, r)); }
       }
 
-      // ---- co-traffic correlation ----
-      {
-        const allDates = [...new Set(allData.map((r) => r.date))].sort();
-        const dailyUniques = new Map();
-        for (const d of allDates) dailyUniques.set(d, new Map(REPOS.map((r) => [r, 0])));
-        for (const row of allData) {
-          const m = dailyUniques.get(row.date);
-          m.set(row.repo, m.get(row.repo) + row.clonesUniques);
-        }
-        const vectors = new Map(REPOS.map((repo) => [repo, allDates.map((d) => dailyUniques.get(d).get(repo))]));
-        const pearson = (xs, ys) => {
-          const n = xs.length; let sx = 0, sy = 0;
-          for (let i = 0; i < n; i++) { sx += xs[i]; sy += ys[i]; }
-          const mx = sx / n, my = sy / n;
-          let nu = 0, dx2 = 0, dy2 = 0;
-          for (let i = 0; i < n; i++) { const ex = xs[i] - mx, ey = ys[i] - my; nu += ex * ey; dx2 += ex * ex; dy2 += ey * ey; }
-          const denom = Math.sqrt(dx2 * dy2);
-          return denom === 0 ? 0 : nu / denom;
-        };
-        const rank = (xs) => {
-          const indexed = xs.map((v, i) => [v, i]).sort((a, b) => a[0] - b[0]);
-          const ranks = new Array(xs.length); let i = 0;
-          while (i < indexed.length) {
-            let j = i; while (j < indexed.length && indexed[j][0] === indexed[i][0]) j++;
-            const avg = (i + j - 1) / 2 + 1;
-            for (let k = i; k < j; k++) ranks[indexed[k][1]] = avg;
-            i = j;
-          }
-          return ranks;
-        };
-        const spearman = (xs, ys) => pearson(rank(xs), rank(ys));
-        const corrPairs = [];
-        for (const a of REPOS) for (const b of REPOS) corrPairs.push({ repoA: a, repoB: b, corr: spearman(vectors.get(a), vectors.get(b)) });
-        document.getElementById("correlation-chart").append(
-          Plot.plot({
-            marginLeft: 200, marginBottom: 140, marginRight: 40,
-            style: { background: "transparent", color: C.fg },
-            x: { domain: REPOS, label: null, tickRotate: -30 },
-            y: { domain: REPOS, label: null },
-            color: { type: "diverging", scheme: "rdbu", reverse: true, domain: [-1, 1], legend: true, label: "Spearman ρ (unique cloners)" },
-            marks: [
-              Plot.cell(corrPairs, { x: "repoA", y: "repoB", fill: "corr", inset: 0.5 }),
-              Plot.text(corrPairs, { x: "repoA", y: "repoB", text: (d) => d.corr.toFixed(2), fill: (d) => (Math.abs(d.corr) > 0.55 ? "white" : "black"), fontSize: 11 }),
-            ],
-          })
-        );
+      const more = $("repo-more"); more.replaceChildren();
+      if (rows.length > TOP_N) {
+        const btn = el("button", { class: "btn", type: "button", text: state.showAll ? `Show top ${TOP_N}` : `Show all ${rows.length}` });
+        btn.addEventListener("click", () => { state.showAll = !state.showAll; renderRepos(); });
+        more.append(btn);
       }
-
-      // ---- data table ----
-      {
-        const headers = [
-          { key: "repo", label: "repo", num: false },
-          { key: "date", label: "date", num: false },
-          { key: "clones", label: "clones", num: true },
-          { key: "clonesUniques", label: "unique cloners", num: true },
-          { key: "views", label: "views", num: true },
-          { key: "viewsUniques", label: "unique visitors", num: true },
-        ];
-        const tbl = document.createElement("table");
-        const thead = document.createElement("thead");
-        const trh = document.createElement("tr");
-        for (const h of headers) {
-          const th = document.createElement("th");
-          th.textContent = h.label; th.dataset.key = h.key;
-          th.tabIndex = 0; th.setAttribute("scope", "col"); th.setAttribute("role", "columnheader button");
-          if (h.num) th.classList.add("num");
-          trh.append(th);
-        }
-        thead.append(trh); tbl.append(thead);
-        const tbody = document.createElement("tbody"); tbl.append(tbody);
-        let sortKey = "date", sortAsc = false;
-        const compare = (a, b) => {
-          const av = a[sortKey], bv = b[sortKey];
-          const cmp = typeof av === "string" ? av.localeCompare(bv) : av - bv;
-          return sortAsc ? cmp : -cmp;
-        };
-        const applySortIndicators = () => {
-          for (const th of trh.children) {
-            if (th.dataset.key === sortKey) th.setAttribute("aria-sort", sortAsc ? "ascending" : "descending");
-            else th.removeAttribute("aria-sort");
-          }
-        };
-        const rerender = () => {
-          const rows = [...allData].sort(compare);
-          const frag = document.createDocumentFragment();
-          for (const r of rows) {
-            const tr = document.createElement("tr");
-            for (const h of headers) {
-              const td = document.createElement("td");
-              td.textContent = r[h.key];
-              if (h.num) td.classList.add("num");
-              tr.append(td);
-            }
-            frag.append(tr);
-          }
-          tbody.replaceChildren(frag);
-        };
-        for (const th of trh.children) {
-          const sort = () => {
-            const k = th.dataset.key;
-            if (k === sortKey) sortAsc = !sortAsc; else { sortKey = k; sortAsc = false; }
-            applySortIndicators(); rerender();
-          };
-          th.addEventListener("click", sort);
-          th.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sort(); }
-          });
-        }
-        applySortIndicators(); rerender();
-        document.getElementById("table-container").append(tbl);
-      }
-
-      setupReveal();
     }
 
-    // ===== Attribution diffusion probes (separate dataset, independent render) =====
-    const PROBE_SIGNALS = [
-      { key: "author_named", label: "author (in prose)", short: "author" },
-      { key: "project_named", label: "project", short: "project" },
-      { key: "doi_or_url_cited", label: "DOI", short: "DOI" },
-      { key: "ghost_citation", label: "ghost", short: "ghost" },
+    function detailRow(r) {
+      const M = METRICS[state.metric];
+      const days = windowDays();
+      const stat = (k, v) => el("div", {}, el("div", { class: "k", text: k }), el("div", { class: "v num", text: v }));
+      const stats = el("div", { class: "stats" });
+      for (const [id, m] of Object.entries(METRICS)) if (id !== state.metric) stats.append(stat(m.label, fmt(sumOver(r.repo, days, m.key))));
+      stats.append(stat("Share", shareText(r.share)), stat("Clones / view", ratioText(r.ratio)));
+      const peers = D.repos.filter((p) => p !== r.repo).map((p) => {
+        const ds = days.filter((d) => val(r.repo, d, M.key) != null && val(p, d, M.key) != null);
+        return ds.length >= 14 ? { p, rho: spearman(ds.map((d) => val(r.repo, d, M.key)), ds.map((d) => val(p, d, M.key))) } : null;
+      }).filter(Boolean).sort((a, b) => b.rho - a.rho).filter((x) => x.rho >= 0.3).slice(0, 2);
+      let co = null;
+      if (peers.length) {
+        co = el("div", { class: "co", title: "日ごとの値の Spearman 順位相関 " + peers.map((x) => `${x.p} ρ ${x.rho.toFixed(2)}`).join(", ") });
+        co.append("同じ日に伸びやすい repo: ");
+        peers.forEach((x, i) => { if (i) co.append("、"); co.append(el("b", { text: x.p })); });
+      }
+      const head = el("div", { class: "chart-head" }, el("div", { class: "sub", text: `Daily ${M.noun} · ${rangeLabel()}` + (r.since ? ` · tracked since ${md(r.since)}` : "") }), el("div", { class: "readout" }));
+      return el("div", { class: "detail", role: "listitem" }, stats, head, el("div", { class: "chart dchart" }), co,
+        el("div", { class: "foot" }, el("span"), el("a", { class: "link-btn", href: `https://github.com/shimo4228/${r.repo}`, target: "_blank", rel: "noopener noreferrer", text: "Open on GitHub ↗" })));
+    }
+
+    function drawDetailChart(det, r) {
+      const M = METRICS[state.metric];
+      const days = windowDays();
+      const host = det.querySelector(".dchart"), ro = det.querySelector(".readout");
+      const values = r.series;
+      let li = values.length - 1; while (li >= 0 && values[li] == null) li--;
+      const inline = (d, v) => ro.replaceChildren(el("span", { class: "d", text: d + " · " }), el("b", { class: "num", text: v }));
+      const latest = () => li >= 0 ? inline(`Latest ${md(days[li])}`, fmt(values[li])) : ro.replaceChildren();
+      latest();
+      lineChart(host, {
+        n: days.length, height: 150, mT: 18,
+        lines: [{ values, cls: "c-accent", area: true, label: r.repo, color: css("--accent") }],
+        xTicks: xTicksFor(days, true), annotate: true, peakDate: (i) => md(days[i]),
+        onScrub: (i) => i == null ? latest() : inline(longDate(days[i]), values[i] == null ? "not tracked" : fmt(values[i])),
+        ariaLabel: `${r.repo}, daily ${M.noun}, ${rangeLabel()}`,
+      });
+    }
+
+    function select(repo) {
+      state.selected = repo;
+      renderRepos();
+    }
+
+    // ====================================================================
+    //  Raw data (built lazily on open)
+    // ====================================================================
+    function renderRaw() {
+      const box = $("raw-box");
+      const rows = [];
+      for (const r of D.repos) for (const [d, x] of D.byRepo.get(r)) rows.push({ repo: r, date: d, ...x });
+      const cols = [["repo", "repo"], ["date", "date"], ["viewsUniques", "unique visitors"], ["views", "views"], ["clonesUniques", "unique cloners"], ["clones", "clones"]];
+      let key = "date", dir = -1;
+      const table = el("table"), hr = el("tr"), tb = el("tbody");
+      const draw = () => {
+        rows.sort((a, b) => { const x = a[key], y = b[key]; return (typeof x === "string" ? x.localeCompare(y) : x - y) * dir || b.date.localeCompare(a.date); });
+        const f = document.createDocumentFragment();
+        for (const r of rows) { const tr = el("tr"); for (const [k] of cols) tr.append(el("td", { text: typeof r[k] === "number" ? fmt(r[k]) : r[k] })); f.append(tr); }
+        tb.replaceChildren(f);
+        [...hr.children].forEach((th, i) => th.setAttribute("aria-sort", cols[i][0] === key ? (dir > 0 ? "ascending" : "descending") : "none"));
+      };
+      for (const [k, l] of cols) {
+        const th = el("th", { scope: "col", tabindex: 0, text: l });
+        const go = () => { if (key === k) dir = -dir; else { key = k; dir = k === "repo" ? 1 : -1; } draw(); };
+        th.addEventListener("click", go);
+        th.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+        hr.append(th);
+      }
+      table.append(el("thead", {}, hr), tb); box.replaceChildren(table);
+      draw();
+    }
+
+    // ====================================================================
+    //  Orchestration
+    // ====================================================================
+    function syncControls() { for (const b of $("seg-range").children) b.setAttribute("aria-pressed", String(b.dataset.v === state.range)); }
+    function renderAll() { syncControls(); renderTiles(); renderOverview(); renderAllTime(); renderRepos(); }
+
+    async function main() {
+      syncControls();
+      const settled = await Promise.allSettled(REPOS.map(loadRepo));
+      const byRepo = new Map(), failed = [];
+      settled.forEach((s, i) => { if (s.status === "fulfilled" && s.value.size) byRepo.set(REPOS[i], s.value); else { failed.push(REPOS[i]); if (s.reason) console.error(s.reason); } });
+      if (!byRepo.size) { $("status").textContent = `データを読み込めなかった: ${failed.join(", ")}`; return; }
+      if (failed.length) $("status").textContent = `記録がまだ無い repo を除いて表示している: ${failed.join(", ")}`;
+      D = buildDataset(byRepo);
+      $("repo-count").textContent = `${D.repos.length} repositories`;
+      $("updated").textContent = `data through ${md(D.days[D.days.length - 1])}`;
+      $("updated").title = D.updated ? `snapshot ${D.updated} (UTC)` : "";
+      renderAll();
+      $("seg-range").addEventListener("click", (e) => { const v = e.target.closest("button")?.dataset.v; if (!v || v === state.range) return; state.range = v; store.set("traffic-range", v); renderAll(); });
+      $("raw").addEventListener("toggle", (e) => { if (e.target.open && !$("raw-box").firstChild) renderRaw(); });
+      let w = innerWidth, t = 0;
+      addEventListener("resize", () => {
+        if (innerWidth === w) return; w = innerWidth;
+        clearTimeout(t); t = setTimeout(() => { renderAll(); renderProbeCharts?.(); }, 120);
+      });
+    }
+
+    const io = new IntersectionObserver(([e]) => $("controls").classList.toggle("stuck", e.intersectionRatio < 1), { threshold: [1], rootMargin: "-1px 0px 0px 0px" });
+    io.observe($("controls"));
+
+    $("theme-btn").addEventListener("click", () => {
+      const now = document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      const next = now === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = next;
+      store.set("traffic-theme", next);
+      if (D) renderAll();          // charts read their colors from tokens
+      renderProbeCharts?.();
+    });
+
+    // ====================================================================
+    //  Attribution probes (separate dataset)
+    // ====================================================================
+    const SIGNALS = [
+      { key: "author_named", label: "Author named", short: "Author", color: "--sig-author" },
+      { key: "project_named", label: "Project named", short: "Project", color: "--sig-project" },
+      { key: "doi_or_url_cited", label: "DOI or URL cited", short: "DOI", color: "--sig-doi" },
+      { key: "ghost_citation", label: "Ghost citation", short: "Ghost", color: "--sig-ghost", bad: true },
     ];
-
-    function pct(r) { return r == null ? "—" : Math.round(r * 100) + "%"; }
-
-    function animatePct(el, rate) {
-      const target = (rate || 0) * 100;
-      if (REDUCED || target <= 0) { el.textContent = Math.round(target) + "%"; return; }
-      const t0 = performance.now(), dur = 900, ease = (t) => 1 - Math.pow(1 - t, 4);
-      function step(now) {
-        const p = Math.min(1, (now - t0) / dur);
-        el.textContent = Math.round(target * ease(p)) + "%";
-        if (p < 1) requestAnimationFrame(step); else el.textContent = Math.round(target) + "%";
-      }
-      requestAnimationFrame(step);
-    }
-
+    const CHANNELS = [{ key: "parametric", name: "Parametric" }, { key: "retrieval", name: "Retrieval" }];
+    const pct = (r) => r == null ? "—" : Math.round(r * 100) + "%";
+    const PROVIDER_NAMES = { xai: "xAI", openai: "OpenAI", gemini: "Gemini", anthropic: "Anthropic", qwen: "Qwen" };
+    const pname = (p) => PROVIDER_NAMES[p] ?? p;
     function isoWeek(d) {
       const dt = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
       const day = dt.getUTCDay() || 7;
       dt.setUTCDate(dt.getUTCDate() + 4 - day);
       const ys = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
-      const wk = Math.ceil((((dt - ys) / 86400000) + 1) / 7);
-      return `${dt.getUTCFullYear()}-W${String(wk).padStart(2, "0")}`;
+      return `${dt.getUTCFullYear()}-W${String(Math.ceil(((dt - ys) / DAY + 1) / 7)).padStart(2, "0")}`;
     }
-
     async function loadProbe(channel) {
       const res = await fetch(`../../probes/data/${channel}.jsonl`, { cache: "no-cache" });
       if (!res.ok) throw new Error(`probes/${channel}: HTTP ${res.status}`);
-      const text = await res.text();
       const rows = [];
-      for (const line of text.split("\n")) {
-        const t = line.trim();
-        if (!t) continue;
-        let j;
-        try { j = JSON.parse(t); } catch { continue; }
-        // keep only the small fields we aggregate on — drop the heavy response_text
+      for (const line of (await res.text()).split("\n")) {
+        const t = line.trim(); if (!t) continue;
+        let j; try { j = JSON.parse(t); } catch (e) { continue; }
         rows.push({
-          channel,
-          provider: String(j.provider ?? ""),
-          probe_id: String(j.probe_id ?? ""),
-          probe_set_version: String(j.probe_set_version ?? ""),
-          ts: String(j.ts ?? ""),
-          valid: j.detect != null && j.error == null,
-          detect: j.detect || null,
-          urlOnlyAuthor: j.detect && j.detect.author_named === false && (j.detect.matched?.author_in_url?.length > 0),
+          channel, provider: String(j.provider ?? ""), version: String(j.probe_set_version ?? ""), ts: String(j.ts ?? ""),
+          valid: j.detect != null && j.error == null, detect: j.detect || null,
+          urlOnlyAuthor: !!(j.detect && j.detect.author_named === false && j.detect.matched?.author_in_url?.length > 0),
         });
       }
       return rows;
     }
 
-    async function renderProbes() {
-      // Resilient load: a missing channel file must not discard the healthy one
-      // (the two channels are never blended, so either alone is still valid).
-      const settled = await Promise.allSettled(["parametric", "retrieval"].map(loadProbe));
-      const failedCh = [];
-      let rows = [];
-      settled.forEach((s, i) => {
-        if (s.status === "fulfilled") rows.push(...s.value);
-        else { failedCh.push(["parametric", "retrieval"][i]); console.error(s.reason); }
-      });
-      if (rows.length === 0) {
-        const div = document.createElement("div");
-        div.className = "status-error";
-        div.textContent = `probe データ読み込みに失敗しました: ${failedCh.join(", ")}`;
-        document.getElementById("probe-status").append(div);
-        return;
-      }
-      if (failedCh.length) {
-        const div = document.createElement("div");
-        div.className = "status-error";
-        div.style.cssText = "border-color: var(--down); color: var(--down); margin-bottom: 14px;";
-        div.textContent = `channel ${failedCh.join(", ")} は読み込めず除外。残りで描画。`;
-        document.getElementById("probe-status").append(div);
-      }
+    let renderProbeCharts = null;
+    async function probes() {
+      const settled = await Promise.allSettled(CHANNELS.map((c) => loadProbe(c.key)));
+      let rows = []; const failed = [];
+      settled.forEach((s, i) => { if (s.status === "fulfilled") rows.push(...s.value); else { failed.push(CHANNELS[i].key); console.error(s.reason); } });
+      if (!rows.length) { $("probe-status").textContent = `probe データを読み込めなかった: ${failed.join(", ")}`; return; }
+      if (failed.length) $("probe-status").textContent = `channel ${failed.join(", ")} を読み込めず、残りで表示している。`;
 
-      const C = {
-        clones: cssVar("--accent") || "#6366f1",
-        views: cssVar("--accent-2") || "#10b981",
-        down: cssVar("--down") || "#d97706",
-        fg: cssVar("--fg") || "#111827",
-      };
-      const CHANNELS = ["parametric", "retrieval"];
-
-      // ---- one-pass aggregation over VALID rows only ----
       const valid = rows.filter((r) => r.valid);
-      const nByCh = {}, excluded = {};
-      const rate = {}; // rate[channel][sigKey] = fraction over valid rows
-      for (const ch of CHANNELS) {
-        const vs = valid.filter((r) => r.channel === ch);
-        nByCh[ch] = vs.length;
-        excluded[ch] = rows.filter((r) => r.channel === ch).length - vs.length;
-        rate[ch] = {};
-        for (const s of PROBE_SIGNALS) rate[ch][s.key] = vs.length ? vs.filter((r) => r.detect[s.key] === true).length / vs.length : null;
+      const N = {}, K = {}, rate = {}, excluded = {};
+      for (const c of CHANNELS) {
+        const vs = valid.filter((r) => r.channel === c.key);
+        N[c.key] = vs.length; excluded[c.key] = rows.filter((r) => r.channel === c.key).length - vs.length;
+        K[c.key] = {}; rate[c.key] = {};
+        for (const s of SIGNALS) { K[c.key][s.key] = vs.filter((r) => r.detect[s.key] === true).length; rate[c.key][s.key] = vs.length ? K[c.key][s.key] / vs.length : null; }
       }
-      const kcount = (ch, key) => valid.filter((r) => r.channel === ch && r.detect[key] === true).length;
-
-      // provider × channel × signal
-      const providers = [...new Set(valid.map((r) => r.provider))];
-      const cellRate = (ch, prov, key) => {
-        const vs = valid.filter((r) => r.channel === ch && r.provider === prov);
-        return { n: vs.length, k: vs.filter((r) => r.detect[key] === true).length, rate: vs.length ? vs.filter((r) => r.detect[key] === true).length / vs.length : null };
-      };
-      // provider order = retrieval project_named desc (the frontier reads top-down)
-      const provOrder = [...providers].sort((a, b) => (cellRate("retrieval", b, "project_named").rate || -1) - (cellRate("retrieval", a, "project_named").rate || -1));
-
-      // ghost detail (retrieval)
-      const ghostRows = valid.filter((r) => r.channel === "retrieval" && r.detect.ghost_citation === true);
-      const ghostByProbe = {};
-      for (const r of ghostRows) ghostByProbe[r.probe_id] = (ghostByProbe[r.probe_id] || 0) + 1;
-      const ghostProbeStr = Object.entries(ghostByProbe).sort((a, b) => b[1] - a[1]).map(([p, c]) => `${p} (${c})`).join(" · ");
-      const urlOnlyRetrieval = valid.filter((r) => r.channel === "retrieval" && r.urlOnlyAuthor).length;
-
-      // meta for footer
+      const cell = (ch, prov, key) => { const vs = valid.filter((r) => r.channel === ch && r.provider === prov); const k = vs.filter((r) => r.detect[key] === true).length; return { n: vs.length, k, rate: vs.length ? k / vs.length : null }; };
+      const providers = [...new Set(valid.map((r) => r.provider))].sort((a, b) => (cell("retrieval", b, "project_named").rate ?? -1) - (cell("retrieval", a, "project_named").rate ?? -1));
       const dates = valid.map((r) => r.ts.slice(0, 10)).filter(Boolean).sort();
-      const versions = [...new Set(valid.map((r) => r.probe_set_version).filter(Boolean))].sort();
-      const probesByCh = {};
-      for (const ch of CHANNELS) probesByCh[ch] = new Set(valid.filter((r) => r.channel === ch).map((r) => r.probe_id)).size;
-      const weeks = [...new Set(valid.map((r) => (r.ts ? isoWeek(new Date(r.ts)) : "")).filter(Boolean))].sort();
+      const versions = [...new Set(valid.map((r) => r.version).filter(Boolean))].sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
 
-      // ---- caveat strip (read before any number) ----
-      const totalExcluded = excluded.parametric + excluded.retrieval;
-      document.getElementById("probe-caveat").innerHTML =
-        `<b>予備的な観測であって trend の証拠ではない。</b> 期間 ≈3 日・実質 1 週バケット — 断面の rate であり時系列ではない。` +
-        `検出は<b>決定論的 regex</b> (detector v1・温度 0・再現可能) で、LLM の判定ではない。` +
-        `<b>自己汚染</b>: この公開ログ自体が測定対象の retrieval channel に流れ込む (測定する channel を自ら養う)。` +
-        `API エラー (detect:null/error) の <b>${totalExcluded}</b> 件は全 denominator から除外し、有効行 (parametric ${nByCh.parametric} / retrieval ${nByCh.retrieval}) のみで算出。`;
+      const span = () => el("span", { class: "nw", text: dates.length ? `${md(dates[0])} – ${md(dates[dates.length - 1])}, ${dates[dates.length - 1].slice(0, 4)}` : "—" });
+      $("probe-caveat-line").replaceChildren("予備的な観測で、trend の証拠ではない。", span(), ` · 有効な回答 ${fmt(N.parametric + N.retrieval)} 件`);
 
-      // ---- paired channel cards ----
-      const channelMeta = {
-        parametric: { name: "Parametric · 重みの中", sub: "model weights, no web — 0 近傍が期待値。ここが伸びれば「重みに入った」合図。" },
-        retrieval: { name: "Retrieval · 検索あり", sub: "web-search on — 研究がいま「見つけられる」かどうか。" },
+      // ---- summary: one paired row per signal (parametric ○ → retrieval ●) ----
+      const db = $("probe-db");
+      db.replaceChildren(el("div", { class: "db-keys" },
+        el("span", {}, el("i", { class: "ring" }), `Parametric · 検索なし · n = ${fmt(N.parametric)}`),
+        el("span", {}, el("i", { class: "fill" }), `Retrieval · 検索あり · n = ${fmt(N.retrieval)}`)));
+      for (const s of SIGNALS) {
+        const a = rate.parametric[s.key] ?? 0, b = rate.retrieval[s.key] ?? 0;
+        const d = Math.round((b - a) * 100);
+        const color = `var(${s.color})`;
+        const t = el("div", { class: "t" });
+        const svg = sv("svg", { viewBox: "0 0 100 22", preserveAspectRatio: "none", "aria-hidden": "true" });
+        svg.append(sv("line", { x1: 0, x2: 100, y1: 11, y2: 11, stroke: "var(--grid)", "stroke-width": 2, "vector-effect": "non-scaling-stroke" }));
+        svg.append(sv("line", { x1: a * 100, x2: b * 100, y1: 11, y2: 11, class: "conn", stroke: color, "stroke-width": 3, "vector-effect": "non-scaling-stroke" }));
+        t.append(svg);
+        // the dots are HTML so they stay round while the svg stretches
+        const dot = (x, filled) => { const i = el("i"); i.style.cssText = `position:absolute;top:50%;left:${(x * 100).toFixed(2)}%;width:11px;height:11px;border-radius:50%;transform:translate(-50%,-50%);` + (filled ? `background:${color};box-shadow:0 0 0 2px var(--raise)` : `background:var(--raise);border:2px solid var(--ink-2)`); return i; };
+        t.append(dot(a, false), dot(b, true));
+        const v = el("div", { class: "v num" }, `${pct(a)} → ${pct(b)}`, el("b", { text: (d > 0 ? "+" : d < 0 ? "−" : "±") + Math.abs(d) + " pp" }));
+        const key = el("i", { class: "sig-dot", "aria-hidden": "true" }); key.style.background = color;
+        const l = el("div", { class: "l" }, key, s.label);
+        if (s.bad) { l.append(el("span", { class: "bad", text: "lower is better" })); l.title = "引用したのに著者を名指さない回答の割合"; }
+        const row = el("div", { class: "db-row" + (s.bad ? " is-bad" : ""), role: "group", "aria-label": `${s.label}: parametric ${pct(a)}, retrieval ${pct(b)}` }, l, t, v);
+        row.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") tip.show(e.clientX, e.clientY, s.label, [{ label: "Parametric", value: `${K.parametric[s.key]} / ${N.parametric}` }, { label: "Retrieval", value: `${K.retrieval[s.key]} / ${N.retrieval}` }]); });
+        row.addEventListener("pointerleave", () => tip.hide());
+        db.append(row);
+      }
+      db.append(el("div", { class: "db-axis", "aria-hidden": "true" }, el("span"), el("span", { class: "ticks" }, el("span", { text: "0%" }), el("span", { text: "50%" }), el("span", { text: "100%" })), el("span")));
+
+      // shared week axis across both channels, so the two charts line up
+      const allTs = valid.filter((r) => r.ts).map((r) => Date.parse(r.ts)).sort((a, b) => a - b);
+      const weeks = [];
+      if (allTs.length) for (let ms = allTs[0]; ; ms += 7 * DAY) {
+        const w = isoWeek(new Date(Math.min(ms, allTs[allTs.length - 1])));
+        if (weeks[weeks.length - 1] !== w) weeks.push(w);
+        if (ms >= allTs[allTs.length - 1]) break;
+      }
+      const series = {}, weekN = {}, runs = {};
+      for (const c of CHANNELS) {
+        const by = new Map();
+        for (const r of valid) if (r.channel === c.key && r.ts) { const w = isoWeek(new Date(r.ts)); if (!by.has(w)) by.set(w, []); by.get(w).push(r); }
+        runs[c.key] = by.size;
+        weekN[c.key] = weeks.map((w) => by.get(w)?.length ?? 0);
+        series[c.key] = SIGNALS.map((s) => weeks.map((w) => { const vs = by.get(w); return vs ? vs.filter((r) => r.detect[s.key] === true).length / vs.length : null; }));
+      }
+
+      // ---- details (built on first open) ----
+      const pd = $("probe-details"), more = $("probe-more");
+      more.addEventListener("toggle", () => {
+        pd.hidden = !more.open;
+        if (more.open && !pd.firstChild) { buildDetails(); renderProbeCharts(); }
+      });
+
+      function buildDetails() {
+        const blk = (title, ...kids) => el("div", { class: "block" }, el("h3", { text: title }), ...kids);
+        pd.append(blk("Notes", el("p", { class: "prose", style: "margin:0" },
+          `期間 ${dates[0] ?? "—"}〜${dates[dates.length - 1] ?? "—"}、probe set ${versions.join(" / ")}。版をまたいで質問が変わるため、週ごとの値は同じ物差しではない。` +
+          `API エラーの ${fmt(excluded.parametric + excluded.retrieval)} 件は分母から除いた。著者名は prose の中だけを数え、引用 URL の中の handle は数えない（retrieval で URL のみの例が ${valid.filter((r) => r.channel === "retrieval" && r.urlOnlyAuthor).length} 件）。` +
+          `この公開ページ自体が retrieval の測定対象に流れ込む（自己汚染）。`)));
+
+        const mxWrap = el("div", { class: "mx-wrap" });
+        for (const c of CHANNELS) {
+          const t = el("table", { class: "mx" }, el("caption", { text: c.name }));
+          const hr = el("tr", {}, el("th", { class: "p", scope: "col" }, el("span", { class: "sr", text: "Provider" })));
+          for (const s of SIGNALS) hr.append(el("th", { scope: "col", text: s.short }));
+          const tb = el("tbody");
+          for (const p of providers) {
+            const tr = el("tr", {}, el("th", { class: "p", scope: "row", text: pname(p) }));
+            for (const s of SIGNALS) {
+              const x = cell(c.key, p, s.key);
+              const td = el("td", { class: "num" + (x.n === 0 ? " na" : ""), text: x.n === 0 ? "·" : pct(x.rate) });
+              if (x.n && x.rate > 0) td.style.background = `color-mix(in srgb, ${s.bad ? "var(--sig-ghost)" : "var(--accent)"} ${Math.round(10 + x.rate * 52)}%, var(--grid))`;
+              td.title = `${pname(p)} · ${c.name} · ${s.label}: ${x.n ? `${x.k} / ${x.n}` : "not measured"}`;
+              tr.append(td);
+            }
+            tb.append(tr);
+          }
+          t.append(el("thead", {}, hr), tb);
+          mxWrap.append(t);
+        }
+        pd.append(blk("By provider", mxWrap));
+        pd.append(blk("Weekly", el("div", { class: "trends", id: "probe-trends" })));
+        const obs = el("ul", { class: "obs prose" });
+        const li = (...parts) => obs.append(el("li", {}, ...parts));
+        const top = providers[0];
+        if (top) li(el("b", { text: pname(top) }), ` は検索ありで project を ${pct(cell("retrieval", top, "project_named").rate)} 名指す（検索なしでは ${pct(cell("parametric", top, "project_named").rate)}）。`);
+        const zero = providers.filter((p) => !(cell("retrieval", p, "project_named").rate > 0) && !(cell("parametric", p, "project_named").rate > 0));
+        if (zero.length) li(el("b", { text: zero.map(pname).join(", ") }), " はどちらの channel でもまだ project を名指していない。");
+        li(`retrieval は DOI を ${pct(rate.retrieval.doi_or_url_cited)} 引くが、著者を prose に出すのは ${pct(rate.retrieval.author_named)}。ghost citation はこの差から生まれる。`);
+        pd.append(blk("Observations", obs));
+      }
+
+      renderProbeCharts = () => {
+        const host = $("probe-trends");
+        if (!host) return;
+        host.replaceChildren();
+        const mx = Math.max(0.05, ...CHANNELS.flatMap((c) => series[c.key].flat().filter((v) => v != null)));
+        const ys = niceStep(mx, 4), yTicks = [];
+        for (let v = 0; v <= Math.ceil(mx / ys - 1e-9) * ys + 1e-9; v += ys) yTicks.push(+v.toFixed(4));
+        const stepW = Math.max(1, Math.ceil(weeks.length / (narrow() ? 4 : 5)));
+        const xTicks = weeks.map((w, i) => ({ i, label: w.slice(5) })).filter((t, i) => i % stepW === 0);
+        for (const c of CHANNELS) {
+          const keys = el("div", { class: "keys" });
+          for (const s of SIGNALS) { const i = el("i"); i.style.background = `var(${s.color})`; keys.append(el("span", {}, i, s.short)); }
+          const head = el("div", { class: "chart-head" }, el("div", {}, el("div", { style: "font-size:13px;font-weight:600", text: c.name }), el("div", { class: "sub", text: `Detection rate · ${runs[c.key]} weeks with runs` })));
+          const ch = el("div", { class: "chart" });
+          host.append(el("div", {}, head, keys, el("div", { style: "height:10px" }), ch));
+          const sparse = runs[c.key] < 5;
+          lineChart(ch, {
+            n: weeks.length, height: 190, yTicks, yFmt: (v) => Math.round(v * 100) + "%", mT: 12,
+            lines: SIGNALS.map((s, k) => ({ values: series[c.key][k], label: s.short, color: css(s.color) })),
+            xTicks, dots: true, cadence: 1, gaps: !sparse, lineless: sparse,
+            tip: (i) => ({ head: weekN[c.key][i] ? `${weeks[i]} · n = ${weekN[c.key][i]}` : `${weeks[i]} · no run`, rows: SIGNALS.map((s, k) => ({ label: s.short, value: pct(series[c.key][k][i]), color: css(s.color) })) }),
+            ariaLabel: `${c.name} weekly detection rate`,
+          });
+        }
       };
-      const channelsWrap = document.getElementById("probe-channels");
-      for (const ch of CHANNELS) {
-        const card = document.createElement("article");
-        card.className = `channel-card glass ${ch}`;
-        const top = document.createElement("div");
-        top.className = "ch-top";
-        top.innerHTML = `<span class="ch-name">${channelMeta[ch].name}</span><span class="rank">n=${nByCh[ch]} valid</span>`;
-        card.append(top);
-        const sub = document.createElement("div");
-        sub.className = "ch-sub";
-        sub.textContent = channelMeta[ch].sub;
-        card.append(sub);
-        for (const s of PROBE_SIGNALS) {
-          const r = rate[ch][s.key];
-          const bar = document.createElement("div");
-          bar.className = "sigbar" + (s.key === "ghost_citation" ? " ghost" : "");
-          bar.innerHTML = `<div class="sig-top"><span class="sig-label">${s.label}</span><span class="sig-val">—</span></div><div class="track"><span></span></div>`;
-          card.append(bar);
-          animatePct(bar.querySelector(".sig-val"), r);
-          requestAnimationFrame(() => { bar.querySelector(".track > span").style.width = ((r || 0) * 100).toFixed(1) + "%"; });
-        }
-        const gr = rate[ch].ghost_citation;
-        const chip = document.createElement("div");
-        if (ch === "parametric") { chip.className = "ch-ghost-chip good"; chip.textContent = `✓ ghost-citation ${kcount("parametric", "ghost_citation")} / ${nByCh.parametric}`; }
-        else { chip.className = "ch-ghost-chip warn"; chip.textContent = `⚠ ghost ${pct(gr)} — 引用したが著者名を prose に出さない`; }
-        card.append(chip);
-        channelsWrap.append(card);
-      }
 
-      // ---- delta strip (per-signal, never summed) ----
-      const dstrip = document.getElementById("probe-delta");
-      dstrip.innerHTML = `<div class="ds-head">retrieval が足すもの (signal ごと・決して合算しない)</div>`;
-      const drow = document.createElement("div");
-      drow.className = "delta-row";
-      for (const s of PROBE_SIGNALS) {
-        const d = Math.round(((rate.retrieval[s.key] || 0) - (rate.parametric[s.key] || 0)) * 100);
-        const isGhost = s.key === "ghost_citation";
-        // ghost is the bad direction ONLY when retrieval actually adds ghosting;
-        // a 0pp ghost delta is the clean/expected state, not a warning.
-        const cls = isGhost ? (d > 0 ? "down" : "flat") : (d >= 0 ? "up" : "down");
-        const chip = document.createElement("div");
-        chip.className = "delta-chip";
-        chip.innerHTML = `<span class="dc-label">${s.short}</span><span class="dc-val ${cls}">${d >= 0 ? "+" : ""}${d}pp${isGhost && d > 0 ? " ✕" : ""}</span>`;
-        drow.append(chip);
-      }
-      dstrip.append(drow);
-
-      // ---- ghost callout ----
-      const gco = document.getElementById("ghost-callout");
-      gco.innerHTML =
-        `<div class="gc-num" id="gc-num">—</div>` +
-        `<div class="gc-body"><div class="gc-lead">ghost citation — 引用したのに著者を名指さない、この計器が捕まえるための失敗モード</div>` +
-        `<div class="gc-sub">retrieval ${ghostRows.length} / ${nByCh.retrieval} 件。${ghostProbeStr ? "集中: " + ghostProbeStr + "。" : ""} parametric は ${kcount("parametric", "ghost_citation")} / ${nByCh.parametric} (ゼロも明示)。</div></div>`;
-      animatePct(document.getElementById("gc-num"), rate.retrieval.ghost_citation);
-
-      // ---- Chart A: four-signal grouped bar (channels side by side, never stacked) ----
-      const chartA = [];
-      for (const ch of CHANNELS) { if (!nByCh[ch]) continue; for (const s of PROBE_SIGNALS) chartA.push({ signal: s.label, channel: ch, rate: rate[ch][s.key] ?? 0, k: kcount(ch, s.key), n: nByCh[ch] }); }
-      document.getElementById("probe-signal-chart").append(
-        Plot.plot({
-          height: 300, marginLeft: 48, marginTop: 14,
-          style: { background: "transparent", color: C.fg },
-          fx: { domain: PROBE_SIGNALS.map((s) => s.label), label: null },
-          x: { axis: null, domain: CHANNELS },
-          y: { domain: [0, 1], grid: true, label: "↑ detection rate", tickFormat: (d) => Math.round(d * 100) + "%" },
-          color: { domain: CHANNELS, range: [C.clones, C.views], legend: true },
-          marks: [
-            Plot.barY(chartA, { fx: "signal", x: "channel", y: "rate", fill: "channel" }),
-            Plot.ruleY([0]),
-            Plot.text(chartA, { fx: "signal", x: "channel", y: "rate", text: (d) => pct(d.rate), dy: -6, fontSize: 10, fill: "currentColor" }),
-            Plot.tip(chartA, Plot.pointer({ fx: "signal", x: "channel", y: "rate", title: (d) => `${d.signal} · ${d.channel}\n${d.k}/${d.n} = ${pct(d.rate)}` })),
-          ],
-        })
-      );
-
-      // ---- Chart B: provider × signal matrix, faceted by channel (n-aware) ----
-      const cells = [];
-      for (const ch of CHANNELS) for (const prov of provOrder) for (const s of PROBE_SIGNALS) {
-        const c = cellRate(ch, prov, s.key);
-        cells.push({ channel: ch, provider: prov, signal: s.short, rate: c.n === 0 ? null : c.rate, k: c.k, n: c.n });
-      }
-      document.getElementById("probe-matrix-chart").append(
-        Plot.plot({
-          height: 60 + provOrder.length * 34, marginLeft: 78, marginBottom: 34,
-          style: { background: "transparent", color: C.fg },
-          fx: { domain: CHANNELS, label: null },
-          x: { domain: PROBE_SIGNALS.map((s) => s.short), label: null },
-          y: { domain: provOrder, label: null },
-          color: { type: "linear", domain: [0, 1], range: ["transparent", C.clones], legend: true, label: "detection rate" },
-          marks: [
-            Plot.cell(cells, { fx: "channel", x: "signal", y: "provider", fill: "rate", inset: 0.5 }),
-            Plot.text(cells, { fx: "channel", x: "signal", y: "provider", text: (d) => d.n === 0 ? "·" : pct(d.rate), fill: (d) => (d.rate != null && d.rate > 0.45 ? "white" : "currentColor"), fontSize: 10 }),
-            Plot.tip(cells, Plot.pointer({ fx: "channel", x: "signal", y: "provider", title: (d) => `${d.provider} · ${d.channel} · ${d.signal}\n${d.n === 0 ? "not measured" : d.k + "/" + d.n + " = " + pct(d.rate)}` })),
-          ],
-        })
-      );
-
-      // ---- trend chart only when >1 week bucket exists ----
-      if (weeks.length > 1) {
-        const byWeek = [];
-        for (const wk of weeks) for (const ch of CHANNELS) for (const s of PROBE_SIGNALS) {
-          const vs = valid.filter((r) => r.channel === ch && r.ts && isoWeek(new Date(r.ts)) === wk);
-          if (!vs.length) continue;
-          byWeek.push({ week: wk, channel: ch, signal: s.short, rate: vs.filter((r) => r.detect[s.key] === true).length / vs.length });
-        }
-        document.getElementById("probe-trend-chart").className = "chart-card glass";
-        document.getElementById("probe-trend-chart").append(
-          Plot.plot({
-            height: 220, marginLeft: 48,
-            style: { background: "transparent", color: C.fg },
-            fx: { domain: CHANNELS, label: null },
-            x: { label: null }, y: { domain: [0, 1], grid: true, tickFormat: (d) => Math.round(d * 100) + "%", label: "↑ rate" },
-            color: { legend: true, domain: PROBE_SIGNALS.map((s) => s.short) },
-            marks: [Plot.lineY(byWeek, { fx: "channel", x: "week", y: "rate", stroke: "signal", curve: "monotone-x", strokeWidth: 2 })],
-          })
-        );
-      }
-
-      // ---- watchlist (computed from the SAME aggregation → cannot drift) ----
-      const wl = document.getElementById("probe-watchlist");
-      const obs = [];
-      const topProv = provOrder[0];
-      if (topProv) obs.push(`<b>${topProv}</b> は検索ありで project を ${pct(cellRate("retrieval", topProv, "project_named").rate)} 名指す (検索なしでは ${pct(cellRate("parametric", topProv, "project_named").rate)})。`);
-      const zeroProv = provOrder.filter((p) => (cellRate("retrieval", p, "project_named").rate || 0) === 0 && (cellRate("parametric", p, "project_named").rate || 0) === 0);
-      if (zeroProv.length) obs.push(`<b>${zeroProv.join(", ")}</b>: まだどちらの channel でも 0 — これからの watch 対象。`);
-      obs.push(`retrieval は DOI を ${pct(rate.retrieval.doi_or_url_cited)} 引くが、著者を prose に出すのは ${pct(rate.retrieval.author_named)} — ghost が出る構造。`);
-      obs.push(`author_named は <b>prose の中</b>のみ。引用 URL の中の handle は数えない (retrieval で ${urlOnlyRetrieval} 件の URL-only)。`);
-      const metaObs = [
-        `N は予備的 — ${dates[0] || "—"}〜${dates[dates.length - 1] || "—"} の窓で、まだ証拠ではない。`,
-        `この公開ダッシュボード自体が測定対象の retrieval channel に流れ込む (自己汚染)。`,
-      ];
-      for (const o of obs) { const li = document.createElement("li"); li.className = "obs-chip"; li.innerHTML = o; wl.append(li); }
-      for (const o of metaObs) { const li = document.createElement("li"); li.className = "obs-chip meta"; li.innerHTML = o; wl.append(li); }
-
-      // ---- footer ----
-      document.getElementById("probe-foot").textContent =
-        `probe set ${versions.join("/")} · probe_id ${probesByCh.parametric} (parametric) / ${probesByCh.retrieval} (retrieval) · providers ${provOrder.join(", ")} · ` +
-        `${dates[0] || "—"}…${dates[dates.length - 1] || "—"} · ` +
-        (weeks.length > 1 ? "weekly time view 有効。" : "週次系列が貯まり次第、time view が自動で出る (現在 1 週バケット)。");
+      $("probe-foot").textContent = `Probes: ${providers.map(pname).join(", ")}`;
     }
 
-    render();
-    renderProbes();
+    main();
+    probes();
   </script>
 </body>
 </html>

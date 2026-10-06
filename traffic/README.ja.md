@@ -2,7 +2,7 @@
 
 [@shimo4228](https://github.com/shimo4228) の公開 repo（下の一覧）に対する GitHub Traffic API の daily snapshot。
 
-**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) で 9 repo を 1 ページに可視化 (合算 timeline / repo 別 small multiples / clones:views 比 / 生データ table)。
+**Dashboard**: [shimo4228.github.io/shimo4228/traffic/dashboard/](https://shimo4228.github.io/shimo4228/traffic/dashboard/) で、`REPOS` に載せた repo を 1 ページに表示する（スマホ向け）。4 指標（unique visitors / views / unique cloners / clones）を 30 日・90 日・全期間で切り替え、日次グラフ、全期間のカレンダー、並べ替えられる repo 一覧と repo ごとのグラフ、生データ表、attribution probe を載せる。
 
 ## 何のデータか
 
@@ -21,7 +21,7 @@
 snapshot のみ（dashboard には載せない。2026-10-06 追加）: claude-harness から export した skill repo と退役台帳 —
 [search-first](https://github.com/shimo4228/search-first)、[skill-stocktake](https://github.com/shimo4228/skill-stocktake)、[codex-review](https://github.com/shimo4228/codex-review)、[readme-writer](https://github.com/shimo4228/readme-writer)、[llms-txt-writer](https://github.com/shimo4228/llms-txt-writer)、[harness-pruning](https://github.com/shimo4228/harness-pruning)。
 
-snapshot のみ（dashboard には載せない。2026-10-07 追加）: awesome list などの外部リストに出した repo。収集対象の全体は [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) の `repos` 配列が正本。
+2026-10-07 追加: awesome list などの外部リストに出した repo。うち 4 本（harness-scope、jev-skill-router、jev-research-pipeline、akc-cycle）は dashboard にも載せ、残りは snapshot のみ。収集対象の全体は [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) の `repos` 配列が正本。
 
 GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り続けることで、後追い不可能な long-term record を蓄積する。
 
