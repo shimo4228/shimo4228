@@ -41,6 +41,8 @@ Self-contained AI-facing reference for the five practice lines of shimo4228. Fiv
 - **Worked instance of the Existence Proof Format**: einstein-arena — a server-verified top score on EinsteinArena's Prime Number Theorem construction problem (local score equal to the server's to all digits, 0.9955806; +0.00068 over the prior published best 0.994901; clean g(x) ≤ 1 bound, not the 1.0001 tolerance the prior top spent), reached by an autonomous agent under the author's approval-gated harness. Author holds no mathematics or numerical-optimization credential — AI as the path, result the author's to account for. Filed as Existence Proof Format instance #1; isPartOf the hub, no extends edge (not a component skill, not a practice line)
 - **Public harness**: claude-harness (Claude Code skills, agents, and rules from `~/.claude/`, MIT license — see its README for the current inventory)
 - **Harness collection method**: mechanical collection by `origin: shimo4228` frontmatter tag from `~/.claude/`
+- **Plugin directory listings**: akc-cycle and harness-scope are listed in Anthropic's Claude plugin directory
+- **Jev tooling**: jev-skill-router (Claude Code hook — Jev picks the skill before the agent runs) and jev-research-pipeline (daily research monitoring — code owns the loop, Jev judges, Qwen writes), both built on TypeSafe Jev
 
 ## Prior Research References
 
@@ -114,6 +116,14 @@ Writing refers to the long-form counterpart to the repositories — context, fai
 ## What is claude-harness?
 
 The claude-harness repository is defined as a public artifact of shimo4228's daily-use Claude Code skills, agents, and rules. It bundles skills covering research-before-coding, knowledge extraction, skill auditing, AI-facing documentation, and human-facing writing review; agents for prompt generation and editorial review; and rules covering planning, the AKC cycle, and skill origin tracking. Components are mechanically collected from `~/.claude/` by the `origin: shimo4228` frontmatter tag, so ECC-derived components (`origin: ECC` or `ECC-customized`) and auto-extracted artifacts are excluded. The AKC cycle skills are also published as standalone `claude-skill-*` repositories for individual install. See the [claude-harness README](https://github.com/shimo4228/claude-harness#contents) for the current inventory. License: MIT.
+
+## What is harness-scope?
+
+harness-scope is defined as a Claude Code Mod (a plugin's hooks module) that turns the global skills, agents, instruction files (CLAUDE.md and rules), and tools on or off per repository with named profiles. The user keeps named profiles once under `~/.claude`; a repository picks one with a single-line JSON file, and Claude then sees only what that profile allows, while the repository's own skills, agents, and CLAUDE.md always stay. It exists because the native project-scope settings are denylists copied by hand into each repository, with no allowlist, no per-skill control over plugins, and no shared sets. It is listed in Anthropic's Claude plugin directory, as is akc-cycle. See the [harness-scope README](https://github.com/shimo4228/harness-scope) for the current install path and profile format. License: MIT.
+
+## What are the Jev tools?
+
+The Jev tools are defined as two repositories built on TypeSafe Jev, a decision model that answers typed questions (choice, score, truth) with probabilities instead of generated text. [jev-skill-router](https://github.com/shimo4228/jev-skill-router) is a Claude Code plugin: a UserPromptSubmit hook that asks Jev which installed skill fits the prompt and logs the recommendation before the agent runs; it runs in shadow mode by default and injects a suggestion only after measured accuracy, and its README records that a strong model already sees the full skill descriptions, so the router is a reference implementation and a measurement tool more than a performance gain. [jev-research-pipeline](https://github.com/shimo4228/jev-research-pipeline) is daily monitoring of standing research questions in which Python code owns the control loop, Jev screens candidate sources with typed probabilities, and Qwen writes the prose notes into an Obsidian vault. The design pattern behind both — move closed judgments to Jev, let code decide from its probabilities, keep canaries against over-filtering — is recorded as the `jev-judgment-design` skill in claude-harness. In the hub graph both repos are `EcosystemRepo` nodes attached to the hub via `isPartOf`, with no `implements` or `extends` edge.
 
 ## What are the adjacent skills?
 
