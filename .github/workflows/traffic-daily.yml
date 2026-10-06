@@ -54,9 +54,10 @@ jobs:
             const dataDir = 'traffic/data';
             const fetchedAt = new Date().toISOString();
             const todayUTC = fetchedAt.slice(0, 10);
-            // GitHub Traffic API back-fills clone/view counts for up to ~48h
-            // after the day ends. Treat any date within this window as mutable
-            // and overwrite with the latest API value; older dates are frozen.
+            // GitHub Traffic API can back-fill clone/view counts after the day
+            // ends (a 0/0 day later became real counts, 1fca5aa). Treat every
+            // date the API still returns (14 days) as mutable and overwrite it
+            // with the latest API value; older dates are frozen.
             const STALE_WINDOW_DAYS = 14;
             const staleSince = new Date(Date.now() - STALE_WINDOW_DAYS * 86400000)
               .toISOString().slice(0, 10);
