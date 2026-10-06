@@ -16,15 +16,15 @@ This repo is a **hub**, not a source of truth. Its README / `llms.txt` / `llms-f
 3. **Describe what something *is*, not what state it's *in***. Stable architectural facts (`three-layer structure`, `six-phase loop`, `local 9B stack on Apple Silicon`, `prohibition-strength hierarchy`, `Four Business AI Quadrants`) are fine. Counts, versions, enumerations of churning sets are not.
 
 4. **Ecosystem membership lives in the machine surfaces, not the README**. The human README carries the five lines and pointers; the canonical supporting-ecosystem inventory (satellite repos, datasets, writing/probe surfaces) is maintained in `llms.txt`, `llms-full.txt`, and `graph.jsonld`. Two deliberate exceptions, both owner decisions:
-   - **`claude-harness`** (2026-08-08, revised 2026-10-06). As the living instance of value-layer harness engineering it is named in the README: once as the "Then" pointer of the Start here lines and once in the Through-line paragraph, in both languages. The dedicated Through-line paragraph and the mermaid `artifact` node that the 2026-08-08 decision called for were removed on 2026-10-06 when the README was compressed to roughly half its length; the mermaid diagram itself is gone (the relationship map lives in `graph.jsonld` and the concept pages). Do not trim the two remaining mentions on design-rule grounds.
-   - **Start here lines** (2026-10-06). The README opens with three "From …" lines that route a reader by where they came from. A repo may appear there only if it is either listed in an external directory (today: Anthropic's Claude plugin directory, for `akc-cycle` and `harness-scope`) or observed as a human inflow path to the profile (today: `jev-skill-router` and `jev-research-pipeline`). One clause per repo, saying the same thing as the repo's About description; no versions, counts, or skill enumerations. Remove a line when neither condition holds any more.
+   - **`claude-harness`** (2026-08-08, revised 2026-10-06). As the living instance of value-layer harness engineering it is named in the README: as the "Then" pointer of the Start here rows and once in the Through-line paragraph, in both languages. The dedicated Through-line paragraph and the mermaid `artifact` node that the 2026-08-08 decision called for were removed on 2026-10-06 when the README was compressed to roughly half its length; the mermaid diagram itself is gone (the relationship map lives in `graph.jsonld` and the concept pages). Do not trim the two remaining mentions on design-rule grounds.
+   - **Start here rows** (2026-10-06). The README opens with a two-column Start here table ("If you came from" | "Start with") whose three rows route a reader by where they came from; the Claude plugin directory row comes first (owner decision, 2026-10-06). A repo may appear there only if it is either listed in an external directory (today: Anthropic's Claude plugin directory, for `akc-cycle` and `harness-scope`) or observed as a human inflow path to the profile (today: `jev-skill-router` and `jev-research-pipeline`). One clause per repo, saying the same thing as the repo's About description; no versions, counts, or skill enumerations. The row label names the source, so the README does not restate the listing as a status claim (design rule 3). Remove a repo from its row when neither condition holds any more.
    Other ecosystem repos still get no README row. Add/remove an ecosystem entry across the three machine surfaces when a repo is added/retired — the README needs no per-repo row. Keep the README's "Machines" pointer truthful (it directs readers to those files for the full inventory).
 
 ## When *should* this hub be touched
 
 - A **new structural concept** appears in a line (e.g. AAP added `Four Business AI Quadrants` — that earned a 1-句 mention).
 - An **ecosystem repo** is added or retired — update `llms.txt`, `llms-full.txt`, and the `graph.jsonld` `EcosystemRepo` nodes (not a README row; the README only points to them).
-- A repo becomes a **practitioner entry** (listed in an external directory, or observed as a human inflow path to the profile) — add its Start here line in both READMEs (design rule 4); remove the line when neither condition holds.
+- A repo becomes a **practitioner entry** (listed in an external directory, or observed as a human inflow path to the profile) — add its Start here row in both READMEs (design rule 4); remove the row when neither condition holds.
 - A **new research line** starts.
 - A **paper is deposited** from a line as a standalone Zenodo record — add a membership row to the Papers section (all four surfaces) and a `Paper` node in `graph.jsonld`. Concept DOI only; rows are never edited afterwards (paper records are immutable once deposited).
 - The 3 concept DOIs themselves move (rare; only if a record is restructured on Zenodo).
@@ -45,7 +45,7 @@ The `graph.jsonld` artifact follows the same triggers: a new `Concept`, `Ecosyst
 
 ## Language pair
 
-`README.md` and `README.ja.md` must stay structurally synchronized — same sections, same number of DOI mentions, same Start here lines. Quick check:
+`README.md` and `README.ja.md` must stay structurally synchronized — same sections, same number of DOI mentions, same Start here rows. Quick check:
 
 ```bash
 diff <(grep -c "doi.org/10.5281" README.md) <(grep -c "doi.org/10.5281" README.ja.md)
