@@ -4,3 +4,7 @@ probes/.env
 __pycache__/
 .pytest_cache/
 probes/logs/
+
+# html-plan pack outputs
+*.packed.html
+*.artifact.html
