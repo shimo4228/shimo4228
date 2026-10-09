@@ -152,7 +152,7 @@
         {"@value": "観想的エージェント", "@language": "ja"},
         "CA"
       ],
-      "description": "CLI agent grounded in four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) running AKC's six-phase cycle over its own logs on a local 9B stack on a single Apple Silicon Mac. Asks whether an agent's alignment can come from what it is rather than what it is told. Refers to a disposition. Shares Buddhist phenomenological vocabulary with the Attention, Not Self line, but applies it as agent behavioral preset rather than as comparative cognitive framework.",
+      "description": "CLI agent grounded in four contemplative axioms (mindfulness, emptiness, non-duality, boundless care) running AKC's six-phase cycle over its own logs on a local LLM stack (Ollama generation plus local embeddings) on a single Apple Silicon Mac. Asks whether an agent's alignment can come from what it is rather than what it is told. Refers to a disposition. Shares Buddhist phenomenological vocabulary with the Attention, Not Self line, but applies it as agent behavioral preset rather than as comparative cognitive framework.",
       "identifier": "10.5281/zenodo.19212118",
       "author": {"@id": "https://orcid.org/0009-0002-6168-4162"},
       "url": "https://github.com/shimo4228/contemplative-agent",
@@ -279,7 +279,7 @@
         {"@value": "six-phase loop", "@language": "en"},
         {"@value": "六相ループ", "@language": "ja"}
       ],
-      "description": "Bidirectional growth loop running Research, Extract, Curate, Promote, Measure, Maintain. Each phase binds to one composable skill. The cycle stays stable even as individual skills evolve."
+      "description": "Bidirectional growth loop running Research, Extract, Curate, Promote, Measure, Maintain. Each phase binds to one or more composable skills. The cycle stays stable even as individual skills evolve."
     },
     {
       "@id": "https://shimo4228.github.io/shimo4228/vocab#concept/three-layer-structure",
@@ -466,7 +466,7 @@
       "@id": "https://github.com/shimo4228/akc-cycle",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "akc-cycle",
-      "description": "AKC as a single behavioral rules file: install all six phases without the six standalone skills.",
+      "description": "Installable form of AKC: a Claude Code plugin of audit and upkeep skills for every phase, plus an optional always-loaded rules file; each part works without the other. Listed in Anthropic's Claude plugin directory.",
       "url": "https://github.com/shimo4228/akc-cycle",
       "extends": "https://doi.org/10.5281/zenodo.19200726",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
@@ -544,10 +544,78 @@
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
     },
     {
+      "@id": "https://github.com/shimo4228/agent-stocktake",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "agent-stocktake",
+      "description": "AKC Curate phase skill: audit subagent definitions with a hybrid cost model, always-loaded descriptions as residency and bodies as invocation payload.",
+      "url": "https://github.com/shimo4228/agent-stocktake",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/generation-audit",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "generation-audit",
+      "description": "AKC skill for the model-generation trigger of scaffold dissolution: re-audits self-authored rules, CLAUDE.md, output styles, skills, and agents when a new Claude model takes over a role, applies safe line fixes, and hands the remaining verdicts to the Curate phase stocktake skills.",
+      "url": "https://github.com/shimo4228/generation-audit",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/scaffold-dissolution"
+    },
+    {
+      "@id": "https://github.com/shimo4228/llm-as-judge",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "llm-as-judge",
+      "description": "AKC Measure phase skill: design LLM-as-judge evaluators with binary checks as evidence and one named holistic verdict, no score aggregation.",
+      "url": "https://github.com/shimo4228/llm-as-judge",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/repo-asset-stocktake",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "repo-asset-stocktake",
+      "description": "AKC Maintain phase skill: audit a repository's non-code assets (tool configs, CI workflows, runbooks) for diminished value, with Keep / Update / Retire / Merge verdicts.",
+      "url": "https://github.com/shimo4228/repo-asset-stocktake",
+      "extends": "https://doi.org/10.5281/zenodo.19200726",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/six-phase-loop"
+    },
+    {
+      "@id": "https://github.com/shimo4228/code-and-llm-collaboration",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "code-and-llm-collaboration",
+      "description": "AKC design-pattern skill (the how counterpart to AKC ADR-0008): four patterns for layering deterministic code and LLM calls in one pipeline, namely guard, filter, judge+enforce, and orchestrator+worker. Curated by hand from patterns running in contemplative-agent.",
+      "url": "https://github.com/shimo4228/code-and-llm-collaboration",
+      "extends": "https://doi.org/10.5281/zenodo.19200726"
+    },
+    {
+      "@id": "https://github.com/shimo4228/when-code-when-llm",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "when-code-when-llm",
+      "description": "Frozen public record, no longer synced or developed: an AKC design-pattern skill for the per-task decision between deterministic code and an LLM call (structural vs semantic property, false-positive test). The live sibling code-and-llm-collaboration applies the same axis per pipeline.",
+      "url": "https://github.com/shimo4228/when-code-when-llm",
+      "extends": "https://doi.org/10.5281/zenodo.19200726"
+    },
+    {
+      "@id": "https://github.com/shimo4228/signal-first-research",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "signal-first-research",
+      "description": "Frozen public record, no longer synced or developed: an AKC design-pattern skill (the how counterpart to AKC ADR-0010) for designing a research intake filter that admits only information likely to change the next action. The signal-first principle now runs inside the Research phase skill search-first.",
+      "url": "https://github.com/shimo4228/signal-first-research",
+      "extends": "https://doi.org/10.5281/zenodo.19200726"
+    },
+    {
+      "@id": "https://github.com/shimo4228/human-gate",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "human-gate",
+      "description": "Frozen public record: an always-loaded rule plus deterministic hook that fixed what the human approves at an agent's approval gate (machines own artifact correctness, the human owns intent), an operational instance of AKC's line of approval. Retired from the author's harness on 2026-08-02 when the platform absorbed its role; kept as an example of removing a scaffold. The gate's running instance is claude-harness's always-loaded boundary rule.",
+      "url": "https://github.com/shimo4228/human-gate",
+      "extends": "https://doi.org/10.5281/zenodo.19200726"
+    },
+    {
       "@id": "https://github.com/shimo4228/contemplative-agent-rules",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "contemplative-agent-rules",
-      "description": "Drop-in Claude Code rules implementing the four contemplative axioms.",
+      "description": "Drop-in alignment rules implementing the four contemplative axioms, adoptable by Claude Code and other agents.",
       "url": "https://github.com/shimo4228/contemplative-agent-rules",
       "extends": "https://doi.org/10.5281/zenodo.19212118",
       "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/four-contemplative-axioms",
@@ -576,9 +644,59 @@
       "@id": "https://github.com/shimo4228/contemplative-agent-data",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "contemplative-agent-data",
-      "description": "Live agent identity, knowledge, and episode logs as an auto-synced public dataset for research.",
+      "description": "Live agent identity, distilled knowledge, constitution, and daily activity reports as an auto-synced public dataset for research.",
       "url": "https://github.com/shimo4228/contemplative-agent-data",
       "extends": "https://doi.org/10.5281/zenodo.19212118"
+    },
+    {
+      "@id": "https://github.com/shimo4228/contemplative-agent-otel",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "contemplative-agent-otel",
+      "description": "Offline converter from contemplative-agent's replayable audit JSONL logs to OpenTelemetry OTLP traces with the GenAI semantic conventions. Zero runtime coupling: it reads log files only, and untrusted content bodies are dropped at parse time.",
+      "url": "https://github.com/shimo4228/contemplative-agent-otel",
+      "extends": "https://doi.org/10.5281/zenodo.19212118"
+    },
+    {
+      "@id": "https://github.com/shimo4228/akc-mcp",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "akc-mcp",
+      "description": "MCP server that re-implements contemplative-agent's cognitive layer as standalone tools: memory distillation, identity distillation, skill and rule extraction, constitutional amendment, and skill/rule audits. Tools return proposals without writing to disk, so the calling agent keeps the approval gate; data formats are compatible with contemplative-agent.",
+      "url": "https://github.com/shimo4228/akc-mcp",
+      "extends": "https://doi.org/10.5281/zenodo.19212118"
+    },
+    {
+      "@id": "https://github.com/shimo4228/chaos-tdd-fault-injection",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "chaos-tdd-fault-injection",
+      "description": "Agent Skill for chaos-TDD on LLM agent pipelines: deterministic fault injection at existing seams, where the fault-injection test is the specification and the guard ships in the same PR. Curated by hand as the generalization of the operational variant running in contemplative-agent (its ADR-0077).",
+      "url": "https://github.com/shimo4228/chaos-tdd-fault-injection",
+      "extends": "https://doi.org/10.5281/zenodo.19212118"
+    },
+    {
+      "@id": "https://github.com/shimo4228/agent-adoption-triage",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "agent-adoption-triage",
+      "description": "AAP design-pattern skill (the how counterpart to AAP ADR-0009 and ADR-0010): a five-question triage that routes AI work to the Script, Algorithmic Search, LLM Workflow, or Autonomous Agentic Loop quadrant before an agent is built. Curated by hand from the adoption navigator in the AAP repository.",
+      "url": "https://github.com/shimo4228/agent-adoption-triage",
+      "extends": "https://doi.org/10.5281/zenodo.19652013",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/four-business-ai-quadrants"
+    },
+    {
+      "@id": "https://github.com/shimo4228/agent-observability-patterns",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "agent-observability-patterns",
+      "description": "AAP design-pattern skills (the how counterpart to AAP ADR-0006 and ADR-0005): replayable audit logs, read-only instruments, and shadow-mode validation. Observation precedes intervention.",
+      "url": "https://github.com/shimo4228/agent-observability-patterns",
+      "extends": "https://doi.org/10.5281/zenodo.19652013"
+    },
+    {
+      "@id": "https://github.com/shimo4228/llm-agent-security-principles",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "llm-agent-security-principles",
+      "description": "AAP design-pattern skill (the how counterpart to AAP ADR-0001 through ADR-0004): structural security for autonomous LLM agents through Security by Absence, the Untrusted Content Boundary, and One External Adapter, walked top-down as the prohibition-strength hierarchy.",
+      "url": "https://github.com/shimo4228/llm-agent-security-principles",
+      "extends": "https://doi.org/10.5281/zenodo.19652013",
+      "implements": "https://shimo4228.github.io/shimo4228/vocab#concept/prohibition-strength-hierarchy"
     },
     {
       "@id": "https://github.com/shimo4228/doctrine-corpus",
@@ -625,10 +743,34 @@
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
     {
+      "@id": "https://github.com/shimo4228/harness-pruning",
+      "@type": ["EcosystemRepo", "CreativeWork"],
+      "name": "harness-pruning",
+      "description": "A dated record of what came out of the author's Claude Code harness: every skill, rule, agent, and hook retirement that has a decision record behind it, with the reason and evidence for each. A record, not an argument.",
+      "url": "https://github.com/shimo4228/harness-pruning",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/herdr-toolkit",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "herdr-toolkit",
+      "description": "Claude Code plugin for running Claude Code on top of the Herdr terminal agent multiplexer: spawns detached Remote Control sessions for any project directory, typically from the Claude mobile app. Independent companion to Herdr, not affiliated with upstream.",
+      "url": "https://github.com/shimo4228/herdr-toolkit",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/codex-review",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "codex-review",
+      "description": "Frozen public record, no longer synced or developed: a read-only Claude Code skill wrapping the OpenAI Codex CLI so a different model family reviews a diff, one cross-model seam for decorrelated judgment.",
+      "url": "https://github.com/shimo4228/codex-review",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
       "@id": "https://github.com/shimo4228/jev-skill-router",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "jev-skill-router",
-      "description": "Claude Code plugin: a UserPromptSubmit hook that asks TypeSafe Jev which installed skill fits the prompt and logs the recommendation before the agent runs. Shadow mode by default; injection only after measured accuracy.",
+      "description": "Reference implementation for Jev builders: a Claude Code UserPromptSubmit hook that asks TypeSafe Jev which installed skill fits the prompt and logs the recommendation (shadow mode by default; an inject mode adds a one-line hint). The author ran it for a week and removed it; the README keeps what transfers to other Jev builds.",
       "url": "https://github.com/shimo4228/jev-skill-router",
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
@@ -636,7 +778,7 @@
       "@id": "https://github.com/shimo4228/jev-research-pipeline",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "jev-research-pipeline",
-      "description": "Daily monitoring of standing research questions built on TypeSafe Jev: Python code owns the loop, Jev screens sources with typed probabilities, Qwen writes the prose into an Obsidian vault.",
+      "description": "Daily monitoring of standing research questions built on TypeSafe Jev: Python code owns the loop, Jev screens new papers and repositories with typed probabilities, and an LLM of the user's choice writes only the prose into an Obsidian vault.",
       "url": "https://github.com/shimo4228/jev-research-pipeline",
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
@@ -661,7 +803,7 @@
       "@id": "https://github.com/shimo4228/daily-research",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "daily-research",
-      "description": "Cron-driven daily research digest. Two-pass claude -p pipeline: Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP and writes Markdown reports to an Obsidian vault.",
+      "description": "Research feedback engine for the user's own research repositories: macOS launchd runs Claude Code (claude -p) each morning with a rotation-picked line's repo as its working directory; it picks one external development that matters to that repo and writes an explanatory note to an Obsidian vault.",
       "url": "https://github.com/shimo4228/daily-research",
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
@@ -677,7 +819,7 @@
       "@id": "https://github.com/shimo4228/claude-skill-writing-ecosystem",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "writing-ecosystem",
-      "description": "Orchestrator for human-facing writing & review. Holds the AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, and the role-boundary map across article-writing, editor, essay-reviewer, fact-checker. Audience-paired with llms-txt-writer.",
+      "description": "Orchestrator for human-facing writing & review. Holds the AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, and the role-boundary map across the review agents it bundles (editor, essay-reviewer, fact-checker, and others). Audience-paired with llms-txt-writer.",
       "url": "https://github.com/shimo4228/claude-skill-writing-ecosystem",
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
@@ -698,6 +840,22 @@
       "extends": "https://doi.org/10.5281/zenodo.20263316"
     },
     {
+      "@id": "https://github.com/shimo4228/citation-sync",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "citation-sync",
+      "description": "Component skill of the Authorship Strategy line, supporting the citation-graph federation tactic of Layer 4. Audits and syncs the citation layers of a research repository (in-text citations in docs, .zenodo.json references, graph.jsonld ExternalReference nodes) bottom-up, deferring single-layer work to release-doi and jsonld-knowledge-graph. A former Wikidata layer is retired (authorship-strategy ADR-0021).",
+      "url": "https://github.com/shimo4228/citation-sync",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
+      "@id": "https://github.com/shimo4228/authorship-strategy-rules",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "authorship-strategy-rules",
+      "description": "Frozen public record, no longer synced or developed: the Authorship Strategy judgment framework as a single always-loaded rules file. Superseded by the live component skill authorship-strategy-skill, which holds the whole content.",
+      "url": "https://github.com/shimo4228/authorship-strategy-rules",
+      "extends": "https://doi.org/10.5281/zenodo.20263316"
+    },
+    {
       "@id": "https://github.com/shimo4228/readme-writer",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
       "name": "readme-writer",
@@ -711,6 +869,46 @@
       "name": "paper-ecosystem",
       "description": "Academic paper write/review bundle for SSRN / arXiv / Zenodo / journal venues — an orchestrator skill plus a draft skill plus five reviewer agents (paper-reviewer, source-fidelity-checker, vocabulary-consistency-checker, clarity-reviewer, citation-formatter) bundled together. Adjacent skill (no extends edge); keeps the claude-skill- prefix because it bundles Claude Code subagents.",
       "url": "https://github.com/shimo4228/claude-skill-paper-ecosystem",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/edge-frontier",
+      "@type": ["EcosystemRepo", "CreativeWork"],
+      "name": "edge-frontier",
+      "description": "Other public repository (Japanese): a case ledger of people pushing AI use far past the usual in intensity and range (breakthrough, collapse, and everyday-cognition edges), collected for transferable techniques and updated by daily-research's edge line. A practitioner's collection, not academic research.",
+      "url": "https://github.com/shimo4228/edge-frontier",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/desire-frontier",
+      "@type": ["EcosystemRepo", "CreativeWork"],
+      "name": "desire-frontier",
+      "description": "Other public repository (Japanese): an observation line on the demand-side frontier, asking where value lives once AI has exhausted what a person wants to ask of it. Longitudinal observations, concepts, testimonies, and essays; a practitioner's record, not academic research.",
+      "url": "https://github.com/shimo4228/desire-frontier",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/pdf2anki",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "pdf2anki",
+      "description": "Other public repository: a CLI that generates Anki cards from PDF, text, and Markdown files with Claude, with Vision-based image cards, an interactive review TUI, extraction caching, and LLM critique for quality assurance.",
+      "url": "https://github.com/shimo4228/pdf2anki",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/tiny-lm-lab",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "tiny-lm-lab",
+      "description": "Other public repository (Japanese): a learning lab that hand-writes a char-level decoder-only GPT on MLX primitives, without ready-made transformer modules, and trains it on the author's own article corpus.",
+      "url": "https://github.com/shimo4228/tiny-lm-lab",
+      "isPartOf": "https://github.com/shimo4228/shimo4228"
+    },
+    {
+      "@id": "https://github.com/shimo4228/active-inference-viz",
+      "@type": ["EcosystemRepo", "SoftwareSourceCode"],
+      "name": "active-inference-viz",
+      "description": "Other public repository: an interactive Streamlit dashboard visualizing active-inference reaching (belief dynamics, free energy, arm kinematics), a pure NumPy reimplementation of Priorelli et al. (2025).",
+      "url": "https://github.com/shimo4228/active-inference-viz",
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
 
