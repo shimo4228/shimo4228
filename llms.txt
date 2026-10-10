@@ -26,34 +26,50 @@
 ## Agent Knowledge Cycle (AKC)
 
 - [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase bidirectional growth loop for sustaining agent–operator intent alignment over time, in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
-- [akc-cycle](https://github.com/shimo4228/akc-cycle): all six phases as a single behavioral rules file, without the six standalone skills. Also a Claude Code plugin; listed in Anthropic's Claude plugin directory
+- [akc-cycle](https://github.com/shimo4228/akc-cycle): installable form of AKC — a Claude Code plugin of audit and upkeep skills for every phase, plus an optional always-loaded rules file; each part works without the other. Listed in Anthropic's Claude plugin directory
 - [search-first](https://github.com/shimo4228/search-first): Research phase — search existing solutions before building
 - [learn-eval](https://github.com/shimo4228/learn-eval): Extract phase — extract reusable patterns with quality gates
 - [skill-stocktake](https://github.com/shimo4228/skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
 - [skill-health](https://github.com/shimo4228/skill-health): Curate phase — scan skill libraries for structural debt, including missing scripts, agents, and sibling-skill references
 - [rules-stocktake](https://github.com/shimo4228/rules-stocktake): Curate phase — audit always-loaded rules for residency cost, staleness, and substrate absorption
+- [agent-stocktake](https://github.com/shimo4228/agent-stocktake): Curate phase — audit subagent definitions with a hybrid cost model (always-loaded descriptions as residency, bodies as invocation payload)
+- [generation-audit](https://github.com/shimo4228/generation-audit): scaffold-dissolution trigger — re-audit self-authored rules, CLAUDE.md, output styles, skills, and agents when a new Claude model takes over a role; applies safe line fixes and hands the rest to the Curate stocktake skills
 - [rules-distill](https://github.com/shimo4228/rules-distill): Promote phase — distill cross-cutting principles into rules
 - [skill-comply](https://github.com/shimo4228/skill-comply): Measure phase — test whether agents follow their skills and rules
+- [llm-as-judge](https://github.com/shimo4228/llm-as-judge): Measure phase — design LLM judges with binary checks as evidence and one named verdict, no score aggregation
 - [context-sync](https://github.com/shimo4228/context-sync): Maintain phase — audit docs for role overlaps and stale content
+- [repo-asset-stocktake](https://github.com/shimo4228/repo-asset-stocktake): Maintain phase — audit non-code assets (tool configs, CI workflows, runbooks) for diminished value: Keep / Update / Retire / Merge
+- [code-and-llm-collaboration](https://github.com/shimo4228/code-and-llm-collaboration): design-pattern skill paired with AKC ADR-0008 — four patterns for layering deterministic code and LLM calls in one pipeline (guard, filter, judge+enforce, orchestrator+worker). Curated by hand
+- [when-code-when-llm](https://github.com/shimo4228/when-code-when-llm): **frozen public record**, no longer synced or developed — design-pattern skill for the per-task code-or-LLM decision (structural vs semantic). code-and-llm-collaboration applies the same axis per pipeline
+- [signal-first-research](https://github.com/shimo4228/signal-first-research): **frozen public record**, no longer synced or developed — design-pattern skill paired with AKC ADR-0010 for research intake filters that admit only information likely to change the next action. The principle now runs inside search-first
+- [human-gate](https://github.com/shimo4228/human-gate): **frozen public record** — always-loaded rule plus hook that fixed what the human approves at an agent's approval gate (machines own artifact correctness, the human owns intent). Retired from the author's harness on 2026-08-02 as an example of removing a scaffold; the gate's running instance is claude-harness's boundary rule
 
 ## Contemplative Agent
 
-- [contemplative-agent](https://github.com/shimo4228/contemplative-agent): CLI agent that runs AKC's six-phase cycle over its own logs, with human approval gates for promotion into skills, rules, identity, and Constitution, on a local 9B stack (qwen3.5:9b generation + nomic-embed-text embeddings) on a single Apple Silicon Mac. Concept DOI 10.5281/zenodo.19212118
-- [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules): drop-in Claude Code rules implementing the four axioms — AILuminate d=0.96, IPD d>7
+- [contemplative-agent](https://github.com/shimo4228/contemplative-agent): CLI agent that runs AKC's six-phase cycle over its own logs, with human approval gates for promotion into skills, rules, identity, and Constitution, on a local Ollama stack (Gemma 4 E4B generation by default, any locally served chat model selectable + nomic-embed-text embeddings) on a single Apple Silicon Mac. Concept DOI 10.5281/zenodo.19212118
+- [contemplative-agent-rules](https://github.com/shimo4228/contemplative-agent-rules): drop-in alignment rules implementing the four axioms, adoptable by Claude Code and other agents — AILuminate d=0.96, IPD d>7
 - [contemplative-agent-cloud](https://github.com/shimo4228/contemplative-agent-cloud): optional managed-LLM backend — routes generation to Claude/OpenAI APIs while keeping the local embedding pipeline. Opt-in, not bundled
 - [contemplative-agent-mlx](https://github.com/shimo4228/contemplative-agent-mlx): MLX-based extension for Contemplative Agent on Apple Silicon
-- [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data): live agent identity, knowledge, episode logs — auto-synced public dataset
+- [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data): live agent identity, distilled knowledge, constitution, and daily activity reports — auto-synced public dataset
+- [contemplative-agent-otel](https://github.com/shimo4228/contemplative-agent-otel): offline converter from the agent's replayable audit JSONL logs to OpenTelemetry OTLP traces (GenAI semantic conventions). Zero runtime coupling
+- [akc-mcp](https://github.com/shimo4228/akc-mcp): MCP server re-implementing contemplative-agent's cognitive layer (distillation, identity, skill and rule extraction, constitutional amendment, audits) as standalone tools that return proposals without writing to disk
+- [chaos-tdd-fault-injection](https://github.com/shimo4228/chaos-tdd-fault-injection): Agent Skill for chaos-TDD on LLM agent pipelines — deterministic fault injection at existing seams; the chaos test is the spec and the guard ships in the same PR. Curated by hand from the variant running in contemplative-agent
 
 ## Agent Attribution Practice (AAP)
 
 - [agent-attribution-practice](https://github.com/shimo4228/agent-attribution-practice): harness-neutral ADRs on accountability distribution in autonomous AI agents. The judgments — among them a prohibition-strength hierarchy (absence > scaffolding enforcement > untrusted boundary) — are paired with four Business AI Quadrants (Script / Algorithmic Search / LLM Workflow / Autonomous Agentic Loop) as the diagnostic frame for routing a piece of work to the architecture that preserves attribution. Extracted from contemplative-agent's operational practice and re-expressed harness-neutral. Concept DOI 10.5281/zenodo.19652013
+- [agent-adoption-triage](https://github.com/shimo4228/agent-adoption-triage): design-pattern skill paired with ADR-0009 / ADR-0010 — five-question triage routing AI work to one of the four quadrants before an agent is built. Curated by hand
+- [agent-observability-patterns](https://github.com/shimo4228/agent-observability-patterns): design-pattern skills paired with ADR-0006 / ADR-0005 — replayable audit logs, read-only instruments, shadow-mode validation; observation precedes intervention
+- [llm-agent-security-principles](https://github.com/shimo4228/llm-agent-security-principles): design-pattern skill paired with ADR-0001 to ADR-0004 — Security by Absence, Untrusted Content Boundary, One External Adapter, walked top-down as the prohibition-strength hierarchy
 
 ## Authorship Strategy
 
 - [authorship-strategy](https://github.com/shimo4228/authorship-strategy): normative framework, tactical catalog, and empirical baseline for being a known author under AI-mediated diffusion. Rests on a three-axis inversion (scarcity to diffusion, exclusivity to derivation, enclosure to openness) and a four-layer judgment stack (Authenticity, Attribution Diffusion, Idea vs Scaffold, Tactics). Tactical ADRs cluster into the identifier-federation triplet, a maintenance-discipline pair, an LLM-first ingest decision (artifacts deploy a prose-form navigator plus a concept-form knowledge graph as a complementary pair), a metric-rejection decision (human-attention platform signals excluded as success metrics), and a diffusion-mechanism pair (attribution diffusion split into parametric and retrieval channels; dual entry points rebalanced to asymmetric roles). Vocabulary note: "attribution" in this line means credit for source — disjoint from AAP's accountability for action. Concept DOI 10.5281/zenodo.20263316
 - [doctrine-corpus](https://github.com/shimo4228/doctrine-corpus): Layer 4 tactic 7 (LLM-first ingest) implementation — bilingual (EN + JA) judgment-eliciting Q&A corpus across the four sibling practice lines, deposited CC0. Data sibling of authorship-strategy. Corpus is the deliverable; the verification LoRA was a disposable probe (FAIL verdict on the v0.1.0 probe, corpus retained per the corpus-as-primary-artifact policy). Concept DOI 10.5281/zenodo.20337008
 - [authorship-strategy-skill](https://github.com/shimo4228/authorship-strategy-skill): component skill — operational form of the four-layer judgment checklist, loadable into LLM-based coding agents as a rule set
+- [authorship-strategy-rules](https://github.com/shimo4228/authorship-strategy-rules): **frozen public record**, no longer synced or developed — the same framework as one always-loaded rules file; superseded by authorship-strategy-skill
 - [release-doi](https://github.com/shimo4228/release-doi): component skill — release-time workflow operationalizing the identifier-federation triplet (ADRs 0001-0003) as a five-phase verify-and-deposit runbook
+- [citation-sync](https://github.com/shimo4228/citation-sync): component skill — supports the citation-graph federation tactic. Audits and syncs a research repo's citation layers (in-text docs, `.zenodo.json`, `graph.jsonld`) bottom-up, deferring single-layer work to release-doi and jsonld-knowledge-graph
 - [llms-txt-writer](https://github.com/shimo4228/llms-txt-writer): component skill — operational form of the LLM-first ingest decision (prose-form half). Writes AI-facing documents (`llms.txt` / `llms-full.txt` / FAQ / glossary) optimized for citation by ChatGPT, Perplexity, and Gemini. Answer.AI `llms.txt` standard + GEO-SFE 3-layer static analysis
 - [jsonld-knowledge-graph](https://github.com/shimo4228/jsonld-knowledge-graph): component skill — operational form of the LLM-first ingest decision (concept-form half). Designs and ships a companion JSON-LD knowledge graph (`graph.jsonld`) next to `llms.txt` for projects with stable concept-level structure
 - [readme-writer](https://github.com/shimo4228/readme-writer): component skill — human-surface counterpart to the LLM-first ingest pair. Writes the single canonical human + search + AI-Overviews README, splitting deterministic structural lint from never-scored holistic review
@@ -77,21 +93,34 @@ Position papers deposited as standalone Zenodo records, each belonging to one pr
 
 - [claude-harness](https://github.com/shimo4228/claude-harness): public artifact of shimo4228's daily-use Claude Code harness — skills, agents, and rules mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. ECC-derived components excluded. See [its README](https://github.com/shimo4228/claude-harness#contents) for the current inventory
 - [harness-scope](https://github.com/shimo4228/harness-scope): Claude Code Mod (a plugin's hooks module) that turns the global skills, agents, instruction files, and tools on or off per repo with named profiles — one global harness, each repo picks what Claude sees. Listed in Anthropic's Claude plugin directory
+- [harness-pruning](https://github.com/shimo4228/harness-pruning): dated record of what came out of the harness — every skill, rule, agent, and hook retirement backed by a decision record, with reason and evidence. A record, not an argument
+- [herdr-toolkit](https://github.com/shimo4228/herdr-toolkit): Claude Code plugin for running Claude Code on the Herdr terminal agent multiplexer — spawns detached Remote Control sessions for any project directory, typically from the Claude mobile app
+- [codex-review](https://github.com/shimo4228/codex-review): **frozen public record**, no longer synced or developed — read-only skill wrapping the OpenAI Codex CLI for a cross-model second opinion on a diff
 
 ## Jev tooling
 
 Tools built on TypeSafe Jev, the decision model that answers typed questions with probabilities instead of text. Same author; each repo carries its own license.
 
-- [jev-skill-router](https://github.com/shimo4228/jev-skill-router): Claude Code plugin — a UserPromptSubmit hook that asks Jev which installed skill fits the prompt and logs the recommendation before the agent runs. Shadow mode by default; injection only after measured accuracy
-- [jev-research-pipeline](https://github.com/shimo4228/jev-research-pipeline): daily monitoring of standing research questions — Python code owns the loop, Jev screens sources with typed probabilities, Qwen writes the prose into an Obsidian vault
+- [jev-skill-router](https://github.com/shimo4228/jev-skill-router): reference implementation for Jev builders — a Claude Code UserPromptSubmit hook that asks Jev which installed skill fits the prompt and logs the recommendation (shadow mode by default; inject mode adds a one-line hint). Run for a week in the author's setup, then removed; the README keeps what transfers
+- [jev-research-pipeline](https://github.com/shimo4228/jev-research-pipeline): daily monitoring of standing research questions — Python code owns the loop, Jev screens new papers and repositories with typed probabilities, an LLM of the user's choice writes only the prose into an Obsidian vault
 
 ## Adjacent skills
 
 Companion Claude Code skills maintained alongside the AKC cycle but not part of its six phases. Same author, same MIT license.
 
-- [claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem): orchestrator for human-facing writing & review — AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, role boundaries across article-writing / editor / essay-reviewer / fact-checker. Audience-paired with `llms-txt-writer`
-- [daily-research](https://github.com/shimo4228/daily-research): cron-driven daily research digest — two-pass `claude -p` pipeline (Opus selects themes, Sonnet researches with WebSearch / WebFetch / Mem0 MCP, writes Markdown to an Obsidian vault)
+- [claude-skill-writing-ecosystem](https://github.com/shimo4228/claude-skill-writing-ecosystem): orchestrator for human-facing writing & review — AI-slop banned list (Japanese + English), Voice rules (だ/である × 発見調), title conventions, role boundaries across the review agents it bundles (editor / essay-reviewer / fact-checker and others). Audience-paired with `llms-txt-writer`
+- [daily-research](https://github.com/shimo4228/daily-research): research feedback engine for your own research repositories — macOS launchd runs `claude -p` each morning with a rotation-picked line's repo as its working directory, and it writes an explanatory note on one external development that matters to that repo into an Obsidian vault
 - [claude-skill-paper-ecosystem](https://github.com/shimo4228/claude-skill-paper-ecosystem): academic paper write/review bundle (SSRN / arXiv / Zenodo / journals) — orchestrator skill + draft skill + five reviewer agents (paper-reviewer / source-fidelity-checker / vocabulary-consistency-checker / clarity-reviewer / citation-formatter), bundled together. Keeps the claude-skill- prefix because it bundles Claude Code subagents
+
+## Other public repositories
+
+Standalone repositories by the same author, outside the five lines and the skill families above. Attached to the hub via isPartOf.
+
+- [edge-frontier](https://github.com/shimo4228/edge-frontier): case ledger (Japanese) of people pushing AI use far past the usual — breakthrough, collapse, and everyday-cognition edges — collected for transferable techniques; updated by daily-research's edge line
+- [desire-frontier](https://github.com/shimo4228/desire-frontier): observation line (Japanese) on where value lives once AI has exhausted what a person wants to ask of it — observations, concepts, testimonies, essays
+- [pdf2anki](https://github.com/shimo4228/pdf2anki): CLI that turns PDF, text, and Markdown files into Anki cards with Claude — Vision-based image cards, review TUI, extraction cache, LLM critique
+- [tiny-lm-lab](https://github.com/shimo4228/tiny-lm-lab): learning lab (Japanese) — a char-level GPT hand-written on MLX primitives, trained on the author's own article corpus
+- [active-inference-viz](https://github.com/shimo4228/active-inference-viz): interactive Streamlit visualization of active-inference reaching, a pure NumPy reimplementation of Priorelli et al. (2025)
 
 ## Data
 
