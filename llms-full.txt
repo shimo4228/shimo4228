@@ -44,7 +44,7 @@ Self-contained AI-facing reference for the five practice lines of shimo4228. Fiv
 - **Public harness**: claude-harness (Claude Code skills, agents, and rules from `~/.claude/`, MIT license — see its README for the current inventory)
 - **Harness records and tools**: harness-pruning (dated record of retirements from the harness), herdr-toolkit (Claude Code plugin on the Herdr multiplexer), codex-review (frozen public record)
 - **Harness collection method**: mechanical collection by `origin: shimo4228` frontmatter tag from `~/.claude/`
-- **Plugin directory listings**: akc-cycle and harness-scope are listed in Anthropic's Claude plugin directory
+- **Plugin directory listings**: akc-cycle and harness-scope are listed in Anthropic's Claude plugin directory (akc-cycle: https://claude.ai/customize/plugins/id/830158ca-24eb-4b93-84a3-0069a993d99e%40anthropic-plugin-directory; harness-scope: https://claude.ai/customize/plugins/id/37e770d1-74d7-4c34-8082-f5bdbba14d6e%40anthropic-plugin-directory)
 - **Jev tooling**: jev-skill-router (reference implementation: Claude Code hook in which Jev suggests the skill before the agent runs; run for a week, then removed) and jev-research-pipeline (daily research monitoring — code owns the loop, Jev judges, an LLM writes only the prose), both built on TypeSafe Jev
 - **Other public repositories**: edge-frontier, desire-frontier, pdf2anki, tiny-lm-lab, active-inference-viz — standalone, attached to the hub via isPartOf
 

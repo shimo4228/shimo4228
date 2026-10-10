@@ -26,7 +26,7 @@
 ## Agent Knowledge Cycle (AKC)
 
 - [agent-knowledge-cycle](https://github.com/shimo4228/agent-knowledge-cycle): six-phase bidirectional growth loop for sustaining agent–operator intent alignment over time, in three stacked layers — principles (ADRs), design patterns, and composable skills. Concept DOI 10.5281/zenodo.19200726
-- [akc-cycle](https://github.com/shimo4228/akc-cycle): installable form of AKC — a Claude Code plugin of audit and upkeep skills for every phase, plus an optional always-loaded rules file; each part works without the other. Listed in Anthropic's Claude plugin directory
+- [akc-cycle](https://github.com/shimo4228/akc-cycle): installable form of AKC — a Claude Code plugin of audit and upkeep skills for every phase, plus an optional always-loaded rules file; each part works without the other. Listed in Anthropic's Claude plugin directory (https://claude.ai/customize/plugins/id/830158ca-24eb-4b93-84a3-0069a993d99e%40anthropic-plugin-directory)
 - [search-first](https://github.com/shimo4228/search-first): Research phase — search existing solutions before building
 - [learn-eval](https://github.com/shimo4228/learn-eval): Extract phase — extract reusable patterns with quality gates
 - [skill-stocktake](https://github.com/shimo4228/skill-stocktake): Curate phase — audit skills for staleness, conflicts, redundancy
@@ -92,7 +92,7 @@ Position papers deposited as standalone Zenodo records, each belonging to one pr
 ## Open source harness
 
 - [claude-harness](https://github.com/shimo4228/claude-harness): public artifact of shimo4228's daily-use Claude Code harness — skills, agents, and rules mechanically collected from `~/.claude/` by the `origin: shimo4228` tag. ECC-derived components excluded. See [its README](https://github.com/shimo4228/claude-harness/blob/main/docs/components.md) for the current inventory
-- [harness-scope](https://github.com/shimo4228/harness-scope): Claude Code Mod (a plugin's hooks module) that turns the global skills, agents, instruction files, and tools on or off per repo with named profiles — one global harness, each repo picks what Claude sees. Listed in Anthropic's Claude plugin directory
+- [harness-scope](https://github.com/shimo4228/harness-scope): Claude Code Mod (a plugin's hooks module) that turns the global skills, agents, instruction files, and tools on or off per repo with named profiles — one global harness, each repo picks what Claude sees. Listed in Anthropic's Claude plugin directory (https://claude.ai/customize/plugins/id/37e770d1-74d7-4c34-8082-f5bdbba14d6e%40anthropic-plugin-directory)
 - [harness-pruning](https://github.com/shimo4228/harness-pruning): dated record of what came out of the harness — every skill, rule, agent, and hook retirement backed by a decision record, with reason and evidence. A record, not an argument
 - [herdr-toolkit](https://github.com/shimo4228/herdr-toolkit): Claude Code plugin for running Claude Code on the Herdr terminal agent multiplexer — spawns detached Remote Control sessions for any project directory, typically from the Claude mobile app
 - [codex-review](https://github.com/shimo4228/codex-review): **frozen public record**, no longer synced or developed — read-only skill wrapping the OpenAI Codex CLI for a cross-model second opinion on a diff
