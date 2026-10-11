@@ -142,6 +142,47 @@ jobs:
               core.info(`${repo}: added ${added}, updated ${updated}`);
             }
 
+      - name: Snapshot referrers (14-day window)
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.TRAFFIC_PAT }}
+          script: |
+            // The Traffic API returns referrers only as a rolling 14-day
+            // aggregate, not per day. One line per run records that window as
+            // seen on the run date, so routes of arrival are kept after the
+            // API forgets them. Clones carry no referrer at all; this covers
+            // page views only. Same repo list as the snapshot step above.
+            const fs = require('fs');
+            const path = require('path');
+            const owner = 'shimo4228';
+            const dataDir = 'traffic/referrers';
+            fs.mkdirSync(dataDir, { recursive: true });
+            const repos = fs.readdirSync('traffic/data')
+              .filter(f => f.endsWith('.jsonl')).map(f => f.slice(0, -6)).sort();
+            const fetchedAt = new Date().toISOString();
+            const today = fetchedAt.slice(0, 10);
+            for (const repo of repos) {
+              let referrers;
+              try {
+                const r = await github.request('GET /repos/{owner}/{repo}/traffic/popular/referrers', { owner, repo });
+                referrers = (r.data || []).map(x => ({ referrer: x.referrer, count: x.count, uniques: x.uniques }));
+              } catch (e) {
+                core.warning(`Skip ${repo} (referrers): ${e.message}`);
+                continue;
+              }
+              const filePath = path.join(dataDir, `${repo}.jsonl`);
+              const lines = fs.existsSync(filePath)
+                ? fs.readFileSync(filePath, 'utf8').split('\n').filter(l => l.trim())
+                : [];
+              if (lines.some(l => { try { return JSON.parse(l).date === today; } catch { return false; } })) {
+                core.info(`${repo}: referrers already recorded for ${today}`);
+                continue;
+              }
+              lines.push(JSON.stringify({ date: today, window_days: 14, referrers, fetched_at: fetchedAt }));
+              fs.writeFileSync(filePath, lines.join('\n') + '\n');
+              core.info(`${repo}: ${referrers.length} referrers`);
+            }
+
       - name: Regenerate graph.jsonld served-page mirror
         run: |
           # graph.jsonld is the source of truth; the served-page mirror in
@@ -155,7 +196,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add traffic/data/ traffic/dashboard/index.html
+          git add traffic/data/ traffic/referrers/ traffic/dashboard/index.html
           if git diff --cached --quiet; then
             echo "No new traffic data or mirror change to commit"
           else

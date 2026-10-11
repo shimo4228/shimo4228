@@ -69,6 +69,23 @@ One JSON object per line:
 
 Repository identity is encoded in the filename, not in the line.
 
+## Referrers (added 2026-10-11)
+
+`referrers/<repo>.jsonl` holds one line per daily run with the referrers the
+Traffic API reports for that repository:
+
+```json
+{"date":"2026-10-12","window_days":14,"referrers":[{"referrer":"github.com","count":7,"uniques":3}],"fetched_at":"2026-10-12T00:30:40Z"}
+```
+
+The API returns referrers only as a **rolling 14-day aggregate**, so
+consecutive lines overlap; they are snapshots of a window, not daily counts.
+Referrers describe page views only — the API gives no origin for clones,
+which remain arrivals of unknown route. The series starts on 2026-10-11;
+human-route page views had become a meaningful share only from 2026-09, so
+there is no earlier baseline to compare with. In the authorship-strategy
+framework these are arrival proxies, reported in the proxy tier (ADR-0024).
+
 ## Cadence
 
 Daily at UTC 00:30 via [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml).

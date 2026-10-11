@@ -69,6 +69,16 @@ repo を横並びにすると、単 repo では noise にしか見えない sign
 
 Repo の identity はファイル名に encode する (line 内に repo フィールドは持たない)。
 
+## Referrer（2026-10-11 追加）
+
+`referrers/<repo>.jsonl` には、日次の実行ごとに、その repository について Traffic API が返す referrer を 1 行で記録する:
+
+```json
+{"date":"2026-10-12","window_days":14,"referrers":[{"referrer":"github.com","count":7,"uniques":3}],"fetched_at":"2026-10-12T00:30:40Z"}
+```
+
+API は referrer を **直近 14 日の合計** としてしか返さないので、連続する行は期間が重なる。日ごとの数ではなく、その時点の 14 日窓のスナップショットである。referrer は page view についてだけ得られ、clone には出どころの情報がない（clone は経路不明の到達のまま）。系列は 2026-10-11 に始まる。人の経路の view が意味のある量になったのは 2026-09 からなので、それ以前と比べる基準はない。authorship-strategy の framework では、これらは arrival proxy で、proxy の段で報告する（ADR-0024）。
+
 ## 更新頻度
 
 UTC 00:30 daily、[`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) より。
