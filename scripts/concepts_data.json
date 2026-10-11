@@ -206,16 +206,16 @@
       "doi": "10.5281/zenodo.20263316",
       "graph_id": null,
       "wikidata": null,
-      "gloss": "Maximizing LLM-mediated channels carrying the author's signature",
-      "def_en": "The defensive strategy at the second layer of the Authorship Strategy framework: maximizing the breadth of LLM-mediated channels carrying recognizable signatures of the author's ideas, anchored to a permanent timestamp. Attribution here means credit for source (who first articulated this), not accountability for action (who is responsible for this failure) — the latter is the disjoint sense used by the sibling line Agent Attribution Practice.",
-      "def_ja": "Authorship Strategy framework の第 2 層の防御戦略: 著者のアイデアの認識可能な署名を運ぶ LLM 経由チャネルの breadth を、permanent timestamp に anchor された形で最大化すること。ここで attribution は credit for source (誰が最初にこれを articulate したか) を意味し、accountability for action (この失敗について誰が責任を負うか) を意味しない — 後者は sibling ラインの Agent Attribution Practice が用いる disjoint な意味である。",
+      "gloss": "Maximizing the uses of an author's ideas that reach the dated record",
+      "def_en": "The defensive strategy at the second layer of the Authorship Strategy framework: maximizing the uses of the author's ideas that reach the dated record — the concept-DOI deposit or the timestamped repository (ADR-0024). The author's name in an answer is observed, not required; absorption with no route back is recorded as diffusion, not success. Attribution here means credit for source (who first articulated this), not accountability for action (who is responsible for this failure) — the latter is the disjoint sense used by the sibling line Agent Attribution Practice.",
+      "def_ja": "Authorship Strategy framework の第 2 層の防御戦略: 著者のアイデアの use が日付つきの記録 (concept DOI の deposit か、時刻印のある repository) に到達することを最大化する (ADR-0024)。回答内の著者名は観測し、要件にしない。記録へ戻る経路のない吸収は diffusion として記録し、success に数えない。ここで attribution は credit for source (誰が最初にこれを articulate したか) を意味し、accountability for action (この失敗について誰が責任を負うか) を意味しない — 後者は sibling ラインの Agent Attribution Practice が用いる disjoint な意味である。",
       "origin_en": "Coined by shimo4228 within the Authorship Strategy practice line.",
       "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#attribution-diffusion-layer-2",
       "related": ["two-channel-attribution-diffusion", "three-axis-inversion", "retrieval-suppressed-naming-probe", "attribution-gap"],
       "faq": [
         {
           "q_en": "What is Attribution Diffusion?",
-          "a_en": "The strategy of maximizing the breadth of LLM-mediated channels carrying recognizable signatures of an author's ideas, anchored to a permanent timestamp — Layer 2 of the Authorship Strategy framework."
+          "a_en": "The strategy of maximizing the uses of an author's ideas that reach the dated record (the concept-DOI deposit or the timestamped repository), with the author's name observed rather than required — Layer 2 of the Authorship Strategy framework."
         },
         {
           "q_en": "Who coined Attribution Diffusion?",
@@ -302,15 +302,15 @@
       "graph_id": "https://shimo4228.github.io/shimo4228/vocab#as/concept/retrieval-suppressed-naming-probe",
       "wikidata": null,
       "gloss": "Black-box probe of parametric author attribution",
-      "def_en": "The measurement instrument for the parametric channel: a fixed, single-variable prompt sent to a model with all search and grounding tools suppressed, asking what a concept is and who coined or maintains it. Success is the model producing the concept and its author's name from trained weights alone — the behavioral, black-box counterpart to white-box training-data-attribution methods. Defined and operated by ADR-0011 together with a search-enabled citation probe and a negative-control probe that quantifies the confabulation noise floor. The framework's body prose refers to this instrument informally as the regurgitation test.",
-      "def_ja": "parametric channel の測定器: search / grounding tool をすべて抑制した状態でモデルに送る固定・単一変数の prompt。概念とは何か、誰が coined / maintain しているかを問う。成功は、モデルが訓練済み weights のみから概念とその著者名を産出すること — white-box な training-data-attribution 手法に対する、行動的・black-box な対応物である。ADR-0011 が、検索有効の citation probe および negative-control probe (confabulation noise floor を定量化する) とともに定義・運用する。Framework の本文ではこの測定器を informal に regurgitation test と呼ぶ。",
+      "def_en": "The measurement instrument for the parametric channel: a fixed, single-variable prompt sent to a model with all search and grounding tools suppressed, asking what a concept is and who coined or maintains it. Success was defined as the model producing the concept and its author's name from trained weights alone; since ADR-0024 the output is read as observation, a recalled name, project name or DOI being a pointer back to the record. The probe is the behavioral, black-box counterpart to white-box training-data-attribution methods. Defined and operated by ADR-0011 together with a search-enabled citation probe and a negative-control probe that quantifies the confabulation noise floor. The framework's body prose refers to this instrument informally as the regurgitation test.",
+      "def_ja": "parametric channel の測定器: search / grounding tool をすべて抑制した状態でモデルに送る固定・単一変数の prompt。概念とは何か、誰が coined / maintain しているかを問う。成功は、モデルが訓練済み weights のみから概念とその著者名を産出することと定義されていた。ADR-0024 以降、その出力は観測として読み、想起された名前・project 名・DOI を記録へ戻る手がかりとみなす。これは white-box な training-data-attribution 手法に対する、行動的・black-box な対応物である。ADR-0011 が、検索有効の citation probe および negative-control probe (confabulation noise floor を定量化する) とともに定義・運用する。Framework の本文ではこの測定器を informal に regurgitation test と呼ぶ。",
       "origin_en": "Coined by shimo4228 within the Authorship Strategy practice line (ADR-0011).",
       "glossary_url": "https://github.com/shimo4228/authorship-strategy/blob/main/docs/glossary.md#retrieval-suppressed-naming-probe",
       "related": ["two-channel-attribution-diffusion", "attribution-diffusion"],
       "faq": [
         {
           "q_en": "What is the retrieval-suppressed naming probe?",
-          "a_en": "A fixed prompt sent to a model with all search and grounding tools suppressed, asking what a concept is and who coined or maintains it; success is the model naming the concept and its author from trained weights alone."
+          "a_en": "A fixed prompt sent to a model with all search and grounding tools suppressed, asking what a concept is and who coined or maintains it; the output is read as observation since ADR-0024 — a recalled name, project name or DOI is a pointer back to the dated record."
         },
         {
           "q_en": "Who coined the retrieval-suppressed naming probe?",
