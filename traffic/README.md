@@ -33,7 +33,7 @@ Openness is one axis of the AI-era authenticity stance behind these projects (sc
 
 Placing the repos side-by-side surfaces signals that look like noise on any single repo, but resolve into cross-repo structural patterns:
 
-- **Bot/crawler dominance**: clones:views ratios exceed 30:1 across the research repos. The profile repo ([shimo4228](https://github.com/shimo4228/shimo4228)) has 80 clones against 0 views — nobody is *reading* it, but something is *cloning* it.
+- **Bot/crawler dominance**: in the first two weeks of snapshots (to 2026-05-05), clones:views ratios exceeded 30:1 across the research repos, and the profile repo ([shimo4228](https://github.com/shimo4228/shimo4228)) had 80 clones against 0 views — nobody was *reading* it, but something was *cloning* it. The ratio has fallen since as human views grew; the dashboard's Clones / view column shows the current value per repo.
 - **Cross-repo crawler waves**: clones spike simultaneously across multiple repos on the same dates. Article publication days appear to trigger walk-throughs of the entire portfolio (not single-repo events).
 - **Visibility scarcity (admin-only)**: GitHub's Traffic clone counts are returned only to users with push access. Other repositories' clone behavior is invisible in both the UI and the public API. Longitudinal public datasets of personal-repo clone behavior are therefore essentially absent in the wild. Unlike stars / forks / watchers, clones cannot be counted from the outside.
 - **Temporal scarcity**: even for one's own repo, the API returns only the last 14 days. The moment snapshotting stops, the past becomes unrecoverable.
@@ -42,9 +42,9 @@ Read this as a field record of AI-mediated discovery, not as marketing numbers. 
 
 ## How NOT to read this
 
-Short-term variation (one to two weeks) carries little human signal. Prior analysis found:
+Short-term variation (one to two weeks) carries little human signal. The first analysis (snapshots to 2026-05-05) found:
 
-- clone:view ratios of 30:1 to 215:1 — most access is non-human
+- clone:view ratios of 30:1 to 215:1 — most access was non-human then; the ratio has fallen since, so read the current value on the dashboard
 - article publication days create cross-repo crawler waves, not single-repo events
 - README keyword edits do not move the numbers at observable scale
 

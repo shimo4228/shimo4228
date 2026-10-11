@@ -33,7 +33,7 @@ GitHub Traffic API は直近 14 日しか返さない。daily snapshot を取り
 
 repo を横並びにすると、単 repo では noise にしか見えない signal が cross-repo の structural pattern として浮かび上がる:
 
-- **Bot/crawler が支配的**: clones:views 比率が研究 repo すべてで 30:1 以上。プロフィール repo ([shimo4228](https://github.com/shimo4228/shimo4228)) は 80 clones に対し 0 views — 誰も *読んで* いないが、何かが *cloning* している。
+- **Bot/crawler が支配的**: snapshot 開始から 2 週間（2026-05-05 まで）は、clones:views 比率が研究 repo すべてで 30:1 以上だった。プロフィール repo ([shimo4228](https://github.com/shimo4228/shimo4228)) は 80 clones に対し 0 views — 誰も *読んで* いないが、何かが *cloning* していた。その後は人の閲覧が増えて比率は下がっている。現在の値は dashboard の Clones / view 列で見られる。
 - **Cross-repo crawler wave**: 同一日に複数 repo の clone が同時にピークを立てる。記事公開日に portfolio 全体を順に走査する pattern が観測できる (単 repo の event ではない)。
 - **可視性の希少性 (admin-only)**: GitHub Traffic API の clone 数は push 権限を持つユーザにしか返らない。他人の repo の clone 行動は UI でも公開 API でも一切見えない。それゆえ個人 repo の clone 行動の longitudinal な公開データセットは事実上 wild にほぼ存在しない。stars / forks / watchers と違い、clone は外から数えられない数字。
 - **時間の希少性**: 自分の repo の数字でさえ、API は直近 14 日しか返さない。蓄積を止めた瞬間に過去は後追い不能になる。
@@ -44,7 +44,7 @@ repo を横並びにすると、単 repo では noise にしか見えない sign
 
 短期 (1-2 週) の変動には人間 signal がほとんど含まれない。既存の分析で観察された pattern:
 
-- clone:view 比率 30:1 〜 215:1 — access の大半は非人間
+- clone:view 比率 30:1 〜 215:1（snapshot 開始〜2026-05-05 の観測）— 当時は access の大半が非人間。その後は比率が下がっているので、現在の値は dashboard で見る
 - 記事公開日に cross-repo crawler wave が発生する (単 repo イベントではない)
 - README のキーワード編集は数値を動かさない (observable scale で)
 
