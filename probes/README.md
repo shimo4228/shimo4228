@@ -87,6 +87,14 @@ the probe×provider×repeat loop is bounded.
 
 ## Scheduling
 
+**Status (2026-10-12): retired.** The parametric channel ended with the
+event run of 2026-10-12 (`claude-sonnet-5-5`, config v11), the last run
+of the pre-registered autumn contrast; its reading was "no transition
+observed" (authorship-strategy `docs/empirical/parametric-contrast-2026-10.md`).
+The monthly currency check stops with it. Nothing is scheduled any more;
+all data stay in `data/` and the runner can still re-score them. The
+paragraphs below describe the instrument while it ran.
+
 **Status (2026-10-01).** Only the parametric channel and the monthly
 currency check still run. Two series ended that day by author decision,
 and both stay in `data/` unchanged:

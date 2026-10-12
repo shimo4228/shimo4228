@@ -77,6 +77,13 @@ litellm の price map で算出した実コストが入る (web search tool fee 
 
 ## Scheduling
 
+**現状 (2026-10-12): 退役。** parametric channel は 2026-10-12 の event run
+（`claude-sonnet-5-5`、config v11）で終わった。事前登録した秋の contrast の最後の run で、
+読みは「no transition observed」（authorship-strategy の
+`docs/empirical/parametric-contrast-2026-10.md`）。月次の currency check も一緒に止める。
+定期実行はもう何もない。データはすべて `data/` に残し、runner で再採点できる。以下は
+計器が動いていたあいだの記述。
+
 **現状 (2026-10-01)。** 今も動いているのは parametric channel と月次の
 currency check だけ。同日、著者の判断で 2 つの系列を終えた。どちらのデータも
 `data/` にそのまま残している:
