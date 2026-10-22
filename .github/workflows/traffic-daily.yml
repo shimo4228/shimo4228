@@ -183,6 +183,14 @@ jobs:
               core.info(`${repo}: ${referrers.length} referrers`);
             }
 
+      - name: Snapshot stars and followers
+        # GitHub keeps only the current star count; a daily line in
+        # traffic/stars.jsonl makes the weekly change readable. Public data,
+        # so the workflow's own token is enough. Stdlib-only.
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/stars_snapshot.py
+
       - name: Regenerate graph.jsonld served-page mirror
         run: |
           # graph.jsonld is the source of truth; the served-page mirror in
@@ -196,7 +204,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add traffic/data/ traffic/referrers/ traffic/dashboard/index.html
+          git add traffic/data/ traffic/referrers/ traffic/stars.jsonl traffic/dashboard/index.html
           if git diff --cached --quiet; then
             echo "No new traffic data or mirror change to commit"
           else

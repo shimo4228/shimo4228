@@ -79,6 +79,22 @@ Repo の identity はファイル名に encode する (line 内に repo フィ�
 
 API は referrer を **直近 14 日の合計** としてしか返さないので、連続する行は期間が重なる。日ごとの数ではなく、その時点の 14 日窓のスナップショットである。referrer は page view についてだけ得られ、clone には出どころの情報がない（clone は経路不明の到達のまま）。系列は 2026-10-11 に始まる。人の経路の view が意味のある量になったのは 2026-09 からなので、それ以前と比べる基準はない。authorship-strategy の framework では、これらは arrival proxy で、proxy の段で報告する（ADR-0024）。
 
+## スターとフォロワー（2026-10-22 追加）
+
+`stars.jsonl` は UTC の 1 日 1 行で、アカウントが持つ公開リポジトリ（fork を除く）のスター数・fork 数と
+フォロワー数を記録します（`scripts/stars_snapshot.py`）。GitHub は現在のスター数しか持たないため、
+週の増減はこの毎日の記録から読みます。
+
+## 週のまとめ（2026-10-22 追加）
+
+[`weekly/`](weekly/) に毎週月曜、前の週（月〜日、UTC）の 1 枚が足されます
+（[`.github/workflows/weekly-summary.yml`](../.github/workflows/weekly-summary.yml) と `scripts/weekly_summary.py`）。
+個人サイト <https://shimo4228.github.io/> の訪問（Cloudflare Web Analytics。secret `CF_API_TOKEN` /
+`CF_ACCOUNT_ID` / `CF_SITE_TAG` があるとき）、リポジトリごとの GitHub 閲覧、スターとフォロワー、
+14 日間の流入元、zenn-content `scripts/metrics/snapshots.jsonl` にある手集めの Zenn・Dev.to の値を並べます。
+数字と日付だけを並べ、結論は書きません。読み方は上の「どう読まないか」に従います。取れなかった値は 0 とせず、
+取れなかったと書きます。
+
 ## 更新頻度
 
 UTC 00:30 daily、[`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml) より。

@@ -1,0 +1,78 @@
+name: weekly-summary
+
+# Every Monday, after traffic-daily (00:30 UTC) has stored Sunday's numbers,
+# writes traffic/weekly/<last Sunday>.md: one page with the personal site's
+# visits (Cloudflare Web Analytics, when the CF_* secrets are set), GitHub
+# views, stars and followers, referrers, and the hand-collected Zenn / Dev.to
+# numbers from zenn-content. Reads only; scripts/weekly_summary.py.
+
+on:
+  schedule:
+    - cron: "15 2 * * 1" # Monday 11:15 JST
+  workflow_dispatch:
+    inputs:
+      end:
+        description: "Last day of the week (YYYY-MM-DD, a Sunday). Empty = last Sunday."
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: traffic-write
+  cancel-in-progress: false
+
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      HAS_CF: ${{ secrets.CF_API_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Pick the week
+        id: week
+        run: |
+          end="${{ github.event.inputs.end }}"
+          if [ -z "$end" ]; then
+            # last Sunday strictly before today (UTC)
+            dow=$(date -u +%u)
+            end=$(date -u -d "-${dow} days" +%F)
+          fi
+          echo "end=$end" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch zenn-content metrics (public)
+        continue-on-error: true
+        run: curl -fsSL -o "$RUNNER_TEMP/snapshots.jsonl" https://raw.githubusercontent.com/shimo4228/zenn-content/main/scripts/metrics/snapshots.jsonl
+
+      - name: Fetch personal-site analytics (Cloudflare)
+        if: env.HAS_CF == 'true'
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_SITE_TAG: ${{ secrets.CF_SITE_TAG }}
+        run: python3 scripts/cf_web_analytics.py --end "${{ steps.week.outputs.end }}" --out "$RUNNER_TEMP/site.json"
+
+      - name: Write the weekly page
+        run: |
+          args=(--end "${{ steps.week.outputs.end }}")
+          [ -f "$RUNNER_TEMP/snapshots.jsonl" ] && args+=(--zenn "$RUNNER_TEMP/snapshots.jsonl")
+          [ -f "$RUNNER_TEMP/site.json" ] && args+=(--site "$RUNNER_TEMP/site.json")
+          python3 scripts/weekly_summary.py "${args[@]}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add traffic/weekly/
+          if git diff --cached --quiet; then
+            echo "Nothing new"
+            exit 0
+          fi
+          git commit -m "chore(traffic): weekly summary ${{ steps.week.outputs.end }}"
+          for i in 1 2 3; do
+            git pull --rebase && git push && exit 0
+            sleep $((i * 5))
+          done
+          exit 1

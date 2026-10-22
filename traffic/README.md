@@ -86,6 +86,30 @@ human-route page views had become a meaningful share only from 2026-09, so
 there is no earlier baseline to compare with. In the authorship-strategy
 framework these are arrival proxies, reported in the proxy tier (ADR-0024).
 
+## Stars and followers (added 2026-10-22)
+
+`stars.jsonl` holds one line per UTC day: the star and fork counts of every
+public repository the account owns (forks left out) and the follower count,
+from `scripts/stars_snapshot.py`. GitHub keeps only the current star count, so
+this daily line is what makes a weekly change readable.
+
+```json
+{"date":"2026-10-22","followers":63,"repos":{"contemplative-agent":{"stars":12,"forks":1}},"fetched_at":"2026-10-22T00:31:05+00:00"}
+```
+
+## Weekly summary (added 2026-10-22)
+
+[`weekly/`](weekly/) gets one page every Monday for the week before (Monday to
+Sunday, UTC), written by [`.github/workflows/weekly-summary.yml`](../.github/workflows/weekly-summary.yml)
+with `scripts/weekly_summary.py`. It puts side by side: visits to the personal
+site <https://shimo4228.github.io/> (Cloudflare Web Analytics, when the
+`CF_API_TOKEN` / `CF_ACCOUNT_ID` / `CF_SITE_TAG` secrets are set), GitHub views
+per repository, stars and followers, the 14-day referrers, and the
+hand-collected Zenn / Dev.to numbers from zenn-content
+`scripts/metrics/snapshots.jsonl`. It states numbers and dates only and draws
+no conclusions; read it with "How NOT to read this" above. A source that is
+missing is named as missing, never shown as zero.
+
 ## Cadence
 
 Daily at UTC 00:30 via [`.github/workflows/traffic-daily.yml`](../.github/workflows/traffic-daily.yml).
