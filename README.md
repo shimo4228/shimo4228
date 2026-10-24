@@ -35,6 +35,6 @@ The three agent-design lines share one claim, [value-layer harness engineering](
 ## Elsewhere
 
 - Writing: [Zenn](https://zenn.dev/shimo4228) · [Dev.to](https://dev.to/shimo4228) · [note](https://note.com/shimo4228) · [Substack](https://substack.com/@shimo4228); sources in [zenn-content](https://github.com/shimo4228/zenn-content)
-- Data: GitHub traffic for the public repositories the hub tracks, as a [dashboard](https://shimo4228.github.io/shimo4228/traffic/dashboard/) and [raw data](traffic/), CC0; source archived at [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228)
+- Archive: source archived at [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228)
 - Machines: [`graph.jsonld`](graph.jsonld), then [`llms.txt`](llms.txt), then [`llms-full.txt`](llms-full.txt); the full ecosystem inventory lives there, and the [concept index](https://shimo4228.github.io/shimo4228/concepts/) defines each coined term. [DeepWiki](https://deepwiki.com/shimo4228/shimo4228) answers questions about this repo in chat
 - Identity: [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228) · [`CITATION.cff`](CITATION.cff). The hub is CC0; cite each line by its concept DOI
