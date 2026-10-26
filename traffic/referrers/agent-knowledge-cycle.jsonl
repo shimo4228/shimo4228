@@ -13,3 +13,4 @@
 {"date":"2026-10-23","window_days":14,"referrers":[{"referrer":"github.com","count":3,"uniques":3},{"referrer":"Bing","count":1,"uniques":1}],"fetched_at":"2026-10-23T05:05:20.214Z"}
 {"date":"2026-10-24","window_days":14,"referrers":[{"referrer":"github.com","count":3,"uniques":3},{"referrer":"Bing","count":1,"uniques":1}],"fetched_at":"2026-10-24T04:49:46.270Z"}
 {"date":"2026-10-25","window_days":14,"referrers":[{"referrer":"github.com","count":3,"uniques":3},{"referrer":"Bing","count":1,"uniques":1}],"fetched_at":"2026-10-25T04:59:17.174Z"}
+{"date":"2026-10-26","window_days":14,"referrers":[{"referrer":"aocr.org","count":26,"uniques":26},{"referrer":"github.com","count":3,"uniques":3},{"referrer":"Bing","count":1,"uniques":1}],"fetched_at":"2026-10-26T05:03:15.602Z"}
