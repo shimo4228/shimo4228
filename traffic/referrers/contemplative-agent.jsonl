@@ -15,3 +15,4 @@
 {"date":"2026-10-25","window_days":14,"referrers":[{"referrer":"github.com","count":4,"uniques":2},{"referrer":"Google","count":1,"uniques":1}],"fetched_at":"2026-10-25T04:59:17.174Z"}
 {"date":"2026-10-26","window_days":14,"referrers":[{"referrer":"aocr.org","count":46,"uniques":46},{"referrer":"github.com","count":7,"uniques":4},{"referrer":"Google","count":1,"uniques":1}],"fetched_at":"2026-10-26T05:03:15.602Z"}
 {"date":"2026-10-27","window_days":14,"referrers":[{"referrer":"aocr.org","count":46,"uniques":46},{"referrer":"github.com","count":7,"uniques":4},{"referrer":"Google","count":1,"uniques":1}],"fetched_at":"2026-10-27T05:18:47.855Z"}
+{"date":"2026-10-28","window_days":14,"referrers":[{"referrer":"aocr.org","count":47,"uniques":47},{"referrer":"github.com","count":7,"uniques":4},{"referrer":"Google","count":1,"uniques":1}],"fetched_at":"2026-10-28T05:58:11.213Z"}
