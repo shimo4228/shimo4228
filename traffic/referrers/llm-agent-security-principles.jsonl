@@ -17,3 +17,4 @@
 {"date":"2026-10-27","window_days":14,"referrers":[],"fetched_at":"2026-10-27T05:18:47.855Z"}
 {"date":"2026-10-28","window_days":14,"referrers":[],"fetched_at":"2026-10-28T05:58:11.213Z"}
 {"date":"2026-10-29","window_days":14,"referrers":[],"fetched_at":"2026-10-29T06:04:36.377Z"}
+{"date":"2026-10-30","window_days":14,"referrers":[{"referrer":"aocr.org","count":2,"uniques":2}],"fetched_at":"2026-10-30T06:05:18.763Z"}
