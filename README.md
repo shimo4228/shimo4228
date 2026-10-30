@@ -6,7 +6,7 @@ Language: English | [日本語](README.ja.md)
 
 > Hub for five practice lines (long-running, independently citable projects) on AI agents, authorship, and attention, and the entry point to the tools I ship for Claude Code and for TypeSafe Jev, a decision model that answers typed questions with probabilities instead of text.
 
-I'm Tatsuya Shimomoto (shimo4228). I build AI agents solo, with no lab and no affiliation; one of them runs on a local LLM on an M1 Mac, and one of the five lines is what I noticed about the mind in meditation, written down. If you build agent harnesses, think about accountability for autonomous agents, or care about authorship in the AI age, something here is for you. This repo is a map, not the source of truth: the lines and the tools live in their own repositories, and the hub keeps the stable relationships and citation pointers in one place.
+I'm Tatsuya Shimomoto (shimo4228). I build AI agents solo; one of them runs on a local LLM on an M1 Mac, and one of the five lines is what I noticed about the mind in meditation, written down. If you build agent harnesses, think about accountability for autonomous agents, or care about authorship in the AI age, something here is for you. This repo is a map, not the source of truth: the lines and the tools live in their own repositories, and the hub keeps the stable relationships and citation pointers in one place.
 
 ## Start here
 
