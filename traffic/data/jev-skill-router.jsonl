@@ -40,3 +40,5 @@
 {"date":"2026-10-31","clones":{"count":6,"uniques":5},"views":{"count":6,"uniques":4},"fetched_at":"2026-11-02T06:29:46.062Z"}
 {"date":"2026-11-01","clones":{"count":6,"uniques":4},"views":{"count":11,"uniques":7},"fetched_at":"2026-11-03T07:01:16.312Z"}
 {"date":"2026-11-02","clones":{"count":10,"uniques":7},"views":{"count":7,"uniques":7},"fetched_at":"2026-11-03T07:01:16.312Z"}
+{"date":"2026-11-03","clones":{"count":8,"uniques":7},"views":{"count":3,"uniques":3},"fetched_at":"2026-11-05T07:04:52.011Z"}
+{"date":"2026-11-04","clones":{"count":6,"uniques":6},"views":{"count":2,"uniques":2},"fetched_at":"2026-11-05T07:04:52.011Z"}
