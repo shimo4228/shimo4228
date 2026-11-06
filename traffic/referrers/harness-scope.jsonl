@@ -24,3 +24,4 @@
 {"date":"2026-11-03","window_days":14,"referrers":[{"referrer":"Google","count":6,"uniques":3},{"referrer":"github.com","count":3,"uniques":3},{"referrer":"mods.aidojo.si","count":3,"uniques":3}],"fetched_at":"2026-11-03T07:01:25.027Z"}
 {"date":"2026-11-04","window_days":14,"referrers":[{"referrer":"Google","count":6,"uniques":3},{"referrer":"mods.aidojo.si","count":4,"uniques":4},{"referrer":"github.com","count":2,"uniques":2}],"fetched_at":"2026-11-04T06:45:00.443Z"}
 {"date":"2026-11-05","window_days":14,"referrers":[{"referrer":"Google","count":6,"uniques":3},{"referrer":"mods.aidojo.si","count":5,"uniques":5},{"referrer":"github.com","count":2,"uniques":2}],"fetched_at":"2026-11-05T07:05:01.051Z"}
+{"date":"2026-11-06","window_days":14,"referrers":[{"referrer":"Google","count":6,"uniques":3},{"referrer":"mods.aidojo.si","count":5,"uniques":5},{"referrer":"github.com","count":2,"uniques":2}],"fetched_at":"2026-11-06T07:04:08.858Z"}
