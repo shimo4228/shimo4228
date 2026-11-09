@@ -198,3 +198,5 @@
 {"date":"2026-11-04","clones":{"count":125,"uniques":23},"views":{"count":7,"uniques":4},"fetched_at":"2026-11-06T07:04:00.199Z"}
 {"date":"2026-11-05","clones":{"count":8,"uniques":4},"views":{"count":17,"uniques":9},"fetched_at":"2026-11-07T06:16:59.837Z"}
 {"date":"2026-11-06","clones":{"count":27,"uniques":7},"views":{"count":4,"uniques":4},"fetched_at":"2026-11-08T06:22:41.946Z"}
+{"date":"2026-11-07","clones":{"count":114,"uniques":32},"views":{"count":2,"uniques":2},"fetched_at":"2026-11-09T06:55:42.974Z"}
+{"date":"2026-11-08","clones":{"count":287,"uniques":62},"views":{"count":1,"uniques":1},"fetched_at":"2026-11-09T06:55:42.974Z"}
