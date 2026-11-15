@@ -34,7 +34,7 @@ Language: [English](README.md) | 日本語
 
 ## ほかの場所
 
-- 執筆: [Dev.to](https://dev.to/shimo4228) · [note](https://note.com/shimo4228) · [Substack](https://substack.com/@shimo4228)。原稿は [執筆の repository](https://github.com/shimo4228/zenn-content)
+- 執筆: [Dev.to](https://dev.to/shimo4228) · [note](https://note.com/shimo4228) · [Substack](https://substack.com/@shimo4228)。原稿は [執筆の repository](https://github.com/shimo4228/writing)
 - アーカイブ: ソース一式は [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/shimo4228/shimo4228) にアーカイブ
 - 機械向け: [`graph.jsonld`](graph.jsonld) → [`llms.txt`](llms.txt) → [`llms-full.txt`](llms-full.txt) の順に。関連リポジトリやデータセットの全体目録はそこにあり、造語の定義は [concept index](https://shimo4228.github.io/shimo4228/concepts/) にあります。対話形式で聞くなら [DeepWiki](https://deepwiki.com/shimo4228/shimo4228)
 - 識別子: [ORCID 0009-0002-6168-4162](https://orcid.org/0009-0002-6168-4162) · [Hugging Face @Shimo4228](https://huggingface.co/Shimo4228) · [`CITATION.cff`](CITATION.cff)。この hub は CC0 です。各プロジェクトはその concept DOI で引用してください

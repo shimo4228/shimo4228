@@ -14,7 +14,7 @@ Append-only JSONL time series under `data/`, one file per repository:
 - [authorship-strategy](https://github.com/shimo4228/authorship-strategy)
 - [attention-not-self](https://github.com/shimo4228/attention-not-self)
 - [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data)
-- [zenn-content](https://github.com/shimo4228/zenn-content)
+- [writing](https://github.com/shimo4228/writing)
 - [claude-harness](https://github.com/shimo4228/claude-harness) (public Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (this profile repo)
 
@@ -105,7 +105,7 @@ with `scripts/weekly_summary.py`. It puts side by side: visits to the personal
 site <https://shimo4228.github.io/> (Cloudflare Web Analytics, when the
 `CF_API_TOKEN` / `CF_ACCOUNT_ID` / `CF_SITE_TAG` secrets are set), GitHub views
 per repository, stars and followers, the 14-day referrers, and the
-hand-collected Zenn / Dev.to numbers from zenn-content
+hand-collected Zenn / Dev.to numbers from the writing repository's
 `scripts/metrics/snapshots.jsonl`. It states numbers and dates only and draws
 no conclusions; read it with "How NOT to read this" above. A source that is
 missing is named as missing, never shown as zero.

@@ -31,7 +31,7 @@ jobs:
               'authorship-strategy',
               'attention-not-self',
               'contemplative-agent-data',
-              'zenn-content',
+              'writing',
               'claude-harness',
               'shimo4228',
               'search-first',

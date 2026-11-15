@@ -14,7 +14,7 @@
 - [authorship-strategy](https://github.com/shimo4228/authorship-strategy)
 - [attention-not-self](https://github.com/shimo4228/attention-not-self)
 - [contemplative-agent-data](https://github.com/shimo4228/contemplative-agent-data)
-- [zenn-content](https://github.com/shimo4228/zenn-content)
+- [writing](https://github.com/shimo4228/writing)
 - [claude-harness](https://github.com/shimo4228/claude-harness) (公開 Claude Code harness — skills / agents / rules)
 - [shimo4228](https://github.com/shimo4228/shimo4228) (この profile repo)
 
@@ -91,7 +91,7 @@ API は referrer を **直近 14 日の合計** としてしか返さないの�
 （[`.github/workflows/weekly-summary.yml`](../.github/workflows/weekly-summary.yml) と `scripts/weekly_summary.py`）。
 個人サイト <https://shimo4228.github.io/> の訪問（Cloudflare Web Analytics。secret `CF_API_TOKEN` /
 `CF_ACCOUNT_ID` / `CF_SITE_TAG` があるとき）、リポジトリごとの GitHub 閲覧、スターとフォロワー、
-14 日間の流入元、zenn-content `scripts/metrics/snapshots.jsonl` にある手集めの Zenn・Dev.to の値を並べます。
+14 日間の流入元、writing repo の `scripts/metrics/snapshots.jsonl` にある手集めの Zenn・Dev.to の値を並べます。
 数字と日付だけを並べ、結論は書きません。読み方は上の「どう読まないか」に従います。取れなかった値は 0 とせず、
 取れなかったと書きます。
 

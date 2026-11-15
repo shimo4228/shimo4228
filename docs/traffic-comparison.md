@@ -7,7 +7,7 @@
 ## 固定 cohort
 
 - `legacy`: contemplative-agent, agent-knowledge-cycle, agent-attribution-practice,
-  authorship-strategy, attention-not-self, contemplative-agent-data, zenn-content,
+  authorship-strategy, attention-not-self, contemplative-agent-data, writing（2026-11-15 までの名前は zenn-content）,
   claude-harness, shimo4228（従来の 9 repo）。基準行との比較はこの系列。
 - `additional`: search-first, skill-stocktake, codex-review, readme-writer,
   llms-txt-writer, harness-pruning（追加の 6 repo）。独立系列として読む。

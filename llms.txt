@@ -129,9 +129,8 @@ Standalone repositories by the same author, outside the five lines and the skill
 
 ## Writing
 
-- [zenn-content](https://github.com/shimo4228/zenn-content): source of truth for the articles — Markdown sources, versioned. Many readers clone/fork directly
-- [Zenn](https://zenn.dev/shimo4228): browser view of the Japanese articles — Claude Code, AKC skills, harness design, contemplative-agent case studies
-- [Dev.to](https://dev.to/shimo4228): browser view of the English mirror
+- [writing](https://github.com/shimo4228/writing): source of truth for the articles and essays — Markdown sources in Japanese and English, versioned. Many readers clone/fork directly
+- [Dev.to](https://dev.to/shimo4228): browser view of the English articles — Claude Code, AKC skills, harness design, contemplative-agent case studies
 - [Substack](https://substack.com/@shimo4228): newsletter / long-form essays
 - [SSRN author page](https://ssrn.com/author=11618068): academic working papers, cross-deposited with Zenodo — the Zenodo concept DOIs are canonical; per-paper records in the Papers section above
 

@@ -7,7 +7,7 @@ dashboards. It reads, never collects:
   traffic/data/<repo>.jsonl       GitHub views per repository (daily CI)
   traffic/referrers/<repo>.jsonl  GitHub referrers, rolling 14 days (daily CI)
   traffic/stars.jsonl             stars per repository and followers (daily CI)
-  --zenn FILE                     zenn-content scripts/metrics/snapshots.jsonl
+  --zenn FILE                     writing repo scripts/metrics/snapshots.jsonl
                                   (Zenn likes, Zenn dashboard views, Dev.to
                                   views, followers; collected by hand)
   --site FILE                     JSON from scripts/cf_web_analytics.py
@@ -243,7 +243,7 @@ def section_referrers(lines, ref_dir, end):
 def section_writing(lines, zenn_file, end):
     lines += ["## Zenn・Dev.to", ""]
     if zenn_file is None or not zenn_file.exists():
-        lines += ["zenn-content の snapshots.jsonl を読めませんでした。", ""]
+        lines += ["writing repo の snapshots.jsonl を読めませんでした。", ""]
         return
     rows = read_jsonl(zenn_file)
     out = []
@@ -295,8 +295,8 @@ def section_writing(lines, zenn_file, end):
     lines += out
     lines += [
         "",
-        "これらは手で集める記録です（zenn-content の `article-stocktake`）。日付が 1 週間より古ければ、"
-        "その週の値ではありません。" if stale else "これらは手で集める記録です（zenn-content の `article-stocktake`）。",
+        "これらは手で集める記録です（writing repo の `article-stocktake`）。日付が 1 週間より古ければ、"
+        "その週の値ではありません。" if stale else "これらは手で集める記録です（writing repo の `article-stocktake`）。",
         "",
     ]
 
@@ -366,7 +366,7 @@ def write_index(weekly_dir):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--end", type=date.fromisoformat, help="last day of the week (default: last Sunday, UTC)")
-    ap.add_argument("--zenn", type=Path, help="zenn-content scripts/metrics/snapshots.jsonl")
+    ap.add_argument("--zenn", type=Path, help="writing repo scripts/metrics/snapshots.jsonl")
     ap.add_argument("--site", type=Path, help="JSON written by scripts/cf_web_analytics.py")
     ap.add_argument("--root", type=Path, default=ROOT)
     ap.add_argument("--stdout", action="store_true", help="print instead of writing traffic/weekly/")

@@ -4,7 +4,7 @@ name: weekly-summary
 # writes traffic/weekly/<last Sunday>.md: one page with the personal site's
 # visits (Cloudflare Web Analytics, when the CF_* secrets are set), GitHub
 # views, stars and followers, referrers, and the hand-collected Zenn / Dev.to
-# numbers from zenn-content. Reads only; scripts/weekly_summary.py.
+# numbers from the writing repo. Reads only; scripts/weekly_summary.py.
 
 on:
   schedule:
@@ -42,9 +42,9 @@ jobs:
           fi
           echo "end=$end" >> "$GITHUB_OUTPUT"
 
-      - name: Fetch zenn-content metrics (public)
+      - name: Fetch writing repo metrics (public)
         continue-on-error: true
-        run: curl -fsSL -o "$RUNNER_TEMP/snapshots.jsonl" https://raw.githubusercontent.com/shimo4228/zenn-content/main/scripts/metrics/snapshots.jsonl
+        run: curl -fsSL -o "$RUNNER_TEMP/snapshots.jsonl" https://raw.githubusercontent.com/shimo4228/writing/main/scripts/metrics/snapshots.jsonl
 
       - name: Fetch personal-site analytics (Cloudflare)
         if: env.HAS_CF == 'true'

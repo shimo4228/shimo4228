@@ -12,7 +12,7 @@ SCRIPT = ROOT / "scripts/traffic_compare.py"
 LEGACY = (
     "contemplative-agent", "agent-knowledge-cycle", "agent-attribution-practice",
     "authorship-strategy", "attention-not-self", "contemplative-agent-data",
-    "zenn-content", "claude-harness", "shimo4228",
+    "writing", "claude-harness", "shimo4228",
 )
 ADDITIONAL = (
     "search-first", "skill-stocktake", "codex-review", "readme-writer",

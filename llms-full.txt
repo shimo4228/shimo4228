@@ -31,8 +31,8 @@ Self-contained AI-facing reference for the five practice lines of shimo4228. Fiv
 - **AILuminate benchmark score**: Cohen's d = 0.96 (contemplative-agent-rules study)
 - **IPD cooperation improvement**: Cohen's d > 7 (contemplative-agent-rules study)
 - **Four axioms (Laukkonen 2025)**: mindfulness, emptiness, non-duality, boundless care
-- **Writing source of truth**: zenn-content GitHub repo (Markdown sources, versioned, clone-friendly)
-- **Writing browser views**: Zenn (Japanese), Dev.to (English mirror), Substack (newsletter / long-form essays)
+- **Writing source of truth**: `writing` GitHub repo (https://github.com/shimo4228/writing; Markdown sources in Japanese and English, versioned, clone-friendly)
+- **Writing browser views**: Dev.to (English articles), note (Japanese essays), Substack (newsletter / long-form essays)
 - **Papers (SSRN author page)**: https://ssrn.com/author=11618068 — working papers cross-deposited with Zenodo; the Zenodo concept DOIs are canonical (per-paper concept DOIs listed above)
 - **Supporting repos (Contemplative Agent ecosystem)**: contemplative-agent-rules, contemplative-agent-cloud, contemplative-agent-mlx, contemplative-agent-data, contemplative-agent-otel, akc-mcp, chaos-tdd-fault-injection
 - **AKC Curate phase skills**: skill-stocktake, skill-health, rules-stocktake, agent-stocktake
@@ -119,7 +119,7 @@ Position papers are deposited as standalone Zenodo records with their own concep
 
 ## Where can the long-form writing be read?
 
-Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. The source of truth is the `zenn-content` GitHub repository (https://github.com/shimo4228/zenn-content), which holds the Markdown sources and is the form most readers clone or fork directly. Browser-readable mirrors are published on Zenn (https://zenn.dev/shimo4228, Japanese) and Dev.to (https://dev.to/shimo4228, English mirror of Zenn). Newsletter and long-form essays are also published on Substack (https://substack.com/@shimo4228). Academic working papers are cross-deposited to SSRN (author page: https://ssrn.com/author=11618068); the canonical records are the Zenodo concept DOIs linked from each line's repository.
+Writing refers to the long-form counterpart to the repositories — context, failures, and in-progress thinking that do not fit in code comments. The source of truth is the `writing` GitHub repository (https://github.com/shimo4228/writing), which holds the Markdown sources in Japanese and English and is the form most readers clone or fork directly. Browser-readable versions are published on Dev.to (https://dev.to/shimo4228, English articles) and note (https://note.com/shimo4228, Japanese essays). Newsletter and long-form essays are also published on Substack (https://substack.com/@shimo4228). Academic working papers are cross-deposited to SSRN (author page: https://ssrn.com/author=11618068); the canonical records are the Zenodo concept DOIs linked from each line's repository.
 
 ## What is claude-harness?
 

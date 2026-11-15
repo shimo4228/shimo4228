@@ -52,7 +52,6 @@
         "https://scholar.google.com/citations?user=56_p8vEAAAAJ",
         "https://openalex.org/A5130593171",
         "https://huggingface.co/Shimo4228",
-        "https://zenn.dev/shimo4228",
         "https://dev.to/shimo4228",
         "https://shimo4228.substack.com",
         "https://x.com/shimo4228",
@@ -732,11 +731,11 @@
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
     {
-      "@id": "https://github.com/shimo4228/zenn-content",
+      "@id": "https://github.com/shimo4228/writing",
       "@type": ["EcosystemRepo", "SoftwareSourceCode"],
-      "name": "zenn-content",
-      "description": "Source of truth for the long-form writing — Markdown sources, versioned. Browser views are mirrored on Zenn (Japanese) and Dev.to (English).",
-      "url": "https://github.com/shimo4228/zenn-content",
+      "name": "writing",
+      "description": "Source of truth for the long-form writing — Markdown sources of the Japanese and English articles and essays, versioned.",
+      "url": "https://github.com/shimo4228/writing",
       "isPartOf": "https://github.com/shimo4228/shimo4228"
     },
 
