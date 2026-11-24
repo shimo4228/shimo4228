@@ -42,3 +42,4 @@
 {"date":"2026-11-21","window_days":14,"referrers":[{"referrer":"Google","count":2,"uniques":2}],"fetched_at":"2026-11-21T07:28:58.160Z"}
 {"date":"2026-11-22","window_days":14,"referrers":[{"referrer":"Google","count":1,"uniques":1},{"referrer":"github.com","count":1,"uniques":1}],"fetched_at":"2026-11-22T07:09:24.684Z"}
 {"date":"2026-11-23","window_days":14,"referrers":[{"referrer":"Google","count":1,"uniques":1},{"referrer":"github.com","count":1,"uniques":1}],"fetched_at":"2026-11-23T07:55:47.841Z"}
+{"date":"2026-11-24","window_days":14,"referrers":[{"referrer":"github.com","count":2,"uniques":2}],"fetched_at":"2026-11-24T10:09:22.215Z"}
