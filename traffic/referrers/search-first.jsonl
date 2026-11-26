@@ -44,3 +44,4 @@
 {"date":"2026-11-23","window_days":14,"referrers":[{"referrer":"Google","count":8,"uniques":5},{"referrer":"Bing","count":5,"uniques":5},{"referrer":"search.brave.com","count":1,"uniques":1}],"fetched_at":"2026-11-23T07:55:47.841Z"}
 {"date":"2026-11-24","window_days":14,"referrers":[{"referrer":"Google","count":9,"uniques":6},{"referrer":"Bing","count":5,"uniques":5},{"referrer":"search.brave.com","count":1,"uniques":1}],"fetched_at":"2026-11-24T10:09:22.215Z"}
 {"date":"2026-11-25","window_days":14,"referrers":[{"referrer":"Google","count":9,"uniques":6},{"referrer":"Bing","count":5,"uniques":5},{"referrer":"search.brave.com","count":1,"uniques":1}],"fetched_at":"2026-11-25T08:54:41.813Z"}
+{"date":"2026-11-26","window_days":14,"referrers":[{"referrer":"Google","count":8,"uniques":5},{"referrer":"Bing","count":5,"uniques":5},{"referrer":"search.brave.com","count":2,"uniques":2}],"fetched_at":"2026-11-26T08:40:14.719Z"}
